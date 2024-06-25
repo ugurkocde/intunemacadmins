@@ -5,7 +5,7 @@ import starlight from '@astrojs/starlight';
 export default defineConfig({
 	integrations: [
 		starlight({
-			title: 'Intune Mac Admins',
+			title: 'IntuneMacAdmins',
 			social: {
 				github: 'https://github.com/ugurkocde/intunemacadmins',
 			},

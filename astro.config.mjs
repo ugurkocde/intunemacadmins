@@ -26,6 +26,11 @@ export default defineConfig({
         directory: 'Community'
       }
     }, {
+      label: 'Frequently Asked Questions',
+      autogenerate: {
+        directory: 'Frequently Asked Questions'
+      }
+    }, {
       label: 'Await Final Configuration',
       autogenerate: {
         directory: 'Await Final Configuration'

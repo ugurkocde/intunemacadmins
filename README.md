@@ -1,4 +1,4 @@
-# Intune Mac Admins
+# IntuneMacAdmins.com
 
 ## Project Description
 
@@ -13,8 +13,6 @@ Intune Mac Admins is a community-driven platform dedicated to providing comprehe
 ## How to Contribute
 
 We welcome contributions from the community to help improve the content on Intune Mac Admins. Whether it's a new guide, a script, or an insight, your contribution is valuable.
-
-*To make edits, use the "Edit page" button located at the bottom of each page. For multiple edits, we recommend forking the repository and creating a pull request as described below.*
 
 ### Steps to Contribute
 

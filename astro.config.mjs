@@ -5,19 +5,16 @@ import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://intunemacadmins.com',
   integrations: [starlight({
     title: 'IntuneMacAdmins',
     social: {
       github: 'https://github.com/ugurkocde/intunemacadmins'
     },
+    editLink: {
+      baseUrl: 'https://github.com/ugurkocde/IntuneMacAdmins/edit/main/',
+    },
     sidebar: [
-    /* 				{
-    	label: 'Guides',
-    	items: [
-    		// Each item here is one entry in the navigation menu.
-    		{ label: 'Example Guide', link: '/guides/example/' },
-    	],
-    }, */
     {
       label: 'Home',
       autogenerate: {

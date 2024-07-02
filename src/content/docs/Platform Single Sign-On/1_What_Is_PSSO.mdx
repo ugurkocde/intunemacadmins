@@ -2,6 +2,45 @@
 title: What is PSSO?
 ---
 
-import { YouTube } from 'astro-embed';
+import { YouTube } from "astro-embed";
+import { Aside } from "@astrojs/starlight/components";
+
+<Aside>
+  The PSSO feature was something that we have waited a long time for. Having a
+  way for the user to use the same EntraID Password for their sign-in to the Mac
+  is a huge win. Otherwise the user would have to live with two different
+  passwords. With the latest PSSO release, multiple authentication methods are
+  supported, including Secure Enclave, Password Authentication, and Smart Card.
+</Aside>
+
+Platform Single Sign-On (SSO) for macOS with Microsoft Intune allows users to sign into their Mac devices using their Microsoft Entra ID credentials. This integration simplifies the sign-in process, enhances security, and reduces the number of passwords users need to remember.
+Key Features and Benefits:
+
+### Authentication Methods
+
+- **Secure Enclave**: Utilizes Apple's Secure Enclave for hardware-bound cryptographic keys, enabling passwordless authentication through Touch ID.
+  - This method does not support password sync but is recommended for its security in storing tokens and being phishing resistant. You can find more about the recommendation here: https://learn.microsoft.com/en-us/mem/intune/configuration/platform-sso-macos#step-1---decide-the-authentication-method
+- **Password Authentication**: Syncs Microsoft Entra ID password with the local macOS account password.
+- **Smart Card**: Uses an external smart card for authentication.
+
+<Aside type="caution">
+  Secure Enclave is recommended for its security in storing tokens, it does not
+  support password sync. If password sync is needed, you should use the Password
+  Authentication method.
+</Aside>
+
+### Security
+
+- Integrates with Apple's Secure Enclave for phishing-resistant, hardware-bound authentication.
+- Supports Zero Trust security models by eliminating passwords as primary attack vectors.
+
+### User Experience
+
+- Users can log into their Mac devices and automatically gain access to business applications and websites that support SSO without re-entering credentials.
+- The synchronization of local and Entra ID passwords ensures a consistent login experience.
+
+Here is a Video by Windows IT Pro that shows the Platform Single Sign-On experience in detail:
 
 <YouTube id="goccqHf4QS4" />
+
+Want to read more about PSSO? Here is the Microsoft Learn Article for it: https://learn.microsoft.com/en-us/mem/intune/configuration/platform-sso-macos

@@ -7,6 +7,19 @@ import mdx from "@astrojs/mdx";
 export default defineConfig({
   site: "https://intunemacadmins.com",
   integrations: [
+    {
+      name: "plausible",
+      hooks: {
+        "astro:config:setup": ({ injectScript }) => {
+          injectScript(
+            "head",
+            `
+            <script defer data-domain="intunemacadmins.com" src="https://plausible.io/js/script.js"></script>
+          `
+          );
+        },
+      },
+    },
     starlight({
       title: "IntuneMacAdmins",
       social: {

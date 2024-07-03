@@ -1,27 +1,23 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
-
 import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://intunemacadmins.com",
   integrations: [
-    {
-      name: "plausible",
-      hooks: {
-        "astro:config:setup": ({ injectScript }) => {
-          injectScript(
-            "head",
-            `
-            <script defer data-domain="intunemacadmins.com" src="https://plausible.io/js/script.js"></script>
-          `
-          );
-        },
-      },
-    },
     starlight({
       title: "IntuneMacAdmins",
+      head: [
+        {
+          tag: "script",
+          attrs: {
+            defer: true,
+            "data-domain": "intunemacadmins.com",
+            src: "https://plausible.io/js/script.js",
+          },
+        },
+      ],
       social: {
         github: "https://github.com/ugurkocde/intunemacadmins",
       },

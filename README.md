@@ -1,5 +1,7 @@
 # IntuneMacAdmins.com
 
+![intunemacadmins_screenshot](public/intunemacadmins_screenshot.png)
+
 ## Project Description
 
 Intune Mac Admins is a community-driven platform dedicated to providing comprehensive guides, tools, and best practices for macOS administration using Microsoft Intune. The goal of this website is to centralize macOS-related content, making it easier for administrators to find valuable resources and insights.

@@ -42,6 +42,7 @@ export default defineConfig({
         },
         {
           label: "Platform Single Sign-On (PSSO)",
+          badge: "New",
           autogenerate: {
             directory: "Platform Single Sign-On",
           },

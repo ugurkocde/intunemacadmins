@@ -1,5 +1,7 @@
 ---
 title: Insights
+sidebar:
+  order: 3
 ---
 
 - Before setting up PSSO you should think about your approach and communication with the enduser. While your Security Department could expect you to implement the most secure Authentication Method, in this case this is Secure Enclave, your users and the IT Department would expect to use a single password for the local and online (EntraID) accounts.

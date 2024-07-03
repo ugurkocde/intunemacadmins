@@ -1,0 +1,6 @@
+# Ignore all HTML files:
+**/*.html
+
+# Ignore all md and mdx files:
+**/*.md
+**/*.mdx

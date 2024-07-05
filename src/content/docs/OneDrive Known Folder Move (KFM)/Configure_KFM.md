@@ -3,3 +3,36 @@ title: Configure KFM
 sidebar:
   order: 2
 ---
+
+### OneDrive sync app
+KFM is only supported by the **standalone OneDrive sync app** (e.g. contained in Microsoft 365 Apps package in Intune). The version from **macOS App Store does not support KFM**.
+
+### Intune Policies
+
+#### OneDrive settings
+The following settings control the behavoiur of KFM: We are forcing KFM and enable it silently for Desktop and Documents. We also activate the KFM wizard to prompt users for activation (e.g.: kicks in if errors occur).
+<Steps>
+1. You can [download a ready to use KFM policy from here]( /src/assets/OneDrive/OneDriveKFM.json). Right click and select "Save as ..." to save it locally on your device.
+2. Go to the [Intune Portal](https://intune.microsoft.com/#view/Microsoft_Intune_DeviceSettings/DevicesMacOsMenu/~/configuration) and sign in.
+3. Select Create -> Import Policy and Upload the .json file that you have downloaded earlier.
+4. Edit the policy and **replace "XYZ"** with your **Tenant ID** (two times).
+5. Assign the policy to the desired (test) group.
+</Steps>
+
+#### Service Management
+OneDrive needs to run in background. Since macOS 13 (Ventura) this has to be consented explicitly. If you already have a policy for Service Management (Managed Login Items) you can add OneDrive there, too.
+<Steps>
+1. You can [download a ready to use Service Management policy from here]( /src/assets/OneDrive/OneDriveServiceManagement.json). Right click and select "Save as ..." to save it locally on your device.
+2. Go to the [Intune Portal](https://intune.microsoft.com/#view/Microsoft_Intune_DeviceSettings/DevicesMacOsMenu/~/configuration) and sign in.
+3. Select Create -> Import Policy and Upload the .json file that you have downloaded earlier.
+4. Assign the policy to the desired (test) group.
+</Steps>
+
+#### Full Disk Access
+OneDrive needs Full Disk Access for KFM. If you already have a policy for Privacy Preferences Policy Control (that grants "System Policy All Files") you can add OneDrive there, too.
+<Steps>
+1. You can [download a ready to use Full Disk Access policy from here]( /src/assets/OneDrive/OneDriveFullDiskAccess.json). Right click and select "Save as ..." to save it locally on your device.
+2. Go to the [Intune Portal](https://intune.microsoft.com/#view/Microsoft_Intune_DeviceSettings/DevicesMacOsMenu/~/configuration) and sign in.
+3. Select Create -> Import Policy and Upload the .json file that you have downloaded earlier.
+4. Assign the policy to the desired (test) group.
+</Steps>

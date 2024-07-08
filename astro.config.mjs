@@ -56,8 +56,15 @@ export default defineConfig({
         {
           tag: "meta",
           attrs: {
-            property: "og:author",
+            property: "author",
             content: "Ugur Koc",
+          },
+        },
+        {
+          tag: "meta",
+          attrs: {
+            name: "publish_date",
+            content: "2024",
           },
         },
         // Twitter Meta Tags

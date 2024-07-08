@@ -53,6 +53,13 @@ export default defineConfig({
             content: "website",
           },
         },
+        {
+          tag: "meta",
+          attrs: {
+            property: "og:author",
+            content: "Ugur Koc",
+          },
+        },
         // Twitter Meta Tags
         {
           tag: "meta",

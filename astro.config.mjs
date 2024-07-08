@@ -37,7 +37,7 @@ export default defineConfig({
           attrs: {
             property: "og:description",
             content:
-              "Community Guides, Tools and Best Practices for Intune Mac Admins.",
+              "The best place for sharing and learning from real-world experiences with community guides, scripts, tools, and best practices.",
           },
         },
         {

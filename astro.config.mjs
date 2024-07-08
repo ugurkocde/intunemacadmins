@@ -39,12 +39,14 @@ export default defineConfig({
         },
         {
           label: "Frequently Asked Questions",
+          badge: "Updated",
           autogenerate: {
             directory: "Frequently Asked Questions",
           },
         },
         {
           label: "Await Final Configuration",
+          badge: "New",
           autogenerate: {
             directory: "Await Final Configuration",
           },
@@ -58,18 +60,21 @@ export default defineConfig({
         },
         {
           label: "Custom Attributes",
+          badge: "New",
           autogenerate: {
             directory: "Custom Attributes",
           },
         },
         {
           label: "FileVault",
+          badge: "New",
           autogenerate: {
             directory: "FileVault",
           },
         },
         {
           label: "OneDrive Known Folder Move (KFM)",
+          badge: "New",
           autogenerate: {
             directory: "OneDrive Known Folder Move (KFM)",
           },

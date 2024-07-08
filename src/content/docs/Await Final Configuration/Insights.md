@@ -1,5 +1,6 @@
 ---
 title: Insights
+description: Insights about 'Await Final Configuration'.
 sidebar:
   order: 3
 ---

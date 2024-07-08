@@ -1,6 +1,6 @@
 ---
 title: What is Await Final Configuration?
-description: Understand the 'Await Final Configuration' state in Apple Device Management for secure, compliant, and seamless device deployment.
+description: Explore the 'Await Final Configuration' state in Apple Device Management for secure, compliant, and user-friendly device deployment.
 sidebar:
   order: 1
 ---

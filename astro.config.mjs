@@ -17,6 +17,42 @@ export default defineConfig({
             src: "https://plausible.io/js/script.js",
           },
         },
+        {
+          tag: "meta",
+          attrs: {
+            property: "og:title",
+            content: "IntuneMacAdmins",
+          },
+        },
+        {
+          tag: "meta",
+          attrs: {
+            property: "og:description",
+            content:
+              "Community Guides, Tools and Best Practices for Intune Mac Admins.",
+          },
+        },
+        {
+          tag: "meta",
+          attrs: {
+            property: "og:image",
+            content: "https://intunemacadmins.com/IntuneMacAdmins.jpg",
+          },
+        },
+        {
+          tag: "meta",
+          attrs: {
+            property: "og:url",
+            content: "https://intunemacadmins.com",
+          },
+        },
+        {
+          tag: "meta",
+          attrs: {
+            property: "og:type",
+            content: "website",
+          },
+        },
       ],
       social: {
         github: "https://github.com/ugurkocde/intunemacadmins",

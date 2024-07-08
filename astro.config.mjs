@@ -12,17 +12,9 @@ export default defineConfig({
         {
           tag: "meta",
           attrs: {
-            name: "description",
-            content:
-              "Comprehensive guides and best practices for managing Macs with Intune. Join our community to stay updated with the latest tools and techniques.",
-          },
-        },
-        {
-          tag: "meta",
-          attrs: {
             name: "keywords",
             content:
-              "Intune, Mac Admins, Apple, Device Management, IT, Guides, Best Practices",
+              "Intune, Mac Admins, Apple, Device Management, IT, Guides, Best Practices, MDM, MacOS, Scripts, Tools",
           },
         },
         {

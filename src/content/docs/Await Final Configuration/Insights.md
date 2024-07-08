@@ -1,5 +1,7 @@
 ---
 title: Insights
+sidebar:
+  order: 3
 ---
 
 ### API Endpoint: Release Device from Await Configuration

@@ -1,12 +1,14 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import mdx from "@astrojs/mdx";
+import starlightImageZoom from "starlight-image-zoom";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://intunemacadmins.com",
   integrations: [
     starlight({
+      plugins: [starlightImageZoom()],
       title: "IntuneMacAdmins",
       head: [
         {

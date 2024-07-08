@@ -183,6 +183,20 @@ export default defineConfig({
             directory: "OneDrive Known Folder Move (KFM)",
           },
         },
+        {
+          label: "Updating Microsoft Apps",
+          badge: "New",
+          autogenerate: {
+            directory: "Updating Microsoft Apps",
+          },
+        },
+        {
+          label: "Deploy Files on a Mac",
+          badge: "New",
+          autogenerate: {
+            directory: "Deploy Files",
+          },
+        },
       ],
     }),
     mdx(),

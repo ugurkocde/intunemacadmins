@@ -53,6 +53,50 @@ export default defineConfig({
             content: "website",
           },
         },
+        // Twitter Meta Tags
+        {
+          tag: "meta",
+          attrs: {
+            name: "twitter:card",
+            content: "summary_large_image",
+          },
+        },
+        {
+          tag: "meta",
+          attrs: {
+            property: "twitter:domain",
+            content: "intunemacadmins.com",
+          },
+        },
+        {
+          tag: "meta",
+          attrs: {
+            property: "twitter:url",
+            content: "https://intunemacadmins.com",
+          },
+        },
+        {
+          tag: "meta",
+          attrs: {
+            name: "twitter:title",
+            content: "IntuneMacAdmins",
+          },
+        },
+        {
+          tag: "meta",
+          attrs: {
+            name: "twitter:description",
+            content:
+              "Community Guides, Tools and Best Practices for Intune Mac Admins.",
+          },
+        },
+        {
+          tag: "meta",
+          attrs: {
+            name: "twitter:image",
+            content: "https://intunemacadmins.com/IntuneMacAdmins.jpg",
+          },
+        },
       ],
       social: {
         github: "https://github.com/ugurkocde/intunemacadmins",

@@ -1,0 +1,63 @@
+---
+title: Enable FileVault in Setup Assistant
+sidebar:
+  order: 2
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+
+## Prerequisites
+
+Before we start with the FileVault configuration profile in Intune, we have to complete following requirements:
+
+1. Enable Await Final Configuration
+   1. Follow the guide here to enable it: [Configure Await Final Configuration](https://www.intunemacadmins.com/await-final-configuration/configure_await_final_configuration/)
+2. Create a Filter using the EnrollmentProfileName
+   1. Follow the guide below to create the filter.
+
+**Create a Filter using the EnrollmentProfileName**
+
+<Steps>
+
+1. Go to the [Intune Portal](https://intune.microsoft.com) and sign in.
+2. Go to the Tenant Administration -> Filters -> Create -> Managed Devices
+3. Give this filter a name and select macOS as the platform.
+4. Now on the Rules page, select 
+   1. Property = EnrollmentProfileName, 
+   2. Operator = Equals
+   3. Value is the Name of your Enrollment Profile that you can find here: [Enrollment program tokens](https://intune.microsoft.com/#view/Microsoft_Intune_Enrollment/DepTokensPagingBlade) and then select your Token to see your Enrollment Profile. If you do not have a Profile, you have to create one or else the whole Deployment and Enrollment for your macOS Devices will not work.
+5. Here is an example of how it could look like:
+![Intune Device Filter](/src/assets/FileVault/FileVault_1.png)
+
+</Steps>
+
+
+<Aside type="tip">
+Generally speaking, using a Device Filter instead of assigning your policies to a dynamic group is much faster, because Intune does not need to sync with EntraID and evaluate which devices are in the dynamic group and which are not. With the help of the above Filter, Intune knows the devices because it just checks its own inventory instead of connecting with EntraID. Only this way, your policies will arrive on a device that is in the Setup Assistant fast enough to be enabled or configured.
+</Aside>
+
+## Configration Profile
+
+If you have Await Final Configuration enabled and also have created a Device Filter you are ready to create your FileVault Configration.
+
+You can either download and import the Configuration Profile from here: [Enable FileVault during Setup Assistant](/src/assets/FileVault/Enable_FileVault_during_Setup_Assistant.json)
+
+or create your own profile following this guide:
+
+<Steps>
+1. Go to the [Intune Portal](https://intune.microsoft.com) and sign in.
+2. Go to Devices -> macOS -> Configuration and Create a new policy. 
+   1. Profile type: Settings catalog
+3. Give it a descriptive name and click on Next. Example: *Enable FileVault during Setup Assistant*
+4. Click on Add settings and search for FileVault.
+![FileVault](/src/assets/FileVault/FileVault_2.png)
+5. Select *Force Enable in Setup Assistant* (this will automatically select *Enable*)
+6. Let´s also configure *Prevent FileVault From Being Disabled*. You can find it in the *FileVault Options* category.
+![FileVault](/src/assets/FileVault/FileVault_3.png)
+7. Let´s configure the settings after adding them to the profile:
+   1.  Force Enable In Setup Assistant = True
+   2.  Enable = On
+   3.  Prevent FileVault From Being Disabled = True
+8. After assigning and saving the profile, the settings should like the following:
+![FileVault](/src/assets/FileVault/FileVault_4.png)
+</Steps>

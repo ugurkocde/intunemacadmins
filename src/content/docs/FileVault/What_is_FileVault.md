@@ -4,7 +4,7 @@ sidebar:
   order: 1
 ---
 
-FileVault is a disk encryption program available in macOS, designed to protect data by encrypting the entire drive. It uses XTS-AES-128 encryption with a 256-bit key to help prevent unauthorized access to the information on your startup disk.
+FileVault is a disk encryption program available in macOS, designed to protect data by encrypting the entire drive.
 
 ## Key Features of FileVault
 

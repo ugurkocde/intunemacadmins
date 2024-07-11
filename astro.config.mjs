@@ -163,6 +163,13 @@ export default defineConfig({
           },
         },
         {
+          label: "Declerative Device Management (DDM)",
+          badge: "New",
+          autogenerate: {
+            directory: "Declerative Device Management",
+          },
+        },
+        {
           label: "Custom Attributes",
           badge: "New",
           autogenerate: {

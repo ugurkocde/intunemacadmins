@@ -1,0 +1,41 @@
+---
+title: Configure Await Final Configuration
+description: Configure 'Await Final Configuration' for macOS in Intune to ensure proper device setup and compliance.
+sidebar:
+  order: 2
+---
+
+import { Aside, Steps } from "@astrojs/starlight/components";
+
+## Intune Configuration
+
+<Steps>
+1. In the Intune admin center, go to **Devices** > **Enrollment**.
+2. Select the **Apple** tab.
+3. Under **Bulk Enrollment Methods**, select **Enrollment program tokens**.
+4. Select an enrollment program token.
+5. Select **Profiles** > **Create profile** > **macOS**
+  ![Await Final Configuration](/src/assets/AwaitFinalConfiguration/afc-config1.png)
+6. Enter a name and description for the profile so that you can distinguish it from other enrollment profiles.
+7. On the **Management Settings** page, configure **Enrol with User Affinity & Modern Authentication.**
+</Steps>
+
+<Aside>
+Await Final Configuration & Managed Local Accounts can only be used with User Affinity & Modern Authentication.
+</Aside>
+
+<Steps>
+8. Toggle "Yes" for Await Final Configuration and click Next
+  ![Await Final Configuration](/src/assets/AwaitFinalConfiguration/afc-config2.png)
+9. On the **Setup Assistant** page, configure the Setup Assistant experience as per your organisation requirements.
+10 On the Account Settings page, Select **Yes** to create local managed account during enrollment.
+![Await Final Configuration](/src/assets/AwaitFinalConfiguration/afc-config3.png)
+11. Toggle "Yes" for blocking users to change their username details.
+12. Review changes and click **Create** to finish creating the profile.
+</Steps>
+
+## Conclusion
+
+The “Await Final Configuration” state is a powerful feature in Apple Device Management that ensures devices are properly configured and compliant before they are used. By using the Release Device from Await Configuration API endpoint, administrators can efficiently manage and transition devices to their operational state, maintaining security and compliance within their organization.
+
+For more detailed information, you can refer to the [Apple Developer Documentation](https://developer.apple.com/documentation/devicemanagement/release_device_from_await_configuration).

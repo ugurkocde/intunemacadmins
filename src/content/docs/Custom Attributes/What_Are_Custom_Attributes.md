@@ -5,11 +5,11 @@ sidebar:
 ---
 ## What are Custom Attributes in macOS?
 
-In the world of macOS, custom attributes are a powerful feature that enables administrators to extend the management capabilities of their Mac environments. These attributes can be leveraged to track, configure, and manage various aspects of macOS devices in ways that are tailored to the specific needs of an organization. In this blog post, we will explore what custom attributes are, their benefits, and how they can be utilized in macOS management.
+In the world of macOS, custom attributes are a powerful feature that enables administrators to extend the management capabilities of their Mac environments. These attributes can be leveraged to track, configure, and manage various aspects of macOS devices in ways that are tailored to the specific needs of an organization. Let´s explore what custom attributes are, their benefits, and how they can be utilized in macOS management.
 
 ## Understanding Custom Attributes
 
-Custom attributes in macOS are essentially additional fields that can be created and assigned to devices within a management system. These fields can store information that is not natively included in the macOS management schema. For example, you might want to track specific inventory details, user preferences, or custom configuration settings that are unique to your organization’s requirements.
+Custom attributes in macOS are essentially additional fields that can be created and assigned to devices within Intune. These fields can store information that is not natively included in the macOS management schema. For example, you might want to track specific inventory details, user preferences, or custom configuration settings that are unique to your organization’s requirements.
 
 ## Examples of Custom Attributes
 

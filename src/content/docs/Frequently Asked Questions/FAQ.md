@@ -33,3 +33,23 @@ If you want to apply settings on a device, regardless of who's signed in, then a
 Policy settings applied to user groups always go with the user, and go with the user when signed in to their many devices.
 
 Source: [User groups vs. device groups](https://learn.microsoft.com/en-us/mem/intune/configuration/device-profile-assign#user-groups-vs-device-groups)
+
+## 4. What are the best practices for managing macOS updates through Intune?
+
+To make use of the newest features that Apple releases for better User experience and increased Device Security (e.g. PSSO with Secure Enclave) it is recommended to be atleast at MacOS Sonoma (Version 14.0) or even better stay current.
+
+There are multiple options to setup updates, Update Policies and Declerative Device Management, for MacOS in Intune and currently its best to combine them.
+
+1. You can setup a default configuration with a "macOS updates policy" where you can define the update behavior (e.g. Download and Install Critical Updates) and setup a schedule.
+2. There will be cases where you want to roll out a new update that patches some vulnerabilities in the OS. In those situations better add a new Update Profile with Declerative Device Management to the above setting. You have to create a new configuration profile with the settings catalog where you can configure DDM - Software Updates. In this profile we are able to select a target date time for the update as well as the OS Version we want to install. The user experiences a couple of notifications to save their work before finally the device force reboots at that configured target date and time.
+
+Note:
+- Setting up both Profiles will not cause errors in the assignments as both are different payloads.
+- Not setting the OS Version in the DDM Profile will automatically install the newest available version for that Mac Device (this depends on the hardware and the OS it supports).
+
+
+## 5. How can I deploy and manage third-party applications on macOS devices using Intune?
+
+Most vendors offer a .dmg or .pkg file to install the application. Both extensions are supported in Intune and can be uploaded and assigned to Devices and Users.
+
+There could be cases where you have to package your own application e.g. licence files and in those cases you can use some of the steps we provide here: [How to deploy Files](https://www.intunemacadmins.com/deploy-files/how_to_deploy_files/)

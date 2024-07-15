@@ -1,0 +1,74 @@
+---
+title: How to Update Microsoft Apps
+sidebar:
+  order: 1
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+
+Before you start configuring policies for MAU, it is necessary to understand that it actually works.
+
+The Microsoft AutoUpdate (MAU) checks for application updates every 12 hours by examining a version number that is embedded in an XML file, commonly referred to as a 'manifest,' which is located online. This version number is then contrasted with the version of the app that is presently installed on the local system. If the background process detects that the XML file points to a more recent version than the installed one, the full MAU application window pops open, prompting users to execute an update.
+
+## Update process breakdown
+
+- Checking for Updates: By default, MAU periodically checks for updates in the background. It communicates with Microsoft servers to see if there are any new patches, improvements, or features available for your installed Microsoft applications.
+- Download and Installation: Depending on the settings you've chosen, MAU either notifies you about available updates or directly downloads and installs them. If you've opted for automatic updates, the process happens in the background, ensuring your Microsoft applications are always current.
+- Update Notifications: If your settings allow for it, MAU will send you a notification whenever updates are available. You can then choose whether to download and install the updates immediately or delay them for a later time.
+- Application Closure for Updates: Some updates may require the target application to close for successful installation. MAU will prompt you to close the application if it is running during the update process.
+- System Restart: Certain significant updates might need a system restart to be fully integrated. MAU will notify you and request a system restart after the installation of such updates.
+
+## Microsoft AutoUpdate (MAU) Options
+
+- **Manual Updates**: In your Microsoft apps, you can manually check for updates by clicking on the 'Help' menu and selecting 'Check for Updates'. This will open the MAU interface, where you can view any available updates and manually initiate their download and installation.
+![MAU](/src/assets/MAU/mau-1.png)
+- **Automatic Updates**: If you prefer not to manually check for updates, you can configure MAU to download and install updates automatically. This is particularly useful as it ensures you always have the most recent version of the application without needing to remember to check for updates regularly.
+![MAU](/src/assets/MAU/mau-2.png)
+- **Scheduled Updates**: MAU can also be set to check for updates on a specific schedule. This can be configured in the 'How would you like updates to be installed?' section in the MAU interface.
+- **Choosing Update Channel**: With MAU, you can also select your preferred update channel, for instance, 'Current,' 'Monthly Enterprise,' 'Semi-Annual Enterprise,' or 'Beta'. The update channel you're subscribed to can influence the frequency and type of updates you receive.
+![MAU](/src/assets/MAU/mau-3.png)
+
+## Configuring Microsoft AutoUpdate
+
+To configure your Microsoft AutoUpdate settings in Intune, follow these steps:
+
+<Steps>
+1. Sign in to the Microsoft Intune admin center.
+2. Select Devices > macOS >Configuration profiles > Create profile
+3. Select Settings catalog.
+4. Select Create.
+5. Select Next.
+6. In Configuration settings, select Add settings. In the settings picker, search for "MAU" to select all the available settings.
+</Steps>
+
+Here is a part of what you can configure in Intune for MAU:
+![MAU](/src/assets/MAU/mau-4.png)
+
+
+## Best Practice
+
+We recommend enabling the follwoing settings:
+
+- **Automatically acknowledge data collection policy:** Suppress the Required Data Collection policy dialog from being shown to users.
+- **Guard against app modification:** Retain and reuse app clones after the update cycle. This allows for future delta updates even when the source app has been modified by a third-party tool.
+- **Register app on launch:** Force Office apps to register with AutoUpdate on each launch.
+- **Enable AutoUpdate:** Specifies whether AutoUpdate should download and install updates. This value should be true unless you need to temporarily halt all updates.
+
+<Aside>
+Additionally enable **Enable extended logging** to get more details and troubleshoot update issues. MAU will write verbose logging events to /Library/Logs/Microsoft/autoupdate.log
+</Aside>
+
+<Aside type="tip">
+You can run multiple rollout waves for Microsoft updates by using the **Deferred updates** Setting where you can set the number of days MAU should defer new updates for the Microsoft Apps. You can create multiple profiles with different assignments.
+</Aside>
+
+You can set a deadline for any of the following applications:
+
+- An individual application, such as just Word.
+- A group of applications, such as Word, Excel, and PowerPoint.
+- All Microsoft applications that are updated by MAU. 
+
+<Aside>Users will receive notifications about the upcoming deadline and can temporarily postpone the updates from being installed. But once the deadline is reached, any applications the user has open will be closed and the updates applied.</Aside>
+
+
+More details: [Set a Deadline For Office Updates on macOS using MAU](https://www.intuneirl.com/controlling-update-behaviour-for-microsoft-applications-on-macos-using-microsoft-autoupdate/)

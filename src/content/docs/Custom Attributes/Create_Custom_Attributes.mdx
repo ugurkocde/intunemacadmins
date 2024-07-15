@@ -1,0 +1,72 @@
+---
+title: Create a Custom Attribute Script
+sidebar:
+  order: 2
+---
+
+import { Aside, Steps } from "@astrojs/starlight/components";
+
+Custom attributes in Intune allow you to collect specific information from managed macOS devices using shell scripts. One useful application is to retrieve the last reboot time of a device. This can be valuable for troubleshooting, maintenance scheduling, or ensuring compliance with reboot policies.
+
+## Last Reboot Time Script
+
+To get the last reboot time of macOS devices, you can use the following shell script:
+
+```bash
+#!/bin/bash
+# Script to get the last reboot time formatted
+
+# Extracting the timestamp from the sysctl command
+timestamp=$(sysctl kern.boottime | awk '{print $5}' | tr -d ',')
+
+# Converting the timestamp to a formatted date
+formatted_date=$(date -r $timestamp "+%Y-%m-%d %H:%M:%S")
+
+echo "Last Reboot Time: $formatted_date"
+```
+
+This script does the following:
+<Steps>
+1. Extracts the boot timestamp using the `sysctl` command.
+2. Processes the timestamp with `awk` and `tr` to clean up the output.
+3. Converts the timestamp to a human-readable date format.
+4. Outputs the formatted last reboot time.
+</Steps>
+
+## Configuring the Custom Attribute
+
+To use this script as a custom attribute in Intune:
+
+<Steps>
+1. Go to the Intune portal and navigate to Devices > macOS > Custom Attributes.
+![Custom Attribute](/src/assets/customattributes/custom_attribute_1.png)
+2. Click on "+ Add" to create a new custom attribute.
+3. Provide a name (e.g., "Last Reboot Time") and description for the attribute.
+![Custom Attribute](/src/assets/customattributes/custom_attribute_2.png)
+1. Upload the script and set the data type to "String".
+![Custom Attribute](/src/assets/customattributes/custom_attribute_3.png)
+1. Assign the custom attribute to the devices you want to collect the data from.
+</Steps>
+
+After configuration, Intune will run this script on the targeted devices and collect the last reboot time information. You can then view this data in the Intune portal or use it for reporting and compliance purposes.
+
+<Aside>
+Custom Attributes run every 8 hours by default. You can not change the frequency of the script and you can not run it on-demand.
+</Aside>
+
+## Viewing Results
+
+Once the custom attribute is deployed and executed on the devices, you can view the results by:
+
+<Steps>
+1. Going to the Intune portal and selecting a macOS device.
+2. Navigating to the "Custom Attributes" section.
+3. Looking for the "Last Reboot Time" attribute in the list.
+![Custom Attribute](/src/assets/customattributes/custom_attribute_4.png)
+</Steps>
+
+The result will show the last reboot time of the device in the format: "YYYY-MM-DD HH:MM:SS".
+
+By implementing this custom attribute, you gain valuable insights into the uptime of your managed macOS devices, helping you maintain a more secure and efficient IT environment.
+
+[Learn more about custom attributes for macOS in Intune](https://ugurkoc.de/get-local-admins-and-last-reboot-time-on-macos-devices-using-custom-attributes/)

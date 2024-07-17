@@ -1,6 +1,6 @@
 ---
-title: What is Declerative Device Management?
-description: What is Declerative Device Management?
+title: What is Declarative Device Management?
+description: What is Declarative Device Management?
 sidebar:
   order: 1
 ---

@@ -150,56 +150,48 @@ export default defineConfig({
         },
         {
           label: "Await Final Configuration",
-          badge: "New",
           autogenerate: {
             directory: "Await Final Configuration",
           },
         },
         {
           label: "Platform Single Sign-On (PSSO)",
-          badge: "New",
           autogenerate: {
             directory: "Platform Single Sign-On",
           },
         },
         {
           label: "Declarative Device Management (DDM)",
-          badge: "New",
           autogenerate: {
             directory: "Declarative Device Management",
           },
         },
         {
           label: "Custom Attributes",
-          badge: "New",
           autogenerate: {
             directory: "Custom Attributes",
           },
         },
         {
           label: "FileVault",
-          badge: "New",
           autogenerate: {
             directory: "FileVault",
           },
         },
         {
           label: "OneDrive Known Folder Move (KFM)",
-          badge: "New",
           autogenerate: {
             directory: "OneDrive Known Folder Move (KFM)",
           },
         },
         {
           label: "Updating Microsoft Apps",
-          badge: "New",
           autogenerate: {
             directory: "Updating Microsoft Apps",
           },
         },
         {
           label: "Deploy Files on a Mac",
-          badge: "New",
           autogenerate: {
             directory: "Deploy Files",
           },

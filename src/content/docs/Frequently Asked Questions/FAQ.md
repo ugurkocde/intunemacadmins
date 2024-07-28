@@ -47,7 +47,6 @@ Note:
 - Setting up both Profiles will not cause errors in the assignments as both are different payloads.
 - Not setting the OS Version in the DDM Profile will automatically install the newest available version for that Mac Device (this depends on the hardware and the OS it supports).
 
-
 ## 5. How can I deploy and manage third-party applications on macOS devices using Intune?
 
 Most vendors offer a .dmg or .pkg file to install the application. Both extensions are supported in Intune and can be uploaded and assigned to Devices and Users.
@@ -57,3 +56,5 @@ There could be cases where you have to package your own application e.g. licence
 ## 6. Can I enroll a MacOS Device in Intune without ABM?
 
 Yes, you can enroll a MacOS Device in Intune without ABM. You can use the Company Portal App to do so. Devices added this way will have the "Personal" Ownership Type in Intune. The enrollment could therefore be blocked by your device enrollment restrictions.
+
+BUT: Not having the device in ABM means the device is not supervised and therefore the user could wipe a machine and/or remove your MDM profile. 

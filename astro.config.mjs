@@ -149,6 +149,12 @@ export default defineConfig({
           },
         },
         {
+          label: "Intune Getting Started Guide",
+          autogenerate: {
+            directory: "Intune Getting Started Guide",
+          },
+        },
+        {
           label: "Await Final Configuration",
           autogenerate: {
             directory: "Await Final Configuration",

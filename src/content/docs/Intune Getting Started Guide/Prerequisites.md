@@ -1,13 +1,8 @@
 ﻿---
-
-title: Getting started with prerequisites
-
+title: Prerequisites
 description: macOS + Intune prerequisites
-
 sidebar:
-
-order: 1
-
+    order: 1
 ---
 
 # Goals 🎯

@@ -57,9 +57,8 @@ There could be cases where you have to package your own application e.g. licence
 
 Yes, you can enroll a MacOS Device in Intune without ABM. You can use the Company Portal App to do so. Devices added this way will have the "Personal" Ownership Type in Intune. The enrollment could therefore be blocked by your device enrollment restrictions.
 
-<<<<<<< Updated upstream
 BUT: Not having the device in ABM means the device is not supervised and therefore the user could wipe a machine and/or remove your MDM profile. 
-=======
+
 ## 7. What happens if my Apple Push Notification service (APNs) Token expires?
 The APNs token must be renewed yearly. If you miss the renewal and the grace period, you must re-enroll all devices. Personally-owned devices must re-trigger the enrollment process in Company Portal to get a new management profile, but for corporate-owned device enrolled with Apple Automated Device Enrollment, where the profile is usually non-removable, you must wipe and re-enroll all devices.
 Make sure you monitor the expiration of the APNs token.
@@ -105,4 +104,3 @@ The best way to stay up to date with new Intune macOS features is to follow comm
 
 ## 20. How do I get an Apple Business or School Manager?
 You need to register at [Apple Business](https://support.apple.com/guide/apple-business-manager/sign-up-axm402206497/web), get a D-U-N-S number and let Apple verify your request. Afterwards, it is possible to configure the various connections to Intune and use all services.
->>>>>>> Stashed changes

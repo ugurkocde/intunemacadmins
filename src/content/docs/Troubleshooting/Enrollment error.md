@@ -15,7 +15,7 @@ you may encounter the following error in the Company Portal app:
 
 To resolve this issue, follow these steps:
 
-Step 1: Check Enrollment Failures in Intune
+**Step 1: Check Enrollment Failures in Intune**
 
 1. Navigate to the Intune portal.
 2. Go to Devices > Enrollment > Monitor > Enrollment failures.
@@ -23,7 +23,7 @@ Step 1: Check Enrollment Failures in Intune
 
 ![IntuneSetup](/src/assets/IntuneSetup/IntuneErrorDetails.png)
 
-Step 2: Verify Device Type Restrictions
+**Step 2: Verify Device Type Restrictions**
 
 The error may be caused by device type restrictions that block macOS devices from enrolling. 
 To check and modify these settings:
@@ -32,7 +32,7 @@ To check and modify these settings:
 2. Click on Apple.
 3. Select Device platform restrictions and switch to the macOS restrictions tab.
 
-Step 3: Adjust Restrictions
+**Step 3: Adjust Restrictions**
 
 1. Review the existing device restrictions to ensure that macOS devices are allowed to enroll.
 2. If multiple restrictions exist, examine each one to confirm that the macOS platform is permitted.

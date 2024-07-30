@@ -9,7 +9,7 @@ sidebar:
 When attempting to enroll a macOS device in Intune after creating an Apple MDM push certificate, 
 you may encounter the following error in the Company Portal app:
 
-"Couldn't add your device. Your IT support doesn't allow OSX devices to be added to management."
+_"Couldn't add your device. Your IT support doesn't allow OSX devices to be added to management."_
 
 ![IntuneSetup](/src/assets/IntuneSetup/CompanyPortalError.png)
 

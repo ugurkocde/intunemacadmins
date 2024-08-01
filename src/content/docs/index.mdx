@@ -16,10 +16,7 @@ hero:
       icon: external
 	  attrs: 
 	  	target: _blank
-banner:
-  content: |
-    Help us improve this site! Contribute here ->
-    <a href="https://github.com/ugurkocde/IntuneMacAdmins">GitHub Repository</a>
+
 ---
 
 import {
@@ -28,6 +25,10 @@ import {
   LinkCard,
   Footer,
 } from "@astrojs/starlight/components";
+
+import GithubStar from '../../components/GitHubStar.astro';
+
+<GithubStar />
 
 ## Core Contributors
 

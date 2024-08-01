@@ -10,6 +10,10 @@ export default defineConfig({
     starlight({
       plugins: [starlightImageZoom()],
       title: "IntuneMacAdmins",
+      components: {
+        LastUpdated: "./src/components/LastUpdated.astro",
+      },
+      lastUpdated: true,
       head: [
         {
           tag: "meta",
@@ -203,6 +207,9 @@ export default defineConfig({
           },
         },
       ],
+      customCss: process.env.NO_GRADIENTS
+        ? ["./src/styles/custom.css"]
+        : ["./src/styles/landing.css", "./src/styles/custom.css"],
     }),
     mdx(),
   ],

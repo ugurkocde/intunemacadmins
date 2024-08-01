@@ -12,6 +12,8 @@ export default defineConfig({
       title: "IntuneMacAdmins",
       components: {
         LastUpdated: "./src/components/LastUpdated.astro",
+        ThemeProvider: "./src/components/ThemeProvider.astro",
+        ThemeSelect: "./src/components/ThemeSelect.astro",
       },
       lastUpdated: true,
       head: [

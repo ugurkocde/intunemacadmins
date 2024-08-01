@@ -7,10 +7,11 @@
 }
 
 :root[data-theme="light"] {
-  --sl-hue-accent: 180; /* Teal */
-  --sl-color-accent-high: hsl(var(--sl-hue-accent), 80%, 20%);
-  --sl-color-accent: hsl(var(--sl-hue-accent), 90%, 40%);
-  --sl-color-accent-low: hsl(var(--sl-hue-accent), 88%, 80%);
+  --sl-hue-accent: 200; /* Blue */
+  --sl-color-accent-high: hsl(var(--sl-hue-accent), 70%, 30%);
+  --sl-color-accent: hsl(var(--sl-hue-accent), 70%, 50%);
+  --sl-color-accent-low: hsl(var(--sl-hue-accent), 70%, 90%);
+  --overlay-blurple: hsla(var(--sl-hue-accent), 70%, 50%, 0.1);
 }
 
 [data-has-hero] .page {

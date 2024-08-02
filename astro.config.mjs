@@ -161,6 +161,13 @@ export default defineConfig({
           },
         },
         {
+          label: "Complete Guide Macos Deployment",
+          badge: "New",
+          autogenerate: {
+            directory: "Complete Guide Macos Deployment",
+          },
+        },
+        {
           label: "Await Final Configuration",
           autogenerate: {
             directory: "Await Final Configuration",

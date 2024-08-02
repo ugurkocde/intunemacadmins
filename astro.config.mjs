@@ -161,6 +161,13 @@ export default defineConfig({
           },
         },
         {
+          label: "Snippets",
+          badge: "New",
+          autogenerate: {
+            directory: "Snippets",
+          },
+        },
+        {
           label: "Await Final Configuration",
           autogenerate: {
             directory: "Await Final Configuration",

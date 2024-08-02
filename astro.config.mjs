@@ -162,7 +162,7 @@ export default defineConfig({
         },
         {
           label: "Complete Guide Macos Deployment",
-          badge: "New",
+          badge: { text: "Work in Progress", variant: "tip" },
           autogenerate: {
             directory: "Complete Guide Macos Deployment",
           },

@@ -1,6 +1,6 @@
 ---
 title: Welcome to IntuneMacAdmins
-description: Community Guides, Tools and Best Practices.
+description: Community Guides, Tools and Best Practices for MacOS Admins that Manage their devices with Microsoft Intune.
 template: splash
 lastUpdated: false
 hero:
@@ -8,15 +8,20 @@ hero:
   image:
     file: /src/assets/logo.png
   actions:
-    - text: Explore
+    - text: Get Started
       link: /home/getting_started/
       icon: right-arrow
       variant: primary
-    - text: Contribute
+    - text: Enable notifications for new content
+      link: https://notification.intunemacadmins.com/subscribe
+      variant: secondary
+      attrs: 
+        target: _blank
+    - text: View on GitHub
       link: https://github.com/ugurkocde/IntuneMacAdmins
       icon: external
-	  attrs: 
-	  	target: _blank
+      attrs: 
+        target: _blank
 ---
 
 import {
@@ -24,21 +29,13 @@ import {
   CardGrid,
   LinkCard,
   Footer,
+  Aside,
+  Icon 
 } from "@astrojs/starlight/components";
 
 import GithubStar from '../../components/GitHubStar.astro';
 
 <GithubStar />
-
-<Card>  
-  <iframe 
-    src="https://embeds.beehiiv.com/1fc84f93-52e9-41c4-8644-6de891da1e40"
-    data-test-id="beehiiv-embed"
-    style="width: 100%; height: 180px; background: transparent;"
-    frameborder="0"
-    scrolling="no"
-  ></iframe>
-</Card>
 
 ## Core Contributors
 
@@ -127,8 +124,8 @@ import GithubStar from '../../components/GitHubStar.astro';
         </p>
         <p>
           Read more{" "}
-          <a href="https://www.itymedia.de/" target="_blank">
-            Website
+          <a href="https://www.manage-everything.cloud/" target="_blank">
+            Blog
           </a>
         </p>
       </div>
@@ -194,7 +191,7 @@ import GithubStar from '../../components/GitHubStar.astro';
         <p>
           Read more{" "}
           <a href="https://intunestuff.com/" target="_blank">
-            Website
+            Blog
           </a>
         </p>
       </div>

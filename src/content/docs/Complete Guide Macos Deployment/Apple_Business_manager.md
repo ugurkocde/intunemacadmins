@@ -1,5 +1,5 @@
 ---
-title: What are Custom Attributes?
+title: Apple Business Manager
 sidebar:
   order: 1
 ---

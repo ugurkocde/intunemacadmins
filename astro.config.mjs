@@ -155,6 +155,13 @@ export default defineConfig({
           },
         },
         {
+          label: "Snippets",
+          badge: "New",
+          autogenerate: {
+            directory: "Snippets",
+          },
+        },
+        {
           label: "Intune Getting Started Guide",
           autogenerate: {
             directory: "Intune Getting Started Guide",

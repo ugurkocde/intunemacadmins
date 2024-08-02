@@ -10,6 +10,12 @@ export default defineConfig({
     starlight({
       plugins: [starlightImageZoom()],
       title: "IntuneMacAdmins",
+      components: {
+        LastUpdated: "./src/components/LastUpdated.astro",
+        ThemeProvider: "./src/components/ThemeProvider.astro",
+        ThemeSelect: "./src/components/ThemeSelect.astro",
+      },
+      lastUpdated: true,
       head: [
         {
           tag: "meta",
@@ -149,62 +155,63 @@ export default defineConfig({
           },
         },
         {
+          label: "Intune Getting Started Guide",
+          autogenerate: {
+            directory: "Intune Getting Started Guide",
+          },
+        },
+        {
           label: "Await Final Configuration",
-          badge: "New",
           autogenerate: {
             directory: "Await Final Configuration",
           },
         },
         {
           label: "Platform Single Sign-On (PSSO)",
-          badge: "New",
           autogenerate: {
             directory: "Platform Single Sign-On",
           },
         },
         {
           label: "Declarative Device Management (DDM)",
-          badge: "New",
           autogenerate: {
             directory: "Declarative Device Management",
           },
         },
         {
           label: "Custom Attributes",
-          badge: "New",
           autogenerate: {
             directory: "Custom Attributes",
           },
         },
         {
           label: "FileVault",
-          badge: "New",
           autogenerate: {
             directory: "FileVault",
           },
         },
         {
           label: "OneDrive Known Folder Move (KFM)",
-          badge: "New",
           autogenerate: {
             directory: "OneDrive Known Folder Move (KFM)",
           },
         },
         {
           label: "Updating Microsoft Apps",
-          badge: "New",
           autogenerate: {
             directory: "Updating Microsoft Apps",
           },
         },
         {
           label: "Deploy Files on a Mac",
-          badge: "New",
           autogenerate: {
             directory: "Deploy Files",
           },
         },
       ],
+      customCss: process.env.NO_GRADIENTS
+        ? ["./src/styles/custom.css"]
+        : ["./src/styles/landing.css", "./src/styles/custom.css"],
     }),
     mdx(),
   ],

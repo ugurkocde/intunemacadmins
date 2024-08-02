@@ -1,0 +1,81 @@
+---
+title: Basic Tenant Setup
+sidebar:
+  order: 2
+---
+
+import { Aside, Steps } from "@astrojs/starlight/components";
+
+# Overview
+After meeting the [Prerequisites](https://www.intunemacadmins.com/intune-getting-started-guide/prerequisites/) we turn over to the setup of the tenant and equipment of policies & apps.
+
+<Steps>
+1. Create groups & filters
+2. Create compliance policy
+3. Create configuration policies
+4. Evaluate updating
+5. Deploy apps
+6. Create scripts (optional)
+7. Create custom attributes (optional)
+</Steps>
+
+## Introduction
+All management tasks can be done within Intune > Devices > macOS - here you can configure and monitor everything:
+![IntuneSetup](/src/assets/IntuneSetup/intuneoverview.png)
+
+# 1. Groups & filters
+First, let's create a group/filter where your Macs are automatically added to target policies and other contents.
+
+**Entra dynamic group query**
+```
+(device.deviceOSType -eq "macMDM")
+```
+
+**Intune filter query**
+```
+(device.model -contains "Mac")
+```
+
+<Aside>
+It is recommended to use Intune filters, since the processing is faster than groups.
+</Aside>
+
+# 2. Compliance policy
+A compliance policy is the fundamental part of the Intune management, because it determines if the Mac is fullfilling basic requirements in order to access corporate resources. Let's start with a basic version of it:
+
+![IntuneSetup](/src/assets/IntuneSetup/compliance.png)
+
+# 3. Create configuraiton policies
+Configuration is a wide area and offers a lot of options. You can configure nearly every aspect of the system to get your desired look & feel.
+Some recommended policies are found [here](https://github.com/thenikk/Oceanleaf/tree/main/Intune%20-%20macOS)
+
+<Aside>
+It is recommended to use Settings Catalog whenever possible.
+</Aside>
+
+![IntuneSetup](/src/assets/IntuneSetup/configprofiles.png)
+
+# 4. Evaluate updating
+When it comes to OS updating, you have to main built-in options:
+-   macOS updates policy in Intune (less control options)
+-   Settings Catalog DDM update configuration (recommended)
+
+# 5. Deploy apps
+Intune supports app deployment to:
+-   Deploy apps from different repositories/stores
+-   Configure apps and monitor the status
+-   Provide apps as available from Company Portal
+
+There are different sources with different behaviors to get apps from:
+-   Built-in in Intune: Microsoft 365 Apps, Edge, Defender for Endpoint
+-   Web clip or link (just a shortcut to a URL)
+-   Apple Volume Purchase Program (VPP), requires Apple Business Manager - apps are 'aquired' there and synced to Intune
+-   macOS types:
+    -   DMG = Disk Image, basically just an application file
+    -   PKG = Package, more configuration options (insatller behavior)
+
+# 6. Create scripts (optional)
+macOS scripts are based on shell and can be deployed to managed endpoints. [Here](https://github.com/microsoft/shell-intune-samples/tree/master/macOS) you can find a repo with some inspiration.
+
+# 7. Create custom attributes (optional)
+Custom attributes are shell scripts that read out a system value in a string, integer or date. This is practical for custom inventory data or retrieving a status on the system.

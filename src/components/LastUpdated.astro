@@ -1,0 +1,30 @@
+---
+import type { Props } from '@astrojs/starlight/props';
+import Default from '@astrojs/starlight/components/LastUpdated.astro';
+
+const { lastUpdated } = Astro.props;
+
+---
+
+{
+	lastUpdated && (
+  <div class="container">
+    <div class="last-updated">
+      <Default {...Astro.props}><slot /></Default>
+    </div>
+  </div>
+	)
+}
+
+
+<style>
+  .container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+	.last-updated {
+    width: 100%;
+    text-align: right;
+	}
+</style>

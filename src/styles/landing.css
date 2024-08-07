@@ -88,23 +88,3 @@ iframe[id="stackblitz-iframe"] {
         width: 10px;
     }
 }
-
-@media (min-width: 1700px) {
-    [data-has-hero] .hero img {
-        position: absolute;
-        overflow: hidden;
-        top: 10vh;
-        right: -10vw;
-        width: 1000px;
-    }
-}
-
-@media (min-width: 2400px) {
-    [data-has-hero] .hero img {
-        position: absolute;
-        overflow: hidden;
-        top: 6vh;
-        right: 0vw;
-        width: 1200px;
-    }
-}

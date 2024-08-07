@@ -31,6 +31,12 @@
 
 [data-has-hero] .hero > img {
   filter: drop-shadow(0 0 3rem var(--overlay-blurple));
+  width: 400px;
+  height: 400px;
+}
+
+[data-has-hero] .hero .actions {
+    gap: 1rem;
 }
 
 iframe[id="stackblitz-iframe"] {

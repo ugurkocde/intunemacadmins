@@ -81,3 +81,30 @@ iframe[id="stackblitz-iframe"] {
   transition: all 0.2s ease;
 }
 
+@media (max-width: 50em) {
+	[data-has-hero] .hero img {
+        display: none;
+        aspect-ratio: 1.74;
+        width: 10px;
+    }
+}
+
+@media (min-width: 1700px) {
+    [data-has-hero] .hero img {
+        position: absolute;
+        overflow: hidden;
+        top: 10vh;
+        right: -10vw;
+        width: 1000px;
+    }
+}
+
+@media (min-width: 2400px) {
+    [data-has-hero] .hero img {
+        position: absolute;
+        overflow: hidden;
+        top: 6vh;
+        right: 0vw;
+        width: 1200px;
+    }
+}

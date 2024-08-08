@@ -1,0 +1,17 @@
+---
+title: Integrate Apple Business Manager with Intune
+sidebar:
+  order: 2
+---
+
+## Create the push certificate
+
+You need an Apple MDM Push certificate to manage your iOS/iPadOS and macOS devices in Microsoft Intune. This token enables devices to enroll via Intune Comp Portal or ADE/ASM/AC2. Follow the steps below to create the Apple MDM push certificate and upload it to the Intune Portal. [I’ve written a post on the renewal of the certificate](https://intunestuff.com/2023/11/12/how-to-renew-the-mdm-push-certificate-on-intune-for-apple-devices/), you can use this post also for the creation of the certificate. It it not that different and pretty easy to do.
+
+## Create the Apple Automated Device Enrollment Token
+
+So the pre-requisite is done, but before you can enroll iOS/iPadOS devices, you would need an Apple Server Token (.p7m) file from Apple. This token syncs information from Intune to ADE devices that your corporation owns. It also allows Intune to assign enrollment profiles to Apple and to assign devices to those profiles.
+
+Follow the steps below to create & upload the ADE token:
+
+In Intune portal, select Devices –  Enrollment – Apple – Enrollment Program Tokens

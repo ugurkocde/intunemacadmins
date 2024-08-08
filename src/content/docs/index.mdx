@@ -1,23 +1,30 @@
 ---
 title: Welcome to IntuneMacAdmins
-description: Community Guides, Tools and Best Practices.
+description: Community Guides, Tools and Best Practices for MacOS Admins that Manage their devices with Microsoft Intune.
 template: splash
 lastUpdated: false
 hero:
   tagline: A community hub for sharing and learning from real-world MacOS experiences, featuring guides, scripts, tools, and best practices — all in one website. Continuously improved and updated by experts.
   image:
     file: /src/assets/logo.png
+    alt: IntuneMacAdmins logo
+    width: 600
+    height: 600
   actions:
-    - text: Explore
+    - text: Get Started
       link: /home/getting_started/
       icon: right-arrow
       variant: primary
-    - text: Contribute
+    - text: Enable notifications for new content
+      link: https://notification.intunemacadmins.com/subscribe
+      variant: secondary
+      attrs: 
+        target: _blank
+    - text: View on GitHub
       link: https://github.com/ugurkocde/IntuneMacAdmins
       icon: external
-	  attrs: 
-	  	target: _blank
-
+      attrs: 
+        target: _blank
 ---
 
 import {
@@ -25,11 +32,17 @@ import {
   CardGrid,
   LinkCard,
   Footer,
+  Aside,
+  Icon 
 } from "@astrojs/starlight/components";
 
 import GithubStar from '../../components/GitHubStar.astro';
+import Partners from '../../components/Partners.astro';
 
 <GithubStar />
+<Partners />
+
+<Aside title="Last Content Update: 8/2/2024" type="tip">Check the [Changelog](https://www.intunemacadmins.com/home/changelog/) for details.</Aside>
 
 ## Core Contributors
 
@@ -118,8 +131,8 @@ import GithubStar from '../../components/GitHubStar.astro';
         </p>
         <p>
           Read more{" "}
-          <a href="https://www.itymedia.de/" target="_blank">
-            Website
+          <a href="https://www.manage-everything.cloud/" target="_blank">
+            Blog
           </a>
         </p>
       </div>
@@ -185,13 +198,13 @@ import GithubStar from '../../components/GitHubStar.astro';
         <p>
           Read more{" "}
           <a href="https://intunestuff.com/" target="_blank">
-            Website
+            Blog
           </a>
         </p>
       </div>
       <div style="flex: 1; text-align: right;">
         <img
-          src="joery_vandenbosch.jpg"
+          src="joery_vandenbosch.webp"
           alt="Joery Van den Bosch"
           style="width: 180px; height: 180px; border-radius: 50%;"
           data-zoom-off

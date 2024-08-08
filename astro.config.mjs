@@ -139,9 +139,14 @@ export default defineConfig({
       sidebar: [
         {
           label: "Home",
-          autogenerate: {
-            directory: "Home",
-          },
+          items: [
+            { label: 'Getting Started', link: '/home/getting_started/' },
+            { label: 'How to Contribute', link: '/home/how_to_contribute/' },
+            { label: 'Contributors', link: '/home/contributors/' },
+            { label: 'Feedback', link: '/home/feedback/' },
+            { label: 'Changelog', link: '/home/changelog/' },
+            { label: 'Whats new in Microsoft Intune', link: 'https://learn.microsoft.com/en-us/mem/intune/fundamentals/whats-new', attrs: { target: '_blank'} },
+          ],
         },
         {
           label: "Community",

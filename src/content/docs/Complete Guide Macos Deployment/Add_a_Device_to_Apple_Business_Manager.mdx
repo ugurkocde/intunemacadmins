@@ -1,0 +1,127 @@
+---
+title: Add a device to Apple Business Manager
+sidebar:
+  order: 3
+---
+
+## Add a device to Apple Business Manager
+
+To add devices to Apple Business Manager you have some options. You Apple reseller can add them for you when you order a device. You can also add a device yourself by using the Apple Configurator app on your phone, i’m going to explain this method. If you want your reseller to add the devices you can read this article: [Manage device suppliers in Apple Business Manager – Apple Support](https://support.apple.com/guide/apple-business-manager/manage-device-suppliers-axmef1c47493/web)
+
+You can add the following devices using Apple Configurator to Apple Business Manager, even if they weren’t purchased directly from Apple or from an Apple Authorized Reseller or cellular carrier:
+
+- iPhone, iPad, and Apple TV devices using Apple Configurator for Mac.
+- iPhone, iPad, and Mac computers (running macOS 12.0.1 or later) with Apple silicon or the Apple T2 Security Chip using Apple Configurator for iPhone.
+
+![AddToABM](/src/assets/CompleteGuide/image-163.webp)
+
+After you’ve set up the device or devices, they behave like any other device already in Apple Business Manager, with mandatory supervision and mobile device management (MDM) enrollment. The device can then be shut down and stored until needed or sent to the user. If the device is given to a user, they have a 30-day provisional period to release the device from Apple Business Manager, supervision, and MDM. This 30-day provisional period begins after the device is successfully assigned to and enrolled in:
+
+- A third-party MDM server linked to Apple Business Manager.
+
+
+
+## Create the Enrollment Profile
+
+First you will have to create an enrollment profile. Go to the Intune portal – Devices – Enrollment – Apple – Enrollment program tokens – click  token name – click profiles – create profile – MacOS – name you profile e.g MacOS
+
+![AddToABM](/src/assets/CompleteGuide/image-164.webp)
+
+Click next and fill in the details, click next again.
+
+![AddToABM](/src/assets/CompleteGuide/image-167.webp)
+
+Now you can alter the setup assistant, you can choose which screens appear during the setup, this is totally up to you. Fill in the department and department phone.
+
+![AddToABM](/src/assets/CompleteGuide/image-168.webp)
+
+Click next and fill in the details.
+
+![AddToABM](/src/assets/CompleteGuide/image-169.webp)
+
+Click next and create. Now you enrollment profile has been created, we will add a device to it later on.
+
+![AddToABM](/src/assets/CompleteGuide/image-170.webp)
+
+
+
+
+## Install Apple Configurator on iPhone and configure it
+
+Now it is time to add our device to Apple Business Manager with the use of the Apple configurator app on our iPhone. Download the app from the store and install it on your phone. I already got mine so i choose to open the app.
+
+![AddToABM](/src/assets/CompleteGuide/image-171.webp)
+
+Open the configurator app and tap continue.
+
+![AddToABM](/src/assets/CompleteGuide/image-172.webp)
+
+Sign in with your apple id you used for Apple Business Manager and fill in the MFA code.
+
+![AddToABM](/src/assets/CompleteGuide/image-173.webp)
+
+In the network configuration section make sure that Share Wifi is selected and at the MDM Server Management your MDM server that you configured in Apple Business Manager is selected by selecting specific and selecting your MDM server.
+
+![AddToABM](/src/assets/CompleteGuide/image-174.webp)
+
+Tap Done
+
+<Aside>
+Your Mac device needs to be factory reset in order to add it to Apple Business manager. **If you continue past the Country or Region setup pane, you will need to restart your Mac.**
+</Aside>
+
+Now your Apple Configurator will look like this.
+
+![AddToABM](/src/assets/CompleteGuide/image-175.webp)
+
+
+
+## Add your MacOS device to Apple Business Manager with Apple Configurator (iPhone)
+
+Hold your iPhone with Apple Configurator open close to the Mac. You should see a screen that says “Assign this Mac to your Organization”.
+
+![AddToABM](/src/assets/CompleteGuide/image-176.webp)
+
+From this screen, you have two options:
+
+- Use the iPhone camera (with the Apple Configurator app open) to scan the image on the screen.
+
+- Select “Pair Manually” on the iPhone and click “Pair Manually” on your Mac. You will be shown a 6-digit code and be prompted to enter it.
+
+I will use the scan option, you will now see your device being added to Apple Business Manager. When it is finished you will be presented by this screen.
+
+![AddToABM](/src/assets/CompleteGuide/image-177.webp)
+
+Leave you Mac now for what it is and go to the [Apple Business Manager](https://business.apple.com/) and login. Click on the left hand side on devices and your device should appear. Click on it for the details.
+
+![AddToABM](/src/assets/CompleteGuide/image-178.webp)
+
+
+
+## Sync Apple Business Manager device to Intune
+
+Now go back to the Intune portal – Devices – enrollment – Apple – Enrollment program tokens – click on your token name – click devices – click sync.
+
+![AddToABM](/src/assets/CompleteGuide/image-179.webp)
+
+Now the devices in your Apple Business Manager will be synced to Intune. You can click refresh a few times to check if the device appears, after a few seconds my device is there. If you have a lot of devices to syn the time will increase.
+
+![AddToABM](/src/assets/CompleteGuide/image-180.webp)
+
+Now we can add this device to our enrollment profile. so go to the Intune Portal – Devices – Enrollment – Apple – Enrollment program tokens – click on your token name – click profiles – click on your profile name – click assign devices and click add devices – select your device to add it.
+
+![AddToABM](/src/assets/CompleteGuide/image-182.webp)
+
+
+<Aside>
+After you add your device don’t forget to click **save**!!!
+</Aside>
+
+![AddToABM](/src/assets/CompleteGuide/image-183.webp)
+
+When all went good you will get this notification.
+
+![AddToABM](/src/assets/CompleteGuide/image-184.webp)
+
+
+Now you have added a device into Apple Business Manager and synced it to Intune and assigned it to the Enrollment profile. Now it is time to configure our Mac. But wait, i still want to configure the MacOS Platform SSO so let’s do this first. If you don’t want to use  Platform SSO you can skip these steps.

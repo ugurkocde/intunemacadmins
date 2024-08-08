@@ -31,9 +31,60 @@
 
 [data-has-hero] .hero > img {
   filter: drop-shadow(0 0 3rem var(--overlay-blurple));
+  width: 400px;
+  height: 400px;
+}
+
+[data-has-hero] .hero .actions {
+  gap: 1rem;
+}
+
+[data-has-hero] .hero .actions a {
+transition: all 0.3s ease;
+position: relative;
+overflow: hidden;
+}
+
+[data-has-hero] .hero .actions a:first-child {
+  transition: all 0.3s ease;
+  background-color: var(--sl-color-accent);
+  color: var(--sl-color-white);
+}
+
+[data-has-hero] .hero .actions a:first-child:hover {
+  background-color: var(--sl-color-accent-high);
+  color: var(--sl-color-black);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+[data-has-hero] .hero .actions a:nth-child(2):hover {
+  transform: translateY(-2px);
+}
+
+[data-has-hero] .hero .actions a:nth-child(3):hover {
+  transform: translateY(-2px);
 }
 
 iframe[id="stackblitz-iframe"] {
   width: 100%;
   min-height: 600px;
+}
+
+[data-has-hero] header site-search > button {
+  background-color: var(--sl-color-gray-5);
+  border: 1px solid var(--sl-color-gray-4);
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  color: var(--sl-color-gray-2);
+  transition: all 0.2s ease;
+}
+
+@media (max-width: 50em) {
+	[data-has-hero] .hero img {
+        display: none;
+        aspect-ratio: 1.74;
+        width: 10px;
+    }
 }

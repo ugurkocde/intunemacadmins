@@ -1,0 +1,24 @@
+---
+title: Enable FileVault during the Setup Assistant
+sidebar:
+  order: 6
+---
+
+
+## Install the Company Portal app for MacOS as a MacOS LOB app
+
+Company Portal for macOS can be downloaded and installed using the macOS LOB apps feature. The version downloaded is the version that will always be installed and may need to be updated periodically to ensure users get the best experience during initial enrollment.
+
+Download Company Portal for macOS from [here](https://go.microsoft.com/fwlink/?linkid=853070?wt.mc_id=MVP_377186)
+
+Add the app by going to the Intune portal – Apps – Add – App Type Line-of-business app – select
+
+Browse to your downloaded CompanyPortal-installer.pkg file and fill in the empty required fields
+
+![CompanyPortal](/src/assets/CompleteGuide/image-187.webp)
+
+Assign it to your desired group
+
+For macOS devices running 10.15 and later, when creating an Automated Device Enrollment profile, you can now choose a new authentication method: Setup Assistant with modern authentication, what we have done. The user has to authenticate using Microsoft Entra credentials during the setup assistant screens. This will require an additional Microsoft Entra login post-enrollment in the Company Portal app to gain access to corporate resources protected by Conditional Access and for Intune to assess device compliance.
+
+Users must sign into the Company Portal to complete Microsoft Entra authentication and gain access to resources protected by Conditional Access. User affinity is established when users complete the enrollment and reach the home screen of the macOS device. If the tenant has multi-factor authentication turned on for these devices or users, the users will be asked to complete multi-factor authentication during enrollment during Setup Assistant. Multi-factor authentication is not required, but it is available for this authentication method within Conditional Access if needed.

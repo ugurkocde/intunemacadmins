@@ -1,5 +1,6 @@
 ---
 title: Insights
+description: Discover important insights about OneDrive Known Folder Move (KFM) for macOS, including troubleshooting tips and potential conflicts with iCloud sync.
 sidebar:
   order: 3
 ---

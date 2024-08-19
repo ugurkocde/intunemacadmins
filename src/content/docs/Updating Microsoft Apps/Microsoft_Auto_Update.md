@@ -1,5 +1,6 @@
 ---
 title: What is Microsoft Auto Update (MAU)?
+description: Learn about Microsoft Auto Update (MAU), its key features, and how to use it to keep Microsoft applications on macOS up-to-date.
 sidebar:
   order: 2
 ---

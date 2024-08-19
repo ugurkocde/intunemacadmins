@@ -16,6 +16,7 @@ export default defineConfig({
         LastUpdated: "./src/components/LastUpdated.astro",
         ThemeProvider: "./src/components/ThemeProvider.astro",
         ThemeSelect: "./src/components/ThemeSelect.astro",
+        Footer: './src/components/Footer.astro',
       },
       lastUpdated: true,
       head: [
@@ -156,14 +157,12 @@ export default defineConfig({
         },
         {
           label: "Frequently Asked Questions",
-          badge: "Updated",
           autogenerate: {
             directory: "Frequently Asked Questions",
           },
         },
         {
           label: "Snippets",
-          badge: "New",
           autogenerate: {
             directory: "Snippets",
           },

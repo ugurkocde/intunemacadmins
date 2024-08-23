@@ -21,8 +21,9 @@ import GlueckkanjaLogo from "../assets/sponsors/glueckkanja_logo.svg";
       />
     </a>
 
-    <button class="become-sponsor-btn" id="openModalBtn">
-      <Icon name="mdi:plus-circle" />
+    <button class="sponsor-card become-sponsor-btn" id="openModalBtn">
+      <Icon name="mdi:plus-circle" class="plus-icon" />
+      <span>Become a Sponsor</span>
     </button>
   </div>
 </section>
@@ -76,6 +77,7 @@ import GlueckkanjaLogo from "../assets/sponsors/glueckkanja_logo.svg";
 
   .sponsors-grid {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     gap: 1rem;
@@ -87,6 +89,7 @@ import GlueckkanjaLogo from "../assets/sponsors/glueckkanja_logo.svg";
     border-radius: 12px;
     padding: 1.5rem;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 300px;
@@ -110,21 +113,69 @@ import GlueckkanjaLogo from "../assets/sponsors/glueckkanja_logo.svg";
   }
 
   .become-sponsor-btn {
-    background: none;
+    background-color: #ffffff;
     border: none;
     color: #3498db;
-    font-size: 3rem;
     cursor: pointer;
     transition: color 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 120px;
-    height: 120px;
   }
 
   .become-sponsor-btn:hover {
     color: #2980b9;
+  }
+
+  .plus-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .become-sponsor-btn span {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  @media (max-width: 768px) {
+    .sponsors-grid {
+      flex-direction: column;
+    }
+
+    .sponsor-card {
+      width: 100%;
+      max-width: 300px;
+      height: 100px;
+    }
+
+    .sponsor-logo {
+      max-width: 180px;
+      max-height: 60px;
+    }
+
+    .plus-icon {
+      font-size: 2rem;
+    }
+
+    .become-sponsor-btn span {
+      font-size: 0.9rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .sponsor-card {
+      height: 90px;
+    }
+
+    .sponsor-logo {
+      max-width: 160px;
+      max-height: 50px;
+    }
+
+    .plus-icon {
+      font-size: 1.8rem;
+    }
+
+    .become-sponsor-btn span {
+      font-size: 0.8rem;
+    }
   }
 
   .modal {

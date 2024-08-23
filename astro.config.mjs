@@ -162,6 +162,12 @@ export default defineConfig({
           },
         },
         {
+          label: "Troubleshooting Guides",
+          autogenerate: {
+            directory: "Troubleshooting",
+          },
+        },
+        {
           label: "Snippets",
           autogenerate: {
             directory: "Snippets",

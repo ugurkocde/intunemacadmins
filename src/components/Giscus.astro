@@ -1,0 +1,24 @@
+---
+const { entry } = Astro.props;
+const pageTitle = entry.data.title;
+---
+
+<script
+  src="https://giscus.app/client.js"
+  data-repo="ugurkocde/intunemacadmins"
+  data-repo-id="R_kgDOMNznBg"
+  data-category="General"
+  data-category-id="DIC_kwDOMNznBs4CggR-"
+  data-mapping="specific"
+  data-term={pageTitle}
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="preferred_color_scheme"
+  data-lang="en"
+  data-loading="lazy"
+  crossorigin="anonymous"
+  async></script>
+
+<div class="giscus"></div>

@@ -2,14 +2,23 @@ import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import mdx from "@astrojs/mdx";
 import starlightImageZoom from "starlight-image-zoom";
+import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://intunemacadmins.com",
   integrations: [
+    [icon()],
     starlight({
       plugins: [starlightImageZoom()],
       title: "IntuneMacAdmins",
+      components: {
+        LastUpdated: "./src/components/LastUpdated.astro",
+        ThemeProvider: "./src/components/ThemeProvider.astro",
+        ThemeSelect: "./src/components/ThemeSelect.astro",
+        Footer: './src/components/Footer.astro',
+      },
+      lastUpdated: true,
       head: [
         {
           tag: "meta",
@@ -131,9 +140,14 @@ export default defineConfig({
       sidebar: [
         {
           label: "Home",
-          autogenerate: {
-            directory: "Home",
-          },
+          items: [
+            { label: 'Getting Started', link: '/home/getting_started/' },
+            { label: 'How to Contribute', link: '/home/how_to_contribute/' },
+            { label: 'Contributors', link: '/home/contributors/' },
+            { label: 'Feedback', link: '/home/feedback/' },
+            { label: 'Changelog', link: '/home/changelog/' },
+            { label: 'Whats new in Microsoft Intune', link: 'https://learn.microsoft.com/en-us/mem/intune/fundamentals/whats-new', attrs: { target: '_blank'} },
+          ],
         },
         {
           label: "Community",
@@ -143,7 +157,6 @@ export default defineConfig({
         },
         {
           label: "Frequently Asked Questions",
-          badge: "Updated",
           autogenerate: {
             directory: "Frequently Asked Questions",
           },
@@ -155,9 +168,22 @@ export default defineConfig({
           },
         },
         {
+          label: "Snippets",
+          autogenerate: {
+            directory: "Snippets",
+          },
+        },
+        {
           label: "Intune Getting Started Guide",
           autogenerate: {
             directory: "Intune Getting Started Guide",
+          },
+        },
+        {
+          label: "Complete Guide Macos Deployment",
+          badge: { text: "Work in Progress", variant: "tip" },
+          autogenerate: {
+            directory: "Complete Guide Macos Deployment",
           },
         },
         {
@@ -209,6 +235,9 @@ export default defineConfig({
           },
         },
       ],
+      customCss: process.env.NO_GRADIENTS
+        ? ["./src/styles/custom.css"]
+        : ["./src/styles/landing.css", "./src/styles/custom.css"],
     }),
     mdx(),
   ],

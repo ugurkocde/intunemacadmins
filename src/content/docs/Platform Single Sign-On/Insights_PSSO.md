@@ -1,5 +1,6 @@
 ---
 title: Insights
+description: Explore key insights on Platform Single Sign-On (PSSO) for macOS, including security considerations, user experience, and the benefits of Secure Enclave vs. Password methods.
 sidebar:
   order: 3
 ---

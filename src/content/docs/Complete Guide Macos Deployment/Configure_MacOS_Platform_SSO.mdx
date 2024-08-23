@@ -1,0 +1,305 @@
+---
+title: Configure MacOS Platform SSO
+description: Comprehensive guide on configuring MacOS Platform SSO (Single Sign-On) with Secure Enclave Key. Learn about prerequisites, policy creation, and important considerations for implementation.
+sidebar:
+  order: 4
+---
+
+import { Aside, Steps } from "@astrojs/starlight/components";
+
+## What is MacOS Platform SSO
+
+Platform single sign-on (SSO) is a replacement for binding to directory services. It builds on enterprise SSO capabilities so SSO extensions can also perform single sign-on for apps and websites. It integrates with macOS and doesn’t use JavaScript or render webpages for authentication.
+
+The system stores the SSO tokens in the keychain and only shares them with the SSO extension. The SSO extension then uses the SSO tokens to authenticate the user to their on-premises apps and on websites as needed. If the SSO tokens are missing, expired, or more than four hours old, platform SSO attempts to refresh or retrieve new tokens from the IdP.
+
+Platform SSO supports the following authentication methods with an identity provider (IdP):
+
+- Password and encrypted password
+    The IdP uses the local account password and keeps it in sync, including password updates from the login window and screensaver unlock.
+
+
+- Password with WS-Trust
+    A federated IdP, meaning an IdP that facilitates federated authentication across multiple security domains, can use the local account password for authentication.
+
+
+- User secure enclave key
+    A secure enclave-backed key can authenticate with the IdP without a password and without changing the local account password.
+
+
+- SmartCard
+    High-security customers can use a SmartCard to authenticate with the IdP.
+    Platform SSO can create new local user accounts on demand at the login window using IdP credentials, and also integrate IdP group membership with macOS. You can use network accounts for authorization, and groups can also authorize network accounts.
+
+Use Device Management to securely configure platform SSO, including device and user registration, configuring groups, and managing account permissions.
+
+The system can also retrieve Kerberos ticket-granting tickets (TGTs), import them to a credential cache, and optionally share them with the Kerberos SSO extension.
+
+I will describe the config for **Secure Enclave Key** and will add **Password authentication** at a later time.
+
+<Aside>
+**You cannot use Enterprise Application SSO together with Platform SSO**
+</Aside>
+
+
+## Configure Platform SSO With Secure Enclave Key
+
+**Prerequisites**
+
+- Devices must be macOS 13.0 and newer devices. –> For the best results upgrade to MacOS 14.x
+
+-Microsoft Intune Company Portal app version 5.2404.0 and newer.
+
+- Supported web browsers:
+    Microsoft Edge
+    Google ChromePlatform
+    Safari
+
+## Create the Platform SSO policy
+
+Go to Intune portal – Devices – MacOS – Configuration profiles – Create – New Policy – Platform MacOS – Profile type Settings Catalog – Name your policy e.g. MacOS – Platform SSO – Select Add Settings – Expand Authentication – Select Extensible Single Sign On (SSO).
+
+<Aside>
+If you have a mix of macOS 13 and macOS 14+ devices in your environment, then configure the Platform SSO Authentication Method and the Authentication Method (Deprecated) authentication settings in the same profile.
+</Aside>
+
+![PSSO](/src/assets/CompleteGuide/image-185.webp)
+
+Configure the profile for at the below keys: (these are minimum required settings for PSSO to work)
+
+- Authentication Method (Deprecated) (only if you are deploying profile to macOS 13.x devices)
+
+- Extension Identifier
+
+- Authentication Method (macOS 14+)
+
+- Use Shared Device Keys
+
+- Registration Token
+
+- Account Display Name
+
+- Screen Locked Behavior
+
+- Team Identifier
+
+- Type
+
+- URLs
+
+- Token To User Mapping: Account Name
+
+- Token To User Mapping: Full Name
+
+Here you can find all the info that you need to fill in: [Configure Platform SSO for macOS devices | Microsoft Learn](https://learn.microsoft.com/en-us/mem/intune/configuration/platform-sso-macos#step-2---create-the-platform-sso-policy-in-intune?wt.mc_id=MVP_377186)
+
+**As there is apparently some confusion on the use of the URL’s needed in the PSSO profile see here (although this is stated in de Microsoft docs  – see link above) here just to clarify:**
+
+**These URL prefixes are the identity providers that do SSO app extensions. The URLs are required for redirect payloads and are ignored for credential payloads.**
+
+- https://login.microsoftonline.com
+
+- https://login.microsoft.com
+
+- https://sts.windows.net
+
+**If your environment needs to allow sovereign cloud domains, then also add the following URLs:**
+
+- https://login.partner.microsoftonline.cn
+
+- https://login.chinacloudapi.cn
+
+- https://login.microsoftonline.us
+
+- https://login-us.microsoftonline.com
+
+For more information on these URLs, go to [Microsoft Enterprise SSO plug-in for Apple devices.](https://learn.microsoft.com/en-us/entra/identity-platform/apple-sso-plugin?wt.mc_id=MVP_377186)
+
+Your profile will look like this.
+
+![PSSO](/src/assets/CompleteGuide/image-213.webp)
+
+Assign the profile to your desired **device or user** group.
+
+
+<Aside>
+When you configure Platform SSO with the Password authentication method instead of Secure Enclave Key, users sign in to the device with their Microsoft Entra ID user account password instead of their local account password. This option enables SSO across apps that use Microsoft Entra ID for authentication. With the Password authentication method:
+
+- The Microsoft Entra ID password replaces the local account password, and the two passwords are kept in sync.
+
+- The local account username isn’t changed and stays as-is.
+
+- End users can use Touch ID to sign in to the device.
+
+- There are fewer passwords for users and admins to remember and manage.​ -Users must enter their Microsoft Entra ID password after a device reboots. After this initial machine unlock​, Touch ID can unlock the device.
+
+- After the unlock, the device gets the hardware-bound Primary Refresh Token (PRT) credential for Microsoft Entra ID SSO.​ The local account machine password isn’t completely removed from the device. This behavior is by design due to Apple’s FileVault disk encryption, which uses the local password as the unlock key.
+
+
+**Any Intune password policy you configure also affects this setting. For example, if you have a password policy that blocks simple passwords, then simple passwords are also blocked for this setting. Make sure your Intune password policy and/or compliance policy matches your Microsoft Entra password policy. If the policies don’t match, then the password might not sync and end users are denied access. See the warning box below!**
+</Aside>
+
+<Aside type="caution" title="Warning">
+**!!Important update!!**  Now i have been playing around with PSSO for a while and what i’ve found out is the following, if you have set a compliance policy with password settings, or a device restrictions policy with password settings configured scoped to a device group you will not be able to do the registration, it will break PSSO **(see the bold text in the info box above, this is again very vague MS doc)**  unless you change you local user’s password 1st, I have tried all different scenario’s regard so it is very important to scope your policies like this:
+
+- Compliance policy – no password settings specified – User group assigned
+
+- Device restrictions Policy – password settings specified – Device group assigned
+
+- PSSO Policy – Device group or user group assigned
+</Aside>
+
+If you want to enable smart card login you will also need to enable FIDO as an authentication method in Entra ID:
+
+![PSSO](/src/assets/CompleteGuide/image-210.webp)
+---
+title: Configure MacOS Platform SSO
+sidebar:
+  order: 4
+---
+
+## What is MacOS Platform SSO
+
+Platform single sign-on (SSO) is a replacement for binding to directory services. It builds on enterprise SSO capabilities so SSO extensions can also perform single sign-on for apps and websites. It integrates with macOS and doesn’t use JavaScript or render webpages for authentication.
+
+The system stores the SSO tokens in the keychain and only shares them with the SSO extension. The SSO extension then uses the SSO tokens to authenticate the user to their on-premises apps and on websites as needed. If the SSO tokens are missing, expired, or more than four hours old, platform SSO attempts to refresh or retrieve new tokens from the IdP.
+
+Platform SSO supports the following authentication methods with an identity provider (IdP):
+
+- Password and encrypted password
+    The IdP uses the local account password and keeps it in sync, including password updates from the login window and screensaver unlock.
+
+
+- Password with WS-Trust
+    A federated IdP, meaning an IdP that facilitates federated authentication across multiple security domains, can use the local account password for authentication.
+
+
+- User secure enclave key
+    A secure enclave-backed key can authenticate with the IdP without a password and without changing the local account password.
+
+
+- SmartCard
+    High-security customers can use a SmartCard to authenticate with the IdP.
+    Platform SSO can create new local user accounts on demand at the login window using IdP credentials, and also integrate IdP group membership with macOS. You can use network accounts for authorization, and groups can also authorize network accounts.
+
+Use Device Management to securely configure platform SSO, including device and user registration, configuring groups, and managing account permissions.
+
+The system can also retrieve Kerberos ticket-granting tickets (TGTs), import them to a credential cache, and optionally share them with the Kerberos SSO extension.
+
+I will describe the config for **Secure Enclave Key** and will add **Password authentication** at a later time.
+
+<Aside>
+**You cannot use Enterprise Application SSO together with Platform SSO**
+</Aside>
+
+
+## Configure Platform SSO With Secure Enclave Key
+
+**Prerequisites**
+
+- Devices must be macOS 13.0 and newer devices. –> For the best results upgrade to MacOS 14.x
+
+-Microsoft Intune Company Portal app version 5.2404.0 and newer.
+
+- Supported web browsers:
+    Microsoft Edge
+    Google ChromePlatform
+    Safari
+
+## Create the Platform SSO policy
+
+Go to Intune portal – Devices – MacOS – Configuration profiles – Create – New Policy – Platform MacOS – Profile type Settings Catalog – Name your policy e.g. MacOS – Platform SSO – Select Add Settings – Expand Authentication – Select Extensible Single Sign On (SSO).
+
+<Aside>
+If you have a mix of macOS 13 and macOS 14+ devices in your environment, then configure the Platform SSO Authentication Method and the Authentication Method (Deprecated) authentication settings in the same profile.
+</Aside>
+
+![PSSO](/src/assets/CompleteGuide/image-185.webp)
+
+Configure the profile for at the below keys: (these are minimum required settings for PSSO to work)
+
+- Authentication Method (Deprecated) (only if you are deploying profile to macOS 13.x devices)
+
+- Extension Identifier
+
+- Authentication Method (macOS 14+)
+
+- Use Shared Device Keys
+
+- Registration Token
+
+- Account Display Name
+
+- Screen Locked Behavior
+
+- Team Identifier
+
+- Type
+
+- URLs
+
+- Token To User Mapping: Account Name
+
+- Token To User Mapping: Full Name
+
+Here you can find all the info that you need to fill in: [Configure Platform SSO for macOS devices | Microsoft Learn](https://learn.microsoft.com/en-us/mem/intune/configuration/platform-sso-macos#step-2---create-the-platform-sso-policy-in-intune?wt.mc_id=MVP_377186)
+
+**As there is apparently some confusion on the use of the URL’s needed in the PSSO profile see here (although this is stated in de Microsoft docs  – see link above) here just to clarify:**
+
+**These URL prefixes are the identity providers that do SSO app extensions. The URLs are required for redirect payloads and are ignored for credential payloads.**
+
+- https://login.microsoftonline.com
+
+- https://login.microsoft.com
+
+- https://sts.windows.net
+
+**If your environment needs to allow sovereign cloud domains, then also add the following URLs:**
+
+- https://login.partner.microsoftonline.cn
+
+- https://login.chinacloudapi.cn
+
+- https://login.microsoftonline.us
+
+- https://login-us.microsoftonline.com
+
+For more information on these URLs, go to [Microsoft Enterprise SSO plug-in for Apple devices.](https://learn.microsoft.com/en-us/entra/identity-platform/apple-sso-plugin?wt.mc_id=MVP_377186)
+
+Your profile will look like this.
+
+![PSSO](/src/assets/CompleteGuide/image-213.webp)
+
+Assign the profile to your desired **device or user** group.
+
+
+<Aside>
+When you configure Platform SSO with the Password authentication method instead of Secure Enclave Key, users sign in to the device with their Microsoft Entra ID user account password instead of their local account password. This option enables SSO across apps that use Microsoft Entra ID for authentication. With the Password authentication method:
+
+- The Microsoft Entra ID password replaces the local account password, and the two passwords are kept in sync.
+
+- The local account username isn’t changed and stays as-is.
+
+- End users can use Touch ID to sign in to the device.
+
+- There are fewer passwords for users and admins to remember and manage.​ -Users must enter their Microsoft Entra ID password after a device reboots. After this initial machine unlock​, Touch ID can unlock the device.
+
+- After the unlock, the device gets the hardware-bound Primary Refresh Token (PRT) credential for Microsoft Entra ID SSO.​ The local account machine password isn’t completely removed from the device. This behavior is by design due to Apple’s FileVault disk encryption, which uses the local password as the unlock key.
+
+
+**Any Intune password policy you configure also affects this setting. For example, if you have a password policy that blocks simple passwords, then simple passwords are also blocked for this setting. Make sure your Intune password policy and/or compliance policy matches your Microsoft Entra password policy. If the policies don’t match, then the password might not sync and end users are denied access. See the warning box below!**
+</Aside>
+
+<Aside type="caution" title="Warning">
+**!!Important update!!**  Now i have been playing around with PSSO for a while and what i’ve found out is the following, if you have set a compliance policy with password settings, or a device restrictions policy with password settings configured scoped to a device group you will not be able to do the registration, it will break PSSO **(see the bold text in the info box above, this is again very vague MS doc)**  unless you change you local user’s password 1st, I have tried all different scenario’s regard so it is very important to scope your policies like this:
+
+- Compliance policy – no password settings specified – User group assigned
+
+- Device restrictions Policy – password settings specified – Device group assigned
+
+- PSSO Policy – Device group or user group assigned
+</Aside>
+
+If you want to enable smart card login you will also need to enable FIDO as an authentication method in Entra ID:
+
+![PSSO](/src/assets/CompleteGuide/image-210.webp)

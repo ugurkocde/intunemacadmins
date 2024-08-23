@@ -1,61 +1,69 @@
 ---
 import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+import GlueckkanjaLogo from "../assets/sponsors/glueckkanja_logo.svg";
 ---
 
 <section class="partner-section">
   <h2>Our Sponsors <span class="heart">❤️</span></h2>
 
-  <div class="sponsor-option">
-    <div class="sponsor-card">
-      <div class="icon">
-        <Icon name="mdi:plus-circle" />
-      </div>
-      <h3>Become a Sponsor</h3>
-      <p>
-        Join us in empowering IT professionals with free, comprehensive macOS
-        management resources using Intune. Your sponsorship helps cover our
-        server costs, allowing us to focus on what matters most:
-        <br /><strong>The Intune Mac Admins Community.</strong>
-      </p>
-      <div class="contact-options">
-        <h4>Interested in sponsoring? Reach out today!</h4>
-        <div class="contact-menu">
-          <a href="mailto:contact@intunemacadmins.com" class="contact-item">
-            <Icon name="mdi:email" /> Mail
-          </a>
-          <a
-            href="https://x.com/ugurkocde"
-            class="contact-item"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Icon name="ri:twitter-x-fill" /> X
-          </a>
-          <a
-            href="https://www.linkedin.com/in/ugurkocde/"
-            class="contact-item"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Icon name="mdi:linkedin" /> LinkedIn
-          </a>
-        </div>
-      </div>
-    </div>
+  <div class="sponsors-grid">
+    <a
+      href="https://www.glueckkanja.com"
+      class="sponsor-card"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <Image
+        src={GlueckkanjaLogo}
+        alt="glueckkanja Logo"
+        class="sponsor-logo"
+      />
+    </a>
+
+    <button class="become-sponsor-btn" id="openModalBtn">
+      <Icon name="mdi:plus-circle" />
+    </button>
   </div>
 </section>
 
-<style>
-  .sponsor-card p strong {
-    font-weight: 700;
-    color: var(--sl-color-white);
-  }
+<div class="modal" id="sponsorModal">
+  <div class="modal-content">
+    <h3>Become a Sponsor</h3>
+    <p>
+      Support the Intune Mac Admins Community and empower IT professionals with
+      free, in-depth macOS management resources. Your sponsorship covers server
+      costs and fuels new features, allowing us to continue delivering valuable
+      content and tools for everyone.
+    </p>
+    <h4>Interested in sponsoring? Reach out today!</h4>
+    <div class="contact-menu">
+      <a
+        href="https://x.com/ugurkocde"
+        class="contact-item"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Icon name="ri:twitter-x-fill" /> X
+      </a>
+      <a
+        href="https://www.linkedin.com/in/ugurkocde/"
+        class="contact-item"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Icon name="mdi:linkedin" /> LinkedIn
+      </a>
+    </div>
+    <button class="close-modal" id="closeModalBtn">&times;</button>
+  </div>
+</div>
 
+<style>
   .partner-section {
     color: #ffffff;
-    padding: 4rem 2rem;
+    padding: 2rem;
     text-align: center;
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
 
   h2 {
@@ -66,95 +74,97 @@ import { Icon } from "astro-icon/components";
     letter-spacing: -0.5px;
   }
 
-  .cta-button {
-    display: inline-block;
-    background-color: var(--sl-color-accent);
-    color: var(--sl-color-black);
-    padding: 0.75rem 2rem;
-    border-radius: 25px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-    display: inline-flex;
+  .sponsors-grid {
+    display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 0.5rem;
-    border: 2px solid var(--sl-color-accent-high);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
-  .cta-button:hover {
-    background-color: var(--sl-color-accent-high);
-    border-color: var(--sl-color-accent);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-
-  .cta-button svg {
-    vertical-align: middle;
-  }
-
-  .sponsor-option {
-    margin-top: 3rem;
+    gap: 1rem;
+    margin-top: 2rem;
   }
 
   .sponsor-card {
-    background-color: var(--sl-color-gray-6);
-    border: 1px solid var(--sl-color-gray-5);
-    border-radius: 8px;
-    padding: 2rem;
-    max-width: 600px;
-    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 120px;
+    text-decoration: none;
     transition:
       transform 0.3s ease,
       box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
   .sponsor-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   }
 
-  .icon {
-    font-size: 4rem;
-    color: var(--sl-color-accent);
-    margin-bottom: 0.5rem;
-    line-height: 1;
-    display: inline-block;
+  .sponsor-logo {
+    max-width: 200px;
+    max-height: 70px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
   }
 
-  .sponsor-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-    color: var(--sl-color-white);
-    font-weight: 600;
-    letter-spacing: 0.5px;
+  .become-sponsor-btn {
+    background: none;
+    border: none;
+    color: #3498db;
+    font-size: 3rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
   }
 
-  .sponsor-card p {
-    font-size: 1rem;
-    color: var(--sl-color-gray-2);
-    margin-bottom: 2rem;
-    line-height: 1.6;
+  .become-sponsor-btn:hover {
+    color: #2980b9;
   }
 
-  .heart {
-    color: #ff4136;
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
   }
 
-  .contact-options {
-    margin-top: 2rem;
+  .modal-content {
+    background-color: #2c3e50;
+    margin: 15% auto;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
   }
 
-  .contact-options h4 {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-    color: var(--sl-color-white);
+  .close-modal {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
   }
 
   .contact-menu {
     display: flex;
     justify-content: center;
     gap: 1rem;
-    flex-wrap: wrap;
+    margin-top: 1rem;
   }
 
   .contact-item {
@@ -162,43 +172,48 @@ import { Icon } from "astro-icon/components";
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
-    background-color: var(--sl-color-gray-5);
-    color: var(--sl-color-white);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
     text-decoration: none;
     border-radius: 20px;
-    transition:
-      background-color 0.2s,
-      transform 0.2s;
+    transition: background-color 0.2s;
   }
 
   .contact-item:hover {
-    background-color: var(--sl-color-gray-4);
-    transform: translateY(-2px);
+    background-color: rgba(255, 255, 255, 0.2);
   }
 
-  .contact-item svg {
-    width: 1.2em;
-    height: 1.2em;
+  .heart {
+    color: #ff4136;
   }
 </style>
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    const dropdownToggle = document.querySelector(".dropdown-toggle");
-    const dropdownMenu = document.querySelector(".dropdown-menu");
+    const modal = document.getElementById("sponsorModal");
+    const openModalBtn = document.getElementById("openModalBtn");
+    const closeModalBtn = document.getElementById("closeModalBtn");
 
-    if (dropdownToggle && dropdownMenu) {
-      dropdownToggle.addEventListener("click", (e) => {
-        e.preventDefault();
-        dropdownMenu.classList.toggle("show");
-      });
-
-      // Close the dropdown when clicking outside
-      window.addEventListener("click", (e) => {
-        if (!(e.target as Element).matches(".dropdown-toggle")) {
-          dropdownMenu.classList.remove("show");
+    if (openModalBtn) {
+      openModalBtn.addEventListener("click", () => {
+        if (modal) {
+          modal.style.display = "block";
         }
       });
     }
+
+    if (closeModalBtn) {
+      closeModalBtn.addEventListener("click", () => {
+        if (modal) {
+          modal.style.display = "none";
+        }
+      });
+    }
+
+    window.addEventListener("click", (event) => {
+      if (event.target === modal && modal) {
+        modal.style.display = "none";
+      }
+    });
   });
 </script>

@@ -1,17 +1,15 @@
 ---
-title: Enrolment error in the company Portal app
+title: Enrollment Error
 sidebar:
   order: 1
 ---
-
-# Troubleshooting macOS Enrollment Errors in Intune 🎯
 
 When attempting to enroll a macOS device in Intune after creating an Apple MDM push certificate, 
 you may encounter the following error in the Company Portal app:
 
 _"Couldn't add your device. Your IT support doesn't allow OSX devices to be added to management."_
 
-![IntuneSetup](/src/assets/IntuneSetup/CompanyPortalError.png)
+![IntuneSetup](/src/assets/Troubleshooting/Enrollment_Error/CompanyPortalError.png)
 
 To resolve this issue, follow these steps:
 
@@ -21,7 +19,7 @@ To resolve this issue, follow these steps:
 2. Go to Devices > Enrollment > Monitor > Enrollment failures.
 3. Look for any entries related to the affected user.
 
-![IntuneSetup](/src/assets/IntuneSetup/IntuneErrorDetails.png)
+![IntuneSetup](/src/assets/Troubleshooting/Enrollment_Error/IntuneErrorDetails.png)
 
 **Step 2: Verify Device Type Restrictions**
 

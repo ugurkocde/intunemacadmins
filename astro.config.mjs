@@ -149,6 +149,12 @@ export default defineConfig({
           },
         },
         {
+          label: "Troubleshooting Guides",
+          autogenerate: {
+            directory: "Troubleshooting",
+          },
+        },
+        {
           label: "Intune Getting Started Guide",
           autogenerate: {
             directory: "Intune Getting Started Guide",

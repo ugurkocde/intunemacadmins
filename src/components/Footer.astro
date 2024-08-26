@@ -1,0 +1,11 @@
+---
+import type { Props } from "@astrojs/starlight/props";
+import Default from "@astrojs/starlight/components/Footer.astro";
+import Giscus from "./Giscus.astro";
+
+const { entry } = Astro.props;
+const showComments = entry.data.showComments !== false;
+---
+
+<Default {...Astro.props}><slot /></Default>
+{showComments && <Giscus entry={entry} />}

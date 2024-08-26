@@ -1,5 +1,6 @@
 ---
 title: What is FileVault?
+description: Learn about FileVault, macOS's built-in disk encryption feature. Discover its key features, benefits, and how it enhances data security on your Mac.
 sidebar:
   order: 1
 ---

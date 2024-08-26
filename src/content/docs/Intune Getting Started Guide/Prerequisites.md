@@ -1,6 +1,6 @@
 ﻿---
 title: Prerequisites
-description: macOS + Intune prerequisites
+description: Learn about the prerequisites for macOS management with Intune.
 sidebar:
     order: 1
 ---

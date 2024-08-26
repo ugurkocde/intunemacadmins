@@ -1,6 +1,6 @@
 ---
 title: What is Declarative Device Management?
-description: What is Declarative Device Management?
+description: Learn about Declarative Device Management (DDM), its benefits, and how it works on macOS devices.
 sidebar:
   order: 1
 ---

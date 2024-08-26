@@ -1,5 +1,6 @@
 ---
 title: FAQ
+description: Find answers to frequently asked questions about macOS management with Intune. Learn about VPP tokens, enrollment, device assignments, updates, and more.
 ---
 
 ## 1. What happens if my VPP Token expires?

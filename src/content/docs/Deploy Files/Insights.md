@@ -1,5 +1,6 @@
 ---
 title: Insights
+description: Insights on how to deploy files on macOS devices using Intune.
 sidebar:
   order: 2
 ---

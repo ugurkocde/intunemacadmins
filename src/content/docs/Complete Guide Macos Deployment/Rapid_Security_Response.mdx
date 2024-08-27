@@ -1,0 +1,92 @@
+---
+title: Rapid Security Response
+description: Rapid Security Response (RSR) is a new type of software release for Mac. It delivers important security improvements between software updates – for example, improvements to the Safari web browser, the WebKit framework stack or other critical system libraries.
+sidebar:
+  order: 10
+---
+
+import { Aside, Steps } from "@astrojs/starlight/components";
+
+## Rapid Security Response
+**What is Rapid Security Response?**
+
+Rapid Security Responses deliver important security improvements between software updates.
+
+Rapid Security Responses are a new type of software release for iPhone, iPad and Mac. They deliver important security improvements between software updates – for example, improvements to the Safari web browser, the WebKit framework stack or other critical system libraries. They may also be used to mitigate some security issues more quickly, such as issues that may have been exploited or reported to exist.
+
+New Rapid Security Responses will only be delivered for the latest versions of iOS, iPadOS and macOS, starting with iOS 16.4.1, iPadOS 16.4.1 and macOS 13.3.1.
+
+By default, your device will apply Rapid Security Responses automatically. If necessary, you’ll be prompted to restart your device. To check your device settings:
+
+- iPhone or iPad: go to Settings – General –  Software Update – Automatic Updates, then make sure “Security Responses & System Files” is turned on.
+- Mac: choose Apple menu  – System Settings. Click General in the sidebar, then click Software Update on the right. Click the Show Detail button next to Automatic Updates, then make sure “Install Security Responses and system files” is turned on.
+
+![RSS](/src/assets/CompleteGuide/image-7.webp)
+
+The latest versions of iOS/iPadOS 16.4.1 (a) and macOS 13.3.1 (a) represent a significant shift in how Apple releases OS updates. These updates introduce Rapid Security Response (RSR) for the first time on iPhones, iPads, and Macs. This new feature enables faster delivery of security updates, allowing for more frequent and timely fixes to security vulnerabilities. RSRs are included in subsequent minor updates, not major upgrades, and on a Mac, the updated content appears on the Preboot volume.
+
+There was considerable excitement surrounding the launch of RSR from Apple following its initial announcement. However, the actual release encountered numerous difficulties and unforeseen challenges, resulting in a tumultuous experience. Some of these challenges included:
+
+- A completely new naming convention for the OS.
+- Compliance policies in Microsoft Intune not being ready to adapt to the new naming convention.
+- Issues with rules and policies configured in Microsoft Defender for Endpoint.
+- Conditional Access Policies causing issues due to new iOS/iPadOS or macOS build numbers.
+
+
+To navigate these changes effectively, it is essential to understand the new updates and how they can be managed on supervised devices. Knowing the installation behavior and how to control it is crucial for achieving the best results.
+
+To fully understand the rapid security updates, I’ve broken down the information into several key points:
+
+- Restart Requirement: Rapid Security Responses (RSRs) intended for the operating system require the device to restart.
+- Automatic Updates: If enabled, these responses can occur automatically without user permission, provided the response is not for the OS.
+- User Interaction: Once the device requests the RSR update, it will be downloaded, giving users only a 10-second window to click “Not Now.”
+- Update Duration: The update process takes approximately 5-10 minutes from start to finish, depending on your internet connection.
+- Update Size: The download size is around 85MB. While the installation takes a bit longer, the restart process is relatively quick.
+- macOS Specifics: On macOS, updated operating system content can be made available to Safari and associated processes with a simple relaunch. However, a restart is required to make this content broadly available across the operating system.
+- iOS & iPadOS Specifics: On iOS and iPadOS, enterprise applications in the foreground may need to be restarted, potentially leading to data loss if not managed properly.
+- Uninstallation Option: By default, users have the option to uninstall or remove the responses.
+- Software Update Delay: RSRs do not adhere to managed software update delays.
+- Intune Software Deferral: If a software deferral policy is enforced from Microsoft Intune, the response is effectively delayed because they apply only to the latest minor operating system version.
+
+## Setup the Intune policy
+
+Go to Intune Portal – Devices – MacOS – Configuration Profiles – Create – New Policy – Platform MacOS – Profile type Settings Catalog – Create
+
+Name your policy e.g MacOS – Rapid Security Response and give a description if you want.
+
+Click Add settings and search for Rapid Security Response and Click Select all these settings:
+
+![RSS](/src/assets/CompleteGuide/image-75.webp)
+
+<Aside>
+If your organization is not ready to install Rapid Security Response (RSR), you can disable it by toggling the “Installation” option to “False.” This will prevent RSR from being visible on end users’ devices, effectively disabling it for users. **!This is not recommended, as it will leave the device vunerable to threats!**
+</Aside>
+
+Click next, fill in scope tags if you have them, assign the policy to your desired group and click create
+
+Your policy will look like this:
+
+![RSS](/src/assets/CompleteGuide/image-10.webp)
+
+
+<Aside>
+If your organization is not ready to install Rapid Security Response (RSR), you can disable it by toggling the “Installation” option to “False.” This will prevent RSR from being visible on end users’ devices, effectively disabling it for users. **!This is not recommended, as it will leave the device vunerable to threats!**
+</Aside>
+
+
+## Device experience
+
+If you go to the System settings – Software Update and your screen looks like this, your RSR is not yet enabled.
+
+![RSS](/src/assets/CompleteGuide/image-11.webp)
+
+If you see an a behind the OS Version that means that RSR is active on your device (As my device is fully up to date, this is a random screenshot from the internet)
+
+![RSS](/src/assets/CompleteGuide/image-12.webp)
+
+## Wrap Up
+
+Allowing major build upgrades on managed devices without thorough testing and user approval can lead to severe disruptions in business applications, unsatisfactory user experiences, and significant financial losses.
+
+Therefore, it is imperative to exercise utmost caution and diligence when upgrading operating systems. To avoid these issues, responses are tailored to the minor version of the OS and provided between major updates, ensuring a smooth and seamless experience for users. However, it appears that the release of these Rapid Security Response updates was premature. MDM systems still need to adjust a few configurations on the back end before these responses can be effectively rolled out at the enterprise level.
+

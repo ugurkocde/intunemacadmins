@@ -17,6 +17,7 @@ export default defineConfig({
         ThemeProvider: "./src/components/ThemeProvider.astro",
         ThemeSelect: "./src/components/ThemeSelect.astro",
         Footer: './src/components/Footer.astro',
+        PageSidebar: './src/components/PageSidebar.astro',
       },
       lastUpdated: true,
       head: [

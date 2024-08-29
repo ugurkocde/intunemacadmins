@@ -1,0 +1,98 @@
+---
+import type { Props } from "@astrojs/starlight/props";
+import { Image } from "astro:assets";
+import Default from "@astrojs/starlight/components/PageSidebar.astro";
+import GlueckkanjaLogo from "../assets/sponsors/glueckkanja_logo.svg";
+import AlgizLogo from "../assets/sponsors/algiz_logo.webp";
+---
+
+<Default {...Astro.props}>
+  <slot />
+</Default>
+
+<div class="sponsors-container">
+  <h2 class="sponsors-heading">Our Sponsors <span class="heart">❤️</span></h2>
+
+  <div class="sponsor-logo">
+    <a
+      href="https://www.glueckkanja.com"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <Image
+        src={GlueckkanjaLogo}
+        alt="glueckkanja"
+        width={150}
+        height={50}
+        class="white-bg"
+      />
+    </a>
+  </div>
+
+  <div class="sponsor-logo">
+    <a
+      href="https://www.algiz-technology.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <Image
+        src={AlgizLogo}
+        alt="Algiz"
+        width={180}
+        height={40}
+        class="white-bg"
+      />
+    </a>
+  </div>
+</div>
+
+<style>
+  .sponsors-container {
+    position: relative; /* Keep fixed to pin to bottom */
+    bottom: 0;
+    left: 0;
+    width: var(--sl-sidebar-width);
+    background-color: var(--sl-color-bg);
+    z-index: 10;
+  }
+
+  .sponsors-heading {
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    color: white;
+  }
+
+  .sponsor-logo {
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 70px;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .sponsor-logo:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .white-bg {
+    background-color: white;
+    display: block; /* Ensure the image is treated as a block element */
+    margin: 0 auto; /* Center the image horizontally */
+  }
+
+  @media (max-width: 1160px) {
+    .sponsors-heading,
+    .sponsor-logo {
+      display: none;
+    }
+  }
+</style>

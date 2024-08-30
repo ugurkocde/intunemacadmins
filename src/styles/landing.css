@@ -81,6 +81,11 @@ iframe[id="stackblitz-iframe"] {
   transition: all 0.2s ease;
 }
 
+[data-has-hero] .hero {
+  padding-bottom: 1rem; /* Reduce this value to decrease the space below the hero */
+  padding-top: 4rem;
+}
+
 @media (max-width: 50em) {
 	[data-has-hero] .hero img {
         display: none;

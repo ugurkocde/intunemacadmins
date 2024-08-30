@@ -163,6 +163,13 @@ export default defineConfig({
           },
         },
         {
+          label: "Baseline Settings for Intune",
+          badge: { text: "Work in Progress", variant: "caution" },
+          autogenerate: {
+            directory: "Baseline Settings for Intune",
+          },
+        },
+        {
           label: "Troubleshooting Guides",
           autogenerate: {
             directory: "Troubleshooting",
@@ -182,7 +189,7 @@ export default defineConfig({
         },
         {
           label: "Complete Guide Macos Deployment",
-          badge: { text: "Work in Progress", variant: "tip" },
+          badge: { text: "Updated", variant: "success" },
           autogenerate: {
             directory: "Complete Guide Macos Deployment",
           },

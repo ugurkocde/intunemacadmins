@@ -41,15 +41,29 @@ import GithubStar from '../../components/GitHubStar.astro';
 import Sponsors from '../../components/Sponsors.astro';
 
 <GithubStar />
-<Sponsors />
+<div class="reduced-margin">
+  <Sponsors />
+</div>
 
-<Aside title="Last Content Update: 8/27/2024" type="tip">Check the [Changelog](https://www.intunemacadmins.com/home/changelog/) for details.</Aside>
+<CardGrid>
+  <Card title="Jumpstart with our Baseline Settings" icon="rocket">
+    <p>Quickly manage your macOS devices with curated settings from the Open Intune Baseline (OIB) project.</p>
+    <a href="/baseline-settings-for-intune/settings_overview/">Import the Baseline Settings →</a>
+  </Card>
+  <Card title="Stay in the Loop" icon="list-format">
+    <p>Check out our changelog to see the latest updates and enhancements.</p>
+    <a href="/home/changelog">View Changelog →</a>
+  </Card>
+</CardGrid>
 
-## Core Contributors
+<div style="text-align: center; display: flex; justify-content: center; align-items: center; margin-top: 2rem; margin-bottom: 1rem;  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);">
+  <h2 style="margin-right: 0.5rem;">Core Contributors</h2>
+  <span style="font-size: 2.5rem;">🏆</span>
+</div>
 
 <CardGrid>
   <Card title="Ugur Koc">
-    <p>Intune MVP & Cloud Engineer @ <a href="https://www.glueckkanja.com/en/" target="_blank">glueckkanja</a></p>
+    <p>Microsoft MVP & Cloud Engineer @ <a href="https://www.glueckkanja.com/en/" target="_blank">glueckkanja</a></p>
     <div style="display: flex; align-items: center;">
       <div style="flex: 1;">
         <p>
@@ -73,7 +87,7 @@ import Sponsors from '../../components/Sponsors.astro';
       </div>
       <div style="flex: 1; text-align: right;">
         <img
-          src="ugur_koc.jpg"
+          src="ugur_koc.webp"
           alt="Ugur Koc"
           style="width: 180px; height: 180px; border-radius: 50%;"
           data-zoom-off
@@ -82,7 +96,7 @@ import Sponsors from '../../components/Sponsors.astro';
     </div>
   </Card>
   <Card title="Somesh Pathak">
-    <p>Intune MVP & Infrastructure Engineer @ <a href="https://www.nn-group.com/home.htm" target="_blank">NN Group</a></p>
+    <p>Microsoft MVP & Infrastructure Engineer @ <a href="https://www.nn-group.com/home.htm" target="_blank">NN Group</a></p>
     <div style="display: flex; align-items: center;">
       <div style="flex: 1;">
         <p>
@@ -106,7 +120,7 @@ import Sponsors from '../../components/Sponsors.astro';
       </div>
       <div style="flex: 1; text-align: right;">
         <img
-          src="somesh_pathak.jpg"
+          src="somesh_pathak.webp"
           alt="Somesh Pathak"
           style="width: 180px; height: 180px; border-radius: 50%;"
           data-zoom-off
@@ -139,7 +153,7 @@ import Sponsors from '../../components/Sponsors.astro';
       </div>
       <div style="flex: 1; text-align: right;">
         <img
-          src="steffen_schwerdtfeger.jpg"
+          src="steffen_schwerdtfeger.webp"
           alt="Steffen Schwerdtfeger"
           style="width: 180px; height: 180px; border-radius: 50%;"
           data-zoom-off
@@ -172,7 +186,7 @@ import Sponsors from '../../components/Sponsors.astro';
       </div>
       <div style="flex: 1; text-align: right;">
         <img
-          src="niklas_tinner.jpg"
+          src="niklas_tinner.webp"
           alt="Steffen Schwerdtfeger"
           style="width: 180px; height: 180px; border-radius: 50%;"
           data-zoom-off
@@ -181,7 +195,7 @@ import Sponsors from '../../components/Sponsors.astro';
     </div>
   </Card>
   <Card title="Joery Van den Bosch">
-    <p>Modern Work Architect @ <a href="https://www.arxus.eu/en" target="_blank">Arxus</a></p>
+    <p>Microsoft MVP & Modern Work Architect @ <a href="https://www.arxus.eu/en" target="_blank">Arxus</a></p>
     <div style="display: flex; align-items: center;">
       <div style="flex: 1;">
         <p>
@@ -207,6 +221,39 @@ import Sponsors from '../../components/Sponsors.astro';
         <img
           src="joery_vandenbosch.webp"
           alt="Joery Van den Bosch"
+          style="width: 180px; height: 180px; border-radius: 50%;"
+          data-zoom-off
+        />
+      </div>
+    </div>
+  </Card>
+  <Card title="James Robinson">
+    <p>Microsoft MVP & EUC Workstream Lead @ <a href="https://poweronplatforms.com/" target="_blank">PowerON</a></p>
+    <div style="display: flex; align-items: center;">
+      <div style="flex: 1;">
+        <p>
+          Follow on{" "}
+          <a href="https://x.com/SkipToEndpoint" target="_blank">
+            X
+          </a>
+        </p>
+        <p>
+          Connect on{" "}
+          <a href="https://www.linkedin.com/in/skiptotheendpoint/" target="_blank">
+            LinkedIn
+          </a>
+        </p>
+        <p>
+          Read more{" "}
+          <a href="https://skiptotheendpoint.co.uk/" target="_blank">
+            Blog
+          </a>
+        </p>
+      </div>
+      <div style="flex: 1; text-align: right;">
+        <img
+          src="james_robinson.webp"
+          alt="James Robinson"
           style="width: 180px; height: 180px; border-radius: 50%;"
           data-zoom-off
         />
@@ -253,3 +300,4 @@ import Sponsors from '../../components/Sponsors.astro';
     target="_blank"
   />
 </CardGrid>
+

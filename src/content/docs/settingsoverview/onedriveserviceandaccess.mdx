@@ -1,0 +1,37 @@
+---
+title: OneDrive Service and Access
+description: How to configure OneDrive Service and Access for your Intune tenant.
+---
+
+import { Steps, Aside } from "@astrojs/starlight/components";
+
+<Aside>
+Click on the link to download the JSON file from <a href="https://github.com/SkipToTheEndpoint/OpenIntuneBaseline/blob/main/MACOS/NativeImport/MacOS%20-%20OIB%20-%20Microsoft%20OneDrive%20-%20D%20-%20Service%20and%20Access%20-%20v1.0.json" target="_blank">GitHub</a>
+</Aside>
+
+## Service Management - Managed Login Items
+
+| Setting                                  | Value                                                                 |
+|-------------------------------------------|-----------------------------------------------------------------------|
+| Comment | OneDrive Launcher                                |
+| Rule Value | com.microsoft.OneDriveLauncher                                 |
+| Rule Type | Bundle Identifier                              |
+
+## Privacy Preferences Policy Control
+
+| Setting            | Value                                                                                                                                                          |
+|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Allowed            | True                                                                                                                                                           |
+| Authorization      | Allow                                                                                                                                                          |
+| Static Code        | False                                                                                                                                                          |
+| Code Requirement   | identifier "com.microsoft.OneDrive" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = UBF8T346G9 |
+| Identifier Type    | bundle ID                                                                                                                                                      |
+| Identifier         | com.microsoft.OneDrive                                                                                                                                         |
+
+
+## System Extensions
+
+| Setting                    | Value                             |
+|----------------------------|-----------------------------------|
+| Team Identifier            | UBF8T346G9                        |
+| Allowed System Extensions  | com.microsoft.OneDrive.FinderSync |

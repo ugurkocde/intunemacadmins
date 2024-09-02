@@ -1,0 +1,35 @@
+---
+title: Microsoft AutoUpdate (MAU) Configuration
+description: How to configure Microsoft AutoUpdate (MAU) for your Intune tenant.
+---
+
+import { Steps, Aside } from "@astrojs/starlight/components";
+
+<Aside>
+Click on the link to download the JSON file from <a href="https://github.com/SkipToTheEndpoint/OpenIntuneBaseline/blob/main/MACOS/NativeImport/MacOS%20-%20OIB%20-%20Microsoft%20AutoUpdate%20-%20D%20-%20MAU%20Configuration%20-%20v1.0.json" target="_blank">GitHub</a>
+</Aside>
+
+## Service Management - Managed Login Items
+
+| Setting                                  | Value                                                                 |
+|-------------------------------------------|-----------------------------------------------------------------------|
+| Comment | MAU                                 |
+| Rule Value | com.microsoft.autoupdate2                                  |
+| Rule Type | Bundle Identifier                              |
+
+
+## Microsoft AutoUpdate (MAU)
+
+| Setting                                  | Value                                                                 |
+|-------------------------------------------|-----------------------------------------------------------------------|
+| Automatically acknowledge data collection policy | Acknowledge - send required data                                    |
+| Days before forced updates                | 14                                                                  |
+| Deferred updates                          | Defer 3 days                                                        |
+| Disable Office Insider membership         | True                                                                |
+| Enable AutoUpdate                          | True                                                                |
+| Enable check for updates                  | True                                                                |
+| Guard against app modification            | Enabled                                                             |
+| Register app on launch                    | True                                                                |
+| Update cache server                       | https://officecdn.microsoft.com/pr/C1297A47-86C4-4C1F-97FA-950631F94777/OfficeMac/ |
+| Update channel                            | Current Channel (Monthly)                                           |
+| Updater optimization technique            | Lower processor overhead                                            |

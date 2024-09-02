@@ -1,0 +1,51 @@
+---
+title: Platform SSO
+description: How to configure Platform SSO for your Intune tenant.
+sidebar:
+  order: 2
+---
+
+import { Steps, Aside } from "@astrojs/starlight/components";
+
+<Aside>
+Click on the link to download the JSON file from <a href="https://github.com/SkipToTheEndpoint/OpenIntuneBaseline/blob/main/MACOS/NativeImport/MacOS%20-%20OIB%20-%20Authentication%20-%20D%20-%20Platform%20SSO%20-%20v1.0.json" target="_blank">GitHub</a>
+</Aside>
+
+## Platform SSO
+
+| Setting                          | Value                                                                 | Description                                                                 |
+|----------------------------------|-----------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| Authentication Method (Deprecated)| UserSecureEnclaveKey                                                  | The Platform SSO authentication method the extension uses. Requires that the SSO Extension also supports the method. Available in macOS 13 and later. |
+| Screen Locked Behavior           | Do Not Handle                                                         | When set to Do Not Handle, the request continues without SSO. Available in iOS 15 and later and macOS 12 and later. |
+| Registration Token               | DEVICEREGISTRATION                                                    | The token this device uses for registration with Platform SSO. Use it for silent registration with the Identity Provider. Requires that 'AuthenticationMethod' isn't empty. Available in macOS 13 and later. |
+| Authentication Method            | UserSecureEnclaveKey                                                  | The Platform SSO authentication method to be used with the extension. Requires that the SSO Extension also support the method. |
+| Enable Authorization             | Enabled                                                               | Enables using identity provider accounts at authorization prompts. Requires 'UseSharedDeviceKeys' is true. The account will be assigned groups using the 'AdministratorGroups', 'AdditionalGroups', or 'AuthorizationGroups'. |
+| Enable Create User At Login      | Enabled                                                               | Enables creating new users at the login window with either Passwords or SmartCards. Requires 'UseSharedDeviceKeys' is true. |
+| New User Authorization Mode      | Standard                                                              | This setting affects the permissions for accounts created at login by Platform SSO. It is only used when the account is created. Use of the following: Standard, Admin, Groups. |
+| Team Identifier                  | UBF8T346G9                                                            | The team identifier of the app extension. This key is required on macOS and ignored elsewhere. |
+| Extension Identifier             | com.microsoft.CompanyPortalMac.ssoextension                           | The bundle identifier of the app extension that performs SSO for the specified URLs. |
+| Type                             | Redirect                                                              | The type of SSO. |
+| URLs                             | https://login.microsoftonline.com, https://login.microsoft.com, https://sts.windows.net | An array of URL prefixes of identity providers where the app extension performs SSO. Required for Redirect payloads. Ignored for Credential payloads. The URLs must begin with http:// or https://, the scheme and host name are matched case-insensitively, query parameters and URL fragments are not allowed, and the URLs of all installed Extensible SSO payloads must be unique. |
+
+## Token To User Mapping 
+
+| Setting                          | Value                                                                 | Description                                                                 |
+|----------------------------------|-----------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| Account Name                     | preferred_username                                                    | The claim name to use for the user's account name. |
+| Full Name                        | name                                                                  | The claim name to use for the user's full name. |
+| Use Shared Device Keys           | Enabled                                                               | If set to true, Platform SSO will use the same signing and encryption keys for all users. |
+| User Authorization Mode          | Standard                                                              | This setting affects the permissions after authentication by Platform SSO. It is applied each time user authenticates. Use of the following: Standard, Admin, Groups. |
+
+## Extension Data
+
+| Setting                          | Value                                                                 | Description                                                                 |
+|----------------------------------|-----------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| Type                             | Integer                                                               | Keys and values to pass to the app extension.                               |
+| Value                            | 1                                                                     | Keys and values to pass to the app extension.                               |
+| Key                              | disable_explicit_app_prompt                                           | Additional extension-specific data to pass to the app extension.            |
+| Type                             | Integer                                                               | Keys and values to pass to the app extension.                               |
+| Value                            | 1                                                                     | Keys and values to pass to the app extension.                               |
+| Key                              | browser_sso_interaction_enabled                                       | Additional extension-specific data to pass to the app extension.            |
+| Type                             | String                                                                | Keys and values to pass to the app extension.                               |
+| Value                            | com.microsoft.,com.apple.                                             | Keys and values to pass to the app extension.                               |
+| Key                              | AppPrefixAllowList                                                    | An array of bundle identifiers of apps that don't use SSO provided by this extension. Available in iOS 15 and later and macOS 12 and later. |

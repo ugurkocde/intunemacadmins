@@ -1,0 +1,58 @@
+---
+title: Restrictions
+description: How to configure Restrictions for your Intune tenant.
+---
+
+import { Steps, Aside } from "@astrojs/starlight/components";
+
+<Aside>
+Click on the link to download the JSON file from <a href="https://github.com/SkipToTheEndpoint/OpenIntuneBaseline/blob/main/MACOS/NativeImport/MacOS%20-%20OIB%20-%20Device%20Security%20-%20D%20-%20Restrictions%20-%20v1.0.json" target="_blank">GitHub</a>
+</Aside>
+
+## System Preferences
+
+| Setting                               | Value   |
+|---------------------------------------|---------|
+| Disabled Preference Panes            | com.apple.AirDrop-Handoff-Settings.extension, com.apple.Family-Settings.extension, com.apple.Game-Center-Settings.extension, com.apple.Siri-Settings.extension, com.apple.Startup-Disk-Settings.extension, com.apple.Time-Machine-Settings.extension, com.apple.WalletSettingsExtension, com.apple.systempreferences.AppleIDSettings |
+
+## Restrictions
+
+
+| Setting                               | Value   |
+|---------------------------------------|---------|
+| Allow Bluetooth Sharing Modification  | False   |
+| Allow Password Sharing                | False   |
+| Allow File Sharing Modification       | False   |
+| Allow Erase Content And Settings      | False   |
+| Allow Air Play Incoming Requests      | Disabled|
+| Allow Cloud Private Relay             | False   |
+| Allow Cloud Photo Library             | False   |
+| Allow Cloud Document Sync             | False   |
+| Allow Activity Continuation           | False   |
+| Allow Cloud Bookmarks                 | False   |
+| Allow Cloud Freeform                  | False   |
+| Allow Cloud Calendar                  | False   |
+| Allow Assistant                       | False   |
+| Allow Game Center                     | False   |
+| Allow Auto Unlock                     | False   |
+| Allow Startup Disk Modification       | False   |
+| Allow Device Name Modification        | False   |
+| Allow Find My Device                  | False   |
+| Allow Internet Sharing Modification   | False   |
+| Allow Find My Friends                 | False   |
+| Allow AirDrop                         | False   |
+| Allow Cloud Notes                     | False   |
+| Allow Multiplayer Gaming              | False   |
+| Allow Local User Creation             | False   |
+| Allow Apple Personalized Advertising  | False   |
+| Allow Printer Sharing Modification    | False   |
+| Allow Account Modification            | False   |
+| Safari Allow Autofill                 | False   |
+| Allow Cloud Reminders                 | False   |
+| Allow Password Proximity Requests     | False   |
+| Allow Cloud Mail                      | False   |
+| Allow Cloud Address Book              | False   |
+| Allow Adding Game Center Friends      | False   |
+| Allow Cloud Desktop And Documents     | False   |
+| Allow iTunes File Sharing             | False   |
+| Allow Cloud Keychain Sync             | False   |

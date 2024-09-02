@@ -164,10 +164,34 @@ export default defineConfig({
         },
         {
           label: "Baseline Settings for Intune",
-          badge: { text: "Work in Progress", variant: "caution" },
-          autogenerate: {
-            directory: "Baseline Settings for Intune",
+          badge: { text: "New", variant: "success" },
+          items: [
+            'settingsoverview/import',
+            'settingsoverview/contribute',
+          {
+            label: 'Settings Overview',
+            items: [
+              'settingsoverview/settingsoverview',
+              'settingsoverview/platformsso',
+              'settingsoverview/antivirusconfiguration',
+              'settingsoverview/mdeconfiguration',
+              'settingsoverview/accountsandlogin',
+              'settingsoverview/restrictions',
+              'settingsoverview/filevault',
+              'settingsoverview/gatekeeper',
+              'settingsoverview/mauconfiguration',
+              'settingsoverview/edgepasswordmanagement',
+              'settingsoverview/edgesecurity',
+              'settingsoverview/edgeextensions',
+              'settingsoverview/edgeprofilessigninsync',
+              'settingsoverview/edgeupdates',
+              'settingsoverview/officeconfiguration',
+              'settingsoverview/onedriveserviceandaccess',
+              'settingsoverview/onedriveknownfoldermove',
+              'settingsoverview/updates',
+            ],
           },
+        ],
         },
         {
           label: "Troubleshooting Guides",

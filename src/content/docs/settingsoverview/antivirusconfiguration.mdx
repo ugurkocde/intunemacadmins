@@ -1,0 +1,72 @@
+---
+title: Antivirus Configuration
+description: How to configure Antivirus Configuration for your Intune tenant.
+sidebar:
+  order: 3
+---
+
+import { Steps, Aside } from "@astrojs/starlight/components";
+
+<Aside>
+Click on the link to download the JSON file from <a href="https://github.com/SkipToTheEndpoint/OpenIntuneBaseline/blob/main/MACOS/NativeImport/MacOS%20-%20OIB%20-%20Defender%20Antivirus%20-%20D%20-%20Antivirus%20Configuration%20-%20v1.0.json" target="_blank">GitHub</a>
+</Aside>
+
+
+## Antivirus engine
+
+| Setting | Value |
+|---------|-------|
+| Disallowed threat actions | allow, restore |
+| Enforcement level | real_time |
+| Exclusions merge | admin_only |
+| Run a scan after definitions are updated | Enabled |
+| Scanning inside archive files | True |
+| Threat type (1) | potentially_unwanted_application |
+| Action to take (1) | block |
+| Threat type (2) | archive_bomb |
+| Action to take (2) | block |
+| Threat type settings merge | admin_only |
+
+## Cloud delivered protection preferences
+
+| Setting | Value |
+|---------|-------|
+| Automatic security intelligence updates | Enabled |
+| Cloud Block Level | normal |
+| Diagnostic collection level | optional |
+| Enable / disable automatic sample submissions | Enabled |
+| Enable / disable cloud delivered protection | Enabled |
+
+## Endpoint Detection and Response (EDR) preferences
+
+| Setting | Value |
+|---------|-------|
+| Enable / disable early preview | Disabled |
+
+## Features
+
+| Setting | Value |
+|---------|-------|
+| Use System Extensions | enabled |
+
+## Network protection
+
+| Setting | Value |
+|---------|-------|
+| Enforcement level | block |
+
+## Tamper protection
+
+| Setting | Value |
+|---------|-------| 
+| Enforcement level | block |
+| Process's TeamIdentifier | UBF8T346G9 |
+| Process path | /Library/Intune/Microsoft Intune Agent.app/Contents/MacOS/IntuneMdmDaemon |
+| Process's Signing Identifier | IntuneMdmDaemon |
+
+## User interface preferences
+
+| Setting | Value |
+|---------|-------|
+| Control sign-in to consumer version | disabled |
+| Show / hide status menu icon | Disabled |

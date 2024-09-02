@@ -1,0 +1,44 @@
+---
+title: Microsoft Edge Security
+description: How to configure Microsoft Edge Security for your Intune tenant.
+---
+
+import { Steps, Aside } from "@astrojs/starlight/components";
+
+<Aside>
+Click on the link to download the JSON file from <a href="https://github.com/SkipToTheEndpoint/OpenIntuneBaseline/blob/main/MACOS/NativeImport/MacOS%20-%20OIB%20-%20Microsoft%20Edge%20-%20D%20-%20Security%20-%20v1.0.json" target="_blank">GitHub</a>
+</Aside>
+
+## Microsoft Edge
+
+| Setting                                                                                 | Value                                                                                      |
+|-----------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
+| Ads setting for sites with intrusive ads                                                 | Block ads on sites with intrusive ads. (Default value)                                      |
+| Allow download restrictions                                                              | Block dangerous downloads                                                                  |
+| Allow importing of browser settings                                                      | Disabled                                                                                    |
+| Allow importing of browsing history                                                      | Disabled                                                                                    |
+| Allow importing of home page settings                                                    | Disabled                                                                                    |
+| Allow importing of payment info                                                          | Disabled                                                                                    |
+| Allow importing of saved passwords                                                       | Disabled                                                                                    |
+| Allow importing of search engine settings                                                | Disabled                                                                                    |
+| Allow managed extensions to use the Enterprise Hardware Platform API                     | Disabled                                                                                    |
+| Allow personalization of ads, search and news by sending browsing history to Microsoft   | Disabled                                                                                    |
+| Allow queries to a Browser Network Time service                                          | Enabled                                                                                     |
+| Allow user-level native messaging hosts (installed without admin permissions)            | Disabled                                                                                    |
+| Automatically import another browser's data and settings at first run                    | Disables automatic import, and the import section of the first-run experience is skipped     |
+| Block tracking of users' web-browsing activity                                           | Balanced (blocks harmful trackers and trackers from sites user has not visited; content and ads will be less personalized) |
+| Clear browsing data when Microsoft Edge closes                                           | Disabled                                                                                    |
+| Clear cached images and files when Microsoft Edge closes                                 | Disabled                                                                                    |
+| Configure Microsoft Defender SmartScreen                                                 | Enabled                                                                                     |
+| Configure Microsoft Defender SmartScreen to block potentially unwanted apps              | Enabled                                                                                     |
+| Control communication with the Experimentation and Configuration Service                 | Disable communication with the Experimentation and Configuration Service                    |
+| DNS interception checks enabled                                                          | Enabled                                                                                     |
+| Enable AutoFill for addresses                                                            | Disabled                                                                                    |
+| Enable AutoFill for credit cards                                                         | Disabled                                                                                    |
+| Enable Google Cast                                                                       | Disabled                                                                                    |
+| Enable Proactive Authentication                                                          | Disabled                                                                                    |
+| Hide the First-run experience and splash screen                                           | Enabled                                                                                     |
+| Minimum TLS version enabled                                                              | TLS 1.2                                                                                     |
+| Prevent bypassing Microsoft Defender SmartScreen prompts for sites                       | Enabled                                                                                     |
+| Prevent bypassing of Microsoft Defender SmartScreen warnings about downloads             | Enabled                                                                                     |
+| Supported authentication schemes                                                         | ntlm,negotiate                                                                               |

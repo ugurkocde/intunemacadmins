@@ -1,0 +1,31 @@
+---
+title: FileVault
+description: How to configure FileVault for your Intune tenant.
+---
+
+import { Steps, Aside } from "@astrojs/starlight/components";
+
+<Aside>
+Click on the link to download the JSON file from <a href="https://github.com/SkipToTheEndpoint/OpenIntuneBaseline/blob/main/MACOS/NativeImport/MacOS%20-%20OIB%20-%20Disk%20Encryption%20-%20D%20-%20FileVault%20-%20v1.0.json" target="_blank">GitHub</a>
+</Aside>
+
+
+## FileVault
+
+| Setting                               | Value   |
+|---------------------------------------|---------|
+| Recovery Key Rotation In Months| 6 months   |
+| Enable  | On   |
+| Force Enable In Setup Assistant | True   |
+
+## FileVault Options
+
+| Setting                               | Value   |
+|---------------------------------------|---------|
+| Prevent FileVault From Being Disabled | True   |
+
+## FileVault Recovery Key Escrow
+
+| Setting                               | Value   |
+|---------------------------------------|---------|
+| Location | You can retrieve the personal recovery key for your macOS device from the Microsoft Intune app, Company Portal website, or Company Portal apps for Android and iOS/iPadOS. Support cannot access recovery keys that belong to personal devices.   |

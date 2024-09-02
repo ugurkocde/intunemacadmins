@@ -1,0 +1,30 @@
+---
+title: OneDrive Known Folder Move
+description: How to configure OneDrive Known Folder Move for your Intune tenant.
+---
+
+import { Steps, Aside } from "@astrojs/starlight/components";
+
+<Aside>
+Click on the link to download the JSON file from <a href="https://github.com/SkipToTheEndpoint/OpenIntuneBaseline/blob/main/MACOS/NativeImport/MacOS%20-%20OIB%20-%20Microsoft%20OneDrive%20-%20U%20-%20Known%20Folder%20Move%20-%20v1.0.json" target="_blank">GitHub</a>
+</Aside>
+
+## Microsoft OneDrive
+
+| Setting                                                             | Value                                       |
+|---------------------------------------------------------------------|---------------------------------------------|
+| Automatically and silently enable the Folder Backup feature (Known Folder Move) | %OrganizationId%                       |
+| Block external sync                                                 | True                                        |
+| Disable automatic sign in                                           | False                                       |
+| Disable personal accounts                                           | True                                        |
+| Disable tutorial                                                    | True                                        |
+| Display a notification to users once their folders have been redirected | False                                   |
+| Enable Files On-Demand                                              | True                                        |
+| Enable simultaneous edits for Office apps                           | True                                        |
+| Force users to use the Folder Backup feature (Known Folder Move)     | True                                        |
+| Hide dock icon                                                      | True                                        |
+| Ignore named files                                                  | *.lnk, *.pst, *.pkg, *.dmg                  |
+| Include ~/Desktop in Folder Backup (Known Folder Move)               | True                                        |
+| Include ~/Documents in Folder Backup (Known Folder Move)             | True                                        |
+| Open at login                                                       | True                                        |
+| Prompt users to enable the Folder Backup feature (Known Folder Move) | %OrganizationId%                           |

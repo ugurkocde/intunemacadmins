@@ -11,9 +11,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^3.1.5",
-    "@astrojs/starlight": "^0.26.1",
-    "astro": "^4.15.1",
+    "@astrojs/mdx": "^3.1.6",
+    "@astrojs/starlight": "^0.27.1",
+    "astro": "^4.15.6",
     "astro-embed": "^0.7.2",
     "astro-icon": "^1.1.0",
     "sharp": "^0.32.5",

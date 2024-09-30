@@ -46,13 +46,37 @@ import Sponsors from '../../components/Sponsors.astro';
 </div>
 
 <CardGrid>
-  <Card title="Jumpstart with our Baseline Settings" icon="rocket">
-    <p>Quickly manage your macOS devices with curated settings from the Open Intune Baseline (OIB) project.</p>
-    <a href="/baselinesettings/import">Import the Baseline Settings →</a>
+  <Card title="Chat with Copilot" icon="star">
+    <div style="display: flex; align-items: center;">
+      <div style="flex: 0 0 auto; margin-right: 1rem;">
+        <img
+          src="assistant_avatar.webp"
+          alt="Assistant Avatar"
+          style="width: 80px; height: 80px; border-radius: 50%;"
+          data-zoom-off
+        />
+      </div>
+      <div style="flex: 1;">
+        <p>Ask the Copilot anything related to MacOS management in Intune.</p>
+        <a href="https://copilot.intunemacadmins.com" target="_blank">Start Chatting →</a>
+      </div>
+    </div>
   </Card>
-  <Card title="Stay in the Loop" icon="list-format">
-    <p>Check out our changelog to see the latest updates and enhancements.</p>
-    <a href="/home/changelog">View Changelog →</a>
+  <Card title="Jumpstart with our Baseline Settings" icon="rocket">
+    <div style="display: flex; align-items: center;">
+      <div style="flex: 0 0 auto; margin-right: 1rem;">
+        <img
+          src="settings_avatar.webp"
+          alt="Settings Avatar"
+          style="width: 80px; height: 80px; border-radius: 50%;"
+          data-zoom-off
+        />
+      </div>
+      <div style="flex: 1;">
+        <p>Quickly manage your macOS devices with curated settings from the Open Intune Baseline (OIB) project.</p>
+        <a href="/baselinesettings/import" target="_blank">Import the Baseline Settings →</a>
+      </div>
+    </div>
   </Card>
 </CardGrid>
 

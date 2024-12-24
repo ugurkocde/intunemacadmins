@@ -3,7 +3,6 @@ import type { Props } from "@astrojs/starlight/props";
 import { Image } from "astro:assets";
 import Default from "@astrojs/starlight/components/PageSidebar.astro";
 import GlueckkanjaLogo from "../assets/sponsors/glueckkanja_logo.svg";
-import AlgizLogo from "../assets/sponsors/algiz_logo.webp";
 ---
 
 <Default {...Astro.props}>
@@ -29,21 +28,6 @@ import AlgizLogo from "../assets/sponsors/algiz_logo.webp";
     </a>
   </div>
 
-  <div class="sponsor-logo">
-    <a
-      href="https://www.algiz-technology.com/"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <Image
-        src={AlgizLogo}
-        alt="Algiz"
-        width={180}
-        height={40}
-        class="white-bg"
-      />
-    </a>
-  </div>
 </div>
 
 <style>

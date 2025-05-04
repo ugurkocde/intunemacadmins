@@ -1,6 +1,6 @@
 ---
 const { entry } = Astro.props;
-const pageTitle = entry.data.title;
+const pageTitle = entry && entry.data ? entry.data.title : 'Discussion';
 ---
 
 <script

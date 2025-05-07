@@ -4,6 +4,7 @@ import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 import Default from "@astrojs/starlight/components/PageSidebar.astro";
 import GlueckkanjaLogo from "../assets/sponsors/glueckkanja_logo.svg";
+import DevoteLogo from "../assets/sponsors/devote_logo.png";
 ---
 
 <Default {...Astro.props}>
@@ -22,6 +23,22 @@ import GlueckkanjaLogo from "../assets/sponsors/glueckkanja_logo.svg";
       <Image
         src={GlueckkanjaLogo}
         alt="glueckkanja"
+        width={150}
+        height={50}
+        class="white-bg"
+      />
+    </a>
+  </div>
+
+    <div class="sponsor-logo">
+    <a
+      href="https://www.devote.com"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <Image
+        src={DevoteLogo}
+        alt="devote"
         width={150}
         height={50}
         class="white-bg"

@@ -2,6 +2,7 @@
 import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
 import GlueckkanjaLogo from "../assets/sponsors/glueckkanja_logo.svg";
+import DevoteLogo from "../assets/sponsors/devote_logo.png";
 ---
 
 <section class="partner-section">
@@ -20,10 +21,22 @@ import GlueckkanjaLogo from "../assets/sponsors/glueckkanja_logo.svg";
         class="sponsor-logo"
       />
     </a>
-    <button class="sponsor-card become-sponsor-btn" id="openModalBtn">
+        <a
+      href="https://www.devote.com"
+      class="sponsor-card"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <Image
+        src={DevoteLogo}
+        alt="devote Logo"
+        class="sponsor-logo"
+      />
+    </a>
+<!--     <button class="sponsor-card become-sponsor-btn" id="openModalBtn">
       <Icon name="mdi:plus-circle" class="plus-icon" />
       <span>Become a Sponsor</span>
-    </button>
+    </button> -->
   </div>
 </section>
 

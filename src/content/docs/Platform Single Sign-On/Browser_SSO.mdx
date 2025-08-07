@@ -5,7 +5,7 @@ sidebar:
   order: 3
 ---
 
-import { Aside } from "@astrojs/starlight/components";
+import { Aside, Steps } from "@astrojs/starlight/components";
 
 <Aside>
 Microsoft Edge and Safari will natively support Platform SSO sign-ins to Microsoft Entra ID authenticated website when a device is configured with PSSO.
@@ -60,8 +60,8 @@ To create a new **Preference file** profile in Intune to support PSSO:
 6. Enter in a name for the policy e.g, `MAC-PSSO-MozillaFirefox`
 7. Enter `org.mozilla.firefox` as the **Preference domain name**
 8. Select **Browse** and select the plist file you downloaded in Step 1.
-10. Click **Next** to select Scope Tags
-11. Click Next to select your assignment targets.
+9. Click **Next** to select Scope Tags
+10. Click Next to select your assignment targets.
 </Steps>
 
 The users or devices in scope of this policy, where Mozilla Firefox is installed, will now be configured for PSSO within the Firefox browser.

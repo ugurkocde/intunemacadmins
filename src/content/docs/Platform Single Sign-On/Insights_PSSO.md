@@ -2,12 +2,12 @@
 title: Insights
 description: Explore key insights on Platform Single Sign-On (PSSO) for macOS, including security considerations, user experience, and the benefits of Secure Enclave vs. Password methods.
 sidebar:
-  order: 3
+  order: 4
 ---
 
 - Before setting up PSSO you should think about your approach and communication with the enduser. While your Security Department could expect you to implement the most secure Authentication Method, in this case this is Secure Enclave, your users and the IT Department would expect to use a single password for the local and online (EntraID) accounts.
 
-- Secure Enclave only provides this additional security layer by NOT storing the keys and tokens in the Keychain like the Password method does. 
+- Secure Enclave only provides this additional security layer by NOT storing the keys and tokens in the Keychain like the Password method does.
 
 - Secure Enclave could still be the best user experience because users do not need to technically use a password when they use touch id for the sign-in. This way a missing password sync will not be that important anymore but still be phishing resistant.
 

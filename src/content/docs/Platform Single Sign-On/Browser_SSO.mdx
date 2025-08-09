@@ -1,0 +1,67 @@
+---
+title: Browser PSSO
+description: Configuring Platform SSO for web browsers such as Google Chrome and Mozilla Firefox.
+sidebar:
+  order: 3
+---
+
+import { Aside, Steps } from "@astrojs/starlight/components";
+
+<Aside>
+Microsoft Edge and Safari will natively support Platform SSO sign-ins to Microsoft Entra ID authenticated website when a device is configured with PSSO.
+</Aside>
+
+After configuring PSSO with either Secure Enclave (preferred) or password synchronisation, you might want to extend the PSSO configuration to additional web browsers such as Google Chrome or Mozilla Firefox, and not just Microsoft Edge and Apple Safari.
+
+This can be achieved in Intune using both Custom profiles (Google Chrome) and Preference files (Mozilla Firefox) to enable Entra SSO in each browser platform.
+
+## Google Chrome
+
+Google provide [examples](https://support.google.com/chrome/a/answer/7517624?sjid=1791799825719492891-EU) of their mobileconfig files for macOS to allow for configuration of the browser on this platform, including the forced installation of browser extensions to enable the [Microsoft Single Sign On extension](https://chromewebstore.google.com/detail/microsoft-single-sign-on/ppnbnpeolgkicgegkbkbjmhlideopiji) to support the SSO configuration.
+
+A preconfigured mobileconfig file is available that will force the installation of the Microsoft Single Sign On extension to support PSSO in Google Chrome.
+
+### Intune Custom Profile
+
+To create a new **Custom** Profile in Intune to support PSSO:
+
+<Steps>
+1. You can [download the mobileconfig file here](/src/assets/PSSO/PSSO_GoogleChrome.mobileconfig). Right click and select "Save as ..." to save it locally on your device.
+2. Go to the [Intune Portal](https://intune.microsoft.com/#view/Microsoft_Intune_DeviceSettings/DevicesMacOsMenu/~/configuration) and sign in.
+3. Select **Create -> New Policy**.
+4. Select **Templates** from Profile type.
+5. Select **Custom** from the list of templates.
+6. Enter in a name for the policy e.g, `MAC-PSSO-GoogleChrome`
+7. Enter in a suitable name for the profile name e.g., `Google Chrome Platform SSO Profile`
+8. Select the **Device channel** for deployment channel.
+9. Select **Browse** and select the mobileconfig file you downloaded in Step 1.
+10. Click **Next** to select Scope Tags
+11. Click Next to select your assignment targets.
+</Steps>
+
+The users or devices in scope of this policy, where Google Chrome is installed, will now be configured for PSSO within the Chrome browser with the required extension installed, and unable to be removed from the browser.
+
+## Mozilla Firefox
+
+Mozilla provides [details](https://mozilla.github.io/policy-templates/) on how to configure the Firefox browser on macOS, including enabling [Microsoft Entra SSO](https://mozilla.github.io/policy-templates/#microsoftentrasso) using a preference file.
+
+A preconfigured preference file is available to configure PSSO within the Mozilla Firefox browser.
+
+### Intune Preference file
+
+To create a new **Preference file** profile in Intune to support PSSO:
+
+<Steps>
+1. You can [download the preference file here](/src/assets/PSSO/PSSO_MozillaFirefox.plist). Right click and select "Save as ..." to save it locally on your device.
+2. Go to the [Intune Portal](https://intune.microsoft.com/#view/Microsoft_Intune_DeviceSettings/DevicesMacOsMenu/~/configuration) and sign in.
+3. Select **Create -> New Policy**.
+4. Select **Templates** from Profile type.
+5. Select **Preference file** from the list of templates.
+6. Enter in a name for the policy e.g, `MAC-PSSO-MozillaFirefox`
+7. Enter `org.mozilla.firefox` as the **Preference domain name**
+8. Select **Browse** and select the plist file you downloaded in Step 1.
+9. Click **Next** to select Scope Tags
+10. Click Next to select your assignment targets.
+</Steps>
+
+The users or devices in scope of this policy, where Mozilla Firefox is installed, will now be configured for PSSO within the Firefox browser.

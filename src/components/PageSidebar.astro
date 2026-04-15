@@ -3,8 +3,7 @@ import type { Props } from "@astrojs/starlight/props";
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 import Default from "@astrojs/starlight/components/PageSidebar.astro";
-import GlueckkanjaLogo from "../assets/sponsors/glueckkanja_logo.svg";
-import DevoteLogo from "../assets/sponsors/devote_logo.webp";
+import DevoteLogo from "../assets/sponsors/devote_logo.jpg";
 ---
 
 <Default {...Astro.props}>
@@ -16,22 +15,6 @@ import DevoteLogo from "../assets/sponsors/devote_logo.webp";
 
   <div class="sponsor-logo">
     <a
-      href="https://www.glueckkanja.com"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <Image
-        src={GlueckkanjaLogo}
-        alt="glueckkanja"
-        width={150}
-        height={50}
-        class="white-bg"
-      />
-    </a>
-  </div>
-
-    <div class="sponsor-logo">
-    <a
       href="https://www.devote.com"
       target="_blank"
       rel="noopener noreferrer"
@@ -39,8 +22,8 @@ import DevoteLogo from "../assets/sponsors/devote_logo.webp";
       <Image
         src={DevoteLogo}
         alt="devote"
-        width={150}
-        height={40}
+        width={60}
+        height={70}
         class="white-bg"
       />
     </a>
@@ -187,13 +170,13 @@ import DevoteLogo from "../assets/sponsors/devote_logo.webp";
     margin-bottom: 1rem;
     background-color: #ffffff;
     border-radius: 12px;
-    padding: 1.5rem;
-    display: flex;
+    padding: 0.5rem;
+    display: inline-flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 200px;
-    height: 70px;
+    width: auto;
+    height: auto;
     text-decoration: none;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }

@@ -1,16 +1,14 @@
 ---
-import type { Props } from '@astrojs/starlight/props';
 import Default from '@astrojs/starlight/components/LastUpdated.astro';
 
-const { lastUpdated } = Astro.props;
-
+const { lastUpdated } = Astro.locals.starlightRoute;
 ---
 
 {
 	lastUpdated && (
   <div class="container">
     <div class="last-updated">
-      <Default {...Astro.props}><slot /></Default>
+      <Default><slot /></Default>
     </div>
   </div>
 	)

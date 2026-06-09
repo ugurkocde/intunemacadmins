@@ -1,11 +1,10 @@
 ---
-import type { Props } from "@astrojs/starlight/props";
 import Default from "@astrojs/starlight/components/Footer.astro";
 import Giscus from "./Giscus.astro";
 
-const { entry } = Astro.props;
-const showComments = entry && entry.data ? entry.data.showComments !== false : false;
+const { entry } = Astro.locals.starlightRoute;
+const showComments = entry?.data?.showComments !== false;
 ---
 
-<Default {...Astro.props}><slot /></Default>
+<Default><slot /></Default>
 {showComments && <Giscus entry={entry} />}

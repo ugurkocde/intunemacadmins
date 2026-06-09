@@ -19,3 +19,8 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
+
+# local task tracking and tooling output
+tasks/
+.playwright-mcp/
+.cache/

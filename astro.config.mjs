@@ -1,6 +1,5 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
-import mdx from "@astrojs/mdx";
 import starlightImageZoom from "starlight-image-zoom";
 import icon from "astro-icon";
 
@@ -8,7 +7,7 @@ import icon from "astro-icon";
 export default defineConfig({
   site: "https://intunemacadmins.com",
   integrations: [
-    [icon()],
+    icon(),
     starlight({
       plugins: [starlightImageZoom()],
       title: "IntuneMacAdmins",
@@ -160,15 +159,11 @@ export default defineConfig({
         },
         {
           label: "Community",
-          autogenerate: {
-            directory: "Community",
-          },
+          items: [{ autogenerate: { directory: "Community" } }],
         },
         {
           label: "Frequently Asked Questions",
-          autogenerate: {
-            directory: "Frequently Asked Questions",
-          },
+          items: [{ autogenerate: { directory: "Frequently Asked Questions" } }],
         },
         {
           label: "Baseline Settings for Intune",
@@ -203,82 +198,63 @@ export default defineConfig({
         },
         {
           label: "Troubleshooting Guides",
-          autogenerate: {
-            directory: "Troubleshooting",
-          },
+          items: [{ autogenerate: { directory: "Troubleshooting" } }],
         },
         {
           label: "Snippets",
-          autogenerate: {
-            directory: "Snippets",
-          },
+          items: [{ autogenerate: { directory: "Snippets" } }],
         },
         {
           label: "Intune Getting Started Guide",
-          autogenerate: {
-            directory: "Intune Getting Started Guide",
-          },
+          items: [{ autogenerate: { directory: "Intune Getting Started Guide" } }],
         },
         {
           label: "Complete Guide Macos Deployment",
           badge: { text: "Updated", variant: "success" },
-          autogenerate: {
-            directory: "Complete Guide Macos Deployment",
-          },
+          items: [
+            { autogenerate: { directory: "Complete Guide Macos Deployment" } },
+          ],
         },
         {
           label: "Await Final Configuration",
-          autogenerate: {
-            directory: "Await Final Configuration",
-          },
+          items: [{ autogenerate: { directory: "Await Final Configuration" } }],
         },
         {
           label: "Platform Single Sign-On (PSSO)",
-          autogenerate: {
-            directory: "Platform Single Sign-On",
-          },
+          items: [{ autogenerate: { directory: "Platform Single Sign-On" } }],
         },
         {
           label: "Declarative Device Management (DDM)",
-          autogenerate: {
-            directory: "Declarative Device Management",
-          },
+          items: [
+            { autogenerate: { directory: "Declarative Device Management" } },
+          ],
         },
         {
           label: "Custom Attributes",
-          autogenerate: {
-            directory: "Custom Attributes",
-          },
+          items: [{ autogenerate: { directory: "Custom Attributes" } }],
         },
         {
           label: "FileVault",
-          autogenerate: {
-            directory: "FileVault",
-          },
+          items: [{ autogenerate: { directory: "FileVault" } }],
         },
         {
           label: "OneDrive Known Folder Move (KFM)",
-          autogenerate: {
-            directory: "OneDrive Known Folder Move (KFM)",
-          },
+          items: [
+            { autogenerate: { directory: "OneDrive Known Folder Move (KFM)" } },
+          ],
         },
         {
           label: "Updating Microsoft Apps",
-          autogenerate: {
-            directory: "Updating Microsoft Apps",
-          },
+          items: [{ autogenerate: { directory: "Updating Microsoft Apps" } }],
         },
         {
           label: "Deploy Files on a Mac",
-          autogenerate: {
-            directory: "Deploy Files",
-          },
+          items: [{ autogenerate: { directory: "Deploy Files" } }],
         },
       ],
       customCss: process.env.NO_GRADIENTS
         ? ["./src/styles/custom.css"]
         : ["./src/styles/landing.css", "./src/styles/custom.css"],
     }),
-    mdx(),
   ],
 });

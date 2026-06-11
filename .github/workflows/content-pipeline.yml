@@ -95,6 +95,8 @@ jobs:
           title: Weekly content update
           body-path: .cache/pr-body.md
           labels: automated-content
+          assignees: ugurkocde
+          reviewers: ugurkocde
 
       - name: Report source failures as issues
         if: ${{ always() && !cancelled() }}

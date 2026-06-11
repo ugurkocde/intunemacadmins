@@ -8,7 +8,6 @@ export const collections = {
     loader: docsLoader(),
     schema: docsSchema({
       extend: z.object({
-        showComments: z.boolean().optional(),
         generated: z.boolean().optional(),
       }),
     }),

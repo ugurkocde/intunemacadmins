@@ -40,9 +40,13 @@ export const TECH_COMMUNITY_FEEDS = [
   },
 ] as const;
 
-// Reddit. Direct .json/.rss endpoints are blocked from datacenter IPs, so the
-// fetcher uses a free OAuth script app (client_credentials). Missing credentials
-// soft-skip the source instead of failing the run.
+// Reddit, two access modes:
+// 1. OAuth script app (REDDIT_CLIENT_ID/REDDIT_CLIENT_SECRET) - most reliable,
+//    includes scores for the quality gate.
+// 2. Credential-free fallback: public search.rss feeds. Works from residential
+//    IPs and sometimes from CI; no scores, so the LLM classifier is the only
+//    quality gate. Failures in this mode soft-skip (datacenter IPs are often
+//    blocked by Reddit), they are not treated as source errors.
 export const REDDIT_TOKEN_URL = "https://www.reddit.com/api/v1/access_token";
 export const REDDIT_SEARCHES = [
   {
@@ -52,6 +56,16 @@ export const REDDIT_SEARCHES = [
   {
     sourceName: "r/macsysadmin",
     url: "https://oauth.reddit.com/r/macsysadmin/search?q=intune&restrict_sr=1&sort=new&limit=50",
+  },
+] as const;
+export const REDDIT_RSS_SEARCHES = [
+  {
+    sourceName: "r/Intune",
+    url: "https://www.reddit.com/r/Intune/search.rss?q=flair%3A%22macOS+Management%22+OR+macos&restrict_sr=on&sort=new&t=month",
+  },
+  {
+    sourceName: "r/macsysadmin",
+    url: "https://www.reddit.com/r/macsysadmin/search.rss?q=intune&restrict_sr=on&sort=new&t=month",
   },
 ] as const;
 export const REDDIT_MIN_SCORE = 5;

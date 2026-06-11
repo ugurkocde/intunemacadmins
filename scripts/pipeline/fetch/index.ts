@@ -1,7 +1,7 @@
 import type { RawItem, SourceError, StateFile } from "../types";
 import { fetchCommunityBlogs } from "./community-blogs";
 import { fetchMsWhatsNew } from "./ms-whats-new";
-import { fetchReddit, hasRedditCredentials } from "./reddit";
+import { fetchReddit, fetchRedditViaRss, hasRedditCredentials } from "./reddit";
 import { fetchTechCommunity } from "./tech-community";
 
 export interface FetchResult {
@@ -43,13 +43,23 @@ export async function fetchAllSources(
     errors.push(...result.errors);
   }
   if (want("reddit")) {
-    if (!hasRedditCredentials()) {
-      skipped.push("reddit (REDDIT_CLIENT_ID/REDDIT_CLIENT_SECRET not configured)");
-    } else {
+    if (hasRedditCredentials()) {
       try {
         items.push(...(await fetchReddit(now)));
       } catch (error) {
         errors.push({ source: "reddit", error: message(error) });
+      }
+    } else {
+      // Credential-free RSS mode. Reddit blocks many datacenter IPs, so a
+      // failure here is expected in some environments and soft-skips instead
+      // of raising a source error (no actionable issue to file).
+      try {
+        items.push(...(await fetchRedditViaRss(now)));
+      } catch (error) {
+        skipped.push(
+          `reddit (public RSS unavailable from this network: ${message(error)}; ` +
+            "configure REDDIT_CLIENT_ID/REDDIT_CLIENT_SECRET for the reliable OAuth mode)",
+        );
       }
     }
   }

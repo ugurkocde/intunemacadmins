@@ -37,7 +37,6 @@ export function renderWhatsNew(state: StateFile): string {
     )}`,
     "sidebar:",
     "  order: 5",
-    "showComments: false",
     "generated: true",
     "---",
     "",

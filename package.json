@@ -11,7 +11,13 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "pipeline": "tsx scripts/pipeline/run.ts all",
+    "pipeline:dry": "tsx scripts/pipeline/run.ts all --dry-run",
+    "pipeline:fetch": "tsx scripts/pipeline/run.ts fetch",
+    "pipeline:llm": "tsx scripts/pipeline/run.ts llm",
+    "pipeline:render": "tsx scripts/pipeline/run.ts render",
+    "pipeline:selftest": "tsx scripts/pipeline/selftest.ts"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.40.0",
@@ -22,7 +28,11 @@
     "starlight-image-zoom": "^0.14.2"
   },
   "devDependencies": {
+    "@anthropic-ai/sdk": "^0.104.0",
     "@iconify-json/mdi": "^1.2.3",
-    "@iconify-json/ri": "^1.2.10"
+    "@iconify-json/ri": "^1.2.10",
+    "fast-xml-parser": "^5.8.0",
+    "tsx": "^4.22.4",
+    "zod": "^4.4.3"
   }
 }

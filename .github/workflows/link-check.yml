@@ -1,0 +1,51 @@
+name: Link check
+
+on:
+  schedule:
+    - cron: "0 7 1 * *" # first day of each month, 07:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  lychee:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check links in content
+        id: lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --no-progress
+            --accept 200..=206,403,429
+            --timeout 20
+            --max-retries 2
+            "src/content/docs/**/*.md"
+            "src/content/docs/**/*.mdx"
+          fail: false
+
+      - name: Create or update broken-links issue
+        if: ${{ steps.lychee.outputs.exit_code != 0 }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh label create content-pipeline --description "Automated content pipeline" --color D93F0B --force
+          title="Monthly link check found broken links"
+          body_file=./lychee/out.md
+          [ -f "$body_file" ] || { echo "no report" > /tmp/report.md; body_file=/tmp/report.md; }
+          # Keep the issue body under GitHub limits.
+          head -c 60000 "$body_file" > /tmp/issue-body.md
+          echo "" >> /tmp/issue-body.md
+          echo "Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> /tmp/issue-body.md
+          existing=$(gh issue list --label content-pipeline --state open --search "in:title \"link check\"" --json number --jq '.[0].number // empty')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body-file /tmp/issue-body.md
+          else
+            gh issue create --title "$title" --label content-pipeline --body-file /tmp/issue-body.md
+          fi

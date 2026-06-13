@@ -10,6 +10,7 @@ import {
 } from "./config";
 import { fetchSourceText } from "./fetch-source";
 import { DRIFT_SYSTEM } from "./prompts";
+import { verifyEditCandidates } from "./verify";
 
 // Phrases that signal the model emitted a non-finding: an absence/omission.
 const OMISSION_RE =
@@ -35,24 +36,25 @@ export const DriftFindings = z.object({
         claim: z.string(), // the page's now-questionable statement
         discrepancy: z.string(), // what the current source says instead
         // For a clean, localized fix: the EXACT verbatim snippet from the page
-        // to replace, and its correction. Empty strings when the fix isn't a
-        // simple text replacement (then it's reported as a flag, not an edit).
+        // to replace, its correction, and the source sentence(s) that justify
+        // it. Empty strings when the fix isn't a simple text replacement.
         oldText: z.string(),
         newText: z.string(),
+        sourceQuote: z.string(),
       }),
     )
     .max(10),
 });
 
-// Minimal shape of the Anthropic client method we use, so the checker can be
-// driven with a fake in the self-test without importing the SDK there.
-export interface DriftClient {
+// Minimal structured-output client shape, so the checker can be driven with a
+// fake in the self-test. parsed_output is unknown because the same client backs
+// two schemas (drift findings and verification verdicts).
+export interface StructuredClient {
   messages: {
-    parse: (args: unknown) => Promise<{
-      parsed_output: z.infer<typeof DriftFindings> | null;
-    }>;
+    parse: (args: unknown) => Promise<{ parsed_output: unknown }>;
   };
 }
+export type DriftClient = StructuredClient;
 
 export interface DriftDeps {
   client: DriftClient;
@@ -64,18 +66,19 @@ export interface DriftDeps {
 }
 
 export interface DriftResult {
-  // Drift that is reported as a flag only (issue) - either not a clean text fix,
-  // or the page text needed for an edit wasn't provided.
+  // Drift reported as a flag only (issue): not a clean text fix, the page text
+  // wasn't found verbatim, or the verification pass rejected the drafted edit.
   findings: Finding[];
-  // Drift the model expressed as a verbatim old->new text replacement (PR).
+  // Drafted edits that passed independent verification (PR).
   editCandidates: EditCandidate[];
   skipped: string[];
   pagesChecked: number;
 }
 
-// Compares each page that declares `sources` against its current upstream docs.
-// One model call per source; a fetch or model failure skips that source (logged)
-// rather than failing the run. Detection only - never edits the page here.
+// Compares each page that declares `sources` against its current upstream docs,
+// drafts verbatim corrections, and independently verifies each before proposing
+// it. One draft + one verify model call per source. A fetch/model failure skips
+// that source (logged) rather than failing the run.
 export async function checkDrift(
   pages: DocPage[],
   deps: DriftDeps,
@@ -88,6 +91,7 @@ export async function checkDrift(
   const skipped: string[] = [];
   const findings: Finding[] = [];
   const editCandidates: EditCandidate[] = [];
+  const model = deps.model ?? DRIFT_MODEL;
 
   const toCheck = sourced.slice(0, MAX_DRIFT_PAGES);
   if (sourced.length > toCheck.length) {
@@ -102,6 +106,7 @@ export async function checkDrift(
       try {
         const source = await fetchSourceText(url, deps.fetchImpl);
         const parsed = await callModel(deps, page, source.text, url);
+        const srcCandidates: EditCandidate[] = [];
         for (const f of parsed.findings) {
           const claim = (f.claim ?? "").trim();
           const discrepancy = (f.discrepancy ?? "").trim();
@@ -109,14 +114,16 @@ export async function checkDrift(
           if (isNonContradiction(discrepancy)) continue;
           const oldText = f.oldText ?? "";
           const newText = f.newText ?? "";
+          const sourceQuote = (f.sourceQuote ?? "").trim();
           if (oldText.trim().length > 0 && newText.trim().length > 0 && oldText !== newText) {
-            editCandidates.push({
+            srcCandidates.push({
               path: page.path,
               severity: f.severity,
               oldText,
               newText,
               discrepancy,
               source: url,
+              sourceQuote,
             });
           } else {
             findings.push({
@@ -127,6 +134,19 @@ export async function checkDrift(
               evidence: claim,
             });
           }
+        }
+        // Independently verify drafted edits; only the supported ones proceed.
+        if (srcCandidates.length > 0) {
+          const { approved, rejected } = await verifyEditCandidates(
+            deps.client,
+            page,
+            source.text,
+            url,
+            srcCandidates,
+            model,
+          );
+          editCandidates.push(...approved);
+          findings.push(...rejected);
         }
       } catch (error) {
         skipped.push(
@@ -163,5 +183,5 @@ async function callModel(
     output_config: { format: zodOutputFormat(DriftFindings) },
   });
   if (!response.parsed_output) throw new Error("drift returned no parsed output");
-  return response.parsed_output;
+  return response.parsed_output as z.infer<typeof DriftFindings>;
 }

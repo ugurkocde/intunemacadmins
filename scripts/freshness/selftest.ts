@@ -191,10 +191,23 @@ await (async () => {
       sources: ["https://learn.microsoft.com/intune/x"],
     });
     const unsourced = page("No sources here.");
-    // Fake client returns one drift finding; fake fetch returns source HTML.
+    // Draft call returns findings; the verify call (its system prompt mentions
+    // "verifying") returns a verdict for the lone edit candidate; approveVerify
+    // toggles approve/reject.
+    let approveVerify = true;
     const client: DriftClient = {
       messages: {
-        parse: async () => ({
+        parse: async (args: unknown) => {
+          if (String((args as { system?: string }).system ?? "").includes("verifying")) {
+            return {
+              parsed_output: {
+                verdicts: [
+                  { index: 0, supported: approveVerify, reason: approveVerify ? "ok" : "scope mismatch" },
+                ],
+              },
+            };
+          }
+          return {
           parsed_output: {
             findings: [
               {
@@ -238,7 +251,8 @@ await (async () => {
               }, // verbatim old/new -> routed to editCandidates, not findings
             ],
           },
-        }),
+          };
+        },
       },
     };
     const okFetch = (async () =>
@@ -262,6 +276,13 @@ await (async () => {
     assert.equal(r.editCandidates.length, 1);
     assert.equal(r.editCandidates[0].oldText, "Team Identifier");
     assert.equal(r.editCandidates[0].newText, "Team ID");
+
+    // Verification can reject a drafted edit -> demoted to a flag, none applied.
+    approveVerify = false;
+    const rRej = await checkDrift([sourced], { client, fetchImpl: okFetch });
+    assert.equal(rRej.editCandidates.length, 0);
+    assert.ok(rRej.findings.some((f) => /verification/.test(f.message)));
+    approveVerify = true;
 
     // Fetch failure -> skipped, not thrown, no finding.
     const badFetch = (async () => new Response("nope", { status: 404 })) as unknown as typeof fetch;

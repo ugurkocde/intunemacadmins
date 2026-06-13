@@ -42,6 +42,7 @@ export interface EditCandidate {
   newText: string; // corrected replacement
   discrepancy: string; // what the current source says (for the PR body)
   source: string; // upstream URL the correction is grounded in
+  sourceQuote: string; // exact sentence(s) from the source that justify the edit
 }
 
 // An edit that was actually applied to a file.
@@ -52,6 +53,7 @@ export interface AppliedEdit {
   newText: string;
   discrepancy: string;
   source: string;
+  sourceQuote: string;
 }
 
 export interface FreshnessReport {

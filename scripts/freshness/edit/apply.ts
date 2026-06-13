@@ -50,6 +50,7 @@ export function applyEdits(
       newText: c.newText,
       discrepancy: c.discrepancy,
       source: c.source,
+      sourceQuote: c.sourceQuote,
     });
   }
 

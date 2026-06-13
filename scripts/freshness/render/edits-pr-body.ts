@@ -30,6 +30,7 @@ export function renderEditsPrBody(applied: AppliedEdit[]): string {
     for (const e of edits) {
       lines.push(`- **${SEVERITY_LABEL[e.severity] ?? e.severity}** — ${e.discrepancy}`);
       lines.push(`  - Source: ${e.source}`);
+      if (e.sourceQuote) lines.push(`  - Source says: "${e.sourceQuote.replace(/\s+/g, " ").trim()}"`);
       lines.push("  - Before:");
       lines.push("    ```");
       lines.push(...e.oldText.split("\n").map((l) => "    " + l));

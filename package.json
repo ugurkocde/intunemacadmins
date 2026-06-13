@@ -1,5 +1,5 @@
 {
-  "name": "@example/starlight-basics",
+  "name": "intunemacadmins",
   "type": "module",
   "version": "0.0.1",
   "private": true,
@@ -7,11 +7,6 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro",
     "pipeline": "tsx scripts/pipeline/run.ts all",
     "pipeline:dry": "tsx scripts/pipeline/run.ts all --dry-run",
     "pipeline:fetch": "tsx scripts/pipeline/run.ts fetch",
@@ -19,20 +14,11 @@
     "pipeline:render": "tsx scripts/pipeline/run.ts render",
     "pipeline:selftest": "tsx scripts/pipeline/selftest.ts",
     "freshness": "tsx scripts/freshness/run.ts",
-    "freshness:selftest": "tsx scripts/freshness/selftest.ts"
-  },
-  "dependencies": {
-    "@astrojs/starlight": "^0.40.0",
-    "astro": "^6.4.6",
-    "astro-embed": "^0.13.0",
-    "astro-icon": "^1.1.5",
-    "sharp": "^0.35.1",
-    "starlight-image-zoom": "^0.14.2"
+    "freshness:selftest": "tsx scripts/freshness/selftest.ts",
+    "migrate:verify": "tsx scripts/migrate/verify.ts"
   },
   "devDependencies": {
     "@anthropic-ai/sdk": "^0.104.1",
-    "@iconify-json/mdi": "^1.2.3",
-    "@iconify-json/ri": "^1.2.10",
     "fast-xml-parser": "^5.8.0",
     "tsx": "^4.22.4",
     "yaml": "^2.9.0",

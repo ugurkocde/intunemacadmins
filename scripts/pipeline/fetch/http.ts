@@ -20,6 +20,9 @@ interface FetchOptions {
   body?: string;
   timeoutMs?: number;
   retries?: number;
+  // Per-attempt backoff in ms; falls back to HTTP_BACKOFF_MS. Used to give
+  // rate-limit-prone sources (Reddit) much longer waits between 429 retries.
+  backoffMs?: number[];
 }
 
 export async function fetchWithRetry(
@@ -27,6 +30,7 @@ export async function fetchWithRetry(
   options: FetchOptions = {},
 ): Promise<Response> {
   const retries = options.retries ?? HTTP_RETRIES;
+  const backoff = options.backoffMs ?? HTTP_BACKOFF_MS;
   let lastError: unknown;
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
@@ -49,7 +53,7 @@ export async function fetchWithRetry(
       lastError = error;
       if (attempt >= retries) break;
     }
-    await sleep(HTTP_BACKOFF_MS[Math.min(attempt, HTTP_BACKOFF_MS.length - 1)]);
+    await sleep(backoff[Math.min(attempt, backoff.length - 1)]);
   }
   throw lastError instanceof Error ? lastError : new Error(String(lastError));
 }

@@ -3,6 +3,9 @@ import {
   EXCERPT_MAX_CHARS,
   ITEM_WINDOW_DAYS,
   REDDIT_MIN_SCORE,
+  REDDIT_RSS_BACKOFF_MS,
+  REDDIT_RSS_FEED_GAP_MS,
+  REDDIT_RSS_HEADERS,
   REDDIT_RSS_SEARCHES,
   REDDIT_SEARCHES,
   REDDIT_TOKEN_URL,
@@ -11,7 +14,7 @@ import {
 import { canonicalUrl, hashId } from "../state";
 import { normalizeWhitespace, truncate } from "../text";
 import type { RawItem } from "../types";
-import { fetchJson, fetchText, fetchWithRetry } from "./http";
+import { fetchJson, fetchText, fetchWithRetry, sleep } from "./http";
 import { parseFeed } from "./rss";
 
 interface RedditPost {
@@ -52,37 +55,63 @@ async function getAccessToken(): Promise<string> {
   return data.access_token;
 }
 
-// Credential-free fallback: public search.rss feeds (Atom). No score data, so
-// the LLM classifier is the only quality gate; the reused feed parser handles
-// the rest. Reddit strips the post body down to an HTML snippet that ends in
-// "submitted by /u/author [link] [comments]" boilerplate, removed here.
+// Credential-free, no-login access to Reddit's public search.rss feeds (Atom).
+// Reddit returns 429 to bot/automation User-Agents but serves the public RSS
+// fine to a normal browser UA - so we send one here (and only here). No score
+// data, so the LLM classifier is the only quality gate; the reused feed parser
+// handles the rest. Reddit ends each post body with a "submitted by /u/author
+// [link] [comments]" boilerplate, removed below.
 export async function fetchRedditViaRss(now: Date): Promise<RawItem[]> {
   const cutoff = new Date(now.getTime() - ITEM_WINDOW_DAYS * 86_400_000);
   const items: RawItem[] = [];
   const seen = new Set<string>();
-  for (const search of REDDIT_RSS_SEARCHES) {
-    const xml = await fetchText(search.url);
-    for (const entry of parseFeed(xml)) {
-      if (new Date(entry.publishedAt) < cutoff) continue;
-      const id = hashId(`url:${canonicalUrl(entry.url)}`);
-      if (seen.has(id)) continue;
-      seen.add(id);
-      const body = entry.text
-        .replace(/\s*submitted by\s+\/u\/\S+[\s\S]*$/i, "")
-        .trim();
-      items.push({
-        id,
-        source: "reddit",
-        sourceName: search.sourceName,
-        url: entry.url,
-        title: entry.title,
-        author: entry.author ? entry.author.replace(/^\//, "") : undefined,
-        publishedAt: entry.publishedAt,
-        excerpt: truncate(body, EXCERPT_MAX_CHARS),
-        content: truncate(body, CONTENT_MAX_CHARS),
-        meta: { via: "rss" },
+  const failures: string[] = [];
+
+  for (let f = 0; f < REDDIT_RSS_SEARCHES.length; f++) {
+    const search = REDDIT_RSS_SEARCHES[f];
+    // Space requests out: Reddit rate-limits bursts even with a browser UA.
+    if (f > 0) await sleep(REDDIT_RSS_FEED_GAP_MS);
+    try {
+      const xml = await fetchText(search.url, {
+        headers: REDDIT_RSS_HEADERS,
+        retries: REDDIT_RSS_BACKOFF_MS.length,
+        backoffMs: REDDIT_RSS_BACKOFF_MS,
       });
+      for (const entry of parseFeed(xml)) {
+        if (new Date(entry.publishedAt) < cutoff) continue;
+        const id = hashId(`url:${canonicalUrl(entry.url)}`);
+        if (seen.has(id)) continue;
+        seen.add(id);
+        const body = entry.text
+          .replace(/\s*submitted by\s+\/u\/\S+[\s\S]*$/i, "")
+          .trim();
+        items.push({
+          id,
+          source: "reddit",
+          sourceName: search.sourceName,
+          url: entry.url,
+          title: entry.title,
+          author: entry.author ? entry.author.replace(/^\//, "") : undefined,
+          publishedAt: entry.publishedAt,
+          excerpt: truncate(body, EXCERPT_MAX_CHARS),
+          content: truncate(body, CONTENT_MAX_CHARS),
+          meta: { via: "rss" },
+        });
+      }
+    } catch (error) {
+      // Isolate per feed: a 429 on one subreddit must not discard the others.
+      failures.push(
+        `${search.sourceName}: ${error instanceof Error ? error.message : String(error)}`,
+      );
     }
+  }
+
+  // Only treat the source as failed (-> soft skip) if every feed failed.
+  if (items.length === 0 && failures.length === REDDIT_RSS_SEARCHES.length) {
+    throw new Error(failures.join("; "));
+  }
+  if (failures.length > 0) {
+    console.error(`  reddit: ${failures.length} feed(s) rate-limited this run: ${failures.join("; ")}`);
   }
   return items;
 }

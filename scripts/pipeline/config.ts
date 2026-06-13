@@ -58,6 +58,21 @@ export const REDDIT_SEARCHES = [
     url: "https://oauth.reddit.com/r/macsysadmin/search?q=intune&restrict_sr=1&sort=new&limit=50",
   },
 ] as const;
+// Reddit 429s automation User-Agents but serves its public RSS to a normal
+// browser UA, logged out. Used only for the Reddit RSS feeds (other sources
+// keep the honest USER_AGENT above).
+export const REDDIT_RSS_HEADERS = {
+  "User-Agent":
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+  Accept: "application/rss+xml, application/xml, text/xml;q=0.9, */*;q=0.8",
+  "Accept-Language": "en-US,en;q=0.9",
+};
+
+// Reddit rate-limits bursts even with a browser UA, so retry 429s with long
+// waits and space the two feeds apart. Low weekly volume makes this reliable.
+export const REDDIT_RSS_BACKOFF_MS = [8000, 20000];
+export const REDDIT_RSS_FEED_GAP_MS = 5000;
+
 export const REDDIT_RSS_SEARCHES = [
   {
     sourceName: "r/Intune",

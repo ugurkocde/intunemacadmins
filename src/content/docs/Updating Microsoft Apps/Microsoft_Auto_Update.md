@@ -5,6 +5,7 @@ sidebar:
   order: 2
 sources:
   - https://learn.microsoft.com/microsoft-365-apps/mac/mau-preferences
+lastReviewed: 2026-06-13
 ---
 
 Microsoft Auto Update (MAU) is a tool designed to keep Microsoft applications on macOS up-to-date with the latest security patches, bug fixes, and feature improvements. It ensures that your users have access to the most recent versions of Microsoft software, enhancing both functionality and security.

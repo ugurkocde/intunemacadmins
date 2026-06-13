@@ -1,0 +1,32 @@
+---
+title: Declarative Device Management
+description: Understand Declarative Device Management (DDM) on macOS and learn how to configure it with Microsoft Intune for scalable, responsive device management.
+sidebar:
+  label: Overview
+  order: 0
+lastReviewed: 2026-06-13
+---
+
+import { CardGrid, LinkCard } from "@astrojs/starlight/components";
+
+Declarative Device Management (DDM) is an evolution of Apple's MDM protocol that lets devices apply settings and report status asynchronously, without constant polling of the management server. This improves performance, scalability, and responsiveness for managed macOS fleets. This section explains how DDM works and how to enable it with Intune.
+
+Read the concept overview first, then follow the configuration steps and review the insights.
+
+<CardGrid>
+  <LinkCard
+    title="What is Declarative Device Management?"
+    description="Learn how DDM works on macOS and the benefits it brings."
+    href="/declarative-device-management/what_is_declarative_device_management/"
+  />
+  <LinkCard
+    title="Configure Declarative Device Management"
+    description="Step-by-step guide to enabling DDM on macOS with Intune."
+    href="/declarative-device-management/configure_declarative_device_management/"
+  />
+  <LinkCard
+    title="Insights"
+    description="Practical insights and considerations for working with DDM."
+    href="/declarative-device-management/insights/"
+  />
+</CardGrid>

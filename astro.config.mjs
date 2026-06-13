@@ -12,6 +12,7 @@ export default defineConfig({
       plugins: [starlightImageZoom()],
       title: "IntuneMacAdmins",
       components: {
+        Head: "./src/components/Head.astro",
         LastUpdated: "./src/components/LastUpdated.astro",
         ThemeProvider: "./src/components/ThemeProvider.astro",
         ThemeSelect: "./src/components/ThemeSelect.astro",

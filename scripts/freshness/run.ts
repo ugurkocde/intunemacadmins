@@ -73,10 +73,20 @@ async function runDrift(
     return;
   }
 
+  // Optional targeting: --drift-page=<substr> (repeatable) limits drift to
+  // matching pages, for cheap re-checks of specific docs.
+  const driftPageArgs = process.argv
+    .filter((a) => a.startsWith("--drift-page="))
+    .map((a) => a.slice("--drift-page=".length))
+    .filter(Boolean);
+  const pageFilter = driftPageArgs.length
+    ? (path: string) => driftPageArgs.some((s) => path.includes(s))
+    : undefined;
+
   // Imported lazily so the deterministic checks never require the SDK/key.
   const Anthropic = (await import("@anthropic-ai/sdk")).default;
   const client = new Anthropic({ maxRetries: 3 });
-  const result = await checkDrift(pages, { client: client as never });
+  const result = await checkDrift(pages, { client: client as never, pageFilter });
   report.findings.push(...result.findings);
   report.skipped.push(...result.skipped);
   console.log(

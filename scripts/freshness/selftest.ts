@@ -194,6 +194,33 @@ await (async () => {
                 claim: "Team Identifier UBF8T346G9",
                 discrepancy: "The current source lists a different identifier",
               },
+              // Guard cases that must be dropped:
+              { severity: "low" as const, claim: "x", discrepancy: "" }, // empty discrepancy
+              {
+                severity: "low" as const,
+                claim: "Company Portal version",
+                discrepancy: "The page does not mention the Company Portal version.",
+              }, // omission, not a contradiction
+              {
+                severity: "medium" as const,
+                claim: "Profile: MacOS FileVault",
+                discrepancy: "The page does not contradict this; the source lists the same profile.",
+              }, // affirmation that the page is fine
+              {
+                severity: "low" as const,
+                claim: "Setting value X",
+                discrepancy: "This is consistent with the current source documentation.",
+              }, // affirmation of consistency
+              {
+                severity: "low" as const,
+                claim: "Profile name",
+                discrepancy: "The source lists the same profile; actually consistent - omit.",
+              }, // model's self-omit phrasing
+              {
+                severity: "medium" as const,
+                claim: "The recovery key rotation is 12 months",
+                discrepancy: "The page value is not consistent with the source, which now states 6 months.",
+              }, // genuine contradiction phrased with "not consistent" - must survive
             ],
           },
         }),
@@ -207,11 +234,15 @@ await (async () => {
 
     const r = await checkDrift([sourced, unsourced], { client, fetchImpl: okFetch });
     assert.equal(r.pagesChecked, 1); // only the sourced page
-    assert.equal(r.findings.length, 1);
+    // Two genuine contradictions survive; the empty, omission, and
+    // affirmation-of-consistency items are dropped by the guards.
+    assert.equal(r.findings.length, 2);
     assert.equal(r.findings[0].check, "content-drift");
     assert.equal(r.findings[0].severity, "high");
     assert.match(r.findings[0].message, /different identifier .*learn\.microsoft\.com/);
     assert.equal(r.findings[0].evidence, "Team Identifier UBF8T346G9");
+    // The "not consistent with" contradiction is kept (not over-filtered).
+    assert.match(r.findings[1].message, /not consistent with the source/);
 
     // Fetch failure -> skipped, not thrown, no finding.
     const badFetch = (async () => new Response("nope", { status: 404 })) as unknown as typeof fetch;

@@ -11,6 +11,22 @@ import {
 import { fetchSourceText } from "./fetch-source";
 import { DRIFT_SYSTEM } from "./prompts";
 
+// Phrases that signal the model emitted a non-finding: an absence/omission.
+const OMISSION_RE =
+  /\b(not specified|not stated|not mentioned|does not (state|mention|specify|list|contradict)|doesn'?t (state|mention|specify|list|contradict)|page omits|not present in the page|isn'?t mentioned|no contradiction|not a contradiction|matches the (current )?source|aligns with the (current )?source)\b/i;
+
+// True when the discrepancy text is the model declaring the page actually fine
+// rather than describing a contradiction. The model phrases this many ways
+// ("consistent", "actually consistent - omit", "not a contradiction"), so we
+// catch the markers directly while preserving genuine "not consistent"
+// contradictions and the "inconsistent" wording.
+export function isNonContradiction(discrepancy: string): boolean {
+  const t = discrepancy.toLowerCase();
+  if (/\bomit\b/.test(t)) return true; // model telling itself to drop it
+  if (/\bconsistent\b/.test(t) && !/\b(not consistent|inconsistent)\b/.test(t)) return true;
+  return OMISSION_RE.test(discrepancy);
+}
+
 export const DriftFindings = z.object({
   findings: z
     .array(
@@ -37,6 +53,9 @@ export interface DriftDeps {
   client: DriftClient;
   fetchImpl?: typeof fetch;
   model?: string;
+  // Optional path predicate to limit which sourced pages are checked (used by
+  // the --drift-page targeting flag for cheap re-checks of specific pages).
+  pageFilter?: (path: string) => boolean;
 }
 
 export interface DriftResult {
@@ -52,9 +71,11 @@ export async function checkDrift(
   pages: DocPage[],
   deps: DriftDeps,
 ): Promise<DriftResult> {
-  const sourced = pages.filter(
-    (p) => Array.isArray(p.frontmatter.sources) && p.frontmatter.sources.length > 0,
-  );
+  const sourced = pages
+    .filter(
+      (p) => Array.isArray(p.frontmatter.sources) && p.frontmatter.sources.length > 0,
+    )
+    .filter((p) => !deps.pageFilter || deps.pageFilter(p.path));
   const skipped: string[] = [];
   const findings: Finding[] = [];
 
@@ -72,12 +93,20 @@ export async function checkDrift(
         const source = await fetchSourceText(url, deps.fetchImpl);
         const parsed = await callModel(deps, page, source.text, url);
         for (const f of parsed.findings) {
+          const claim = (f.claim ?? "").trim();
+          const discrepancy = (f.discrepancy ?? "").trim();
+          // Defensive precision guards for items the model emits despite the
+          // prompt: an empty/trivial discrepancy, or one phrased as an absence
+          // ("the page does not mention X") rather than a true page-vs-source
+          // contradiction. These are the main residual noise sources.
+          if (claim.length < 5 || discrepancy.length < 20) continue;
+          if (isNonContradiction(discrepancy)) continue;
           findings.push({
             check: "content-drift",
             severity: f.severity,
             location: page.path,
-            message: `${f.discrepancy} (vs ${url})`,
-            evidence: f.claim,
+            message: `${discrepancy} (vs ${url})`,
+            evidence: claim,
           });
         }
       } catch (error) {

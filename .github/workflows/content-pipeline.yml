@@ -19,6 +19,13 @@ on:
           - tech-community
           - community-blog
           - reddit
+      runner:
+        description: "Where to run (self-hosted = your residential IP; ubuntu-latest = GitHub cloud, Reddit/Rockenroll get IP-blocked)"
+        type: choice
+        default: self-hosted
+        options:
+          - self-hosted
+          - ubuntu-latest
 
 permissions:
   contents: write
@@ -31,7 +38,9 @@ concurrency:
 
 jobs:
   update-content:
-    runs-on: ubuntu-latest
+    # Scheduled runs use the self-hosted runner (residential IP, no source IP
+    # blocks). A manual run can pick the cloud via the `runner` input.
+    runs-on: ${{ github.event.inputs.runner || 'self-hosted' }}
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4

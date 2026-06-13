@@ -5,6 +5,7 @@ sidebar:
   order: 1
 sources:
   - https://learn.microsoft.com/intune/device-configuration/endpoint-security/encrypt-filevault-macos
+lastReviewed: 2026-06-13
 ---
 
 FileVault is a disk encryption program available in macOS, designed to protect data by encrypting the entire drive.

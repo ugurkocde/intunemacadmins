@@ -5,6 +5,7 @@ sidebar:
   order: 1
 sources:
   - https://learn.microsoft.com/intune/device-management/tools/run-shell-scripts-macos
+lastReviewed: 2026-06-13
 ---
 ## What are Custom Attributes in macOS?
 

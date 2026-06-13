@@ -13,8 +13,13 @@ export const collections = {
         // lastReviewed - ISO date the page was last verified against upstream.
         // sources - authoritative MS/Apple URLs this page is based on, so the
         // freshness checker can diff the page against current ground truth.
-        lastReviewed: z.string().optional(),
+        // Coerce: YAML parses an unquoted `2026-06-13` into a Date, a quoted
+        // one into a string - accept either and normalize to a Date.
+        lastReviewed: z.coerce.date().optional(),
         sources: z.array(z.string().url()).optional(),
+        // Named author for E-E-A-T; rendered as a Person in the page's JSON-LD.
+        // Optional - pages without it are attributed to the Organization.
+        author: z.string().optional(),
       }),
     }),
   }),

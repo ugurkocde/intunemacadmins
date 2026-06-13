@@ -30,16 +30,32 @@ function pageUrl(pathname: string): string {
 const canonicalUrl = pageUrl(Astro.url.pathname);
 const isHome = data.template === "splash" || id === "" || id === "index";
 
-// ISO date for dateModified: prefer explicit lastReviewed frontmatter, else
-// Starlight's computed lastUpdated, else undefined (omit the property).
+// ISO date for dateModified: prefer explicit lastReviewed frontmatter (schema
+// coerces it to a Date), else Starlight's computed lastUpdated, else undefined
+// (omit the property).
 let dateModified: string | undefined;
-if (typeof data.lastReviewed === "string" && data.lastReviewed) {
-  const d = new Date(data.lastReviewed);
+const reviewed = data.lastReviewed;
+if (reviewed instanceof Date && !isNaN(reviewed.getTime())) {
+  dateModified = reviewed.toISOString();
+} else if (typeof reviewed === "string" && reviewed) {
+  const d = new Date(reviewed);
   if (!isNaN(d.getTime())) dateModified = d.toISOString();
 }
 if (!dateModified && lastUpdated instanceof Date && !isNaN(lastUpdated.getTime())) {
   dateModified = lastUpdated.toISOString();
 }
+
+// Maintainer (named person) for E-E-A-T: a real, verifiable person behind the
+// site, referenced as the Organization's founder and as the default page author.
+const MAINTAINER_NAME = "Ugur Koc";
+const MAINTAINER_URL = "https://github.com/ugurkocde";
+const person = {
+  "@type": "Person",
+  "@id": `${site.href}#maintainer`,
+  name: MAINTAINER_NAME,
+  url: MAINTAINER_URL,
+  sameAs: [MAINTAINER_URL],
+};
 
 // Organization node, reused via @id reference.
 const organization = {
@@ -51,6 +67,7 @@ const organization = {
     "@type": "ImageObject",
     url: LOGO_URL,
   },
+  founder: { "@id": `${site.href}#maintainer` },
   sameAs: [GITHUB_URL],
 };
 
@@ -109,7 +126,7 @@ const breadcrumb = {
 const graph: Record<string, unknown>[] = [];
 
 if (isHome) {
-  graph.push(organization, website, breadcrumb);
+  graph.push(organization, website, person, breadcrumb);
 } else {
   const article: Record<string, unknown> = {
     "@type": "TechArticle",
@@ -120,7 +137,10 @@ if (isHome) {
     mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
     inLanguage: "en",
     isPartOf: { "@id": `${site.href}#website` },
-    author: { "@id": `${site.href}#organization` },
+    author:
+      typeof data.author === "string" && data.author
+        ? { "@type": "Person", name: data.author }
+        : { "@id": `${site.href}#organization` },
     publisher: { "@id": `${site.href}#organization` },
     image: LOGO_URL,
   };

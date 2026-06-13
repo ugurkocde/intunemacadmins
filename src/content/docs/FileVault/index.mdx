@@ -1,0 +1,32 @@
+---
+title: FileVault
+description: Learn what FileVault is and how to enable macOS full-disk encryption during the Setup Assistant with Microsoft Intune to protect data on managed Macs.
+sidebar:
+  label: Overview
+  order: 0
+lastReviewed: 2026-06-13
+---
+
+import { CardGrid, LinkCard } from "@astrojs/starlight/components";
+
+FileVault is macOS's built-in full-disk encryption feature, protecting data at rest so it cannot be read if a device is lost or stolen. This section covers what FileVault is, how to enable it during the Setup Assistant with Intune, and the insights you need to manage encryption and recovery keys in production. It is aimed at IT administrators responsible for endpoint security and compliance on macOS.
+
+Begin with the overview, then follow the setup guide and review the field insights.
+
+<CardGrid>
+  <LinkCard
+    title="What is FileVault?"
+    description="Key features and benefits of macOS built-in disk encryption."
+    href="/filevault/what_is_filevault/"
+  />
+  <LinkCard
+    title="Enable FileVault in Setup Assistant"
+    description="Prerequisites, configuration profiles, and best practices."
+    href="/filevault/enable_filevault_in_setup_assistant/"
+  />
+  <LinkCard
+    title="Insights"
+    description="Advanced topics, troubleshooting, and expert recommendations."
+    href="/filevault/insights/"
+  />
+</CardGrid>

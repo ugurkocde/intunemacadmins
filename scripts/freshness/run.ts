@@ -1,24 +1,34 @@
 // Docs-freshness checker CLI.
 //
-//   tsx scripts/freshness/run.ts [--no-links]
+//   tsx scripts/freshness/run.ts [--no-links] [--no-drift] [--apply-edits]
+//                                [--drift-page=<substr> ...]
 //
 // Scans authored docs for staleness signals (overdue review, expired dates,
-// outdated macOS recommendations, broken authoritative links) and writes a
-// report to .cache/freshness-report.{json,md}. Detection only - it never edits
-// docs. The workflow turns the report into a GitHub issue.
+// outdated macOS recommendations, broken authoritative links) and, for pages
+// that declare `sources`, compares them against the current Microsoft/Apple
+// docs (drift). Findings go to .cache/freshness-report.{json,md} (the issue).
+//
+// With --apply-edits, drift the model expressed as a verbatim text replacement
+// is applied to the page files and summarized in .cache/edits-pr-body.md (the
+// PR). Drift that isn't a clean replacement stays a flag in the report. Detection
+// and editing never auto-merge - the workflow opens a PR/issue for review.
 
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname } from "node:path";
 import {
+  EDITS_JSON,
+  EDITS_PR_BODY,
+  HTTP_TIMEOUT_MS,
   LATEST_MACOS_FALLBACK,
   REPORT_JSON,
   REPORT_MD,
   SOFA_MACOS_FEED,
   USER_AGENT,
-  HTTP_TIMEOUT_MS,
 } from "./config";
+import { applyEdits } from "./edit/apply";
 import { checkDrift } from "./drift/drift";
 import { loadDocs } from "./load";
+import { renderEditsPrBody } from "./render/edits-pr-body";
 import { renderEmptyBody, renderIssueBody } from "./render/issue-body";
 import { parseLatestMacOS, scan, sortFindings } from "./scan";
 
@@ -34,8 +44,6 @@ async function main(): Promise<void> {
     report.skipped.push(`macOS version feed unreachable; used fallback ${latestMacOS}`);
   }
 
-  // LLM ground-truth drift: compares pages that declare `sources` against the
-  // current Microsoft/Apple docs. Auto-enabled when an API key is present.
   await runDrift(pages, report);
   report.findings = sortFindings(report.findings);
 
@@ -87,10 +95,35 @@ async function runDrift(
   const Anthropic = (await import("@anthropic-ai/sdk")).default;
   const client = new Anthropic({ maxRetries: 3 });
   const result = await checkDrift(pages, { client: client as never, pageFilter });
-  report.findings.push(...result.findings);
+  report.findings.push(...result.findings); // drift that isn't a clean edit
   report.skipped.push(...result.skipped);
+
+  if (!process.argv.includes("--apply-edits")) {
+    // Detection-only: surface the would-be edits as flags too.
+    for (const c of result.editCandidates) {
+      report.findings.push({
+        check: "content-drift",
+        severity: c.severity,
+        location: c.path,
+        message: `${c.discrepancy} (vs ${c.source})`,
+        evidence: c.oldText.slice(0, 200),
+      });
+    }
+    console.log(
+      `[freshness] drift: ${result.findings.length} flag(s), ${result.editCandidates.length} editable (not applied; use --apply-edits)`,
+    );
+    return;
+  }
+
+  const { files, applied, rejected } = applyEdits(pages, result.editCandidates);
+  for (const [path, content] of files) writeFile(path, content);
+  report.findings.push(...rejected); // edits that couldn't be applied -> issue
+  if (applied.length > 0) {
+    writeFile(EDITS_PR_BODY, renderEditsPrBody(applied) + "\n");
+    writeFile(EDITS_JSON, JSON.stringify(applied, null, 2) + "\n");
+  }
   console.log(
-    `[freshness] drift: checked ${result.pagesChecked} sourced page(s), ${result.findings.length} finding(s)`,
+    `[freshness] drift: ${result.findings.length} flag(s); edits applied ${applied.length}, rejected ${rejected.length} across ${files.size} file(s)`,
   );
 }
 

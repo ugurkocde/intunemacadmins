@@ -59,7 +59,8 @@ export function parseDoc(relPath: string, raw: string): DocPage {
   }
   const title =
     typeof frontmatter.title === "string" ? frontmatter.title : relPath;
-  return { path: relPath, frontmatter, title, body, bodyStartLine };
+  const frontmatterRaw = match ? match[0] : "";
+  return { path: relPath, frontmatter, title, body, bodyStartLine, frontmatterRaw };
 }
 
 // Last commit date for a file (ISO), used as the review-date fallback when a

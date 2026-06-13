@@ -1,7 +1,7 @@
 import { zodOutputFormat } from "@anthropic-ai/sdk/helpers/zod";
 import { z } from "zod";
 import { truncate } from "../../pipeline/text";
-import type { DocPage, Finding } from "../types";
+import type { DocPage, EditCandidate, Finding } from "../types";
 import {
   DRIFT_MAX_TOKENS,
   DRIFT_MODEL,
@@ -34,6 +34,11 @@ export const DriftFindings = z.object({
         severity: z.enum(["high", "medium", "low"]),
         claim: z.string(), // the page's now-questionable statement
         discrepancy: z.string(), // what the current source says instead
+        // For a clean, localized fix: the EXACT verbatim snippet from the page
+        // to replace, and its correction. Empty strings when the fix isn't a
+        // simple text replacement (then it's reported as a flag, not an edit).
+        oldText: z.string(),
+        newText: z.string(),
       }),
     )
     .max(10),
@@ -59,14 +64,18 @@ export interface DriftDeps {
 }
 
 export interface DriftResult {
+  // Drift that is reported as a flag only (issue) - either not a clean text fix,
+  // or the page text needed for an edit wasn't provided.
   findings: Finding[];
+  // Drift the model expressed as a verbatim old->new text replacement (PR).
+  editCandidates: EditCandidate[];
   skipped: string[];
   pagesChecked: number;
 }
 
 // Compares each page that declares `sources` against its current upstream docs.
 // One model call per source; a fetch or model failure skips that source (logged)
-// rather than failing the run. Detection only - never edits the page.
+// rather than failing the run. Detection only - never edits the page here.
 export async function checkDrift(
   pages: DocPage[],
   deps: DriftDeps,
@@ -78,6 +87,7 @@ export async function checkDrift(
     .filter((p) => !deps.pageFilter || deps.pageFilter(p.path));
   const skipped: string[] = [];
   const findings: Finding[] = [];
+  const editCandidates: EditCandidate[] = [];
 
   const toCheck = sourced.slice(0, MAX_DRIFT_PAGES);
   if (sourced.length > toCheck.length) {
@@ -95,19 +105,28 @@ export async function checkDrift(
         for (const f of parsed.findings) {
           const claim = (f.claim ?? "").trim();
           const discrepancy = (f.discrepancy ?? "").trim();
-          // Defensive precision guards for items the model emits despite the
-          // prompt: an empty/trivial discrepancy, or one phrased as an absence
-          // ("the page does not mention X") rather than a true page-vs-source
-          // contradiction. These are the main residual noise sources.
           if (claim.length < 5 || discrepancy.length < 20) continue;
           if (isNonContradiction(discrepancy)) continue;
-          findings.push({
-            check: "content-drift",
-            severity: f.severity,
-            location: page.path,
-            message: `${discrepancy} (vs ${url})`,
-            evidence: claim,
-          });
+          const oldText = f.oldText ?? "";
+          const newText = f.newText ?? "";
+          if (oldText.trim().length > 0 && newText.trim().length > 0 && oldText !== newText) {
+            editCandidates.push({
+              path: page.path,
+              severity: f.severity,
+              oldText,
+              newText,
+              discrepancy,
+              source: url,
+            });
+          } else {
+            findings.push({
+              check: "content-drift",
+              severity: f.severity,
+              location: page.path,
+              message: `${discrepancy} (vs ${url})`,
+              evidence: claim,
+            });
+          }
         }
       } catch (error) {
         skipped.push(
@@ -117,7 +136,7 @@ export async function checkDrift(
     }
   }
 
-  return { findings, skipped, pagesChecked: toCheck.length };
+  return { findings, editCandidates, skipped, pagesChecked: toCheck.length };
 }
 
 async function callModel(

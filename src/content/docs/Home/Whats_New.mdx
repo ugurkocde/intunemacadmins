@@ -8,7 +8,48 @@ generated: true
 
 We track Microsoft's [What's new in Microsoft Intune](https://learn.microsoft.com/en-us/intune/whats-new/) release notes and pull out the changes that matter for macOS management. Each entry links to the full details on Microsoft Learn.
 
-No macOS-relevant updates to show here just yet. Check back soon.
+## Week of May 11, 2026
+
+### Device enrollment
+
+- **Complete Platform SSO registration during macOS Automated Device Enrollment** — Microsoft documented the ability to run Platform SSO during device registration on macOS devices enrolled with Automated Device Enrollment. Configuration requires creating an Intune settings catalog policy with the Enable Registration During Setup setting, deploying Company Portal 5.2604.0 or newer as a line-of-business app, and configuring the ADE policy to use Setup Assistant with modern authentication and await final configuration. When enabled, users gain access to Microsoft Entra ID resources immediately at desktop. This applies to macOS 26 and newer. [Details](https://learn.microsoft.com/en-us/intune/whats-new/#complete-platform-sso-registration-during-macos-automated-device-enrollment)
+
+## Week of April 27, 2026 (Service release 2604)
+
+### Device enrollment
+
+- **Access management for Apple services** — Apple access management settings in Apple Business Manager and Apple School Manager can now be used to configure service access for Apple accounts on organization-owned devices. These controls determine which devices users can sign in to and which apps and services are available to them. The feature applies to iOS/iPadOS and macOS. [Details](https://learn.microsoft.com/en-us/intune/whats-new/#access-management-for-apple-services)
+
+## Week of March 30, 2026 (Service release 2603)
+
+### Device configuration
+
+- **Recovery lock features available for macOS devices** — Intune now supports a recovery lock feature for macOS devices that sets a recovery OS password preventing users from booting company-owned devices into recovery mode, reinstalling macOS, or bypassing remote management. The feature can be enabled and given a password rotation schedule through a settings catalog policy, or rotated manually via the Recovery Lock remote device action. The Recovery Lock password is viewable in the per-setting status report under Passwords and keys, requiring the Remote tasks/View macOS recovery lock password permission. [Details](https://learn.microsoft.com/en-us/intune/whats-new/#recovery-lock-features-available-for-macos-devices)
+- **New updates to the Apple settings catalog** — Microsoft has added new settings to the Intune Settings Catalog for iOS/iPadOS and macOS, accessible when creating a settings catalog configuration profile. The additions include Declarative Device Management options for External Intelligence Settings, Intelligence Settings, Keyboard Settings, and Siri Settings, covering features such as Apple Intelligence Report, Genmoji, Image Playground, Writing Tools, and on-device dictation. macOS additionally gains System Configuration File Provider settings and a Restrictions option for Rosetta Usage Awareness. [Details](https://learn.microsoft.com/en-us/intune/whats-new/#new-updates-to-the-apple-settings-catalog)
+
+## Week of March 16, 2026
+
+### Device management
+
+- **Improved Remote Help update reporting on macOS** — Microsoft has updated the Remote Help update and reporting experience on macOS. After deploying Remote Help client version 1.0.26012221 through Microsoft Intune, admins can view the full client version in device inventory and during app upgrades. Installations deployed through Intune are registered with Microsoft AutoUpdate, allowing Intune-managed macOS devices to automatically receive future Remote Help updates. [Details](https://learn.microsoft.com/en-us/intune/whats-new/#improved-remote-help-update-reporting-on-macos)
+
+## Week of March 2, 2026 (Service release 2602)
+
+### Device configuration
+
+- **Apple declarative device management (DDM) supports assignment filters** — Assignment filters can now be used in policy assignments for Apple declarative device management (DDM) based configurations, such as software updates. The feature applies to iOS, iPadOS, and macOS, and is rolling out slowly with availability expected for all customers by late March 2026. [Details](https://learn.microsoft.com/en-us/intune/whats-new/#apple-declarative-device-management-ddm-supports-assignment-filters)
+- **New updates to the Apple settings catalog** — New settings have been added to the Intune Settings Catalog for iOS/iPadOS and macOS. For both platforms, an AirPlay Device Name setting is now available, and on macOS the Microsoft Defender category has been updated with new settings. These can be accessed in the Microsoft Intune admin center under Devices, Configuration, when creating a new Settings Catalog policy. [Details](https://learn.microsoft.com/en-us/intune/whats-new/#new-updates-to-the-apple-settings-catalog)
+
+### Device security
+
+- **Intune ending support for legacy Apple MDM software update policies** — With the release of iOS 26, iPadOS 26, and macOS 26, Apple has deprecated legacy MDM software update commands and payloads, and Microsoft Intune will soon end support for creating legacy iOS/iPadOS and macOS software update policies. To continue managing Apple software updates, administrators are directed to configure update policies using Apple's declarative device management model, which Microsoft states provides improved device autonomy and reporting. [Details](https://learn.microsoft.com/en-us/intune/whats-new/#intune-ending-support-for-legacy-apple-mdm-software-update-policies)
+
+## Week of December 8, 2025
+
+### Device enrollment
+
+- **ACME protocol support for iOS/iPadOS and macOS enrollment** — Intune is beginning a phased rollout of an infrastructure change that adds support for the Automated Certificate Management Environment (ACME) protocol for new Apple device enrollments, replacing the SCEP certificate in the management profile. Existing eligible devices do not receive the ACME certificate unless they re-enroll, and there is no change to the end user enrollment experience, the admin center, or device configuration policies. ACME is supported for Apple Device Enrollment (BYOD), Apple Configurator enrollment, and automated device enrollment on iOS 16.0 or later, iPadOS 16.1 or later, and macOS 13.1 or later. [Details](https://learn.microsoft.com/en-us/intune/whats-new/#acme-protocol-support-for-ios-ipados-and-macos-enrollment)
+- **New Setup Assistant screens now generally available for iOS/iPadOS and macOS automated device enrollment profiles** — Microsoft has made 12 new Setup Assistant screens generally available to hide or show during automated device enrollment (ADE) for iOS, iPadOS, and macOS profiles, with the default set to show them. For iOS and iPadOS, the skippable screens include App Store, Camera button, Web content filtering, Safety and handling, Multitasking, and OS Showcase across various OS versions. For macOS, the skippable screens include App Store, Get Started, Software update, Additional privacy settings, OS Showcase, and Update completed across various OS versions. [Details](https://learn.microsoft.com/en-us/intune/whats-new/#new-setup-assistant-screens-now-generally-available-for-ios-ipados-and-macos-automated-device-enrollment-profiles)
 
 ---
 

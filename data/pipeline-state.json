@@ -1,4 +1,381 @@
 {
-  "items": {},
+  "items": {
+    "015f19fc2241ab9a": {
+      "category": "app-management",
+      "firstSeen": "2026-06-13T15:14:36.870Z",
+      "meta": {
+        "categoryHeading": "Device management",
+        "release": null,
+        "week": "Week of March 16, 2026"
+      },
+      "publishedAt": "2026-03-15T23:00:00.000Z",
+      "source": "ms-whats-new",
+      "sourceName": "Microsoft Learn",
+      "status": "published",
+      "summary": "Microsoft has updated the Remote Help update and reporting experience on macOS. After deploying Remote Help client version 1.0.26012221 through Microsoft Intune, admins can view the full client version in device inventory and during app upgrades. Installations deployed through Intune are registered with Microsoft AutoUpdate, allowing Intune-managed macOS devices to automatically receive future Remote Help updates.",
+      "tags": [
+        "remote help",
+        "macos",
+        "reporting",
+        "autoupdate"
+      ],
+      "title": "Improved Remote Help update reporting on macOS",
+      "url": "https://learn.microsoft.com/en-us/intune/whats-new/#improved-remote-help-update-reporting-on-macos",
+      "week": "2026-W24"
+    },
+    "02937b0062d9aa9f": {
+      "category": "configuration",
+      "firstSeen": "2026-06-13T15:14:36.870Z",
+      "meta": {
+        "categoryHeading": "Device configuration",
+        "release": "2603",
+        "week": "Week of March 30, 2026"
+      },
+      "publishedAt": "2026-03-29T22:00:00.000Z",
+      "source": "ms-whats-new",
+      "sourceName": "Microsoft Learn",
+      "status": "published",
+      "summary": "Microsoft has added new settings to the Intune Settings Catalog for iOS/iPadOS and macOS, accessible when creating a settings catalog configuration profile. The additions include Declarative Device Management options for External Intelligence Settings, Intelligence Settings, Keyboard Settings, and Siri Settings, covering features such as Apple Intelligence Report, Genmoji, Image Playground, Writing Tools, and on-device dictation. macOS additionally gains System Configuration File Provider settings and a Restrictions option for Rosetta Usage Awareness.",
+      "tags": [
+        "settings catalog",
+        "ddm",
+        "apple intelligence",
+        "macos"
+      ],
+      "title": "New updates to the Apple settings catalog",
+      "url": "https://learn.microsoft.com/en-us/intune/whats-new/#new-updates-to-the-apple-settings-catalog",
+      "week": "2026-W24"
+    },
+    "144b77b76486b258": {
+      "firstSeen": "2026-06-13T15:14:36.870Z",
+      "status": "rejected"
+    },
+    "16e717437baa9312": {
+      "category": "enrollment",
+      "firstSeen": "2026-06-13T15:14:36.870Z",
+      "meta": {
+        "categoryHeading": "Device enrollment",
+        "release": null,
+        "week": "Week of December 8, 2025"
+      },
+      "publishedAt": "2025-12-07T23:00:00.000Z",
+      "source": "ms-whats-new",
+      "sourceName": "Microsoft Learn",
+      "status": "published",
+      "summary": "Microsoft has made 12 new Setup Assistant screens generally available to hide or show during automated device enrollment (ADE) for iOS, iPadOS, and macOS profiles, with the default set to show them. For iOS and iPadOS, the skippable screens include App Store, Camera button, Web content filtering, Safety and handling, Multitasking, and OS Showcase across various OS versions. For macOS, the skippable screens include App Store, Get Started, Software update, Additional privacy settings, OS Showcase, and Update completed across various OS versions.",
+      "tags": [
+        "ade",
+        "setup assistant",
+        "macos",
+        "ios"
+      ],
+      "title": "New Setup Assistant screens now generally available for iOS/iPadOS and macOS automated device enrollment profiles",
+      "url": "https://learn.microsoft.com/en-us/intune/whats-new/#new-setup-assistant-screens-now-generally-available-for-ios-ipados-and-macos-automated-device-enrollment-profiles",
+      "week": "2026-W24"
+    },
+    "18d12255b3b3a4a9": {
+      "author": "Intune_Support_Team",
+      "category": "enrollment",
+      "firstSeen": "2026-06-13T15:14:36.870Z",
+      "meta": {
+        "categories": []
+      },
+      "publishedAt": "2026-06-09T01:41:15.000Z",
+      "source": "tech-community",
+      "sourceName": "Intune Customer Success",
+      "status": "published",
+      "summary": "Microsoft Intune has made the 'Enable Registration During Setup' setting for Platform single sign-on (PSSO) during Automated Device Enrollment generally available for macOS devices. With Intune Company Portal version 5.2604.0 or newer, users can sign in with their Microsoft Entra account during Setup Assistant and complete device registration before reaching the desktop. The feature requires three policies assigned to the same static user groups, macOS 26 or newer, and prompts users to enter credentials at least twice during enrollment.",
+      "tags": [
+        "platform sso",
+        "ade",
+        "macos",
+        "entra"
+      ],
+      "title": "New Platform SSO with registration during Automated Device Enrollment on macOS",
+      "url": "https://techcommunity.microsoft.com/t5/intune-customer-success/new-platform-sso-with-registration-during-automated-device/ba-p/4519846",
+      "week": "2026-W24"
+    },
+    "2febb1a965c823b0": {
+      "category": "announcement",
+      "firstSeen": "2026-06-13T15:14:36.870Z",
+      "meta": {
+        "categoryHeading": "Device management",
+        "release": "2510",
+        "week": "Week of October 20, 2025"
+      },
+      "publishedAt": "2025-10-19T22:00:00.000Z",
+      "source": "ms-whats-new",
+      "sourceName": "Microsoft Learn",
+      "status": "published",
+      "summary": "Microsoft Intune released Remote Help client version 1.0.2510071, which adds support for macOS 26. Earlier versions of the Remote Help client are not compatible with macOS 26, and the app updates automatically through Microsoft AutoUpdate if opted in. The new version also resolves an issue that previously caused the screen to appear blank on first launch and fail to connect.",
+      "tags": [
+        "remote help",
+        "macos 26",
+        "intune",
+        "mau"
+      ],
+      "title": "New client version for Remote Help for macOS",
+      "url": "https://learn.microsoft.com/en-us/intune/whats-new/#new-client-version-for-remote-help-for-macos",
+      "week": "2026-W24"
+    },
+    "46769a21badca84d": {
+      "category": "enrollment",
+      "firstSeen": "2026-06-13T15:14:36.870Z",
+      "meta": {
+        "categoryHeading": "Device enrollment",
+        "release": null,
+        "week": "Week of December 8, 2025"
+      },
+      "publishedAt": "2025-12-07T23:00:00.000Z",
+      "source": "ms-whats-new",
+      "sourceName": "Microsoft Learn",
+      "status": "published",
+      "summary": "Intune is beginning a phased rollout of an infrastructure change that adds support for the Automated Certificate Management Environment (ACME) protocol for new Apple device enrollments, replacing the SCEP certificate in the management profile. Existing eligible devices do not receive the ACME certificate unless they re-enroll, and there is no change to the end user enrollment experience, the admin center, or device configuration policies. ACME is supported for Apple Device Enrollment (BYOD), Apple Configurator enrollment, and automated device enrollment on iOS 16.0 or later, iPadOS 16.1 or later, and macOS 13.1 or later.",
+      "tags": [
+        "acme",
+        "certificates",
+        "apple",
+        "scep"
+      ],
+      "title": "ACME protocol support for iOS/iPadOS and macOS enrollment",
+      "url": "https://learn.microsoft.com/en-us/intune/whats-new/#acme-protocol-support-for-ios-ipados-and-macos-enrollment",
+      "week": "2026-W24"
+    },
+    "4ec1a066d71a6dfa": {
+      "category": "configuration",
+      "firstSeen": "2026-06-13T15:14:36.870Z",
+      "meta": {
+        "categoryHeading": "Device configuration",
+        "release": "2603",
+        "week": "Week of March 30, 2026"
+      },
+      "publishedAt": "2026-03-29T22:00:00.000Z",
+      "source": "ms-whats-new",
+      "sourceName": "Microsoft Learn",
+      "status": "published",
+      "summary": "Intune now supports a recovery lock feature for macOS devices that sets a recovery OS password preventing users from booting company-owned devices into recovery mode, reinstalling macOS, or bypassing remote management. The feature can be enabled and given a password rotation schedule through a settings catalog policy, or rotated manually via the Recovery Lock remote device action. The Recovery Lock password is viewable in the per-setting status report under Passwords and keys, requiring the Remote tasks/View macOS recovery lock password permission.",
+      "tags": [
+        "macos",
+        "recovery-lock",
+        "settings-catalog",
+        "security"
+      ],
+      "title": "Recovery lock features available for macOS devices",
+      "url": "https://learn.microsoft.com/en-us/intune/whats-new/#recovery-lock-features-available-for-macos-devices",
+      "week": "2026-W24"
+    },
+    "52a257a91a599e72": {
+      "category": "announcement",
+      "firstSeen": "2026-06-13T15:14:36.870Z",
+      "meta": {
+        "categoryHeading": "Device security",
+        "release": "2510",
+        "week": "Week of October 20, 2025"
+      },
+      "publishedAt": "2025-10-19T22:00:00.000Z",
+      "source": "ms-whats-new",
+      "sourceName": "Microsoft Learn",
+      "status": "published",
+      "summary": "With iOS 26, iPadOS 26, and macOS 26, Apple has deprecated legacy MDM software update commands and payloads, and Intune will end support for related workloads including iOS/iPadOS and macOS update policies, software update settings in templates and settings catalog, and update installation failure and per-device update reports. These functionalities are now available through declarative device management (DDM). Microsoft references a Customer Success blog for details on the transition.",
+      "tags": [
+        "software-updates",
+        "ddm",
+        "macos",
+        "deprecation"
+      ],
+      "title": "Intune to end support for legacy Apple MDM software updates",
+      "url": "https://learn.microsoft.com/en-us/intune/whats-new/#intune-to-end-support-for-legacy-apple-mdm-software-updates",
+      "week": "2026-W24"
+    },
+    "5c9c6fadda8ed7cd": {
+      "author": "rtrouton",
+      "category": "configuration",
+      "firstSeen": "2026-06-13T15:14:36.870Z",
+      "meta": {
+        "categories": [
+          "Mac administration",
+          "macOS",
+          "Management Profiles"
+        ]
+      },
+      "publishedAt": "2026-06-03T14:46:01.000Z",
+      "source": "community-blog",
+      "sourceName": "Der Flounder",
+      "status": "published",
+      "summary": "The post describes how macOS Tahoe menubar spacing can be adjusted by setting the NSStatusItemSpacing and NSStatusItemSelectionPadding values, which default to 16 and can be set to 8 using the defaults command or removed to revert. Because these are user-level global preferences, the author demonstrates that the same settings can be applied through a configuration profile using a com.apple.ManagedClient.preferences payload targeting .GlobalPreferences. A sample mobileconfig is provided, and the author notes that a logout and login is required for the changes to take effect.",
+      "tags": [
+        "macos tahoe",
+        "configuration profile",
+        "menubar",
+        "defaults"
+      ],
+      "title": "Managing menubar spacing using a configuration profile on macOS Tahoe",
+      "url": "https://derflounder.wordpress.com/2026/06/03/managing-menubar-spacing-using-a-configuration-profile-on-macos-tahoe/",
+      "week": "2026-W24"
+    },
+    "724a617276d51eab": {
+      "firstSeen": "2026-06-13T15:14:36.870Z",
+      "status": "rejected"
+    },
+    "7e64c637712e9230": {
+      "firstSeen": "2026-06-13T15:14:36.870Z",
+      "status": "rejected"
+    },
+    "89a06f5494497ee4": {
+      "firstSeen": "2026-06-13T15:14:36.870Z",
+      "status": "rejected"
+    },
+    "8effbc33de6dda5a": {
+      "firstSeen": "2026-06-13T15:14:36.870Z",
+      "status": "rejected"
+    },
+    "a27861bd0c620e4b": {
+      "author": "rtrouton",
+      "category": "announcement",
+      "firstSeen": "2026-06-13T15:14:36.870Z",
+      "meta": {
+        "categories": [
+          "Declarative Device Management",
+          "Jamf Pro Blueprints",
+          "Mac administration",
+          "macOS",
+          "Mobile Device Management"
+        ]
+      },
+      "publishedAt": "2026-06-08T19:39:15.000Z",
+      "source": "community-blog",
+      "sourceName": "Der Flounder",
+      "status": "published",
+      "summary": "Apple has confirmed that legacy MDM-based software update management no longer functions on all Apple 27.0 operating systems, following its deprecation announced with macOS Tahoe. The removed functionality includes software update commands, queries, recommended cadence settings, and software update restrictions such as deferrals and Background Security Improvements. The only software update management settings that work on 27.0 operating systems are those using declarative device management.",
+      "tags": [
+        "software-update",
+        "ddm",
+        "macos-tahoe",
+        "mdm"
+      ],
+      "title": "MDM-based Software Update management options no longer work on all Apple 27.0 operating systems",
+      "url": "https://derflounder.wordpress.com/2026/06/08/mdm-based-software-update-management-options-no-longer-work-on-all-apple-27-0-operating-systems/",
+      "week": "2026-W24"
+    },
+    "a35f3f259966c5ec": {
+      "category": "configuration",
+      "firstSeen": "2026-06-13T15:14:36.870Z",
+      "meta": {
+        "categoryHeading": "Device configuration",
+        "release": "2602",
+        "week": "Week of March 2, 2026"
+      },
+      "publishedAt": "2026-03-01T23:00:00.000Z",
+      "source": "ms-whats-new",
+      "sourceName": "Microsoft Learn",
+      "status": "published",
+      "summary": "Assignment filters can now be used in policy assignments for Apple declarative device management (DDM) based configurations, such as software updates. The feature applies to iOS, iPadOS, and macOS, and is rolling out slowly with availability expected for all customers by late March 2026.",
+      "tags": [
+        "ddm",
+        "assignment-filters",
+        "macos",
+        "software-updates"
+      ],
+      "title": "Apple declarative device management (DDM) supports assignment filters",
+      "url": "https://learn.microsoft.com/en-us/intune/whats-new/#apple-declarative-device-management-ddm-supports-assignment-filters",
+      "week": "2026-W24"
+    },
+    "a88d66c5e854532a": {
+      "category": "configuration",
+      "firstSeen": "2026-06-13T15:14:36.870Z",
+      "meta": {
+        "categoryHeading": "Device configuration",
+        "release": "2602",
+        "week": "Week of March 2, 2026"
+      },
+      "publishedAt": "2026-03-01T23:00:00.000Z",
+      "source": "ms-whats-new",
+      "sourceName": "Microsoft Learn",
+      "status": "published",
+      "summary": "New settings have been added to the Intune Settings Catalog for iOS/iPadOS and macOS. For both platforms, an AirPlay Device Name setting is now available, and on macOS the Microsoft Defender category has been updated with new settings. These can be accessed in the Microsoft Intune admin center under Devices, Configuration, when creating a new Settings Catalog policy.",
+      "tags": [
+        "settings catalog",
+        "macos",
+        "airplay",
+        "microsoft defender"
+      ],
+      "title": "New updates to the Apple settings catalog",
+      "url": "https://learn.microsoft.com/en-us/intune/whats-new/#new-updates-to-the-apple-settings-catalog",
+      "week": "2026-W24"
+    },
+    "be32d18e845c42a8": {
+      "category": "announcement",
+      "firstSeen": "2026-06-13T15:14:36.870Z",
+      "meta": {
+        "categoryHeading": "Device security",
+        "release": "2602",
+        "week": "Week of March 2, 2026"
+      },
+      "publishedAt": "2026-03-01T23:00:00.000Z",
+      "source": "ms-whats-new",
+      "sourceName": "Microsoft Learn",
+      "status": "published",
+      "summary": "With the release of iOS 26, iPadOS 26, and macOS 26, Apple has deprecated legacy MDM software update commands and payloads, and Microsoft Intune will soon end support for creating legacy iOS/iPadOS and macOS software update policies. To continue managing Apple software updates, administrators are directed to configure update policies using Apple's declarative device management model, which Microsoft states provides improved device autonomy and reporting.",
+      "tags": [
+        "software updates",
+        "ddm",
+        "macos",
+        "ios"
+      ],
+      "title": "Intune ending support for legacy Apple MDM software update policies",
+      "url": "https://learn.microsoft.com/en-us/intune/whats-new/#intune-ending-support-for-legacy-apple-mdm-software-update-policies",
+      "week": "2026-W24"
+    },
+    "d343002dab8f99d4": {
+      "firstSeen": "2026-06-13T15:14:36.870Z",
+      "status": "rejected"
+    },
+    "e315ece79da2f615": {
+      "category": "configuration",
+      "firstSeen": "2026-06-13T15:14:36.870Z",
+      "meta": {
+        "categoryHeading": "Device enrollment",
+        "release": "2604",
+        "week": "Week of April 27, 2026"
+      },
+      "publishedAt": "2026-04-26T22:00:00.000Z",
+      "source": "ms-whats-new",
+      "sourceName": "Microsoft Learn",
+      "status": "published",
+      "summary": "Apple access management settings in Apple Business Manager and Apple School Manager can now be used to configure service access for Apple accounts on organization-owned devices. These controls determine which devices users can sign in to and which apps and services are available to them. The feature applies to iOS/iPadOS and macOS.",
+      "tags": [
+        "apple business manager",
+        "access management",
+        "macos",
+        "ios"
+      ],
+      "title": "Access management for Apple services",
+      "url": "https://learn.microsoft.com/en-us/intune/whats-new/#access-management-for-apple-services",
+      "week": "2026-W24"
+    },
+    "f5327dd16cd47a01": {
+      "category": "enrollment",
+      "firstSeen": "2026-06-13T15:14:36.870Z",
+      "meta": {
+        "categoryHeading": "Device enrollment",
+        "release": null,
+        "week": "Week of May 11, 2026"
+      },
+      "publishedAt": "2026-05-10T22:00:00.000Z",
+      "source": "ms-whats-new",
+      "sourceName": "Microsoft Learn",
+      "status": "published",
+      "summary": "Microsoft documented the ability to run Platform SSO during device registration on macOS devices enrolled with Automated Device Enrollment. Configuration requires creating an Intune settings catalog policy with the Enable Registration During Setup setting, deploying Company Portal 5.2604.0 or newer as a line-of-business app, and configuring the ADE policy to use Setup Assistant with modern authentication and await final configuration. When enabled, users gain access to Microsoft Entra ID resources immediately at desktop. This applies to macOS 26 and newer.",
+      "tags": [
+        "platform sso",
+        "ade",
+        "macos",
+        "company portal"
+      ],
+      "title": "Complete Platform SSO registration during macOS Automated Device Enrollment",
+      "url": "https://learn.microsoft.com/en-us/intune/whats-new/#complete-platform-sso-registration-during-macos-automated-device-enrollment",
+      "week": "2026-W24"
+    }
+  },
   "version": 1
 }

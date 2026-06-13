@@ -1,0 +1,42 @@
+---
+title: "June 8 - 14, 2026"
+description: "macOS and Intune community highlights for June 8 - 14, 2026: 3 community items and 12 Intune release-note entries."
+sidebar:
+  order: 797375
+  label: "Jun 8 - 14"
+generated: true
+---
+
+A roundup of what stood out across the macOS and Intune community for **June 8 - 14, 2026** — updates from Microsoft, posts from community blogs, and discussions worth a look. Follow each link for the full story.
+
+:::note
+Microsoft published 12 new macOS-relevant release-note entries this week. See [What's New in Intune](/home/whats_new/) for the summaries.
+:::
+
+## Microsoft announcements
+
+### [New Platform SSO with registration during Automated Device Enrollment on macOS](https://techcommunity.microsoft.com/t5/intune-customer-success/new-platform-sso-with-registration-during-automated-device/ba-p/4519846)
+
+<small>Intune Customer Success · Intune\_Support\_Team · Jun 9, 2026</small>
+
+Microsoft Intune has made the 'Enable Registration During Setup' setting for Platform single sign-on (PSSO) during Automated Device Enrollment generally available for macOS devices. With Intune Company Portal version 5.2604.0 or newer, users can sign in with their Microsoft Entra account during Setup Assistant and complete device registration before reaching the desktop. The feature requires three policies assigned to the same static user groups, macOS 26 or newer, and prompts users to enter credentials at least twice during enrollment.
+
+<small>Tags: platform sso, ade, macos, entra</small>
+
+## Community blog posts
+
+### [MDM-based Software Update management options no longer work on all Apple 27.0 operating systems](https://derflounder.wordpress.com/2026/06/08/mdm-based-software-update-management-options-no-longer-work-on-all-apple-27-0-operating-systems/)
+
+<small>Der Flounder · rtrouton · Jun 8, 2026</small>
+
+Apple has confirmed that legacy MDM-based software update management no longer functions on all Apple 27.0 operating systems, following its deprecation announced with macOS Tahoe. The removed functionality includes software update commands, queries, recommended cadence settings, and software update restrictions such as deferrals and Background Security Improvements. The only software update management settings that work on 27.0 operating systems are those using declarative device management.
+
+<small>Tags: software-update, ddm, macos-tahoe, mdm</small>
+
+### [Managing menubar spacing using a configuration profile on macOS Tahoe](https://derflounder.wordpress.com/2026/06/03/managing-menubar-spacing-using-a-configuration-profile-on-macos-tahoe/)
+
+<small>Der Flounder · rtrouton · Jun 3, 2026</small>
+
+The post describes how macOS Tahoe menubar spacing can be adjusted by setting the NSStatusItemSpacing and NSStatusItemSelectionPadding values, which default to 16 and can be set to 8 using the defaults command or removed to revert. Because these are user-level global preferences, the author demonstrates that the same settings can be applied through a configuration profile using a com.apple.ManagedClient.preferences payload targeting .GlobalPreferences. A sample mobileconfig is provided, and the author notes that a logout and login is required for the changes to take effect.
+
+<small>Tags: macos tahoe, configuration profile, menubar, defaults</small>

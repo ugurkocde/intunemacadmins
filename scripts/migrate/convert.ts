@@ -97,18 +97,18 @@ function walk(dir: string): string[] {
 // ---- frontmatter --------------------------------------------------------
 
 function splitFrontmatter(raw: string): { data: Record<string, unknown>; body: string } {
-  if (!raw.startsWith("---")) return { data: {}, body: raw };
-  const end = raw.indexOf("\n---", 3);
-  if (end === -1) return { data: {}, body: raw };
-  const fm = raw.slice(3, end).replace(/^\n/, "");
-  const rest = raw.slice(end + 4).replace(/^\r?\n/, "");
+  const normalized = raw.replace(/\r\n?/g, "\n");
+  // Require the closing `---` to be its own line (followed by newline or EOF),
+  // so a `\n---` inside a YAML value can't prematurely end the frontmatter.
+  const m = normalized.match(/^---\n([\s\S]*?)\n---(?:\n|$)/);
+  if (!m) return { data: {}, body: normalized };
   let data: Record<string, unknown> = {};
   try {
-    data = (parseYaml(fm) as Record<string, unknown>) ?? {};
+    data = (parseYaml(m[1]) as Record<string, unknown>) ?? {};
   } catch {
     data = {};
   }
-  return { data, body: rest };
+  return { data, body: normalized.slice(m[0].length) };
 }
 
 function emitFrontmatter(data: Record<string, unknown>): string {
@@ -302,6 +302,8 @@ function rewriteInternalLinks(
     h = h.replace(/^https?:\/\/intunemacadmins\.com/i, "");
     if (!h.startsWith("/")) return null; // external or relative
     if (h.startsWith("/src/assets/")) return null; // image, handled elsewhere
+    const hashIdx = h.indexOf("#");
+    const fragment = hashIdx >= 0 ? h.slice(hashIdx) : ""; // preserve #anchor
     h = h.split(/[?#]/)[0];
     let norm = h.replace(/\/+$/, "").toLowerCase() || "/";
     if (ALIASES[norm]) norm = ALIASES[norm];
@@ -316,7 +318,7 @@ function rewriteInternalLinks(
     }
     let rel = posix.relative(fromDir, target.newRelPath);
     if (!rel.startsWith(".")) rel = `./${rel}`;
-    return rel;
+    return rel + fragment;
   }
 
   // Markdown links: ](/path) or ](/path "title")

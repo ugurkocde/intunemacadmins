@@ -1,0 +1,19 @@
+{
+  "$comment": "Community blog sources for the content pipeline. Add your blog via PR: name, RSS/Atom feed URL, enabled: true. Feeds are fetched weekly; only macOS + Intune relevant posts are included (an automated relevance filter runs on every item).",
+  "blogs": [
+    { "name": "Ugur Koc", "url": "https://ugurkoc.de/feed/", "enabled": true },
+    { "name": "Mostly macOS", "url": "https://mostlymac.blog/feed/", "enabled": true },
+    { "name": "Oceanleaf", "url": "https://oceanleaf.ch/rss/", "enabled": true },
+    { "name": "Scripting OS X", "url": "https://scriptingosx.com/feed/", "enabled": true },
+    { "name": "Der Flounder", "url": "https://derflounder.wordpress.com/feed/", "enabled": true },
+    { "name": "Travelling Tech Guy", "url": "https://travellingtechguy.blog/feed/", "enabled": true },
+    { "name": "Call4Cloud", "url": "https://call4cloud.nl/feed/", "enabled": true },
+    { "name": "Peter van der Woude", "url": "https://www.petervanderwoude.nl/feed/", "enabled": true },
+    { "name": "Andrew Taylor", "url": "https://andrewstaylor.com/feed/", "enabled": true },
+    { "name": "SMB to the Cloud", "url": "https://www.smbtothecloud.com/feed/", "enabled": true },
+    { "name": "Graham Pugh", "url": "https://grahamrpugh.com/feed.xml", "enabled": true },
+    { "name": "HTMD Community", "url": "https://www.anoopcnair.com/feed/", "enabled": true },
+    { "name": "IntuneStuff", "url": "https://intunestuff.com/feed/", "enabled": true },
+    { "name": "Rockenroll", "url": "https://rockenroll.tech/feed/", "enabled": true }
+  ]
+}

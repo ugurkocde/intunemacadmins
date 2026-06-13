@@ -1,0 +1,136 @@
+name: Content pipeline
+
+on:
+  schedule:
+    - cron: "0 6 * * 1" # Mondays 06:00 UTC
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run: build everything but upload an artifact instead of opening a PR"
+        type: boolean
+        default: false
+      source:
+        description: "Limit to a single source"
+        type: choice
+        default: all
+        options:
+          - all
+          - ms-whats-new
+          - tech-community
+          - community-blog
+          - reddit
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: content-pipeline
+  cancel-in-progress: false
+
+jobs:
+  update-content:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Pipeline self-test
+        run: npm run pipeline:selftest
+
+      - name: Run pipeline
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
+          REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
+          SOURCE: ${{ github.event.inputs.source || 'all' }}
+          DRY_RUN: ${{ inputs.dry_run == true && 'true' || 'false' }}
+        run: |
+          args=(--source="$SOURCE")
+          [ "$DRY_RUN" = "true" ] && args+=(--dry-run)
+          npm run pipeline -- "${args[@]}"
+
+      - name: Build site with generated content
+        if: ${{ inputs.dry_run != true }}
+        run: npm run build
+
+      - name: Write run summary
+        if: ${{ always() }}
+        run: |
+          if [ -f .cache/pr-body.md ]; then
+            echo "## Content pipeline result" >> "$GITHUB_STEP_SUMMARY"
+            cat .cache/pr-body.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload dry-run preview
+        if: ${{ inputs.dry_run == true }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: pipeline-preview
+          path: |
+            .cache/preview/
+            .cache/run-report.json
+            .cache/pr-body.md
+          retention-days: 14
+
+      - name: Open content PR
+        if: ${{ inputs.dry_run != true }}
+        uses: peter-evans/create-pull-request@v7
+        with:
+          add-paths: |
+            src/content/docs/**
+            data/pipeline-state.json
+          branch: content-pipeline/weekly
+          delete-branch: true
+          commit-message: Weekly content update
+          title: Weekly content update
+          body-path: .cache/pr-body.md
+          labels: automated-content
+          assignees: ugurkocde
+          reviewers: ugurkocde
+
+      - name: Report source failures as issues
+        if: ${{ always() && !cancelled() }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          [ -f .cache/run-report.json ] || exit 0
+          gh label create content-pipeline --description "Automated content pipeline" --color D93F0B --force
+
+          # One issue per failing source; comment if it already exists.
+          jq -r '.sourceErrors[] | [.source, .error] | @tsv' .cache/run-report.json |
+          while IFS=$'\t' read -r source error; do
+            title="Content pipeline: ${source} is failing"
+            search_query="in:title \"${source}\""
+            existing=$(gh issue list --label content-pipeline --state open --search "$search_query" --json number --jq '.[0].number // empty')
+            body="Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+          Error: \`${error}\`"
+            if [ -n "$existing" ]; then
+              gh issue comment "$existing" --body "Still failing. $body"
+            else
+              gh issue create --title "$title" --label content-pipeline --body "$body"
+            fi
+          done
+
+          # Close issues for sources that recovered.
+          failing=$(jq -r '[.sourceErrors[].source] | join("|")' .cache/run-report.json)
+          gh issue list --label content-pipeline --state open --json number,title --jq '.[] | [.number, .title] | @tsv' |
+          while IFS=$'\t' read -r number title; do
+            source=$(echo "$title" | sed -n 's/^Content pipeline: \(.*\) is failing$/\1/p')
+            [ -n "$source" ] || continue
+            case "|${failing}|" in
+              *"|${source}|"*) ;;
+              *) gh issue close "$number" --comment "Source recovered in run ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" ;;
+            esac
+          done

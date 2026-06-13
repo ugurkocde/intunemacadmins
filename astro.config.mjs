@@ -150,15 +150,19 @@ export default defineConfig({
             { label: "Feedback", link: "/home/feedback/" },
             { label: "Changelog", link: "/home/changelog/" },
             {
-              label: "Whats new in Microsoft Intune",
-              link: "https://learn.microsoft.com/en-us/mem/intune/fundamentals/whats-new",
-              attrs: { target: "_blank" },
+              label: "What's New in Intune",
+              link: "/home/whats_new/",
             },
           ],
         },
         {
           label: "Community",
           items: [{ autogenerate: { directory: "Community" } }],
+        },
+        {
+          label: "Community Pulse",
+          badge: { text: "Weekly", variant: "tip" },
+          items: [{ autogenerate: { directory: "Community Pulse" } }],
         },
         {
           label: "Frequently Asked Questions",

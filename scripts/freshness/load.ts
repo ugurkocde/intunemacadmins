@@ -39,7 +39,10 @@ function isExcluded(relPath: string): boolean {
 // Split frontmatter from body and record where the body starts so finding line
 // numbers map back to the original file. Exported for the self-test.
 export function parseDoc(relPath: string, raw: string): DocPage {
-  const normalized = raw.replace(/\r\n?/g, "\n");
+  // Strip a leading UTF-8 BOM (some pages have one) before matching frontmatter;
+  // otherwise the `^---` anchor fails and the page's frontmatter is lost.
+  const deBommed = raw.charCodeAt(0) === 0xfeff ? raw.slice(1) : raw;
+  const normalized = deBommed.replace(/\r\n?/g, "\n");
   const match = normalized.match(/^---\n([\s\S]*?)\n---\n?/);
   let frontmatter: Record<string, unknown> = {};
   let body = normalized;

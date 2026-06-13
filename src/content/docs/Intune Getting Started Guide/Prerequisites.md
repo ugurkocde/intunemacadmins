@@ -3,6 +3,8 @@ title: Prerequisites
 description: Learn about the prerequisites for macOS management with Intune.
 sidebar:
     order: 1
+sources:
+  - https://learn.microsoft.com/intune/device-enrollment/apple/overview-automated-enrollment-macos
 ---
 
 # Goals 🎯

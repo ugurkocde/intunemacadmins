@@ -2,6 +2,8 @@
 title: Enrollment Error
 sidebar:
   order: 1
+sources:
+  - https://learn.microsoft.com/intune/device-enrollment/apple/guide-macos
 ---
 
 When attempting to enroll a macOS device in Intune after creating an Apple MDM push certificate, 

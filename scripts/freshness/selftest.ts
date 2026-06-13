@@ -44,6 +44,10 @@ await (async () => {
     assert.ok(doc.body.startsWith("\nBody line one."));
     // No-frontmatter file: body starts at line 1.
     assert.equal(parseDoc("b.md", "Just body\n").bodyStartLine, 1);
+    // UTF-8 BOM must not defeat frontmatter parsing (some pages have one).
+    const bom = parseDoc("c.md", "﻿---\ntitle: Has BOM\nsources:\n  - https://learn.microsoft.com/x\n---\n\nBody.\n");
+    assert.equal(bom.frontmatter.title, "Has BOM");
+    assert.deepEqual(bom.frontmatter.sources, ["https://learn.microsoft.com/x"]);
   });
 
   describe("review-age: frontmatter wins, git fallback, fresh passes", () => {

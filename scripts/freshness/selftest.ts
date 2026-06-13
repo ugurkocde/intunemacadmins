@@ -3,6 +3,7 @@
 
 import assert from "node:assert/strict";
 import { checkPastDeadlines } from "./checks/dates";
+import { checkDrift, type DriftClient } from "./drift/drift";
 import {
   checkDeadLinks,
   extractAuthoritativeLinks,
@@ -172,6 +173,53 @@ await (async () => {
     const body = renderIssueBody(r1);
     assert.ok(body.includes("test/page.mdx"));
     assert.ok(body.includes("review"));
+  });
+  await describe("drift: maps model findings, skips unsourced and fetch errors", async () => {
+    const sourced = page("Set the Team Identifier to UBF8T346G9.", {
+      sources: ["https://learn.microsoft.com/intune/x"],
+    });
+    const unsourced = page("No sources here.");
+    // Fake client returns one drift finding; fake fetch returns source HTML.
+    const client: DriftClient = {
+      messages: {
+        parse: async () => ({
+          parsed_output: {
+            findings: [
+              {
+                severity: "high" as const,
+                claim: "Team Identifier UBF8T346G9",
+                discrepancy: "The current source lists a different identifier",
+              },
+            ],
+          },
+        }),
+      },
+    };
+    const okFetch = (async () =>
+      new Response("<main>current docs</main>", {
+        status: 200,
+        headers: { "content-type": "text/html" },
+      })) as unknown as typeof fetch;
+
+    const r = await checkDrift([sourced, unsourced], { client, fetchImpl: okFetch });
+    assert.equal(r.pagesChecked, 1); // only the sourced page
+    assert.equal(r.findings.length, 1);
+    assert.equal(r.findings[0].check, "content-drift");
+    assert.equal(r.findings[0].severity, "high");
+    assert.match(r.findings[0].message, /different identifier .*learn\.microsoft\.com/);
+    assert.equal(r.findings[0].evidence, "Team Identifier UBF8T346G9");
+
+    // Fetch failure -> skipped, not thrown, no finding.
+    const badFetch = (async () => new Response("nope", { status: 404 })) as unknown as typeof fetch;
+    const r2 = await checkDrift([sourced], { client, fetchImpl: badFetch });
+    assert.equal(r2.findings.length, 0);
+    assert.equal(r2.skipped.length, 1);
+    assert.match(r2.skipped[0], /content-drift/);
+
+    // No sourced pages -> nothing checked.
+    const r3 = await checkDrift([unsourced], { client, fetchImpl: okFetch });
+    assert.equal(r3.pagesChecked, 0);
+    assert.equal(r3.findings.length, 0);
   });
 })();
 

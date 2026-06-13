@@ -4,7 +4,8 @@ export type CheckId =
   | "review-age"
   | "past-deadline"
   | "macos-version"
-  | "dead-link";
+  | "dead-link"
+  | "content-drift";
 
 export interface Finding {
   check: CheckId;

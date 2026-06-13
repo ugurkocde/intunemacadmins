@@ -3,7 +3,7 @@ import { checkDeadLinks, type Fetcher } from "./checks/links";
 import { checkMacosVersion } from "./checks/macos-version";
 import { checkReviewAge } from "./checks/review-age";
 import { gitLastModified } from "./load";
-import type { DocPage, FreshnessReport } from "./types";
+import type { DocPage, Finding, FreshnessReport } from "./types";
 
 export interface ScanOptions {
   now: Date;
@@ -40,18 +40,21 @@ export async function scan(
     skipped.push("dead-link (link check disabled)");
   }
 
-  findings.sort(
+  return {
+    generatedAt: options.now.toISOString(),
+    pagesScanned: pages.length,
+    findings: sortFindings(findings),
+    skipped,
+  };
+}
+
+// High severity first, then by location, for stable, scannable output.
+export function sortFindings(findings: Finding[]): Finding[] {
+  return [...findings].sort(
     (a, b) =>
       SEVERITY_RANK[a.severity] - SEVERITY_RANK[b.severity] ||
       a.location.localeCompare(b.location),
   );
-
-  return {
-    generatedAt: options.now.toISOString(),
-    pagesScanned: pages.length,
-    findings,
-    skipped,
-  };
 }
 
 // Extracts the current macOS major from the SOFA macos_data_feed.json payload.

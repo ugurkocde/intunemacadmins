@@ -3,6 +3,8 @@ title: What is FileVault?
 description: Learn about FileVault, macOS's built-in disk encryption feature. Discover its key features, benefits, and how it enhances data security on your Mac.
 sidebar:
   order: 1
+sources:
+  - https://learn.microsoft.com/intune/device-configuration/endpoint-security/encrypt-filevault-macos
 ---
 
 FileVault is a disk encryption program available in macOS, designed to protect data by encrypting the entire drive.

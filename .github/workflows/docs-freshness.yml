@@ -33,6 +33,11 @@ jobs:
         run: npm run freshness:selftest
 
       - name: Scan docs
+        env:
+          # Enables the LLM ground-truth drift check on pages that declare
+          # `sources`. If the secret is unset, the run still works and drift is
+          # skipped with a note (deterministic checks need no key).
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: npm run freshness
 
       - name: Write run summary

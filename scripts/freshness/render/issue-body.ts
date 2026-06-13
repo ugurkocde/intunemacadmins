@@ -5,6 +5,7 @@ const CHECK_LABELS: Record<string, string> = {
   "past-deadline": "Expired date",
   "macos-version": "Outdated macOS recommendation",
   "dead-link": "Broken authoritative link",
+  "content-drift": "Differs from current Microsoft/Apple docs",
 };
 
 const SEVERITY_LABEL: Record<Severity, string> = {

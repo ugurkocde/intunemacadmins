@@ -43,6 +43,14 @@ jobs:
     runs-on: ${{ github.event.inputs.runner || 'self-hosted' }}
     timeout-minutes: 30
     steps:
+      # Self-hosted runners (esp. as a launchd/systemd service) often have a
+      # stripped PATH that omits Homebrew, so gh/jq aren't found. Add the common
+      # locations. No-op on GitHub's cloud runners (dirs absent or already set).
+      - name: Ensure local tools on PATH
+        run: |
+          echo "/opt/homebrew/bin" >> "$GITHUB_PATH"
+          echo "/usr/local/bin" >> "$GITHUB_PATH"
+
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4

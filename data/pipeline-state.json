@@ -1,4 +1,617 @@
 {
-  "items": {},
+  "items": {
+    "015f19fc2241ab9a": {
+      "category": "app-management",
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "meta": {
+        "categoryHeading": "Device management",
+        "release": null,
+        "week": "Week of March 16, 2026"
+      },
+      "publishedAt": "2026-03-15T23:00:00.000Z",
+      "source": "ms-whats-new",
+      "sourceName": "Microsoft Learn",
+      "status": "published",
+      "summary": "Microsoft has updated the update and reporting experience for Remote Help on macOS. After deploying Remote Help client version 1.0.26012221 through Microsoft Intune, admins can view the full client version in device inventory and during app upgrades. Intune-deployed Remote Help installations are registered with Microsoft AutoUpdate, allowing managed macOS devices to automatically receive future updates.",
+      "tags": [
+        "remote help",
+        "macos",
+        "microsoft autoupdate",
+        "reporting"
+      ],
+      "title": "Improved Remote Help update reporting on macOS",
+      "url": "https://learn.microsoft.com/en-us/intune/whats-new/#improved-remote-help-update-reporting-on-macos",
+      "week": "2026-W24"
+    },
+    "02937b0062d9aa9f": {
+      "category": "configuration",
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "meta": {
+        "categoryHeading": "Device configuration",
+        "release": "2603",
+        "week": "Week of March 30, 2026"
+      },
+      "publishedAt": "2026-03-29T22:00:00.000Z",
+      "source": "ms-whats-new",
+      "sourceName": "Microsoft Learn",
+      "status": "published",
+      "summary": "New settings have been added to the Intune Settings Catalog for iOS/iPadOS and macOS. The additions include Declarative Device Management options for External Intelligence Settings, Intelligence Settings, Keyboard Settings, and Siri Settings, along with macOS-specific System Configuration File Provider settings and a Rosetta Usage Awareness restriction. The settings are accessible by creating a Settings Catalog profile in the Microsoft Intune admin center under Devices, Configuration.",
+      "tags": [
+        "settings catalog",
+        "ddm",
+        "apple intelligence",
+        "macos"
+      ],
+      "title": "New updates to the Apple settings catalog",
+      "url": "https://learn.microsoft.com/en-us/intune/whats-new/#new-updates-to-the-apple-settings-catalog",
+      "week": "2026-W24"
+    },
+    "04bc4034afcdfc10": {
+      "author": "u/Ok_Display2284",
+      "category": "enrollment",
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "meta": {
+        "via": "rss"
+      },
+      "publishedAt": "2026-06-11T07:39:04.000Z",
+      "source": "reddit",
+      "sourceName": "r/Intune",
+      "status": "published",
+      "summary": "An administrator reports that macOS ADE enrollment via Intune fails at the Entra ID sign-in step on the Remote Management screen, with authentication requests not reaching Entra ID according to sign-in logs. They suspect a 10-hour clock drift (stuck on Pacific Time while they are UTC+3) is breaking certificate validation or token generation. Troubleshooting attempts included setting the time via Recovery Mode (which reverted after reboot) and trying systemsetup commands in the Setup Assistant terminal, which were blocked because the _mbsetupuser account has no password.",
+      "tags": [
+        "ade",
+        "time-sync",
+        "entra-id",
+        "setup-assistant"
+      ],
+      "title": "macOS ADE/Intune enrollment failing at Entra ID login due to 10-hour time sync issue in Setup Assistant. How to force time sync?",
+      "url": "https://www.reddit.com/r/Intune/comments/1u2scvk/macos_adeintune_enrollment_failing_at_entra_id/",
+      "week": "2026-W24"
+    },
+    "144b77b76486b258": {
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "status": "rejected"
+    },
+    "16e717437baa9312": {
+      "category": "enrollment",
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "meta": {
+        "categoryHeading": "Device enrollment",
+        "release": null,
+        "week": "Week of December 8, 2025"
+      },
+      "publishedAt": "2025-12-07T23:00:00.000Z",
+      "source": "ms-whats-new",
+      "sourceName": "Microsoft Learn",
+      "status": "published",
+      "summary": "Microsoft Intune now generally supports hiding or showing 12 new Setup Assistant screens during automated device enrollment for iOS, iPadOS, and macOS, with the default being to show these screens. For iOS/iPadOS, skippable screens include App Store, Camera button, Web content filtering, Safety and handling, Multitasking, and OS Showcase across various OS versions. For macOS, skippable screens include App Store, Get Started, Software update, Additional privacy settings, OS Showcase, and Update completed.",
+      "tags": [
+        "ade",
+        "setup assistant",
+        "ios",
+        "macos"
+      ],
+      "title": "New Setup Assistant screens now generally available for iOS/iPadOS and macOS automated device enrollment profiles",
+      "url": "https://learn.microsoft.com/en-us/intune/whats-new/#new-setup-assistant-screens-now-generally-available-for-ios-ipados-and-macos-automated-device-enrollment-profiles",
+      "week": "2026-W24"
+    },
+    "18d12255b3b3a4a9": {
+      "author": "Intune_Support_Team",
+      "category": "enrollment",
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "meta": {
+        "categories": []
+      },
+      "publishedAt": "2026-06-09T01:41:15.000Z",
+      "source": "tech-community",
+      "sourceName": "Intune Customer Success",
+      "status": "published",
+      "summary": "Microsoft Intune has made the 'Enable Registration During Setup' setting for Platform single sign-on (PSSO) during Automated Device Enrollment generally available for macOS devices. With this setting and Intune Company Portal version 5.2604.0 or newer, users sign in with their Microsoft Entra account during Setup Assistant and complete device registration before reaching the desktop. The feature requires three coordinated policies, macOS 26 or newer, ADE via Apple Business, and assignment to static user groups, and users are prompted for credentials at least twice during enrollment.",
+      "tags": [
+        "platform sso",
+        "ade",
+        "macos",
+        "entra"
+      ],
+      "title": "New Platform SSO with registration during Automated Device Enrollment on macOS",
+      "url": "https://techcommunity.microsoft.com/t5/intune-customer-success/new-platform-sso-with-registration-during-automated-device/ba-p/4519846",
+      "week": "2026-W24"
+    },
+    "1d166edacca1bac0": {
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "status": "rejected"
+    },
+    "2febb1a965c823b0": {
+      "category": "announcement",
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "meta": {
+        "categoryHeading": "Device management",
+        "release": "2510",
+        "week": "Week of October 20, 2025"
+      },
+      "publishedAt": "2025-10-19T22:00:00.000Z",
+      "source": "ms-whats-new",
+      "sourceName": "Microsoft Learn",
+      "status": "published",
+      "summary": "Microsoft Intune released Remote Help client version 1.0.2510071, which adds support for macOS 26. Earlier versions of the Remote Help client are not compatible with macOS 26, and the app updates automatically through Microsoft AutoUpdate if opted in, requiring no action from administrators or users. The new version resolves an issue that previously caused the screen to appear blank on first launch and fail to connect.",
+      "tags": [
+        "remote-help",
+        "macos-26",
+        "intune",
+        "update"
+      ],
+      "title": "New client version for Remote Help for macOS",
+      "url": "https://learn.microsoft.com/en-us/intune/whats-new/#new-client-version-for-remote-help-for-macos",
+      "week": "2026-W24"
+    },
+    "46769a21badca84d": {
+      "category": "enrollment",
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "meta": {
+        "categoryHeading": "Device enrollment",
+        "release": null,
+        "week": "Week of December 8, 2025"
+      },
+      "publishedAt": "2025-12-07T23:00:00.000Z",
+      "source": "ms-whats-new",
+      "sourceName": "Microsoft Learn",
+      "status": "published",
+      "summary": "Microsoft Intune is beginning a phased rollout that adds support for the Automated Certificate Management Environment (ACME) protocol as part of preparing for managed device attestation. New Apple device enrollments will receive an ACME certificate instead of a SCEP certificate, while existing eligible devices keep their current certificate unless they re-enroll. ACME is supported for Apple Device Enrollment (BYOD), Apple Configurator enrollment, and automated device enrollment on iOS 16.0 or later, iPadOS 16.1 or later, and macOS 13.1 or later, with no change to the end-user experience, admin center, or device configuration policies.",
+      "tags": [
+        "acme",
+        "certificates",
+        "apple",
+        "scep"
+      ],
+      "title": "ACME protocol support for iOS/iPadOS and macOS enrollment",
+      "url": "https://learn.microsoft.com/en-us/intune/whats-new/#acme-protocol-support-for-ios-ipados-and-macos-enrollment",
+      "week": "2026-W24"
+    },
+    "4ec1a066d71a6dfa": {
+      "category": "configuration",
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "meta": {
+        "categoryHeading": "Device configuration",
+        "release": "2603",
+        "week": "Week of March 30, 2026"
+      },
+      "publishedAt": "2026-03-29T22:00:00.000Z",
+      "source": "ms-whats-new",
+      "sourceName": "Microsoft Learn",
+      "status": "published",
+      "summary": "Microsoft Intune now supports configuring a recovery OS password on macOS devices to prevent users from booting company-owned devices into recovery mode, reinstalling macOS, or bypassing remote management. The feature can be enabled and set with a password rotation schedule through a settings catalog policy, or rotated manually using the Recovery Lock device action. The Recovery Lock password is viewable in the per-setting status report under Passwords and keys, requiring the View macOS recovery lock password permission.",
+      "tags": [
+        "macos",
+        "recovery-lock",
+        "settings-catalog",
+        "passwords"
+      ],
+      "title": "Recovery lock features available for macOS devices",
+      "url": "https://learn.microsoft.com/en-us/intune/whats-new/#recovery-lock-features-available-for-macos-devices",
+      "week": "2026-W24"
+    },
+    "52a257a91a599e72": {
+      "category": "announcement",
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "meta": {
+        "categoryHeading": "Device security",
+        "release": "2510",
+        "week": "Week of October 20, 2025"
+      },
+      "publishedAt": "2025-10-19T22:00:00.000Z",
+      "source": "ms-whats-new",
+      "sourceName": "Microsoft Learn",
+      "status": "published",
+      "summary": "With the release of iOS 26, iPadOS 26, and macOS 26, Apple has deprecated legacy MDM software update commands and payloads, and Intune will end support for the related MDM-based workloads. Affected items include iOS/iPadOS and macOS update policies, software update settings in templates and settings catalog restrictions, the macOS settings catalog software update section, and update installation failure and per-device update reports. These functionalities are now available through declarative device management.",
+      "tags": [
+        "apple",
+        "software updates",
+        "ddm",
+        "deprecation"
+      ],
+      "title": "Intune to end support for legacy Apple MDM software updates",
+      "url": "https://learn.microsoft.com/en-us/intune/whats-new/#intune-to-end-support-for-legacy-apple-mdm-software-updates",
+      "week": "2026-W24"
+    },
+    "56e26ace809ac87e": {
+      "author": "u/Upbeat_Pilot2461",
+      "category": "troubleshooting",
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "meta": {
+        "via": "rss"
+      },
+      "publishedAt": "2026-06-09T17:55:38.000Z",
+      "source": "reddit",
+      "sourceName": "r/macsysadmin",
+      "status": "published",
+      "summary": "A user reports that Macs enrolled via ADE/DEP with Platform SSO using Secure Enclave are being unregistered from Company Portal after previously being registered. Manual re-registration is required, but in some cases devices unregister again afterward. The post asks whether others have experienced the same issue.",
+      "tags": [
+        "platform sso",
+        "company portal",
+        "secure enclave",
+        "ade enrollment"
+      ],
+      "title": "Platform SSO Registration Issues",
+      "url": "https://www.reddit.com/r/macsysadmin/comments/1u1cj0z/platform_sso_registration_issues/",
+      "week": "2026-W24"
+    },
+    "5c9c6fadda8ed7cd": {
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "status": "rejected"
+    },
+    "665f30d90bf7a920": {
+      "author": "u/thefinder808",
+      "category": "tooling",
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "meta": {
+        "via": "rss"
+      },
+      "publishedAt": "2026-05-30T17:51:45.000Z",
+      "source": "reddit",
+      "sourceName": "r/macsysadmin",
+      "status": "published",
+      "summary": "A post in r/macsysadmin shares a free, open-source macOS application called WrapTune-MacOS that wraps Win32 apps for Intune deployment. The author states the tool has a simple graphical user interface.",
+      "tags": [
+        "intune",
+        "win32 apps",
+        "open-source",
+        "app deployment"
+      ],
+      "title": "Intune - Wrap win32 apps on MacOS",
+      "url": "https://www.reddit.com/r/macsysadmin/comments/1ts6lll/intune_wrap_win32_apps_on_macos/",
+      "week": "2026-W24"
+    },
+    "724a617276d51eab": {
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "status": "rejected"
+    },
+    "7cd9fe92c0bf5765": {
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "status": "rejected"
+    },
+    "7e64c637712e9230": {
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "status": "rejected"
+    },
+    "89a06f5494497ee4": {
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "status": "rejected"
+    },
+    "8b1d3f23d4aefe1a": {
+      "author": "u/Ecstatic_Egg_9954",
+      "category": "enrollment",
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "meta": {
+        "via": "rss"
+      },
+      "publishedAt": "2026-06-09T07:17:44.000Z",
+      "source": "reddit",
+      "sourceName": "r/Intune",
+      "status": "published",
+      "summary": "An administrator reports a failed Automated Device Enrollment (ADE) attempt using Apple Business Manager on a 14-inch MacBook Pro with an M5 Pro chip running macOS 26.5.1. The device synchronizes from Apple Business Manager, the enrollment profile is assigned, and setup begins, but during the application of configuration, compliance, security policies, and applications the Wi-Fi connectivity stops responding and the device cannot continue syncing policies or allow sign-in. Disabling some policies did not resolve the issue, and the poster asks whether others have experienced the same problem.",
+      "tags": [
+        "ade",
+        "apple business manager",
+        "wi-fi",
+        "enrollment"
+      ],
+      "title": "Issues enrolling in intune",
+      "url": "https://www.reddit.com/r/Intune/comments/1u0xx33/issues_enrolling_in_intune/",
+      "week": "2026-W24"
+    },
+    "8effbc33de6dda5a": {
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "status": "rejected"
+    },
+    "a27861bd0c620e4b": {
+      "author": "rtrouton",
+      "category": "configuration",
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "meta": {
+        "categories": [
+          "Declarative Device Management",
+          "Jamf Pro Blueprints",
+          "Mac administration",
+          "macOS",
+          "Mobile Device Management"
+        ]
+      },
+      "publishedAt": "2026-06-08T19:39:15.000Z",
+      "source": "community-blog",
+      "sourceName": "Der Flounder",
+      "status": "published",
+      "summary": "Apple has confirmed that legacy MDM-based software update management no longer functions on all Apple 27.0 operating systems, following a deprecation announced with macOS Tahoe. The removed features include software update commands, queries, recommended cadence settings, and software update restrictions such as deferrals and Background Security Improvements. The only software update management settings that work on Apple 27.0 operating systems are those using declarative device management.",
+      "tags": [
+        "software-update",
+        "ddm",
+        "macos-tahoe",
+        "mdm"
+      ],
+      "title": "MDM-based Software Update management options no longer work on all Apple 27.0 operating systems",
+      "url": "https://derflounder.wordpress.com/2026/06/08/mdm-based-software-update-management-options-no-longer-work-on-all-apple-27-0-operating-systems/",
+      "week": "2026-W24"
+    },
+    "a35f3f259966c5ec": {
+      "category": "configuration",
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "meta": {
+        "categoryHeading": "Device configuration",
+        "release": "2602",
+        "week": "Week of March 2, 2026"
+      },
+      "publishedAt": "2026-03-01T23:00:00.000Z",
+      "source": "ms-whats-new",
+      "sourceName": "Microsoft Learn",
+      "status": "published",
+      "summary": "Microsoft Intune now supports assignment filters in policy assignments for declarative device management (DDM) based configurations, such as software updates. The feature applies to iOS/iPadOS and macOS, and is rolling out slowly with availability for all customers expected by late March 2026.",
+      "tags": [
+        "ddm",
+        "assignment-filters",
+        "macos",
+        "software-updates"
+      ],
+      "title": "Apple declarative device management (DDM) supports assignment filters",
+      "url": "https://learn.microsoft.com/en-us/intune/whats-new/#apple-declarative-device-management-ddm-supports-assignment-filters",
+      "week": "2026-W24"
+    },
+    "a499e96c69f014dc": {
+      "author": "u/kreemerz",
+      "category": "troubleshooting",
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "meta": {
+        "via": "rss"
+      },
+      "publishedAt": "2026-06-12T02:45:12.000Z",
+      "source": "reddit",
+      "sourceName": "r/macsysadmin",
+      "status": "published",
+      "summary": "An administrator describes problems after Microsoft's Platform Single Sign-on (PSSO) changed how machines register to Entra/Azure, reporting that random users lose access to Teams, Outlook, and other O365 apps. The new process requires adding the device to a specific security group in Jamf Pro and having the user follow a 'Registration Required' prompt with Duo authentication, which is said to succeed about 30 percent of the time. Remediation attempts include running terminal command policies, deleting Microsoft keychain entries, removing stale Azure entries, and rerunning recon and policy commands, without good results.",
+      "tags": [
+        "psso",
+        "entra",
+        "jamf",
+        "registration"
+      ],
+      "title": "Microsoft sprung this Platform Single Sign on and it's been hitting the environment hard...",
+      "url": "https://www.reddit.com/r/macsysadmin/comments/1u3j52r/microsoft_sprung_this_platform_single_sign_on_and/",
+      "week": "2026-W24"
+    },
+    "a7d7e4f227bce3e5": {
+      "author": "u/b1gw4lter",
+      "category": "configuration",
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "meta": {
+        "via": "rss"
+      },
+      "publishedAt": "2026-06-02T11:52:44.000Z",
+      "source": "reddit",
+      "sourceName": "r/Intune",
+      "status": "published",
+      "summary": "An administrator set up a SCEP Certificate Connector with NDES that works for Windows and is now attempting to push a device SCEP certificate to an ADE-enrolled macOS device. They report that the certificate Subject shows the Intune Device ID instead of the Entra Device ID and ask whether the CN={{AAD_Device_ID}} subject name format is incorrect for macOS. They also note seeing three issued SCEP certificates on the CA after enrollment and ask why three appear.",
+      "tags": [
+        "scep",
+        "macos",
+        "certificates",
+        "ade"
+      ],
+      "title": "macOS, SCEP Certificate, SAN = CN={{AAD_Device_ID}}",
+      "url": "https://www.reddit.com/r/Intune/comments/1tuomej/macos_scep_certificate_san_cnaad_device_id/",
+      "week": "2026-W24"
+    },
+    "a88d66c5e854532a": {
+      "category": "configuration",
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "meta": {
+        "categoryHeading": "Device configuration",
+        "release": "2602",
+        "week": "Week of March 2, 2026"
+      },
+      "publishedAt": "2026-03-01T23:00:00.000Z",
+      "source": "ms-whats-new",
+      "sourceName": "Microsoft Learn",
+      "status": "published",
+      "summary": "New settings have been added to the Intune Settings Catalog for Apple platforms. For iOS/iPadOS and macOS, an AirPlay Device Name setting is now available, and the macOS Microsoft Defender category has been updated with new settings. These can be configured by creating a Settings Catalog profile in the Microsoft Intune admin center.",
+      "tags": [
+        "settings-catalog",
+        "macos",
+        "airplay",
+        "microsoft-defender"
+      ],
+      "title": "New updates to the Apple settings catalog",
+      "url": "https://learn.microsoft.com/en-us/intune/whats-new/#new-updates-to-the-apple-settings-catalog",
+      "week": "2026-W24"
+    },
+    "be32d18e845c42a8": {
+      "category": "announcement",
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "meta": {
+        "categoryHeading": "Device security",
+        "release": "2602",
+        "week": "Week of March 2, 2026"
+      },
+      "publishedAt": "2026-03-01T23:00:00.000Z",
+      "source": "ms-whats-new",
+      "sourceName": "Microsoft Learn",
+      "status": "published",
+      "summary": "With the release of iOS 26, iPadOS 26, and macOS 26, Apple has deprecated legacy MDM software update commands and payloads, and Microsoft Intune will soon end support for creating legacy iOS/iPadOS and macOS software update policies. To continue managing Apple software updates, administrators should configure update policies using Apple's declarative device management (DDM) model, which Microsoft states provides improved device autonomy and reporting. The change applies to iOS/iPadOS and macOS.",
+      "tags": [
+        "software updates",
+        "ddm",
+        "apple",
+        "deprecation"
+      ],
+      "title": "Intune ending support for legacy Apple MDM software update policies",
+      "url": "https://learn.microsoft.com/en-us/intune/whats-new/#intune-ending-support-for-legacy-apple-mdm-software-update-policies",
+      "week": "2026-W24"
+    },
+    "c8d41934c422f4bc": {
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "status": "rejected"
+    },
+    "cdd495a3c007a515": {
+      "author": "u/ZippyDan",
+      "category": "enrollment",
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "meta": {
+        "via": "rss"
+      },
+      "publishedAt": "2026-06-11T05:33:25.000Z",
+      "source": "reddit",
+      "sourceName": "r/Intune",
+      "status": "published",
+      "summary": "A user asks about enrolling older Intel Macs without the T2 chip, describing a method of installing Company Portal, enrolling as a personal device, then switching the device from personal to corporate in Intune. The question is whether, after enrollment via this method, a fresh install on the older Mac would behave like a newer Mac during initial setup and prompt for Microsoft credentials before allowing user setup, in contrast to the Apple Configurator and ABM method used with T2 devices.",
+      "tags": [
+        "macos",
+        "intel",
+        "company portal",
+        "abm"
+      ],
+      "title": "Enrolling Intel Apple computers without the T2 security chip",
+      "url": "https://www.reddit.com/r/Intune/comments/1u2q5r3/enrolling_intel_apple_computers_without_the_t2/",
+      "week": "2026-W24"
+    },
+    "d343002dab8f99d4": {
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "status": "rejected"
+    },
+    "d3aae54173a887f8": {
+      "author": "u/amirjs",
+      "category": "tooling",
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "meta": {
+        "via": "rss"
+      },
+      "publishedAt": "2026-05-31T16:42:21.000Z",
+      "source": "reddit",
+      "sourceName": "r/Intune",
+      "status": "published",
+      "summary": "Get-IntuneAssignments v1.0.15 has been released on the PowerShell Gallery. The tool pulls assignment data directly from Graph to consolidate Intune assignment information in one place. This version adds coverage for seven new policy types including Terms and Conditions, Settings Catalog Compliance Policies, Cloud PC Provisioning Policies, WDAC Supplemental Policies, macOS Shell Scripts and Custom Attribute Scripts, and Intune Branding Profiles, and fixes a bug where deleted or orphaned groups caused 404 errors.",
+      "tags": [
+        "powershell",
+        "graph",
+        "assignments",
+        "auditing"
+      ],
+      "title": "New release alert! Get-IntuneAssignments v1.0.15 is out!",
+      "url": "https://www.reddit.com/r/Intune/comments/1tt0dd3/new_release_alert_getintuneassignments_v1015_is/",
+      "week": "2026-W24"
+    },
+    "d49d2f9bd3123bff": {
+      "author": "u/olydan75",
+      "category": "troubleshooting",
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "meta": {
+        "via": "rss"
+      },
+      "publishedAt": "2026-06-09T20:22:42.000Z",
+      "source": "reddit",
+      "sourceName": "r/Intune",
+      "status": "published",
+      "summary": "An admin reports a Platform SSO smart card issue when deploying macOS with Intune. After pairing appeared to succeed, users are repeatedly prompted to register the smart card despite the MacBook already reading the card and its certificates and allowing smart card login. The displayed error reads Single Sign-On for Mac, Registration failed and will automatically retry in a few minutes, and the admin asks how to remove the notification or fix the error.",
+      "tags": [
+        "psso",
+        "smart card",
+        "macos",
+        "sso"
+      ],
+      "title": "How fix PSSO smart card issue",
+      "url": "https://www.reddit.com/r/Intune/comments/1u1gnyf/how_fix_psso_smart_card_issue/",
+      "week": "2026-W24"
+    },
+    "dbcc2351796e7ec8": {
+      "author": "u/Sufficient-Pace7542",
+      "category": "troubleshooting",
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "meta": {
+        "via": "rss"
+      },
+      "publishedAt": "2026-06-01T17:44:01.000Z",
+      "source": "reddit",
+      "sourceName": "r/macsysadmin",
+      "status": "published",
+      "summary": "An administrator reports recurring issues with Intune-managed Macs where the login progress bar stalls around 50 percent and fails to complete. Rebooting into recovery and resetting the password sometimes resolves it, but in some cases reloading the OS is the only fix. The author suspects FileVault is not properly unlocking and asks whether others have seen this behavior or have suggestions.",
+      "tags": [
+        "filevault",
+        "intune",
+        "login",
+        "macos"
+      ],
+      "title": "Intune Managed Mac and FileVault",
+      "url": "https://www.reddit.com/r/macsysadmin/comments/1ttzs3y/intune_managed_mac_and_filevault/",
+      "week": "2026-W24"
+    },
+    "e315ece79da2f615": {
+      "category": "configuration",
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "meta": {
+        "categoryHeading": "Device enrollment",
+        "release": "2604",
+        "week": "Week of April 27, 2026"
+      },
+      "publishedAt": "2026-04-26T22:00:00.000Z",
+      "source": "ms-whats-new",
+      "sourceName": "Microsoft Learn",
+      "status": "published",
+      "summary": "Apple access management settings in Apple Business Manager and Apple School Manager can now be used to configure service access for Apple accounts on organization-owned devices. These controls determine which devices users can sign in to and which apps and services are available to them. The feature applies to iOS, iPadOS, and macOS.",
+      "tags": [
+        "apple business manager",
+        "access management",
+        "macos",
+        "ios"
+      ],
+      "title": "Access management for Apple services",
+      "url": "https://learn.microsoft.com/en-us/intune/whats-new/#access-management-for-apple-services",
+      "week": "2026-W24"
+    },
+    "f0c4ecc1d26729c3": {
+      "author": "u/baalkor",
+      "category": "enrollment",
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "meta": {
+        "via": "rss"
+      },
+      "publishedAt": "2026-06-03T19:55:07.000Z",
+      "source": "reddit",
+      "sourceName": "r/Intune",
+      "status": "published",
+      "summary": "A user asks for help understanding the differences between Corporate Owned and Personal device ownership and the limitations of BYOD enrollment for deploying about 100 macOS devices in Intune without physical access. They tested a procedure that enrolls a Mac via BYOD and then switches ownership to Corporate, and ask whether ownership can be switched freely, which features require ADE enrollment, and what cannot be done with a BYOD, Corporate owned, Entra registered setup. They note that Copilot generated conflicting capabilities and they could not find precise official Microsoft documentation.",
+      "tags": [
+        "macos",
+        "byod",
+        "ade",
+        "device-ownership"
+      ],
+      "title": "Mac OS enrollment help required",
+      "url": "https://www.reddit.com/r/Intune/comments/1tw0pih/mac_os_enrollment_help_required/",
+      "week": "2026-W24"
+    },
+    "f5327dd16cd47a01": {
+      "category": "enrollment",
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "meta": {
+        "categoryHeading": "Device enrollment",
+        "release": null,
+        "week": "Week of May 11, 2026"
+      },
+      "publishedAt": "2026-05-10T22:00:00.000Z",
+      "source": "ms-whats-new",
+      "sourceName": "Microsoft Learn",
+      "status": "published",
+      "summary": "Microsoft documented support for running Platform Single Sign-On during macOS Automated Device Enrollment. Configuration requires creating an Intune settings catalog policy with the Enable Registration During Setup setting, deploying Company Portal 5.2604.0 or newer as a line-of-business app, and setting the ADE policy to use Setup Assistant with modern authentication and await final configuration. When enabled, users gain access to Microsoft Entra ID resources upon arriving at the desktop, and the feature applies to macOS 26 and newer.",
+      "tags": [
+        "platform-sso",
+        "ade",
+        "macos",
+        "company-portal"
+      ],
+      "title": "Complete Platform SSO registration during macOS Automated Device Enrollment",
+      "url": "https://learn.microsoft.com/en-us/intune/whats-new/#complete-platform-sso-registration-during-macos-automated-device-enrollment",
+      "week": "2026-W24"
+    },
+    "fd9d3662d0a344c5": {
+      "firstSeen": "2026-06-13T16:21:28.167Z",
+      "status": "rejected"
+    }
+  },
   "version": 1
 }

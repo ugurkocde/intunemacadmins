@@ -1,5 +1,6 @@
 ---
 title: Enrollment Error
+description: Fix the "Your IT support doesn't allow OSX devices" macOS enrollment error in Intune by adjusting Apple device platform restrictions.
 sidebar:
   order: 1
 sources:

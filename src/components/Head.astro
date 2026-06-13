@@ -1,0 +1,187 @@
+---
+// Custom Head override: renders Starlight's default <head> tags, then injects
+// JSON-LD structured data for SEO and generative-engine optimization (GEO).
+//
+// Schema strategy:
+//   - Every page: BreadcrumbList derived from the URL path.
+//   - Home (splash) page: WebSite + Organization (with sameAs -> GitHub).
+//   - Doc pages: TechArticle with dateModified from lastReviewed/lastUpdated.
+//   - FAQ page: FAQPage built from the page's H2/answer pairs.
+//
+// Route data comes from Astro.locals.starlightRoute (Starlight >= 0.32),
+// never from Astro.props.
+import Default from "@astrojs/starlight/components/Head.astro";
+
+const { entry, lastUpdated, id } = Astro.locals.starlightRoute;
+const data = entry.data;
+
+const site = Astro.site ?? new URL("https://intunemacadmins.com");
+const ORG_NAME = "IntuneMacAdmins";
+const GITHUB_URL = "https://github.com/ugurkocde/intunemacadmins";
+const LOGO_URL = new URL("/IntuneMacAdmins.jpg", site).href;
+
+/** Build a canonical, trailing-slashed absolute URL that matches Starlight's <link rel="canonical">. */
+function pageUrl(pathname: string): string {
+  const url = new URL(pathname, site);
+  if (!url.pathname.endsWith("/")) url.pathname += "/";
+  return url.href;
+}
+
+const canonicalUrl = pageUrl(Astro.url.pathname);
+const isHome = data.template === "splash" || id === "" || id === "index";
+
+// ISO date for dateModified: prefer explicit lastReviewed frontmatter, else
+// Starlight's computed lastUpdated, else undefined (omit the property).
+let dateModified: string | undefined;
+if (typeof data.lastReviewed === "string" && data.lastReviewed) {
+  const d = new Date(data.lastReviewed);
+  if (!isNaN(d.getTime())) dateModified = d.toISOString();
+}
+if (!dateModified && lastUpdated instanceof Date && !isNaN(lastUpdated.getTime())) {
+  dateModified = lastUpdated.toISOString();
+}
+
+// Organization node, reused via @id reference.
+const organization = {
+  "@type": "Organization",
+  "@id": `${site.href}#organization`,
+  name: ORG_NAME,
+  url: site.href,
+  logo: {
+    "@type": "ImageObject",
+    url: LOGO_URL,
+  },
+  sameAs: [GITHUB_URL],
+};
+
+// WebSite node, reused via @id reference.
+const website = {
+  "@type": "WebSite",
+  "@id": `${site.href}#website`,
+  url: site.href,
+  name: ORG_NAME,
+  description:
+    "Community guides, tools and best practices for managing macOS devices with Microsoft Intune.",
+  inLanguage: "en",
+  publisher: { "@id": `${site.href}#organization` },
+};
+
+/** Turn a URL slug segment into a human-readable breadcrumb label. */
+function humanizeSegment(segment: string): string {
+  return decodeURIComponent(segment)
+    .replace(/[-_]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+// BreadcrumbList from the path. Always starts at Home, then one item per
+// path segment, with the final item pointing at the current page.
+const segments = Astro.url.pathname.split("/").filter(Boolean);
+const breadcrumbItems = [
+  {
+    "@type": "ListItem",
+    position: 1,
+    name: "Home",
+    item: site.href,
+  },
+];
+let acc = "";
+segments.forEach((segment, index) => {
+  acc += `/${segment}`;
+  const isLast = index === segments.length - 1;
+  const name = isLast && data.title ? data.title : humanizeSegment(segment);
+  breadcrumbItems.push({
+    "@type": "ListItem",
+    position: index + 2,
+    name,
+    item: pageUrl(acc),
+  });
+});
+
+const breadcrumb = {
+  "@type": "BreadcrumbList",
+  "@id": `${canonicalUrl}#breadcrumb`,
+  itemListElement: breadcrumbItems,
+};
+
+// Per-page primary node.
+const graph: Record<string, unknown>[] = [];
+
+if (isHome) {
+  graph.push(organization, website, breadcrumb);
+} else {
+  const article: Record<string, unknown> = {
+    "@type": "TechArticle",
+    "@id": `${canonicalUrl}#article`,
+    headline: data.title,
+    name: data.title,
+    url: canonicalUrl,
+    mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
+    inLanguage: "en",
+    isPartOf: { "@id": `${site.href}#website` },
+    author: { "@id": `${site.href}#organization` },
+    publisher: { "@id": `${site.href}#organization` },
+    image: LOGO_URL,
+  };
+  if (data.description) article.description = data.description;
+  if (dateModified) article.dateModified = dateModified;
+
+  graph.push(article, breadcrumb);
+}
+
+// FAQPage: parse "## question" headings followed by their answer text from the
+// raw markdown body. Strip common markdown so the schema text stays clean.
+function stripMarkdown(input: string): string {
+  return input
+    .replace(/```[\s\S]*?```/g, " ") // fenced code blocks
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, " ") // images
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1") // links -> text
+    .replace(/`([^`]+)`/g, "$1") // inline code
+    .replace(/[*_~>#]/g, " ") // emphasis/heading/quote markers
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+const isFaq = id.toLowerCase().endsWith("frequently-asked-questions/faq");
+if (isFaq && typeof entry.body === "string" && entry.body) {
+  const faqEntries: { question: string; answer: string }[] = [];
+  const sections = entry.body.split(/\n(?=##\s)/);
+  for (const section of sections) {
+    const match = section.match(/^##\s+(.+?)\s*\n([\s\S]*)$/);
+    if (!match) continue;
+    const question = stripMarkdown(match[1].replace(/^\d+\.\s*/, ""));
+    const answer = stripMarkdown(match[2]);
+    if (question && answer) {
+      faqEntries.push({ question, answer });
+    }
+  }
+  if (faqEntries.length > 0) {
+    graph.push({
+      "@type": "FAQPage",
+      "@id": `${canonicalUrl}#faqpage`,
+      mainEntity: faqEntries.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer,
+        },
+      })),
+    });
+  }
+}
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": graph,
+};
+---
+
+<Default><slot /></Default>
+
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify(jsonLd)}
+  is:inline
+/>

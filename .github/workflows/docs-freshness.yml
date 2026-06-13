@@ -22,7 +22,9 @@ concurrency:
 jobs:
   scan:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    # A full run drafts + verifies ~35 sourced pages (~70 model calls), so give
+    # it ample headroom beyond the monthly default.
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
         with:

@@ -152,7 +152,6 @@ export default defineConfig({
             {
               label: "What's New in Intune",
               link: "/home/whats_new/",
-              badge: { text: "Auto", variant: "tip" },
             },
           ],
         },

@@ -7,11 +7,6 @@ import {
 import type { SourceType, StateFile, StateItem } from "../types";
 import { escapeMdx, mdLink, yamlString } from "./escape";
 
-// MDX comment: stripped at build, never shown to visitors. Lives only in the
-// repo source to stop contributors from hand-editing a file that gets rebuilt.
-const GENERATED_NOTICE =
-  "{/* Generated file - do not edit directly. */}";
-
 const SECTION_ORDER: Array<{ source: SourceType; heading: string }> = [
   { source: "tech-community", heading: "Microsoft announcements" },
   { source: "community-blog", heading: "Community blog posts" },
@@ -63,8 +58,6 @@ export function renderPulseWeek(state: StateFile, week: IsoWeek): PulsePage | nu
     `  label: ${yamlString(rangeShort)}`,
     "generated: true",
     "---",
-    "",
-    GENERATED_NOTICE,
     "",
     `A roundup of what stood out across the macOS and Intune community for **${rangeFull}** — updates from Microsoft, posts from community blogs, and discussions worth a look. Follow each link for the full story.`,
     "",
@@ -135,8 +128,6 @@ export function renderPulseIndex(latestWeek: IsoWeek | null): string {
     "  order: 0",
     "generated: true",
     "---",
-    "",
-    GENERATED_NOTICE,
     "",
     "Each week we round up what's happening across macOS management with Microsoft Intune:",
     "",

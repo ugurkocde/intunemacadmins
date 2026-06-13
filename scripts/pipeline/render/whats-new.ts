@@ -5,11 +5,6 @@ import {
 import type { StateFile, StateItem } from "../types";
 import { escapeMdx, mdLink, yamlString } from "./escape";
 
-// MDX comment: stripped at build, never shown to visitors. Lives only in the
-// repo source to stop contributors from hand-editing a file that gets rebuilt.
-const GENERATED_NOTICE =
-  "{/* Generated file - do not edit directly. */}";
-
 // Renders the "What's New in Intune (macOS)" page from state. Pure function of
 // state, so reruns without new items produce byte-identical output.
 export function renderWhatsNew(state: StateFile): string {
@@ -42,15 +37,13 @@ export function renderWhatsNew(state: StateFile): string {
     "generated: true",
     "---",
     "",
-    GENERATED_NOTICE,
-    "",
     `We track Microsoft's [What's new in Microsoft Intune](${MS_WHATS_NEW_PAGE_URL}) release notes and pull out the changes that matter for macOS management. Each entry links to the full details on Microsoft Learn.`,
     "",
   ];
 
   if (weeks.length === 0) {
     lines.push(
-      "No macOS-relevant entries have been collected yet. The next weekly pipeline run will populate this page.",
+      "No macOS-relevant updates to show here just yet. Check back soon.",
       "",
     );
   }

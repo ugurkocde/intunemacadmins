@@ -26,7 +26,7 @@
     "astro": "^6.4.6",
     "astro-embed": "^0.13.0",
     "astro-icon": "^1.1.5",
-    "sharp": "^0.34.5",
+    "sharp": "^0.35.1",
     "starlight-image-zoom": "^0.14.2"
   },
   "devDependencies": {

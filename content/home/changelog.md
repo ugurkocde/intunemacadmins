@@ -1,0 +1,127 @@
+---
+description: "Here is a log of recent changes made to improve the content for Intune Mac Admins."
+---
+
+# Changelog
+
+## Version 2.0 - 2024-09-02
+
+### Added
+
+- New Category: Baseline Settings for Intune
+  - New Pages: 
+    - Importing Baseline Settings into Intune
+    - Contributing to the Baseline Settings
+    - Accounts and Login
+    - Antivirus Configuration
+    - Microsoft Edge Extensions
+    - Microsoft Edge Password Management
+    - Microsoft Edge Profiles and Sign-in Sync
+    - Microsoft Edge Security
+    - Microsoft Edge Updates
+    - FileVault
+    - Gatekeeper
+    - Microsoft AutoUpdate (MAU) Configuration
+    - Defender for Endpoint (MDE) Configuration
+    - Microsoft Office Configuration
+    - OneDrive Known Folder Move
+    - OneDrive Service and Access
+    - Platform SSO
+    - Restrictions
+    - Software Updates
+
+## Version 1.7 - 2024-08-27
+
+### Added
+- New Pages for the Complete Guide Macos Deployment Category
+  - Enroll MacOS in Microsoft Defender
+  - Declarative Device Management (DDM)
+  - Rapid Security Response (RSR)
+
+## Version 1.6 - 2024-08-23
+
+### Added
+- New Category: Troubleshooting Guides
+  - New Pages: 
+    - Enrollment Error
+- New Community Tool: Intune Uploader and Recipes to the category
+
+## Version 1.5 - 2024-08-19
+
+### Added
+- Comment Feature to every page to ask questions and get feedback.
+- Updated Category: Complete Guide MacOS Deployment
+  - New Pages: 
+    - Install the Company Portal App for MacOS as a MacOS LOB App
+    - User Experience on a MacOS Device
+
+## Version 1.4 - 2024-08-08
+
+### Added
+- Category: Complete Guide Macos Deployment
+  - New Pages: 
+    - Apple Business Manager
+    - Integrate Apple Business Manager with Intune
+    - Add a Device to Apple Business Manager
+    - Configure MacOS Platform SSO
+    - Enable FileVault During the Setup Assistant
+
+## Version 1.3 - 2024-08-02
+
+### Added
+- New Category: Snippets
+  - New Pages: 
+    - Packaging
+    - Shortcuts
+
+## Version 1.2 - 2024-07-30
+
+### Added
+- New Question added to the FAQ:
+  - What happens if my Apple Push Notification service (APNs) Token expires?
+  - Which steps do I need to take when a Mac reaches end-of-life?
+  - Do I need to reset my Mac to enroll it in Intune?
+  - Can I add my Mac to my Apple or Business or School Manager after I ordered it?
+  - We are considering switching our existing MDM to Intune to manage macOS, how should we plan this?
+  - MacOS and Apple security - where do I get information?
+  - Can I onboard my Mac to Defender for Endpoint?
+  - Does Intune support certificate deployment to macOS?
+  - Some settings are not covered by Intune (UI), what do I do?
+  - The profiles of Intune are applied too slow to my managed Macs. What can I do?
+  - Where can I see which profiles of Intune were applied locally on my Mac?
+  - How do I monitor my managed Macs in Intune?
+  - How do I stay up to date with new Intune macOS features?
+  - How do I get an Apple Business or School Manager?
+
+## Version 1.1.0 - 2024-07-29
+
+### Added
+- Intune Getting Stated Guide
+  - Prerequisites
+  - Basic Tenant Setup
+
+## Version 1.0.2 - 2024-07-25
+
+### Added
+- New Question added to the FAQ:
+  - Can I enroll a MacOS Device in Intune without ABM?
+- Whats New in Intune
+
+## Version 1.0.1 - 2024-07-17
+
+### Changed
+- [Corrected typo in menu and page titles](https://github.com/ugurkocde/intunemacadmins/pull/15) - Thank you [Matthias Choules](https://github.com/choules) ❤️
+- [Add Root3 Support App](https://github.com/ugurkocde/intunemacadmins/pull/14) - Thank you [Jordy Witteman](https://github.com/jordywitteman) ❤️
+
+## Version 1.0.0 - 2024-07-15
+
+### Added
+- Initial release with the following Guides:
+  - Await Final Configuration
+  - Custom Attributes
+  - Declarative Device Management (DDM)
+  - FileVault
+  - OneDrive Known Folder Move (KFM)
+  - Platform Single Sign-On
+  - Deploy Files on a Mac
+  - Updating Microsoft Apps

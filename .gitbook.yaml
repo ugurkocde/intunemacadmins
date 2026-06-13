@@ -1,0 +1,42 @@
+root: ./content/
+
+structure:
+  readme: README.md
+  summary: SUMMARY.md
+
+redirects:
+  await-final-configuration/configure_await_final_configuration: await-final-configuration/configure-await-final-configuration.md
+  await-final-configuration/what_is_await_final_configuration: await-final-configuration/what-is-await-final-configuration.md
+  community/community_resources: community/community-resources.md
+  community/community_tools: community/community-tools.md
+  community/esp_for_macos_swift_dialog: community/esp-for-macos-swift-dialog.md
+  complete-guide-macos-deployment/add_a_device_to_apple_business_manager: complete-guide-macos-deployment/add-a-device-to-apple-business-manager.md
+  complete-guide-macos-deployment/apple_business_manager: complete-guide-macos-deployment/apple-business-manager.md
+  complete-guide-macos-deployment/configure_macos_platform_sso: complete-guide-macos-deployment/configure-macos-platform-sso.md
+  complete-guide-macos-deployment/declarative_device_management: complete-guide-macos-deployment/declarative-device-management.md
+  complete-guide-macos-deployment/enable_filevault_during_the-setup_assistant: complete-guide-macos-deployment/enable-filevault-during-the-setup-assistant.md
+  complete-guide-macos-deployment/enroll_macos_in_microsoft_defender: complete-guide-macos-deployment/enroll-macos-in-microsoft-defender.md
+  complete-guide-macos-deployment/install_the_company_portal_app_for_macos_as_a_macos_lob_app: complete-guide-macos-deployment/install-the-company-portal-app-for-macos-as-a-macos-lob-app.md
+  complete-guide-macos-deployment/integrate_apple_business_manager_with_intune: complete-guide-macos-deployment/integrate-apple-business-manager-with-intune.md
+  complete-guide-macos-deployment/rapid_security_response: complete-guide-macos-deployment/rapid-security-response.md
+  complete-guide-macos-deployment/user_experience_on_a_macos_device: complete-guide-macos-deployment/user-experience-on-a-macos-device.md
+  custom-attributes/create_custom_attributes: custom-attributes/create-custom-attributes.md
+  custom-attributes/what_are_custom_attributes: custom-attributes/what-are-custom-attributes.md
+  declarative-device-management/configure_declarative_device_management: declarative-device-management/configure-declarative-device-management.md
+  declarative-device-management/what_is_declarative_device_management: declarative-device-management/what-is-declarative-device-management.md
+  deploy-files/how_to_deploy_files: deploy-files/how-to-deploy-files.md
+  filevault/enable_filevault_in_setup_assistant: filevault/enable-filevault-in-setup-assistant.md
+  filevault/what_is_filevault: filevault/what-is-filevault.md
+  home/getting_started: home/getting-started.md
+  home/how_to_contribute: home/how-to-contribute.md
+  home/whats_new: home/whats-new.md
+  intune-getting-started-guide/basic_tenant_setup: intune-getting-started-guide/basic-tenant-setup.md
+  onedrive-known-folder-move-kfm/configure_kfm: onedrive-known-folder-move-kfm/configure-kfm.md
+  onedrive-known-folder-move-kfm/what_is_onedrive_kfm: onedrive-known-folder-move-kfm/what-is-onedrive-kfm.md
+  platform-single-sign-on/browser_sso: platform-single-sign-on/browser-sso.md
+  platform-single-sign-on/configure_psso: platform-single-sign-on/configure-psso.md
+  platform-single-sign-on/insights_psso: platform-single-sign-on/insights-psso.md
+  platform-single-sign-on/what_is_psso: platform-single-sign-on/what-is-psso.md
+  troubleshooting/enrollment_error: troubleshooting/enrollment-error.md
+  updating-microsoft-apps/how_to_update_microsoft_apps: updating-microsoft-apps/how-to-update-microsoft-apps.md
+  updating-microsoft-apps/microsoft_auto_update: updating-microsoft-apps/microsoft-auto-update.md

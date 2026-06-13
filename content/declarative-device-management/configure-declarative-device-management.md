@@ -1,0 +1,62 @@
+---
+description: "Step-by-step guide to configuring Declarative Device Management (DDM) on macOS."
+sources:
+  - https://learn.microsoft.com/intune/device-updates/apple/
+lastReviewed: 2026-06-13
+---
+
+# Configure Declerative Device Management
+
+The declarations and the status channels of declarative management can co-exist with Intune commands and profiles, which means you can gradually adopt the new features, without having to update all MDM work flows at once. For example, a server might just implement status subscriptions to effectively add a status channel to the MDM protocol without having to adopt all of declarative management.
+
+Importantly, this integration doesn’t interfere with existing Intune behavior. Declarative management has to be explicitly enabled with a new MDM command, before you can use any of its features. Without that enablement, the MDM protocol functions exactly as before.
+
+**Enable declarative management**
+
+Intune enables declarative management by sending a DeclarativeManagementCommand to the device through the usual Intune command processing flow. This command serves two purposes:
+
+- It enables the declarative management features.
+- It signals to the device that the server has updated declarations and the device needs synchronize the declarations with the server. In this case, the command can include a payload containing synchronization tokens to allow for an efficient synchronization flow.
+
+Once Intune has enabled declarative management, it can’t disable it. However, the server can remove all declarations from the device to effectively disable any declarative management behavior.
+
+If you unenroll a device, the device removes all declarative management state, including all policies applied through declarations.
+
+Note, that on macOS and Shared iPad, you must send the management commands separately on the device and user channels to turn on declarative management on each channel. Similarly, each channel reports declarative management status separately.
+
+**Microsoft Intune** has also enabled Declarative Management for macOS for the following capabilities:
+
+1. Software Update
+2. Passcode
+
+Apple's declarative device management (DDM) allows you to install a specific update by an enforced deadline. The autonomous nature of DDM provides an improved user experience as the device handles the entire software update lifecycle. It prompts users that an update is available and also downloads, prepares the device for the installation, & installs the update.
+
+Lets create a MacOS Software Update Policy that uses DDM.
+
+## Configure the managed software updates policy
+
+1. Sign in to the Intune admin center.
+2. Select Devices > Manage devices > Configuration > Create.
+3. Enter the following properties and select Create:
+    1. Platform: Select macOS.
+    2. Profile: Select Settings catalog.
+4. In the Basics tab, enter the following information, and select Next:
+    1. Name: Enter a descriptive name for the policy. Name your policies so you can easily identify them later.
+    2. Description: Enter a description for the policy. This setting is optional, but recommended.
+5. In Configuration settings, select Add settings > expand Declarative Device Management > Software Update.
+6. Choose Select all these settings and then close the settings picker.
+![Declarative Device Management](../.gitbook/assets/DDM/DDM-4.png)
+7. Configure the settings:
+    1. Details URL: Enter a web page URL that has more information on the update. Typically, this URL is a web page hosted by your organization that users can select if they need organization-specific help with the update.
+    2. Target Build Version: Enter the target build version to update the device to, like 25A354. The build version can include a supplemental version identifier, like 25A354a. If the build version you enter isn't consistent with the Target OS Version value you enter, then the Target OS Version value takes precedence.
+    3. Target Date Time: Select or manually enter the date and the time that specifies when to force the installation of the software update. The Target Date Time setting schedules the update using the local timezone of the device. For example, an admin configures an update to install at 2PM. The policy schedules the update to happen at 2PM in the local timezone of devices that receive the policy.
+    4. If the user doesn't trigger the software update before this time, then a one-minute countdown prompt is shown to the user. When the countdown ends, the device force installs the update and forces a restart.
+    5. If the device is powered off when the deadline is met, when the device powers back on, there's a one hour grace period. When the grace period ends, the device force installs the update and forces a restart.
+    6. Target OS Version: Select or manually enter the target OS version to update the device to. This value is the OS version number, like 26.0. You can also include a supplemental version identifier, like 26.0.1.
+    ![Declarative Device Management](../.gitbook/assets/DDM/DDM-5.png)
+8. Select Next.
+9. In the Scope tags tab (optional), assign a tag to filter the profile to specific IT groups. For more information about scope tags, go to Use role-based access control and scope tags for distributed IT.
+10. Select Next.
+11. In the Assignments tab, select the users or groups that will receive your profile. For more information on assigning profiles, go to Assign user and device profiles.
+12. Select Next.
+13. In the Review + create tab, review the settings. When you select Create, your changes are saved, and the profile is assigned. The policy is also shown in the profiles list.

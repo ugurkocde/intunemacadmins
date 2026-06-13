@@ -1,0 +1,24 @@
+---
+description: "How to configure Microsoft Office Configuration for your Intune tenant."
+---
+
+# Microsoft Office Configuration
+
+{% hint style="info" %}
+Click on the link to download the JSON file from <a href="https://github.com/SkipToTheEndpoint/OpenIntuneBaseline/blob/main/MACOS/NativeImport/MacOS%20-%20OIB%20-%20Microsoft%20Office%20-%20D%20-%20Office%20Configuration%20-%20v1.0.json" target="_blank">GitHub</a>
+{% endhint %}
+
+## Service Management - Managed Login Items
+
+| Setting                                  | Value                                                                 |
+|-------------------------------------------|-----------------------------------------------------------------------|
+| Comment | Office Licensing Helper                                |
+| Rule Value | com.microsoft.office.licensingV2.helper                                 |
+| Rule Type | Bundle Identifier                              |
+
+## Microsoft Office
+
+| Setting                       | Value                   |
+|-------------------------------|-------------------------|
+| Enable automatic sign-in      | True                    |
+| Office Activation Email Address | userprincipalname  |

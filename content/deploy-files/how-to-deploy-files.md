@@ -1,0 +1,57 @@
+---
+description: "Learn how to deploy files on macOS devices using Intune."
+sources:
+  - https://learn.microsoft.com/intune/app-management/deployment/add-unmanaged-pkg-macos
+lastReviewed: 2026-06-13
+---
+
+# How to deploy Files on a Mac
+
+Deploying files to Intune-managed macOS devices can be challenging. This guide will walk you through the process of creating a .pkg application to securely deploy your files on macOS devices.
+
+{% hint style="success" %}
+This method is particularly useful for deploying files like fonts, Teams backgrounds, and license files.
+{% endhint %}
+
+## Why Use This Method?
+
+There are several advantages to using a .pkg application for file deployment:
+
+- No need to host files remotely or in the cloud
+- No need for secrets in scripts
+- Increased security compared to public endpoints or Azure Blob Storage
+
+The main potential disadvantage is the initial setup time, which takes about 10 minutes, and the requirement of a macOS device for packaging.
+
+## Creating the PKG Application
+
+1. **Create the folder structure**
+   - Organize your folders into two main directories: `Content` and `Scripts`
+   - The `Content` folder will contain the files you want to deploy
+   - The `Scripts` folder will contain the `postinstall` script
+1. **Create the postinstall script**
+   - Place the script in the `Scripts` folder
+   - Make it executable with: `chmod a+x postinstall`
+   - Remove any file extensions (e.g., .sh)
+   - [View the full postinstall script example](https://github.com/ugurkocde/Intune/blob/main/MacOS/Create%20pkg%20/postinstall)
+2. **Execute pkgbuild to create the .pkg file**
+   - Run the following command in the terminal:
+     ```
+     pkgbuild --root Content --scripts Scripts --identifier com.yourdomain.yourapp --install-location /var/tmp --version 1.0 YourApp.pkg
+     ```
+   - Replace `com.yourdomain.yourapp` with your organization's identifier
+   - Replace `YourApp.pkg` with the desired name for your .pkg file
+3. **Upload the .pkg file to Intune**
+   - Go to the Microsoft Intune portal
+   - Navigate to **Apps** > **All apps** > **Create**
+   - Select **macOS app (PKG)**
+   - Upload your .pkg file
+   - Configure the app settings as needed
+   - Assign the app to your desired groups or users
+4. **Deploy the app to your devices**
+   - The app will be installed on the devices in the assigned groups or users
+   - The files will be deployed to the specified location on the devices
+
+{% hint style="success" %}
+You can also use this method to deploy other types of files, such as scripts or configuration files.
+{% endhint %}

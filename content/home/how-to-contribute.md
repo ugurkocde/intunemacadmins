@@ -1,0 +1,37 @@
+---
+description: "Contribute to IntuneMacAdmins by forking the repo, making changes, and submitting a pull request."
+---
+
+# How to Contribute
+
+We welcome contributions from the community to help improve the content on IntuneMacAdmins. Whether it's a new guide, a script, or an insight, your contribution is valuable.
+
+{% hint style="success" %}
+The easiest way is to use the "Edit page" button that you can find at the bottom of every page. If you edit more than one page, we recommend using forks and creating a pull request using the method described below.
+{% endhint %}
+
+### Steps to Contribute
+
+1. **Fork the Repository**: Start by forking the [IntuneMacAdmins GitHub repository](https://github.com/ugurkocde/IntuneMacAdmins).
+2. **Clone the Repository**: Clone your forked repository to your local machine.
+
+   ```
+   git clone https://github.com/your-username/IntuneMacAdmins.git
+   ```
+3. **Create a New Branch**: Create a new branch for your changes.
+
+   ```
+   git checkout -b my-new-branch
+   ```
+4. **Make Your Changes**: Make the necessary changes or additions to the content.
+5. **Commit Your Changes**: Commit your changes with a descriptive message.
+
+   ```
+   git commit -m "Add new guide on XYZ"
+   ```
+6. **Push Your Changes**: Push your changes to your forked repository.
+
+   ```
+   git push origin my-new-branch
+   ```
+7. **Create a Pull Request**: Go to the original repository and create a pull request from your forked repository.

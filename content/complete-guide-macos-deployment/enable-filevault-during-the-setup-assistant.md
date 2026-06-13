@@ -1,0 +1,20 @@
+---
+description: "Learn how to enable FileVault encryption during the MacOS Setup Assistant. This guide covers the necessary steps to configure FileVault policies in Intune for enhanced device security."
+sources:
+  - https://learn.microsoft.com/intune/device-configuration/endpoint-security/encrypt-filevault-macos
+lastReviewed: 2026-06-13
+---
+
+# Enable FileVault during the Setup Assistant
+
+## Enable FileVault during the Setup Assistant
+
+To enable FileVault encryption during the setup assistant do the following. Go to Devices – Macos – Enrollment – Enrollment progtam tokens – your token name – profiles – your profile name – properties. Here make sure to show FileVault.
+
+![FileVault](../.gitbook/assets/CompleteGuide/image-211.webp)
+
+Now we need to create a policy, to do this go to Devices – By platform – Macos – Manage devices – Configuration – create – new policy – settings catalog – name your policy – Add settings – Full Disk Encryption – FileVault. You can take the settings from the screenshot. You can of course play around with the rotation.
+
+![FileVault](../.gitbook/assets/CompleteGuide/image-212.webp)
+
+That is it, now your device will be encrypted during the setup.

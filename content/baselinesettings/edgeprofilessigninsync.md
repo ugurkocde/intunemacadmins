@@ -1,0 +1,18 @@
+---
+description: "How to configure Microsoft Edge Profiles and Sign-in Sync for your Intune tenant."
+---
+
+# Microsoft Edge Profiles and Sign-in Sync
+
+{% hint style="info" %}
+Click on the link to download the JSON file from <a href="https://github.com/SkipToTheEndpoint/OpenIntuneBaseline/blob/main/MACOS/NativeImport/MacOS%20-%20OIB%20-%20Microsoft%20Edge%20-%20U%20-%20Profiles%2C%20Sign-In%20and%20Sync%20-%20v1.0.json" target="_blank">GitHub</a>
+{% endhint %}
+
+## Microsoft Edge
+
+| Setting                                                                    | Value    |
+|----------------------------------------------------------------------------|----------|
+| Browser sign-in settings                                                   | Force users to sign-in to use the browser |
+| Enable profile creation from the Identity flyout menu or the Settings page | Disabled |
+| Enable use of ephemeral profiles                                           | Disabled |
+| Force synchronization of browser data and do not show the sync consent prompt | Enabled |

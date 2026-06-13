@@ -1,0 +1,9 @@
+---
+description: "Share feedback by creating an issue on our GitHub repository to discuss with the community."
+---
+
+# Feedback
+
+If you have feedback, questions, or suggestions, please create a Issue on the GitHub repository. This way we can track and discuss the feedback with the community.
+
+Here is the link to create a new Issue: <a href="https://github.com/ugurkocde/intunemacadmins/issues" target="_blank">Create Issue</a>

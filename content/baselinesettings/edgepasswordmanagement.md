@@ -1,0 +1,17 @@
+---
+description: "How to configure Microsoft Edge Password Management for your Intune tenant."
+---
+
+# Microsoft Edge Password Management
+
+{% hint style="info" %}
+Click on the link to download the JSON file from <a href="https://github.com/SkipToTheEndpoint/OpenIntuneBaseline/blob/main/MACOS/NativeImport/MacOS%20-%20OIB%20-%20Microsoft%20Edge%20-%20D%20-%20Password%20Management%20-%20v1.0.json" target="_blank">GitHub</a>
+{% endhint %}
+
+## Microsoft Edge
+
+| Setting                                        | Value                                           |
+|------------------------------------------------|-------------------------------------------------|
+| Allow Microsoft Edge to monitor user passwords | Allowed                                         |
+| Configure password protection warning trigger  | Password protection warning is triggered by password reuse |
+| Enable saving passwords to the password manager | Enabled                                        |

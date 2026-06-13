@@ -1,0 +1,18 @@
+---
+description: "How to configure Microsoft Edge Extensions for your Intune tenant."
+---
+
+# Microsoft Edge Extensions
+
+{% hint style="info" %}
+Click on the link to download the JSON file from <a href="https://github.com/SkipToTheEndpoint/OpenIntuneBaseline/blob/main/MACOS/NativeImport/MacOS%20-%20OIB%20-%20Microsoft%20Edge%20-%20U%20-%20Extensions%20-%20v1.0.json" target="_blank">GitHub</a>
+{% endhint %}
+
+## Microsoft Edge
+
+| Setting                                               | Value                                                                                      |
+|-------------------------------------------------------|--------------------------------------------------------------------------------------------|
+| Allow specific extensions to be installed             | odfafepnkmbhccpbejgmiehpchacaeak                                                           |
+| Blocks external extensions from being installed       | Enabled                                                                                     |
+| Control which extensions are installed silently       | nkbndigcebkoaejohleckhekfmcecfja, ofefcgjbeghpigppfmkologfjadafddi                          |
+| Control which extensions cannot be installed          | *                                                                                           |

@@ -1,0 +1,102 @@
+---
+description: "Learn how to set up and use Apple Business Manager for efficient device management in your organization. This guide covers the benefits, application process, and integration with MDM solutions."
+sources:
+  - https://learn.microsoft.com/intune/device-enrollment/apple/overview-automated-enrollment-macos
+lastReviewed: 2026-06-13
+---
+
+# Apple Business Manager
+
+## Intro
+
+I always recommend the use of Apple Business Manager. Why you could say, well Apple Business Manager is a free service provided by Apple that allows organizations to manage three things: devices, apps, and accounts. Simply put, if your organization owns Apple devices, you should be using Apple Business Manager (or its education-sector equivalent, Apple School Manager). There’s literally no downside to it. Apple Business manager offers many benefits—some well-known, others less so—and it doesn’t cost a thing.
+
+First to define what we’re talking about: Apple Business Manager is an all-in-one portal designed to help organizations deploy Apple devices, manage organization-owned Apple IDs, and acquire apps and other content in volume. It coordinates closely with mobile device management solutions to automatically enroll and manage devices. Apple Business Manager is not an MDM solution itself, this just to be clear.
+
+To use Apple Business Manager, your organization must first have an account. Applying is simple, and although it can take a couple of days for your application to be approved, it typically happens much faster. It just requires some basic information, including your DUNS number and contact information for someone at your company—not an IT admin, more likely someone higher up—who can vouch for you. Apple will then verify everything and, if it all checks out, confirm your account. More information on all this can be found in [Apple’s Getting Started guide](https://www.apple.com/business/docs/site/Apple_Business_Manager_Getting_Started_Guide.pdf).
+
+Why use Apple Business Manager, well some configuration can only be applied for supervised devices, only devices from Apple Business Manager are supervised devices, check table below.
+
+![SupervisedVSPersonal](../.gitbook/assets/CompleteGuide/image-165.webp)
+
+In the different Intune configuration profiles you will also notice that some settings only apply on supervised devices.
+
+![IntuneDeviceRestrictions](../.gitbook/assets/CompleteGuide/image-166.webp)
+
+{% hint style="info" %}
+This can be a lenghty process because you need to request the number and also Apple needs to do some verification. If you are planning to use Apple Business Manager and you have a deadline for your project please start early for the admin stuff that you cannot control.
+{% endhint %}
+
+## Applying for Apple Business Manager
+
+Go to https://business.apple.com/ and let’s assume you do not have an account here yet, click sign up now.
+
+![ABM-Signup](../.gitbook/assets/CompleteGuide/image-88.webp)
+
+Click Get Started.
+
+![ABM-GetStarted](../.gitbook/assets/CompleteGuide/image-89.webp)
+
+Fill in the necessary details and click continue.
+
+![ABM-GetStarted](../.gitbook/assets/CompleteGuide/image-90.webp)
+
+Create a password and enter a phone number for verification and click continue.
+
+![ABM-GetStarted](../.gitbook/assets/CompleteGuide/image-102.webp)
+
+A verification code will be sent to your email address. Enter it and click continue.
+
+![ABM-GetStarted](../.gitbook/assets/CompleteGuide/image-95.webp)
+
+Now a code will be sent to your mobile device, enter it and click continue.
+
+![ABM-GetStarted](../.gitbook/assets/CompleteGuide/image-94.webp)
+
+Accept the Terms and Conditions (You can always download them and read all the info, somebody has spent an aweful amount of time writing these down, so you would do him/her a big favor 😉)
+
+![ABM-GetStarted](../.gitbook/assets/CompleteGuide/image-96.webp)
+
+You will be presented with this screen, click  Get Started.
+
+![ABM-GetStarted](../.gitbook/assets/CompleteGuide/image-98.webp)
+
+{% hint style="info" %}
+Now you have 59 days left to verify your business and you will now have to request your D-U-N-S Number, first do a look up [here](https://developer.apple.com/enroll/duns-lookup/#!/search). If your organization was not found you can submit your information to request the number. I got my number in 48hrs
+{% endhint %}
+
+![ABM-GetStarted](../.gitbook/assets/CompleteGuide/image-99.webp)
+
+After you submit you request you will see this:
+
+![ABM-GetStarted](../.gitbook/assets/CompleteGuide/image-100.webp)
+
+From now on you have to wait for your number to be received. After a few minutes you will receive an email like this:
+
+![ABM-GetStarted](../.gitbook/assets/CompleteGuide/image-101.webp)
+
+When you receive your D-U-N-S number click verify.
+
+![ABM-GetStarted](../.gitbook/assets/CompleteGuide/image-103.webp)
+
+Enter your details and click submit.
+
+![ABM-GetStarted](../.gitbook/assets/CompleteGuide/image-106.webp)
+
+Now your verification is pending.
+
+![ABM-GetStarted](../.gitbook/assets/CompleteGuide/image-105.webp)
+
+You will also receive an e-mail regarding this:
+
+![ABM-GetStarted](../.gitbook/assets/CompleteGuide/image-107.webp)
+
+{% hint style="info" %}
+This can take up to 5 business days to complete. In this case it took 48hrs
+{% endhint %}
+
+Once your Apple Business Manager account has been approved you will get an email:
+
+![ABM-GetStarted](../.gitbook/assets/CompleteGuide/image-129.webp)
+
+Now your company is enrolled with Apple Business Manager. Let’s proceed to integrate this with Intune.

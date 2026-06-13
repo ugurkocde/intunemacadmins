@@ -3,24 +3,26 @@
   "type": "module",
   "version": "0.0.1",
   "private": true,
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "npm install --force && astro build",
+    "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.2.6",
-    "@astrojs/starlight": "^0.34.2",
-    "astro": "^5.7.10",
-    "astro-embed": "^0.7.2",
-    "astro-icon": "^1.1.0",
-    "sharp": "^0.33.5",
-    "starlight-image-zoom": "^0.8.0"
+    "@astrojs/starlight": "^0.40.0",
+    "astro": "^6.4.5",
+    "astro-embed": "^0.13.0",
+    "astro-icon": "^1.1.5",
+    "sharp": "^0.34.5",
+    "starlight-image-zoom": "^0.14.2"
   },
   "devDependencies": {
-    "@iconify-json/mdi": "^1.1.68",
-    "@iconify-json/ri": "^1.1.22"
+    "@iconify-json/mdi": "^1.2.3",
+    "@iconify-json/ri": "^1.2.10"
   }
 }

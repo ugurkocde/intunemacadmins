@@ -76,10 +76,6 @@ jobs:
           [ "$DRY_RUN" = "true" ] && args+=(--dry-run)
           npm run pipeline -- "${args[@]}"
 
-      - name: Build site with generated content
-        if: ${{ inputs.dry_run != true }}
-        run: npm run build
-
       - name: Write run summary
         if: ${{ always() }}
         run: |
@@ -104,7 +100,7 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           add-paths: |
-            src/content/docs/**
+            content/**
             data/pipeline-state.json
           branch: content-pipeline/weekly
           delete-branch: true

@@ -65,7 +65,7 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           add-paths: |
-            src/content/docs/**
+            content/**
           branch: docs-freshness/updates
           delete-branch: true
           commit-message: Update docs to match current Microsoft/Apple documentation

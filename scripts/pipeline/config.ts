@@ -15,8 +15,10 @@ export const CACHE_DIR = ".cache";
 export const PREVIEW_DIR = ".cache/preview";
 export const STATE_FILE = "data/pipeline-state.json";
 export const SOURCES_FILE = "config/sources.json";
-export const WHATS_NEW_FILE = "src/content/docs/Home/Whats_New.mdx";
-export const PULSE_DIR = "src/content/docs/Community Pulse";
+// GitBook content tree (Git Sync renders these directly).
+export const WHATS_NEW_FILE = "content/home/whats-new.md";
+export const PULSE_DIR = "content/community-pulse";
+export const SUMMARY_FILE = "content/SUMMARY.md";
 
 // Microsoft Learn "What's new in Microsoft Intune".
 // The markdown source lives in MicrosoftDocs/memdocs (moved to intune/whats-new/ in 2025).

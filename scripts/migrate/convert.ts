@@ -359,6 +359,9 @@ function injectH1(entry: Entry): void {
   if (!hasH1 && entry.data.title) {
     body = `# ${String(entry.data.title)}\n\n${body}`;
   }
+  // GitBook block tags must be blank-line separated to render.
+  body = body.replace(/([^\n])\n(\{% hint )/g, "$1\n\n$2");
+  body = body.replace(/(\{% endhint %\})\n([^\n])/g, "$1\n\n$2");
   // Collapse 3+ blank lines.
   entry.body = body.replace(/\n{3,}/g, "\n\n").trimEnd() + "\n";
 }

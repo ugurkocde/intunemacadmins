@@ -18,6 +18,7 @@ import {
   PREVIEW_DIR,
   PULSE_DIR,
   STATE_FILE,
+  SUMMARY_FILE,
   WHATS_NEW_FILE,
 } from "./config";
 import { fetchAllSources, type FetchResult } from "./fetch/index";
@@ -25,13 +26,14 @@ import { classifyItems } from "./llm/classify";
 import { hasApiKey } from "./llm/client";
 import { summarizeItems } from "./llm/summarize";
 import { renderPrBody } from "./render/pr-body";
-import { renderPulseIndex, renderPulseWeek } from "./render/pulse";
+import { renderPulseIndex, renderPulseWeek, pulseWeekLabel } from "./render/pulse";
 import { renderWhatsNew } from "./render/whats-new";
 import {
   isoWeekOf,
   isoWeekString,
   loadState,
   pruneState,
+  quarterOf,
   saveState,
   type IsoWeek,
 } from "./state";
@@ -195,7 +197,10 @@ function stageRender(options: CliOptions, now: Date): void {
     console.log(`[render] no community items for ${weekStr}; skipping weekly page`);
   }
   const latestWeek = findLatestWeek(PULSE_DIR, pulsePage ? week : null);
-  writeFile(join(pulseRoot, "index.mdx"), renderPulseIndex(latestWeek));
+  writeFile(join(pulseRoot, "README.md"), renderPulseIndex(latestWeek));
+  // Keep the Community Pulse section of SUMMARY.md (GitBook nav) in sync. Dry
+  // runs render to PREVIEW_DIR and have no SUMMARY to patch.
+  if (!options.dryRun) updateSummaryPulse(SUMMARY_FILE, PULSE_DIR);
 
   const report: RunReport = {
     startedAt: now.toISOString(),
@@ -223,27 +228,63 @@ function stageRender(options: CliOptions, now: Date): void {
   );
 }
 
-// Latest week with a digest page: max of pages already on disk and the page
-// (if any) written this run. Past pages are committed files; never rewritten.
-function findLatestWeek(pulseDir: string, currentWeek: IsoWeek | null): IsoWeek | null {
-  let latest: IsoWeek | null = currentWeek;
+// All weeks with a digest page on disk, newest first.
+function listPulseWeeks(pulseDir: string): IsoWeek[] {
+  const weeks: IsoWeek[] = [];
   if (existsSync(pulseDir)) {
     for (const quarter of readdirSync(pulseDir, { withFileTypes: true })) {
       if (!quarter.isDirectory()) continue;
       for (const file of readdirSync(join(pulseDir, quarter.name))) {
-        const match = file.match(/^(\d{4})-W(\d{2})\.mdx$/);
+        const match = file.match(/^(\d{4})-w(\d{2})\.md$/i);
         if (!match) continue;
-        const candidate = { year: Number(match[1]), week: Number(match[2]) };
-        if (
-          !latest ||
-          candidate.year * 100 + candidate.week > latest.year * 100 + latest.week
-        ) {
-          latest = candidate;
-        }
+        weeks.push({ year: Number(match[1]), week: Number(match[2]) });
       }
     }
   }
+  return weeks.sort((a, b) => b.year * 100 + b.week - (a.year * 100 + a.week));
+}
+
+// Latest week with a digest page: max of pages already on disk and the page
+// (if any) written this run. Past pages are committed files; never rewritten.
+function findLatestWeek(pulseDir: string, currentWeek: IsoWeek | null): IsoWeek | null {
+  let latest: IsoWeek | null = currentWeek;
+  for (const candidate of listPulseWeeks(pulseDir)) {
+    if (!latest || candidate.year * 100 + candidate.week > latest.year * 100 + latest.week) {
+      latest = candidate;
+    }
+  }
   return latest;
+}
+
+// Regenerate the "## Community Pulse" block of SUMMARY.md from the week pages on
+// disk (newest first), preserving the rest of the file.
+function updateSummaryPulse(summaryFile: string, pulseDir: string): void {
+  if (!existsSync(summaryFile)) return;
+  const bullets = ["* [Overview](community-pulse/README.md)"];
+  for (const w of listPulseWeeks(pulseDir)) {
+    const rel = `community-pulse/${quarterOf(w).toLowerCase()}/${isoWeekString(w).toLowerCase()}.md`;
+    bullets.push(`* [${pulseWeekLabel(w)}](${rel})`);
+  }
+  const sectionLines = ["## Community Pulse", "", ...bullets];
+
+  const lines = readFileSync(summaryFile, "utf8").split("\n");
+  const start = lines.findIndex((l) => l.trim() === "## Community Pulse");
+  if (start === -1) {
+    const out = [...lines, "", ...sectionLines, ""].join("\n").replace(/\n{3,}/g, "\n\n");
+    writeFileSync(summaryFile, out.endsWith("\n") ? out : `${out}\n`);
+    return;
+  }
+  let end = lines.length;
+  for (let i = start + 1; i < lines.length; i++) {
+    if (lines[i].startsWith("## ")) {
+      end = i;
+      break;
+    }
+  }
+  const out = [...lines.slice(0, start), ...sectionLines, "", ...lines.slice(end)]
+    .join("\n")
+    .replace(/\n{3,}/g, "\n\n");
+  writeFileSync(summaryFile, out.endsWith("\n") ? out : `${out}\n`);
 }
 
 function parseArgs(argv: string[]): CliOptions {

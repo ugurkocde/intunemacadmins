@@ -3,14 +3,15 @@
 export const USER_AGENT =
   "intunemacadmins-freshness/1.0 (+https://intunemacadmins.com)";
 
-// Root of the authored documentation, relative to repo root.
-export const DOCS_DIR = "src/content/docs";
+// Root of the authored documentation (GitBook content tree), relative to repo root.
+export const DOCS_DIR = "content";
 
-// Generated trees are excluded: they are rebuilt from their own sources, so
+// Generated/nav files are excluded: they are rebuilt from their own sources, so
 // "staleness" does not apply the same way.
 export const EXCLUDED_PATHS = [
-  "src/content/docs/Home/Whats_New.mdx",
-  "src/content/docs/Community Pulse",
+  "content/home/whats-new.md",
+  "content/community-pulse",
+  "content/SUMMARY.md",
 ];
 
 // A page is flagged for review when its last-reviewed date (frontmatter, or

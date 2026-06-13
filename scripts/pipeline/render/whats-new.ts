@@ -28,14 +28,13 @@ export function renderWhatsNew(state: StateFile): string {
 
   const lines: string[] = [
     "---",
-    `title: ${yamlString("What's New in Intune")}`,
     `description: ${yamlString(
       "The macOS-relevant updates to Microsoft Intune, with links to the official release notes.",
     )}`,
-    "sidebar:",
-    "  order: 5",
     "generated: true",
     "---",
+    "",
+    "# What's New in Intune",
     "",
     `We track Microsoft's [What's new in Microsoft Intune](${MS_WHATS_NEW_PAGE_URL}) release notes and pull out the changes that matter for macOS management. Each entry links to the full details on Microsoft Learn.`,
     "",

@@ -6,7 +6,7 @@ import { parseMsWhatsNew, slugify } from "./fetch/ms-whats-new";
 import { parseFeed } from "./fetch/rss";
 import { sanitizeSummary } from "./llm/summarize";
 import { escapeMdx, mdLink, safeUrl, yamlString } from "./render/escape";
-import { renderPulseWeek } from "./render/pulse";
+import { renderPulseIndex, renderPulseWeek } from "./render/pulse";
 import { renderWhatsNew } from "./render/whats-new";
 import {
   canonicalUrl,
@@ -253,11 +253,24 @@ describe("renderers are idempotent and escape hostile content", () => {
   const pulse2 = renderPulseWeek(state, { year: 2026, week: 24 });
   assert.ok(pulse1 && pulse2);
   assert.equal(pulse1.content, pulse2.content);
-  assert.equal(pulse1.relPath, "2026-Q2/2026-W24.mdx");
+  assert.equal(pulse1.relPath, "2026-q2/2026-w24.md");
   assert.ok(!pulse1.content.includes("<script>"));
   assert.ok(pulse1.content.includes("What's New in Intune"));
 
   assert.equal(renderPulseWeek(state, { year: 2026, week: 23 }), null);
+
+  // GitBook output format (no Starlight constructs; hints + H1 + relative links).
+  assert.ok(whatsNew1.startsWith("---\ndescription:"), "whats-new: GitBook frontmatter");
+  assert.ok(whatsNew1.includes("# What's New in Intune"), "whats-new: H1");
+  assert.ok(!whatsNew1.includes("sidebar:") && !whatsNew1.includes("\ntitle:"), "whats-new: no Starlight keys");
+  assert.ok(!pulse1.content.includes(":::"), "pulse: no Starlight aside directive");
+  assert.ok(pulse1.content.includes('{% hint style="info" %}') && pulse1.content.includes("{% endhint %}"), "pulse: GitBook hint");
+  assert.ok(pulse1.content.includes("../../home/whats-new.md"), "pulse: relative whats-new link");
+  assert.ok(pulse1.content.includes("# June 8 - 14, 2026"), "pulse: H1");
+  assert.ok(!pulse1.content.includes("sidebar:"), "pulse: no sidebar key");
+  const idx = renderPulseIndex({ year: 2026, week: 24 });
+  assert.ok(idx.includes("# Community Pulse") && !idx.includes("sidebar:"), "index: H1, no sidebar");
+  assert.ok(idx.includes("./2026-q2/2026-w24.md"), "index: relative week link");
 });
 
 console.log("\nAll pipeline self-tests passed.");

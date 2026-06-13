@@ -1,3 +1,425 @@
 {
-  "buildCommand": "npm run build"
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "echo 'static landing, no install'",
+  "buildCommand": "echo 'static landing, no build'",
+  "outputDirectory": "site",
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/await-final-configuration/",
+      "destination": "https://docs.intunemacadmins.com/await-final-configuration/await-final-configuration",
+      "permanent": true
+    },
+    {
+      "source": "/await-final-configuration/configure_await_final_configuration/",
+      "destination": "https://docs.intunemacadmins.com/await-final-configuration/configure-await-final-configuration",
+      "permanent": true
+    },
+    {
+      "source": "/await-final-configuration/insights/",
+      "destination": "https://docs.intunemacadmins.com/await-final-configuration/insights",
+      "permanent": true
+    },
+    {
+      "source": "/await-final-configuration/what_is_await_final_configuration/",
+      "destination": "https://docs.intunemacadmins.com/await-final-configuration/what-is-await-final-configuration",
+      "permanent": true
+    },
+    {
+      "source": "/baselinesettings/accountsandlogin/",
+      "destination": "https://docs.intunemacadmins.com/baseline-settings-for-intune/settingsoverview/accountsandlogin",
+      "permanent": true
+    },
+    {
+      "source": "/baselinesettings/antivirusconfiguration/",
+      "destination": "https://docs.intunemacadmins.com/baseline-settings-for-intune/settingsoverview/antivirusconfiguration",
+      "permanent": true
+    },
+    {
+      "source": "/baselinesettings/contribute/",
+      "destination": "https://docs.intunemacadmins.com/baseline-settings-for-intune/contribute",
+      "permanent": true
+    },
+    {
+      "source": "/baselinesettings/edgeextensions/",
+      "destination": "https://docs.intunemacadmins.com/baseline-settings-for-intune/settingsoverview/edgeextensions",
+      "permanent": true
+    },
+    {
+      "source": "/baselinesettings/edgepasswordmanagement/",
+      "destination": "https://docs.intunemacadmins.com/baseline-settings-for-intune/settingsoverview/edgepasswordmanagement",
+      "permanent": true
+    },
+    {
+      "source": "/baselinesettings/edgeprofilessigninsync/",
+      "destination": "https://docs.intunemacadmins.com/baseline-settings-for-intune/settingsoverview/edgeprofilessigninsync",
+      "permanent": true
+    },
+    {
+      "source": "/baselinesettings/edgesecurity/",
+      "destination": "https://docs.intunemacadmins.com/baseline-settings-for-intune/settingsoverview/edgesecurity",
+      "permanent": true
+    },
+    {
+      "source": "/baselinesettings/edgeupdates/",
+      "destination": "https://docs.intunemacadmins.com/baseline-settings-for-intune/settingsoverview/edgeupdates",
+      "permanent": true
+    },
+    {
+      "source": "/baselinesettings/filevault/",
+      "destination": "https://docs.intunemacadmins.com/baseline-settings-for-intune/settingsoverview/filevault",
+      "permanent": true
+    },
+    {
+      "source": "/baselinesettings/gatekeeper/",
+      "destination": "https://docs.intunemacadmins.com/baseline-settings-for-intune/settingsoverview/gatekeeper",
+      "permanent": true
+    },
+    {
+      "source": "/baselinesettings/import/",
+      "destination": "https://docs.intunemacadmins.com/baseline-settings-for-intune/import",
+      "permanent": true
+    },
+    {
+      "source": "/baselinesettings/mauconfiguration/",
+      "destination": "https://docs.intunemacadmins.com/baseline-settings-for-intune/settingsoverview/mauconfiguration",
+      "permanent": true
+    },
+    {
+      "source": "/baselinesettings/mdeconfiguration/",
+      "destination": "https://docs.intunemacadmins.com/baseline-settings-for-intune/settingsoverview/mdeconfiguration",
+      "permanent": true
+    },
+    {
+      "source": "/baselinesettings/officeconfiguration/",
+      "destination": "https://docs.intunemacadmins.com/baseline-settings-for-intune/settingsoverview/officeconfiguration",
+      "permanent": true
+    },
+    {
+      "source": "/baselinesettings/onedriveknownfoldermove/",
+      "destination": "https://docs.intunemacadmins.com/baseline-settings-for-intune/settingsoverview/onedriveknownfoldermove",
+      "permanent": true
+    },
+    {
+      "source": "/baselinesettings/onedriveserviceandaccess/",
+      "destination": "https://docs.intunemacadmins.com/baseline-settings-for-intune/settingsoverview/onedriveserviceandaccess",
+      "permanent": true
+    },
+    {
+      "source": "/baselinesettings/platformsso/",
+      "destination": "https://docs.intunemacadmins.com/baseline-settings-for-intune/settingsoverview/platformsso",
+      "permanent": true
+    },
+    {
+      "source": "/baselinesettings/restrictions/",
+      "destination": "https://docs.intunemacadmins.com/baseline-settings-for-intune/settingsoverview/restrictions",
+      "permanent": true
+    },
+    {
+      "source": "/baselinesettings/settingsoverview/",
+      "destination": "https://docs.intunemacadmins.com/baseline-settings-for-intune/settingsoverview",
+      "permanent": true
+    },
+    {
+      "source": "/baselinesettings/updates/",
+      "destination": "https://docs.intunemacadmins.com/baseline-settings-for-intune/settingsoverview/updates",
+      "permanent": true
+    },
+    {
+      "source": "/community-pulse/",
+      "destination": "https://docs.intunemacadmins.com/community-pulse/community-pulse",
+      "permanent": true
+    },
+    {
+      "source": "/community-pulse/2026-q2/2026-w24/",
+      "destination": "https://docs.intunemacadmins.com/community-pulse/2026-w24",
+      "permanent": true
+    },
+    {
+      "source": "/community/community_resources/",
+      "destination": "https://docs.intunemacadmins.com/community/community-resources",
+      "permanent": true
+    },
+    {
+      "source": "/community/community_tools/",
+      "destination": "https://docs.intunemacadmins.com/community/community-tools",
+      "permanent": true
+    },
+    {
+      "source": "/community/esp_for_macos_swift_dialog/",
+      "destination": "https://docs.intunemacadmins.com/community/esp-for-macos-swift-dialog",
+      "permanent": true
+    },
+    {
+      "source": "/complete-guide-macos-deployment/",
+      "destination": "https://docs.intunemacadmins.com/complete-guide-macos-deployment/complete-guide-macos-deployment",
+      "permanent": true
+    },
+    {
+      "source": "/complete-guide-macos-deployment/add_a_device_to_apple_business_manager/",
+      "destination": "https://docs.intunemacadmins.com/complete-guide-macos-deployment/add-a-device-to-apple-business-manager",
+      "permanent": true
+    },
+    {
+      "source": "/complete-guide-macos-deployment/apple_business_manager/",
+      "destination": "https://docs.intunemacadmins.com/complete-guide-macos-deployment/apple-business-manager",
+      "permanent": true
+    },
+    {
+      "source": "/complete-guide-macos-deployment/configure_macos_platform_sso/",
+      "destination": "https://docs.intunemacadmins.com/complete-guide-macos-deployment/configure-macos-platform-sso",
+      "permanent": true
+    },
+    {
+      "source": "/complete-guide-macos-deployment/declarative_device_management/",
+      "destination": "https://docs.intunemacadmins.com/complete-guide-macos-deployment/declarative-device-management",
+      "permanent": true
+    },
+    {
+      "source": "/complete-guide-macos-deployment/enable_filevault_during_the-setup_assistant/",
+      "destination": "https://docs.intunemacadmins.com/complete-guide-macos-deployment/enable-filevault-during-the-setup-assistant",
+      "permanent": true
+    },
+    {
+      "source": "/complete-guide-macos-deployment/enroll_macos_in_microsoft_defender/",
+      "destination": "https://docs.intunemacadmins.com/complete-guide-macos-deployment/enroll-macos-in-microsoft-defender",
+      "permanent": true
+    },
+    {
+      "source": "/complete-guide-macos-deployment/install_the_company_portal_app_for_macos_as_a_macos_lob_app/",
+      "destination": "https://docs.intunemacadmins.com/complete-guide-macos-deployment/install-the-company-portal-app-for-macos-as-a-macos-lob-app",
+      "permanent": true
+    },
+    {
+      "source": "/complete-guide-macos-deployment/integrate_apple_business_manager_with_intune/",
+      "destination": "https://docs.intunemacadmins.com/complete-guide-macos-deployment/integrate-apple-business-manager-with-intune",
+      "permanent": true
+    },
+    {
+      "source": "/complete-guide-macos-deployment/rapid_security_response/",
+      "destination": "https://docs.intunemacadmins.com/complete-guide-macos-deployment/rapid-security-response",
+      "permanent": true
+    },
+    {
+      "source": "/complete-guide-macos-deployment/user_experience_on_a_macos_device/",
+      "destination": "https://docs.intunemacadmins.com/complete-guide-macos-deployment/user-experience-on-a-macos-device",
+      "permanent": true
+    },
+    {
+      "source": "/custom-attributes/",
+      "destination": "https://docs.intunemacadmins.com/custom-attributes/custom-attributes",
+      "permanent": true
+    },
+    {
+      "source": "/custom-attributes/create_custom_attributes/",
+      "destination": "https://docs.intunemacadmins.com/custom-attributes/create-custom-attributes",
+      "permanent": true
+    },
+    {
+      "source": "/custom-attributes/insights/",
+      "destination": "https://docs.intunemacadmins.com/custom-attributes/insights",
+      "permanent": true
+    },
+    {
+      "source": "/custom-attributes/what_are_custom_attributes/",
+      "destination": "https://docs.intunemacadmins.com/custom-attributes/what-are-custom-attributes",
+      "permanent": true
+    },
+    {
+      "source": "/declarative-device-management/",
+      "destination": "https://docs.intunemacadmins.com/declarative-device-management-ddm/declarative-device-management",
+      "permanent": true
+    },
+    {
+      "source": "/declarative-device-management/configure_declarative_device_management/",
+      "destination": "https://docs.intunemacadmins.com/declarative-device-management-ddm/configure-declarative-device-management",
+      "permanent": true
+    },
+    {
+      "source": "/declarative-device-management/insights/",
+      "destination": "https://docs.intunemacadmins.com/declarative-device-management-ddm/insights",
+      "permanent": true
+    },
+    {
+      "source": "/declarative-device-management/what_is_declarative_device_management/",
+      "destination": "https://docs.intunemacadmins.com/declarative-device-management-ddm/what-is-declarative-device-management",
+      "permanent": true
+    },
+    {
+      "source": "/deploy-files/",
+      "destination": "https://docs.intunemacadmins.com/deploy-files-on-a-mac/deploy-files",
+      "permanent": true
+    },
+    {
+      "source": "/deploy-files/how_to_deploy_files/",
+      "destination": "https://docs.intunemacadmins.com/deploy-files-on-a-mac/how-to-deploy-files",
+      "permanent": true
+    },
+    {
+      "source": "/deploy-files/insights/",
+      "destination": "https://docs.intunemacadmins.com/deploy-files-on-a-mac/insights",
+      "permanent": true
+    },
+    {
+      "source": "/filevault/",
+      "destination": "https://docs.intunemacadmins.com/filevault/filevault",
+      "permanent": true
+    },
+    {
+      "source": "/filevault/enable_filevault_in_setup_assistant/",
+      "destination": "https://docs.intunemacadmins.com/filevault/enable-filevault-in-setup-assistant",
+      "permanent": true
+    },
+    {
+      "source": "/filevault/insights/",
+      "destination": "https://docs.intunemacadmins.com/filevault/insights",
+      "permanent": true
+    },
+    {
+      "source": "/filevault/what_is_filevault/",
+      "destination": "https://docs.intunemacadmins.com/filevault/what-is-filevault",
+      "permanent": true
+    },
+    {
+      "source": "/frequently-asked-questions/faq/",
+      "destination": "https://docs.intunemacadmins.com/frequently-asked-questions/faq",
+      "permanent": true
+    },
+    {
+      "source": "/home/changelog/",
+      "destination": "https://docs.intunemacadmins.com/home/changelog",
+      "permanent": true
+    },
+    {
+      "source": "/home/contributors/",
+      "destination": "https://docs.intunemacadmins.com/home/contributors",
+      "permanent": true
+    },
+    {
+      "source": "/home/feedback/",
+      "destination": "https://docs.intunemacadmins.com/home/feedback",
+      "permanent": true
+    },
+    {
+      "source": "/home/getting_started/",
+      "destination": "https://docs.intunemacadmins.com/home/getting-started",
+      "permanent": true
+    },
+    {
+      "source": "/home/how_to_contribute/",
+      "destination": "https://docs.intunemacadmins.com/home/how-to-contribute",
+      "permanent": true
+    },
+    {
+      "source": "/home/whats_new/",
+      "destination": "https://docs.intunemacadmins.com/home/whats-new",
+      "permanent": true
+    },
+    {
+      "source": "/intune-getting-started-guide/",
+      "destination": "https://docs.intunemacadmins.com/intune-getting-started-guide/intune-getting-started-guide",
+      "permanent": true
+    },
+    {
+      "source": "/intune-getting-started-guide/basic_tenant_setup/",
+      "destination": "https://docs.intunemacadmins.com/intune-getting-started-guide/basic-tenant-setup",
+      "permanent": true
+    },
+    {
+      "source": "/intune-getting-started-guide/prerequisites/",
+      "destination": "https://docs.intunemacadmins.com/intune-getting-started-guide/prerequisites",
+      "permanent": true
+    },
+    {
+      "source": "/onedrive-known-folder-move-kfm/",
+      "destination": "https://docs.intunemacadmins.com/onedrive-known-folder-move-kfm/onedrive-known-folder-move-kfm",
+      "permanent": true
+    },
+    {
+      "source": "/onedrive-known-folder-move-kfm/configure_kfm/",
+      "destination": "https://docs.intunemacadmins.com/onedrive-known-folder-move-kfm/configure-kfm",
+      "permanent": true
+    },
+    {
+      "source": "/onedrive-known-folder-move-kfm/insights/",
+      "destination": "https://docs.intunemacadmins.com/onedrive-known-folder-move-kfm/insights",
+      "permanent": true
+    },
+    {
+      "source": "/onedrive-known-folder-move-kfm/what_is_onedrive_kfm/",
+      "destination": "https://docs.intunemacadmins.com/onedrive-known-folder-move-kfm/what-is-onedrive-kfm",
+      "permanent": true
+    },
+    {
+      "source": "/platform-single-sign-on/",
+      "destination": "https://docs.intunemacadmins.com/platform-single-sign-on-psso/platform-single-sign-on",
+      "permanent": true
+    },
+    {
+      "source": "/platform-single-sign-on/browser_sso/",
+      "destination": "https://docs.intunemacadmins.com/platform-single-sign-on-psso/browser-sso",
+      "permanent": true
+    },
+    {
+      "source": "/platform-single-sign-on/configure_psso/",
+      "destination": "https://docs.intunemacadmins.com/platform-single-sign-on-psso/configure-psso",
+      "permanent": true
+    },
+    {
+      "source": "/platform-single-sign-on/insights_psso/",
+      "destination": "https://docs.intunemacadmins.com/platform-single-sign-on-psso/insights-psso",
+      "permanent": true
+    },
+    {
+      "source": "/platform-single-sign-on/what_is_psso/",
+      "destination": "https://docs.intunemacadmins.com/platform-single-sign-on-psso/what-is-psso",
+      "permanent": true
+    },
+    {
+      "source": "/snippets/",
+      "destination": "https://docs.intunemacadmins.com/snippets/snippets",
+      "permanent": true
+    },
+    {
+      "source": "/snippets/packaging/",
+      "destination": "https://docs.intunemacadmins.com/snippets/packaging",
+      "permanent": true
+    },
+    {
+      "source": "/snippets/shortcuts/",
+      "destination": "https://docs.intunemacadmins.com/snippets/shortcuts",
+      "permanent": true
+    },
+    {
+      "source": "/troubleshooting/",
+      "destination": "https://docs.intunemacadmins.com/troubleshooting-guides/troubleshooting",
+      "permanent": true
+    },
+    {
+      "source": "/troubleshooting/enrollment_error/",
+      "destination": "https://docs.intunemacadmins.com/troubleshooting-guides/enrollment-error",
+      "permanent": true
+    },
+    {
+      "source": "/updating-microsoft-apps/",
+      "destination": "https://docs.intunemacadmins.com/updating-microsoft-apps/updating-microsoft-apps",
+      "permanent": true
+    },
+    {
+      "source": "/updating-microsoft-apps/how_to_update_microsoft_apps/",
+      "destination": "https://docs.intunemacadmins.com/updating-microsoft-apps/how-to-update-microsoft-apps",
+      "permanent": true
+    },
+    {
+      "source": "/updating-microsoft-apps/insights/",
+      "destination": "https://docs.intunemacadmins.com/updating-microsoft-apps/insights",
+      "permanent": true
+    },
+    {
+      "source": "/updating-microsoft-apps/microsoft_auto_update/",
+      "destination": "https://docs.intunemacadmins.com/updating-microsoft-apps/microsoft-auto-update",
+      "permanent": true
+    }
+  ]
 }

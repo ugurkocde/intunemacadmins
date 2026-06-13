@@ -4,6 +4,7 @@
 import assert from "node:assert/strict";
 import { checkPastDeadlines } from "./checks/dates";
 import { checkDrift, type DriftClient } from "./drift/drift";
+import { applyEdits } from "./edit/apply";
 import {
   checkDeadLinks,
   extractAuthoritativeLinks,
@@ -27,7 +28,14 @@ function fail(msg: string): never {
 }
 
 function page(body: string, frontmatter: Record<string, unknown> = {}): DocPage {
-  return { path: "test/page.mdx", frontmatter, title: "Test", body, bodyStartLine: 5 };
+  return {
+    path: "test/page.mdx",
+    frontmatter,
+    title: "Test",
+    body,
+    bodyStartLine: 5,
+    frontmatterRaw: "---\ntitle: Test\n---\n",
+  };
 }
 
 const NOW = new Date("2026-06-13T00:00:00Z");
@@ -221,6 +229,13 @@ await (async () => {
                 claim: "The recovery key rotation is 12 months",
                 discrepancy: "The page value is not consistent with the source, which now states 6 months.",
               }, // genuine contradiction phrased with "not consistent" - must survive
+              {
+                severity: "high" as const,
+                claim: "Requires macOS 13",
+                discrepancy: "The page says macOS 13 but the source now requires macOS 14.",
+                oldText: "Team Identifier",
+                newText: "Team ID",
+              }, // verbatim old/new -> routed to editCandidates, not findings
             ],
           },
         }),
@@ -243,6 +258,10 @@ await (async () => {
     assert.equal(r.findings[0].evidence, "Team Identifier UBF8T346G9");
     // The "not consistent with" contradiction is kept (not over-filtered).
     assert.match(r.findings[1].message, /not consistent with the source/);
+    // A finding with verbatim oldText/newText is routed to editCandidates.
+    assert.equal(r.editCandidates.length, 1);
+    assert.equal(r.editCandidates[0].oldText, "Team Identifier");
+    assert.equal(r.editCandidates[0].newText, "Team ID");
 
     // Fetch failure -> skipped, not thrown, no finding.
     const badFetch = (async () => new Response("nope", { status: 404 })) as unknown as typeof fetch;
@@ -255,6 +274,51 @@ await (async () => {
     const r3 = await checkDrift([unsourced], { client, fetchImpl: okFetch });
     assert.equal(r3.pagesChecked, 0);
     assert.equal(r3.findings.length, 0);
+  });
+
+  describe("applyEdits: unique match applies; non-match/ambiguous rejected; frontmatter safe", () => {
+    const p: DocPage = {
+      path: "a.mdx",
+      frontmatter: {},
+      title: "A",
+      body: "Requires macOS 13 and newer.\nSee macOS 13 notes.",
+      bodyStartLine: 1,
+      frontmatterRaw: "---\ntitle: A\n---\n",
+    };
+    const cand = (oldText: string, newText: string) => ({
+      path: "a.mdx",
+      severity: "high" as const,
+      oldText,
+      newText,
+      discrepancy: "macOS 13 -> 14",
+      source: "https://learn.microsoft.com/x",
+    });
+
+    // Unique match -> applied; file is frontmatter + edited body.
+    const r1 = applyEdits([p], [cand("Requires macOS 13 and newer.", "Requires macOS 14 and newer.")]);
+    assert.equal(r1.applied.length, 1);
+    assert.equal(r1.rejected.length, 0);
+    assert.equal(
+      r1.files.get("a.mdx"),
+      "---\ntitle: A\n---\nRequires macOS 14 and newer.\nSee macOS 13 notes.",
+    );
+
+    // Not found verbatim -> rejected, no file written.
+    const r2 = applyEdits([p], [cand("nonexistent text", "x")]);
+    assert.equal(r2.applied.length, 0);
+    assert.equal(r2.rejected.length, 1);
+    assert.equal(r2.files.size, 0);
+
+    // Ambiguous ("macOS 13" appears twice) -> rejected, never force-applied.
+    const r3 = applyEdits([p], [cand("macOS 13", "macOS 14")]);
+    assert.equal(r3.applied.length, 0);
+    assert.equal(r3.rejected.length, 1);
+    assert.match(r3.rejected[0].message, /not unique/);
+
+    // Frontmatter is never touched: text only in frontmatter has no body match.
+    const r4 = applyEdits([p], [cand("title: A", "title: B")]);
+    assert.equal(r4.applied.length, 0);
+    assert.equal(r4.rejected.length, 1);
   });
 })();
 

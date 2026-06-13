@@ -27,6 +27,31 @@ export interface DocPage {
   // 1-based line number in the original file where the body starts, so finding
   // line numbers map back to the real file.
   bodyStartLine: number;
+  // Verbatim frontmatter block (including both --- fences and trailing newline),
+  // so an edited file can be rewritten as frontmatterRaw + edited body without
+  // re-serializing (and mangling) the frontmatter. Empty if no frontmatter.
+  frontmatterRaw: string;
+}
+
+// A model-proposed correction to a page: replace an exact verbatim snippet with
+// a corrected one, grounded in the current upstream source.
+export interface EditCandidate {
+  path: string;
+  severity: Severity;
+  oldText: string; // exact verbatim substring of the page body to replace
+  newText: string; // corrected replacement
+  discrepancy: string; // what the current source says (for the PR body)
+  source: string; // upstream URL the correction is grounded in
+}
+
+// An edit that was actually applied to a file.
+export interface AppliedEdit {
+  path: string;
+  severity: Severity;
+  oldText: string;
+  newText: string;
+  discrepancy: string;
+  source: string;
 }
 
 export interface FreshnessReport {

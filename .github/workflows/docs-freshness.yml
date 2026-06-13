@@ -4,9 +4,15 @@ on:
   schedule:
     - cron: "0 7 1 * *" # first of each month, 07:00 UTC
   workflow_dispatch:
+    inputs:
+      drift_page:
+        description: "Only drift-check pages whose path contains this substring (targeted test run). Blank = all sourced pages."
+        type: string
+        default: ""
 
 permissions:
-  contents: read
+  contents: write
+  pull-requests: write
   issues: write
 
 concurrency:
@@ -16,7 +22,7 @@ concurrency:
 jobs:
   scan:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
@@ -32,13 +38,16 @@ jobs:
       - name: Freshness self-test
         run: npm run freshness:selftest
 
-      - name: Scan docs
+      - name: Scan docs and draft corrections
         env:
-          # Enables the LLM ground-truth drift check on pages that declare
-          # `sources`. If the secret is unset, the run still works and drift is
-          # skipped with a note (deterministic checks need no key).
+          # Enables drift + AI-drafted edits on pages that declare `sources`.
+          # If unset, the run is deterministic-only and drift is skipped.
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: npm run freshness
+          DRIFT_PAGE: ${{ github.event.inputs.drift_page }}
+        run: |
+          args=(--apply-edits)
+          [ -n "$DRIFT_PAGE" ] && args+=(--drift-page="$DRIFT_PAGE")
+          npm run freshness -- "${args[@]}"
 
       - name: Write run summary
         if: ${{ always() }}
@@ -47,6 +56,26 @@ jobs:
             cat .cache/freshness-report.md >> "$GITHUB_STEP_SUMMARY"
           fi
 
+      # Drafted corrections to existing pages (only created when edits were
+      # applied) -> a PR you review and merge. Never auto-merged.
+      - name: Open docs-correction PR
+        if: ${{ hashFiles('.cache/edits-pr-body.md') != '' }}
+        uses: peter-evans/create-pull-request@v7
+        with:
+          add-paths: |
+            src/content/docs/**
+          branch: docs-freshness/updates
+          delete-branch: true
+          commit-message: Update docs to match current Microsoft/Apple documentation
+          title: Docs corrections from upstream drift
+          body-path: .cache/edits-pr-body.md
+          labels: docs-freshness
+          assignees: ugurkocde
+          reviewers: ugurkocde
+
+      # Everything that isn't a clean auto-edit (overdue review, expired dates,
+      # outdated macOS recommendations, broken links, and drift that couldn't be
+      # applied verbatim) -> one rolling issue.
       - name: Sync the freshness issue
         env:
           GH_TOKEN: ${{ github.token }}
@@ -60,7 +89,6 @@ jobs:
             --search "in:title \"$TITLE\"" --json number --jq '.[0].number // empty')
 
           if [ "$count" -gt 0 ]; then
-            # Keep one rolling issue, body refreshed each run (editing does not spam notifications).
             if [ -n "$existing" ]; then
               gh issue edit "$existing" --body-file .cache/freshness-report.md
               gh issue edit "$existing" --add-assignee ugurkocde || true
@@ -69,7 +97,6 @@ jobs:
                 --assignee ugurkocde --body-file .cache/freshness-report.md
             fi
           elif [ -n "$existing" ]; then
-            # Everything verified - close it out.
             gh issue comment "$existing" --body-file .cache/freshness-report.md
             gh issue close "$existing" --comment "All documentation pages are within the review window with no outstanding freshness findings."
           fi

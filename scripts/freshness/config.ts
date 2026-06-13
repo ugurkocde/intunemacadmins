@@ -39,3 +39,5 @@ export const HTTP_TIMEOUT_MS = 15_000;
 
 export const REPORT_JSON = ".cache/freshness-report.json";
 export const REPORT_MD = ".cache/freshness-report.md";
+export const EDITS_PR_BODY = ".cache/edits-pr-body.md";
+export const EDITS_JSON = ".cache/edits.json";

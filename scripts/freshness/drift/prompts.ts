@@ -39,7 +39,7 @@ You receive a list of proposed corrections (each with the page's original statem
 
 For each correction, decide whether the source CLEARLY and DIRECTLY supports replacing the original statement with the proposed one. Set supported=false - and say why in one short sentence - if any of these hold:
 - The source does not directly state the new fact.
-- Scope mismatch: the source's statement is about a narrower, broader, or different thing than the page's statement (for example, the page makes a general statement about a feature, but the source fact is only about one specific sub-case of it). This is the most important failure to catch.
+- Scope mismatch: the source's statement is about a narrower, broader, or different thing than the page's statement. This is the most important failure to catch. Watch for scope qualifiers in the source sentence - phrases like "for Software Update", "when configuring X", "for supervised devices", "this setting" - that limit the fact to a sub-case the page statement does not share. If the source fact carries such a qualifier and the page statement is general (no qualifier), reject. Worked example to REJECT: page says "DDM necessitates devices running at least macOS 13" (a general statement about the DDM framework), but the source only says "The configuration of Software Update ... requires ... macOS 14" (qualified to software updates) - these are different claims, so the proposed macOS 14 change is not supported for the general sentence.
 - The replacement changes meaning beyond fixing the stale fact, or introduces a claim the source doesn't make.
 - You are not confident, or the support is only indirect or inferred.
 

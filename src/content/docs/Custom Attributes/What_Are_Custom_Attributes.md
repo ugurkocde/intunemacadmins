@@ -3,6 +3,8 @@ title: What are Custom Attributes?
 description: Learn about custom attributes in macOS management, their benefits, and how they enhance device configuration, reporting, and automation in Intune.
 sidebar:
   order: 1
+sources:
+  - https://learn.microsoft.com/intune/device-management/tools/run-shell-scripts-macos
 ---
 ## What are Custom Attributes in macOS?
 

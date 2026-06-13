@@ -17,7 +17,9 @@
     "pipeline:fetch": "tsx scripts/pipeline/run.ts fetch",
     "pipeline:llm": "tsx scripts/pipeline/run.ts llm",
     "pipeline:render": "tsx scripts/pipeline/run.ts render",
-    "pipeline:selftest": "tsx scripts/pipeline/selftest.ts"
+    "pipeline:selftest": "tsx scripts/pipeline/selftest.ts",
+    "freshness": "tsx scripts/freshness/run.ts",
+    "freshness:selftest": "tsx scripts/freshness/selftest.ts"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.40.0",
@@ -33,6 +35,7 @@
     "@iconify-json/ri": "^1.2.10",
     "fast-xml-parser": "^5.8.0",
     "tsx": "^4.22.4",
+    "yaml": "^2.9.0",
     "zod": "^4.4.3"
   }
 }

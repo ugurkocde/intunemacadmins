@@ -3,6 +3,8 @@ title: What is Await Final Configuration?
 description: Explore the 'Await Final Configuration' state in Apple Device Management for secure, compliant, and user-friendly device deployment.
 sidebar:
   order: 1
+sources:
+  - https://learn.microsoft.com/intune/device-enrollment/apple/setup-automated-macos
 ---
 
 In the realm of Apple device management, particularly in enterprise environments, managing the configuration and deployment of devices is crucial. One of the key features to facilitate this is the “Await Final Configuration” state, which ensures that devices are properly configured before they are fully operational. This post delves into the concept of “Await Final Configuration,” its significance, and how to release a device from this state.

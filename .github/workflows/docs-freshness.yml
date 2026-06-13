@@ -1,0 +1,75 @@
+name: Docs freshness
+
+on:
+  schedule:
+    - cron: "0 7 1 * *" # first of each month, 07:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: docs-freshness
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # full history so review-age can read git last-modified dates
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Freshness self-test
+        run: npm run freshness:selftest
+
+      - name: Scan docs
+        env:
+          # Enables the LLM ground-truth drift check on pages that declare
+          # `sources`. If the secret is unset, the run still works and drift is
+          # skipped with a note (deterministic checks need no key).
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: npm run freshness
+
+      - name: Write run summary
+        if: ${{ always() }}
+        run: |
+          if [ -f .cache/freshness-report.md ]; then
+            cat .cache/freshness-report.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Sync the freshness issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TITLE: "Docs freshness report"
+        run: |
+          set -euo pipefail
+          gh label create docs-freshness --description "Automated docs freshness" --color 0E8A16 --force
+
+          count=$(jq '.findings | length' .cache/freshness-report.json)
+          existing=$(gh issue list --label docs-freshness --state open \
+            --search "in:title \"$TITLE\"" --json number --jq '.[0].number // empty')
+
+          if [ "$count" -gt 0 ]; then
+            # Keep one rolling issue, body refreshed each run (editing does not spam notifications).
+            if [ -n "$existing" ]; then
+              gh issue edit "$existing" --body-file .cache/freshness-report.md
+              gh issue edit "$existing" --add-assignee ugurkocde || true
+            else
+              gh issue create --title "$TITLE" --label docs-freshness \
+                --assignee ugurkocde --body-file .cache/freshness-report.md
+            fi
+          elif [ -n "$existing" ]; then
+            # Everything verified - close it out.
+            gh issue comment "$existing" --body-file .cache/freshness-report.md
+            gh issue close "$existing" --comment "All documentation pages are within the review window with no outstanding freshness findings."
+          fi

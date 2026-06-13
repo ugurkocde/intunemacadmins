@@ -3,6 +3,8 @@ title: What is Declarative Device Management?
 description: Learn about Declarative Device Management (DDM), its benefits, and how it works on macOS devices.
 sidebar:
   order: 1
+sources:
+  - https://learn.microsoft.com/intune/device-updates/apple/
 ---
 *Declarative Device Management (DDM)* is a revolutionary approach to managing mobile devices that empowers them to be autonomous and proactive. One of the key advantages of DDM is improved performance and scalability. By enabling devices to operate autonomously, devices can proactively perform tasks, make decisions, and adjust configurations based on predefined rules. This not only increases efficiency but also allows for faster response times, especially in large-scale deployments.
 

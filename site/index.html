@@ -34,6 +34,40 @@
       src="https://plausible.io/js/script.js"
     ></script>
 
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://intunemacadmins.com/#organization",
+            "name": "IntuneMacAdmins",
+            "url": "https://intunemacadmins.com/",
+            "logo": "https://intunemacadmins.com/logo.png",
+            "description": "Community guides, tools, and best practices for managing macOS devices with Microsoft Intune.",
+            "sameAs": ["https://github.com/ugurkocde/IntuneMacAdmins"],
+            "founder": {
+              "@type": "Person",
+              "name": "Ugur Koc",
+              "url": "https://ugurkoc.de",
+              "sameAs": [
+                "https://x.com/UgurKocDe",
+                "https://www.linkedin.com/in/ugurkocde/",
+                "https://github.com/ugurkocde"
+              ]
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://intunemacadmins.com/#website",
+            "name": "IntuneMacAdmins",
+            "url": "https://intunemacadmins.com/",
+            "publisher": { "@id": "https://intunemacadmins.com/#organization" }
+          }
+        ]
+      }
+    </script>
+
     <style>
       :root {
         --bg: #0b0e14;

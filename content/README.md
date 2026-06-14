@@ -10,6 +10,14 @@ A community hub for sharing and learning from real-world macOS experiences — g
 New here? Start with the [Getting Started guide](home/getting-started.md), or jump straight to the [Baseline Settings](baselinesettings/import.md) to configure your tenant fast.
 {% endhint %}
 
+## Our Sponsors ❤️
+
+A big thank you to our sponsor for supporting the community and helping keep these resources free.
+
+[![Devote](.gitbook/assets/devote_logo.jpg)](https://www.devote.com)
+
+[Visit Devote →](https://www.devote.com)
+
 ## Get started
 
 ### Chat with the Copilot
@@ -37,14 +45,6 @@ Quickly manage your macOS devices with curated settings from the Open Intune Bas
 - [Microsoft Mac Admins Group on LinkedIn](https://www.linkedin.com/groups/13007354/)
 - [Mac Admins Slack](https://join.slack.com/t/macadmins/shared_invite/zt-2li6s6akl-ZaR7ZVwg6Tj~8XPSUgFQ~Q)
 - [Mac Admins Software](https://macadmins.software/)
-
-## Our Sponsors ❤️
-
-A big thank you to our sponsor for supporting the community and helping keep these resources free.
-
-<a href="https://www.devote.com" target="_blank" rel="noopener noreferrer"><img src=".gitbook/assets/devote_logo.jpg" alt="Devote" width="180"></a>
-
-[Visit Devote →](https://www.devote.com)
 
 ---
 

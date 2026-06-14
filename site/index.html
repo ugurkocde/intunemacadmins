@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#06080d" />
+    <meta name="theme-color" content="#f4efe4" />
     <title>IntuneMacAdmins — Community guides for managing macOS with Microsoft Intune</title>
     <meta
       name="description"
@@ -34,7 +34,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
     />
 
     <script
@@ -92,154 +92,104 @@
 
     <style>
       :root {
-        --bg-deep: #06080d;
-        --bg: #0a0d14;
-        --surface: rgba(255, 255, 255, 0.026);
-        --surface-2: rgba(255, 255, 255, 0.045);
-        --fg: #eef2f8;
-        --fg-2: #c5cedb;
-        --muted: #8b95a8;
-        --muted-2: #767f92;
-        --accent: #5b9bff;
-        --accent-2: #6f6bff;
-        --accent-teal: #3fd0c9;
-        --border: rgba(255, 255, 255, 0.08);
-        --border-2: rgba(255, 255, 255, 0.14);
-        --radius: 16px;
-        --radius-lg: 22px;
+        --paper: #f4efe4;
+        --paper-2: #efe7d7;
+        --paper-3: #e9e0cd;
+        --ink: #1c1a15;
+        --ink-2: #454134;
+        --muted: #635d4b;
+        --accent: #c0392b;        /* annotation vermilion — fills, rules, display */
+        --accent-ink: #a32d1d;    /* accent for small text (AA contrast on paper) */
+        --rule: rgba(28, 26, 21, 0.13);
+        --rule-2: rgba(28, 26, 21, 0.28);
+        --radius: 10px;
         --ease: cubic-bezier(0.16, 1, 0.3, 1);
-        --maxw: 1120px;
+        --maxw: 1180px;
         --font-sans: "Hanken Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI",
           Roboto, Helvetica, Arial, sans-serif;
+        --font-serif: "Fraunces", Georgia, "Times New Roman", serif;
         --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
       }
 
       * { box-sizing: border-box; }
-      html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; color-scheme: dark; }
-      @media (prefers-reduced-motion: reduce) {
-        html { scroll-behavior: auto; }
-      }
+      html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; color-scheme: light; }
+      @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
       body {
         margin: 0;
         font-family: var(--font-sans);
-        color: var(--fg);
-        background: var(--bg-deep);
+        color: var(--ink);
+        background-color: var(--paper);
+        background-image: radial-gradient(rgba(28, 26, 21, 0.05) 1px, transparent 1px);
+        background-size: 26px 26px;
         line-height: 1.6;
         -webkit-font-smoothing: antialiased;
         text-rendering: optimizeLegibility;
         overflow-x: hidden;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: rgba(192, 57, 43, 0.18);
       }
 
-      /* Atmosphere */
-      .bg {
-        position: fixed;
-        inset: 0;
-        z-index: -1;
-        background:
-          radial-gradient(1100px 620px at 50% -8%, rgba(91, 155, 255, 0.16), transparent 62%),
-          radial-gradient(900px 600px at 88% 8%, rgba(111, 107, 255, 0.12), transparent 58%),
-          radial-gradient(1000px 700px at 8% 92%, rgba(63, 208, 201, 0.07), transparent 60%),
-          var(--bg-deep);
-      }
-      .bg::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background-image:
-          linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
-        background-size: 56px 56px;
-        -webkit-mask-image: radial-gradient(900px 700px at 50% 0%, #000 0%, transparent 78%);
-        mask-image: radial-gradient(900px 700px at 50% 0%, #000 0%, transparent 78%);
-      }
-
-      a { color: inherit; }
-      h1, h2 { text-wrap: balance; }
+      a { color: inherit; text-decoration: none; }
       img { display: block; max-width: 100%; }
-      ::selection { background: rgba(91, 155, 255, 0.32); color: #fff; }
+      ::selection { background: rgba(192, 57, 43, 0.22); color: var(--ink); }
+
+      h1, h2, h3 {
+        font-family: var(--font-serif);
+        font-weight: 500;
+        letter-spacing: -0.015em;
+        text-wrap: balance;
+        margin: 0;
+      }
+      h1 em, h2 em, h3 em { font-style: italic; color: var(--accent); }
 
       .skip {
-        position: fixed;
-        left: 16px;
-        top: -64px;
-        z-index: 100;
-        background: var(--accent);
-        color: #fff;
-        font-weight: 600;
-        font-size: 0.9rem;
-        padding: 10px 16px;
-        border-radius: 10px;
-        text-decoration: none;
+        position: fixed; left: 16px; top: -64px; z-index: 100;
+        background: var(--ink); color: var(--paper);
+        font-weight: 600; font-size: 0.9rem; padding: 10px 16px;
+        border-radius: 8px; text-decoration: none;
         transition: top 0.2s var(--ease);
       }
-      .skip:focus { top: 12px; outline: 2px solid #fff; outline-offset: 2px; }
+      .skip:focus { top: 12px; outline: 2px solid var(--accent); outline-offset: 2px; }
       @media (prefers-reduced-motion: reduce) { .skip { transition: none; } }
 
       .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
 
-      /* Mono labels */
-      .kicker {
+      /* Mono eyebrow */
+      .eyebrow {
         font-family: var(--font-mono);
-        font-size: 0.72rem;
+        font-size: 0.74rem;
         font-weight: 600;
-        letter-spacing: 0.14em;
+        letter-spacing: 0.18em;
         text-transform: uppercase;
-        color: var(--accent);
+        color: var(--accent-ink);
         display: inline-flex;
         align-items: center;
-        gap: 0.6em;
+        gap: 0.85em;
         margin: 0;
       }
-      .kicker::before {
-        content: "";
-        width: 14px;
-        height: 1px;
-        background: linear-gradient(90deg, var(--accent), transparent);
-      }
+      .eyebrow::before { content: ""; width: 26px; height: 1px; background: var(--accent); }
+      .eyebrow .dim { color: var(--muted); }
+      .eyebrow.center { justify-content: center; }
+      .eyebrow.center::before { display: none; }
 
       /* ---------- Nav ---------- */
       header.nav {
-        position: sticky;
-        top: 0;
-        z-index: 50;
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
-        background: rgba(8, 10, 16, 0.55);
-        border-bottom: 1px solid transparent;
-        transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
+        position: sticky; top: 0; z-index: 50;
+        background: rgba(244, 239, 228, 0.86);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--ink);
       }
-      header.nav.scrolled {
-        border-bottom-color: var(--border);
-        background: rgba(8, 10, 16, 0.82);
-      }
-      .nav-inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 64px;
-      }
+      .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 66px; }
       .wordmark {
-        font-family: var(--font-mono);
-        font-weight: 600;
-        font-size: 0.96rem;
-        letter-spacing: -0.01em;
-        text-decoration: none;
-        color: var(--fg);
-        display: inline-flex;
-        align-items: baseline;
-        gap: 0.05em;
-        white-space: nowrap;
+        font-family: var(--font-mono); font-weight: 600; font-size: 0.95rem;
+        letter-spacing: -0.01em; color: var(--ink);
+        display: inline-flex; align-items: baseline; white-space: nowrap;
       }
-      .wordmark .prompt { color: var(--accent); margin-right: 0.15em; }
-      .wordmark .dim { color: var(--muted); }
+      .wordmark .prompt { color: var(--accent); margin-right: 0.18em; }
       .wordmark .cursor {
-        display: inline-block;
-        width: 0.55em;
-        height: 1.05em;
-        margin-left: 0.12em;
-        transform: translateY(0.13em);
-        background: var(--accent);
-        border-radius: 1px;
+        display: inline-block; width: 0.5em; height: 1em; margin-left: 0.1em;
+        transform: translateY(0.13em); background: var(--accent);
         animation: blink 1.2s steps(1) infinite;
       }
       @keyframes blink { 0%, 50% { opacity: 1; } 50.01%, 100% { opacity: 0; } }
@@ -247,385 +197,275 @@
 
       nav.links { display: flex; align-items: center; gap: 4px; }
       nav.links a.navlink {
-        font-size: 0.92rem;
-        font-weight: 500;
-        color: var(--fg-2);
-        text-decoration: none;
-        padding: 8px 12px;
-        border-radius: 9px;
+        font-family: var(--font-mono);
+        font-size: 0.76rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+        color: var(--ink-2); padding: 8px 12px; border-radius: 7px;
         transition: color 0.16s var(--ease), background 0.16s var(--ease);
-        display: inline-flex;
-        align-items: center;
-        gap: 0.45em;
+        display: inline-flex; align-items: center; gap: 0.5em;
       }
-      nav.links a.navlink:hover { color: var(--fg); background: var(--surface-2); }
-      nav.links a.navlink svg { width: 16px; height: 16px; }
+      nav.links a.navlink:hover { color: var(--ink); background: var(--paper-2); }
+      nav.links a.navlink svg { width: 15px; height: 15px; }
       .nav-cta {
-        margin-left: 8px;
-        font-size: 0.9rem;
-        font-weight: 600;
-        text-decoration: none;
-        color: #fff;
-        padding: 9px 16px;
-        border-radius: 10px;
-        background: linear-gradient(135deg, var(--accent), var(--accent-2));
-        box-shadow: 0 6px 18px rgba(91, 116, 255, 0.28);
-        transition: transform 0.16s var(--ease), box-shadow 0.16s var(--ease);
-        white-space: nowrap;
+        margin-left: 10px; font-family: var(--font-mono);
+        font-size: 0.76rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+        color: var(--paper); padding: 10px 16px; border-radius: 7px;
+        background: var(--ink); white-space: nowrap;
+        transition: background 0.16s var(--ease);
       }
-      .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 10px 26px rgba(91, 116, 255, 0.4); }
-      .hide-mobile { display: none; }
+      .nav-cta:hover { background: #000; }
       nav.links a.navlink.hide-mobile { display: none; }
 
       /* ---------- Buttons ---------- */
       .btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.55em;
-        font-size: 1rem;
-        font-weight: 600;
-        font-family: var(--font-sans);
-        text-decoration: none;
-        padding: 14px 26px;
-        border-radius: 13px;
-        border: 1px solid transparent;
-        cursor: pointer;
-        transition: transform 0.16s var(--ease), box-shadow 0.16s var(--ease),
-          background 0.16s var(--ease), border-color 0.16s var(--ease);
+        display: inline-flex; align-items: center; gap: 0.55em;
+        font-family: var(--font-sans); font-size: 1rem; font-weight: 600;
+        text-decoration: none; cursor: pointer;
+        transition: transform 0.16s var(--ease), background 0.16s var(--ease),
+          border-color 0.16s var(--ease), color 0.16s var(--ease);
       }
       .btn .arrow { transition: transform 0.18s var(--ease); }
       .btn:hover .arrow { transform: translateX(4px); }
       .btn-primary {
-        color: #fff;
-        background: linear-gradient(135deg, var(--accent), var(--accent-2));
-        box-shadow: 0 12px 34px rgba(91, 116, 255, 0.36), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+        color: var(--paper); background: var(--ink);
+        padding: 14px 26px; border-radius: var(--radius);
+        border: 1px solid var(--ink);
       }
-      .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 44px rgba(91, 116, 255, 0.46), inset 0 1px 0 rgba(255, 255, 255, 0.22); }
+      .btn-primary:hover { background: #000; transform: translateY(-2px); }
       .btn-ghost {
-        color: var(--fg);
-        background: var(--surface-2);
-        border-color: var(--border-2);
+        color: var(--ink); background: transparent;
+        padding: 14px 6px; border: none;
+        border-bottom: 2px solid var(--accent); border-radius: 0;
       }
-      .btn-ghost:hover { background: rgba(255, 255, 255, 0.07); border-color: rgba(255, 255, 255, 0.22); transform: translateY(-2px); }
-      .btn:focus-visible, .nav-cta:focus-visible, .f-link:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 3px;
+      .btn-ghost:hover { color: var(--accent-ink); }
+      a:focus-visible {
+        outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px;
       }
 
       /* ---------- Hero ---------- */
-      .hero { text-align: center; padding: 84px 0 56px; position: relative; }
-      .badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.6em;
-        font-family: var(--font-mono);
-        font-size: 0.74rem;
-        font-weight: 500;
-        letter-spacing: 0.02em;
-        color: var(--fg-2);
-        padding: 7px 14px 7px 11px;
-        border-radius: 999px;
-        background: var(--surface);
-        border: 1px solid var(--border);
-        margin-bottom: 30px;
-      }
-      .badge .dot {
-        width: 7px; height: 7px; border-radius: 50%;
-        background: var(--accent-teal);
-        box-shadow: 0 0 0 0 rgba(63, 208, 201, 0.5);
-        animation: pulse 2.4s var(--ease) infinite;
-      }
-      @keyframes pulse {
-        0% { box-shadow: 0 0 0 0 rgba(63, 208, 201, 0.5); }
-        70% { box-shadow: 0 0 0 7px rgba(63, 208, 201, 0); }
-        100% { box-shadow: 0 0 0 0 rgba(63, 208, 201, 0); }
-      }
-      @media (prefers-reduced-motion: reduce) { .badge .dot { animation: none; } }
-      .badge .sep { width: 1px; height: 12px; background: var(--border-2); }
-
+      .hero { padding: 56px 0 8px; }
+      .hero-grid { display: grid; grid-template-columns: 1fr; gap: 44px; align-items: center; }
+      .hero .eyebrow { margin-bottom: 24px; }
       h1 {
-        font-size: clamp(2.4rem, 6.4vw, 4.3rem);
-        line-height: 1.04;
-        letter-spacing: -0.035em;
-        font-weight: 800;
-        margin: 0 auto 22px;
-        max-width: 16ch;
-      }
-      h1 .grad {
-        background: linear-gradient(120deg, #7fb2ff 0%, #6f6bff 55%, #9b78ff 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        color: transparent;
-      }
-      .lede {
-        font-size: clamp(1.05rem, 2.1vw, 1.24rem);
-        color: var(--fg-2);
-        max-width: 47ch;
-        margin: 0 auto 38px;
-        line-height: 1.6;
-      }
-      .hero-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-
-      .stats {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1px;
-        max-width: 720px;
-        margin: 64px auto 0;
-        background: var(--border);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        overflow: hidden;
-      }
-      .stat { background: rgba(10, 13, 20, 0.6); padding: 22px 16px; text-align: center; }
-      .stat .num {
-        font-family: var(--font-mono);
-        font-size: clamp(1.5rem, 3.2vw, 2rem);
-        font-weight: 600;
+        font-size: clamp(2.65rem, 7.4vw, 4.4rem);
+        line-height: 1.0;
         letter-spacing: -0.02em;
-        color: var(--fg);
-        line-height: 1;
+        font-variation-settings: "opsz" 144;
+        margin: 0 0 24px;
+        max-width: 13ch;
       }
-      .stat .lbl {
-        font-size: 0.82rem;
-        color: var(--muted);
-        margin-top: 8px;
-        letter-spacing: 0.01em;
+      h1 .cursor {
+        display: inline-block; width: 0.06em; height: 0.86em;
+        transform: translateY(0.04em); margin-left: 0.04em; background: var(--ink);
+        animation: blink 1.2s steps(1) infinite;
       }
+      @media (prefers-reduced-motion: reduce) { h1 .cursor { animation: none; } }
+      .lede {
+        font-size: clamp(1.08rem, 2vw, 1.2rem);
+        color: var(--ink-2); max-width: 46ch; margin: 0 0 32px; line-height: 1.6;
+      }
+      .hero-cta { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; }
+
+      /* Doc-page stack figure */
+      figure.artifact { margin: 0; }
+      .stack { position: relative; height: 404px; }
+      .sheet {
+        position: absolute; left: 0; right: 0;
+        background: #fffdf7;
+        border: 1px solid var(--rule-2);
+        border-radius: 9px;
+        padding: 16px 22px 18px;
+        box-shadow: 0 26px 42px -26px rgba(28, 26, 21, 0.55);
+      }
+      .sheet .s-kick {
+        font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600;
+        letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent-ink);
+        margin: 0 0 7px;
+      }
+      .sheet .s-title {
+        font-family: var(--font-serif); font-weight: 500; font-size: 1.16rem;
+        font-variation-settings: "opsz" 40; line-height: 1.16; letter-spacing: -0.01em;
+        color: var(--ink); margin: 0;
+      }
+      .sheet:nth-child(1) { z-index: 1; top: 0; left: 4%; right: 5%; transform: rotate(-1.4deg); }
+      .sheet:nth-child(2) { z-index: 2; top: 72px; left: 3%; right: 3%; transform: rotate(1deg); }
+      .sheet:nth-child(3) { z-index: 3; top: 144px; left: 1%; right: 2%; transform: rotate(-0.7deg); }
+      .sheet.front { z-index: 4; top: 216px; left: 0; right: 0; transform: rotate(0.5deg); }
+      .sheet.front .s-rule { display: block; height: 1px; background: var(--rule); margin: 14px 0; }
+      .sheet.front .s-lines { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+      .sheet.front .s-lines li {
+        position: relative; padding-left: 20px;
+        font-size: 0.92rem; color: var(--ink-2); line-height: 1.4;
+      }
+      .sheet.front .s-lines li::before {
+        content: ""; position: absolute; left: 0; top: 0.5em;
+        width: 7px; height: 7px; border: 1.5px solid var(--accent); border-radius: 2px;
+      }
+      figcaption {
+        font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em;
+        text-transform: uppercase; color: var(--muted);
+        margin-top: 16px; display: flex; align-items: center; gap: 0.7em;
+      }
+      figcaption b { color: var(--accent-ink); font-weight: 600; }
+
+      /* Stats strip */
+      .stats {
+        display: grid; grid-template-columns: repeat(2, 1fr);
+        margin: 48px 0 0; border-top: 1px solid var(--rule-2);
+      }
+      .stat { padding: 22px 4px 4px; }
+      .stat .num {
+        font-family: var(--font-mono); font-size: clamp(1.55rem, 3.4vw, 2.1rem);
+        font-weight: 500; letter-spacing: -0.02em; color: var(--ink); line-height: 1;
+      }
+      .stat .lbl { font-size: 0.84rem; color: var(--muted); margin-top: 8px; }
 
       /* ---------- Section frame ---------- */
-      section.block { padding: 64px 0; }
-      #explore { scroll-margin-top: 80px; }
-      .sec-head { max-width: 640px; margin-bottom: 40px; }
-      .sec-head.center { margin-left: auto; margin-right: auto; text-align: center; }
-      .sec-head h2 {
-        font-size: clamp(1.7rem, 3.6vw, 2.5rem);
-        line-height: 1.1;
-        letter-spacing: -0.03em;
-        font-weight: 700;
-        margin: 16px 0 0;
+      section.block { padding: 56px 0; }
+      #main, #contents { scroll-margin-top: 84px; }
+      .sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+      .sec-head .all {
+        font-family: var(--font-mono); font-size: 0.76rem; letter-spacing: 0.06em;
+        text-transform: uppercase; color: var(--muted);
+        display: inline-flex; align-items: center; gap: 0.5em;
+        transition: color 0.16s var(--ease);
       }
-      .sec-head p { color: var(--muted); margin: 14px 0 0; font-size: 1.04rem; }
-      .sec-head.center .kicker::before { display: none; }
-      .sec-head.center .kicker { gap: 0; }
+      .sec-head .all:hover { color: var(--accent-ink); }
+      .sec-head .all .arrow { transition: transform 0.18s var(--ease); }
+      .sec-head .all:hover .arrow { transform: translateX(4px); }
 
-      /* ---------- Pillars ---------- */
-      .grid-pillars {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-      .pillar {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        padding: 26px 24px;
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        text-decoration: none;
+      /* ---------- Chapter index ---------- */
+      .index { border-top: 1px solid var(--ink); margin-top: 18px; }
+      .row {
+        display: grid; align-items: center; gap: 6px 18px;
+        grid-template-columns: 2.4rem 1fr 1.6rem;
+        grid-template-areas: "num ttl ar" "num dsc ar";
+        padding: 20px 6px; border-top: 1px solid var(--rule);
         color: inherit;
-        overflow: hidden;
-        transition: transform 0.22s var(--ease), border-color 0.22s var(--ease),
-          background 0.22s var(--ease);
+        transition: background 0.18s var(--ease);
       }
-      .pillar::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        border-radius: inherit;
-        padding: 1px;
-        background: radial-gradient(420px 180px at var(--mx, 50%) 0%, rgba(91, 155, 255, 0.5), transparent 70%);
-        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-        opacity: 0;
-        transition: opacity 0.25s var(--ease);
-        pointer-events: none;
-      }
-      .pillar:hover { transform: translateY(-4px); background: var(--surface-2); border-color: var(--border-2); }
-      .pillar:hover::after { opacity: 1; }
-      .pillar:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-      .p-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
-      .p-icon {
-        width: 44px; height: 44px;
-        display: grid; place-items: center;
-        border-radius: 12px;
-        background: linear-gradient(150deg, rgba(91, 155, 255, 0.18), rgba(111, 107, 255, 0.1));
-        border: 1px solid var(--border-2);
-        color: #bcd4ff;
-      }
-      .p-icon svg { width: 22px; height: 22px; }
-      .p-idx { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted-2); font-weight: 600; }
-      .pillar h3 { font-size: 1.18rem; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 8px; }
-      .pillar p { color: var(--muted); font-size: 0.96rem; margin: 0 0 18px; line-height: 1.55; }
-      .p-go {
-        margin-top: auto;
-        font-family: var(--font-mono);
-        font-size: 0.78rem;
-        font-weight: 600;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        color: var(--accent);
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5em;
-      }
-      .p-go .arrow { transition: transform 0.18s var(--ease); }
-      .pillar:hover .p-go .arrow { transform: translateX(4px); }
+      .index .row:first-child { border-top: none; }
+      .row:hover { background: var(--paper-2); }
+      .row .num { grid-area: num; font-family: var(--font-mono); font-size: 0.95rem; font-weight: 600; color: var(--accent-ink); }
+      .row .ttl { grid-area: ttl; font-family: var(--font-serif); font-weight: 500; font-size: 1.35rem; font-variation-settings: "opsz" 40; line-height: 1.15; }
+      .row .dsc { grid-area: dsc; color: var(--ink-2); font-size: 0.98rem; line-height: 1.5; }
+      .row .ar { grid-area: ar; font-family: var(--font-mono); color: var(--muted); text-align: right; align-self: center; transition: transform 0.18s var(--ease), color 0.18s var(--ease); }
+      .row:hover .ar { color: var(--accent-ink); transform: translateX(4px); }
 
-      /* ---------- Highlights ---------- */
-      .grid-highlight { display: grid; grid-template-columns: 1fr; gap: 16px; }
-      .feature {
-        position: relative;
+      /* ---------- Baseline callout ---------- */
+      .callout {
+        position: relative; margin-top: 18px;
+        border: 1px solid var(--rule-2); border-left: 3px solid var(--accent);
+        background: var(--paper-2); border-radius: 0 var(--radius) var(--radius) 0;
         padding: 34px 30px;
-        border-radius: var(--radius-lg);
-        border: 1px solid var(--border);
-        background: var(--surface);
-        overflow: hidden;
       }
-      .feature .glow {
-        position: absolute;
-        width: 360px; height: 360px;
-        border-radius: 50%;
-        filter: blur(70px);
-        opacity: 0.5;
-        top: -160px; right: -120px;
-        pointer-events: none;
-        z-index: 0;
-      }
-      .feature.baseline .glow { background: radial-gradient(circle, rgba(111, 107, 255, 0.42), transparent 65%); }
-      .feature > * { position: relative; z-index: 1; }
-      .feature .f-icon {
-        width: 50px; height: 50px;
-        display: grid; place-items: center;
-        border-radius: 14px;
-        margin-bottom: 20px;
-        border: 1px solid var(--border-2);
-        background: var(--surface-2);
-      }
-      .feature .f-icon svg { width: 26px; height: 26px; }
-      .feature.baseline .f-icon { color: #b3b0ff; }
-      .feature.solo { max-width: 720px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; text-align: center; }
-      .feature.solo .glow { left: 50%; right: auto; transform: translateX(-50%); top: -190px; }
-      .feature.solo p { margin-left: auto; margin-right: auto; }
-      .feature h3 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 12px; }
-      .feature p { color: var(--fg-2); font-size: 1.02rem; margin: 0 0 26px; max-width: 42ch; }
+      .callout .eyebrow { margin-bottom: 16px; }
+      .callout h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-variation-settings: "opsz" 60; margin-bottom: 10px; }
+      .callout p { color: var(--ink-2); font-size: 1.04rem; margin: 0 0 22px; max-width: 56ch; }
       .f-link {
         display: inline-flex; align-items: center; gap: 0.5em;
-        font-weight: 600; font-size: 0.98rem; text-decoration: none;
-        padding: 11px 20px; border-radius: 11px;
-        background: var(--surface-2); border: 1px solid var(--border-2);
-        color: var(--fg);
-        transition: background 0.16s var(--ease), border-color 0.16s var(--ease), transform 0.16s var(--ease);
+        font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600;
+        letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink);
+        border-bottom: 2px solid var(--accent); padding-bottom: 3px;
+        transition: color 0.16s var(--ease);
       }
-      .f-link:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.24); transform: translateY(-2px); }
+      .f-link:hover { color: var(--accent-ink); }
       .f-link .arrow { transition: transform 0.18s var(--ease); }
       .f-link:hover .arrow { transform: translateX(4px); }
 
       /* ---------- Contributors ---------- */
-      .grid-people { display: grid; grid-template-columns: 1fr; gap: 14px; }
+      .sec-head.stack { display: block; max-width: 620px; }
+      .sec-head.stack h2 { font-size: clamp(1.7rem, 3.6vw, 2.4rem); font-variation-settings: "opsz" 72; margin: 14px 0 0; }
+      .sec-head.stack p { color: var(--ink-2); margin: 12px 0 0; font-size: 1.04rem; }
+      .grid-people { display: grid; grid-template-columns: 1fr; gap: 1px; margin-top: 32px; background: var(--rule); border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; }
       .person {
-        display: flex; align-items: center; gap: 14px;
-        padding: 16px;
-        border-radius: var(--radius);
-        border: 1px solid var(--border);
-        background: var(--surface);
-        text-decoration: none; color: inherit;
-        transition: transform 0.18s var(--ease), border-color 0.18s var(--ease), background 0.18s var(--ease);
+        display: flex; align-items: center; gap: 14px; padding: 18px 16px;
+        background: var(--paper); color: inherit;
+        transition: background 0.18s var(--ease);
       }
-      .person:hover { transform: translateY(-3px); border-color: var(--border-2); background: var(--surface-2); }
-      .person:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+      .person:hover { background: var(--paper-2); }
       .person img {
-        width: 52px; height: 52px; border-radius: 50%;
+        width: 50px; height: 50px; border-radius: 50%;
         object-fit: cover; flex-shrink: 0;
-        border: 1px solid var(--border-2);
-        background: var(--surface-2);
+        border: 1px solid var(--rule-2); background: var(--paper-2);
+        filter: grayscale(1); transition: filter 0.25s var(--ease);
       }
+      .person:hover img { filter: grayscale(0); }
       .person > div { min-width: 0; }
-      .person .nm { font-weight: 600; font-size: 0.98rem; letter-spacing: -0.01em; }
+      .person .nm { font-weight: 700; font-size: 0.98rem; letter-spacing: -0.01em; }
       .person .rl { color: var(--muted); font-size: 0.82rem; margin-top: 2px; line-height: 1.4; }
-      .people-foot { margin-top: 26px; font-size: 0.98rem; color: var(--muted); }
-      .people-foot a { color: var(--accent); text-decoration: none; font-weight: 600; }
+      .people-foot { margin-top: 24px; font-size: 0.98rem; color: var(--muted); }
+      .people-foot a { color: var(--accent-ink); font-weight: 600; }
       .people-foot a:hover { text-decoration: underline; }
 
       /* ---------- Sponsor ---------- */
       .sponsor-wrap { text-align: center; }
       .sponsor-card {
         display: inline-flex; align-items: center; justify-content: center;
-        background: #fff;
-        border-radius: 16px;
-        padding: 22px 34px;
-        margin-top: 22px;
-        box-shadow: 0 18px 44px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--border);
-        transition: transform 0.18s var(--ease), box-shadow 0.18s var(--ease);
+        background: #fff; border-radius: var(--radius); padding: 22px 34px; margin-top: 20px;
+        border: 1px solid var(--rule-2);
+        transition: transform 0.18s var(--ease);
       }
-      .sponsor-card:hover { transform: translateY(-3px); box-shadow: 0 24px 56px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--border); }
+      .sponsor-card:hover { transform: translateY(-3px); }
       .sponsor-card img { height: 64px; width: auto; }
-      .sponsor-note { color: var(--muted); font-size: 0.92rem; margin: 22px 0 0; }
-      .sponsor-note a { color: var(--fg-2); }
+      .sponsor-note { color: var(--muted); font-size: 0.92rem; margin: 20px 0 0; }
+      .sponsor-note a { color: var(--ink); border-bottom: 1px solid var(--accent); }
 
-      /* ---------- Final CTA ---------- */
+      /* ---------- Final CTA (inverted) ---------- */
       .cta-band {
-        position: relative;
-        text-align: center;
-        padding: 64px 32px;
-        border-radius: var(--radius-lg);
-        border: 1px solid var(--border);
-        background:
-          radial-gradient(700px 300px at 50% 0%, rgba(91, 155, 255, 0.16), transparent 70%),
-          var(--surface);
-        overflow: hidden;
+        position: relative; text-align: center; overflow: hidden;
+        padding: 64px 32px; border-radius: var(--radius);
+        background: var(--ink); color: var(--paper);
+        background-image: radial-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+        background-size: 26px 26px;
       }
-      .cta-band h2 { font-size: clamp(1.8rem, 4vw, 2.7rem); letter-spacing: -0.03em; font-weight: 800; margin: 0 0 14px; }
-      .cta-band p { color: var(--fg-2); margin: 0 auto 30px; max-width: 44ch; font-size: 1.05rem; }
-      .cta-band .hero-cta { margin-top: 4px; }
+      .cta-band .eyebrow { color: #e08b7f; justify-content: center; margin-bottom: 18px; }
+      .cta-band .eyebrow::before { display: none; }
+      .cta-band h2 { color: var(--paper); font-size: clamp(1.9rem, 4.2vw, 2.9rem); font-variation-settings: "opsz" 96; margin: 0 auto 14px; max-width: 18ch; }
+      .cta-band h2 em { color: #e8a99e; }
+      .cta-band p { color: rgba(244, 239, 228, 0.78); margin: 0 auto 30px; max-width: 46ch; font-size: 1.06rem; }
+      .cta-band .hero-cta { justify-content: center; }
+      .cta-band .btn-primary { color: var(--ink); background: var(--paper); border-color: var(--paper); }
+      .cta-band .btn-primary:hover { background: #fff; }
+      .cta-band .btn-ghost { color: var(--paper); border-bottom-color: #e08b7f; }
+      .cta-band .btn-ghost:hover { color: #e8a99e; }
 
       /* ---------- Footer ---------- */
-      footer.site {
-        border-top: 1px solid var(--border);
-        margin-top: 40px;
-        padding: 44px 0 56px;
-      }
+      footer.site { border-top: 1px solid var(--ink); margin-top: 40px; padding: 40px 0 56px; }
       .foot-inner { display: flex; flex-direction: column; gap: 22px; }
       .foot-top { display: flex; flex-direction: column; gap: 18px; }
-      .foot-links { display: flex; flex-wrap: wrap; gap: 8px 4px; }
+      .foot-links { display: flex; flex-wrap: wrap; gap: 6px 2px; }
       .foot-links a {
-        color: var(--muted); text-decoration: none; font-size: 0.92rem;
-        padding: 6px 12px; border-radius: 8px;
+        font-family: var(--font-mono); font-size: 0.76rem; letter-spacing: 0.06em; text-transform: uppercase;
+        color: var(--muted); padding: 6px 12px; border-radius: 7px;
         transition: color 0.16s var(--ease), background 0.16s var(--ease);
       }
-      .foot-links a:hover { color: var(--fg); background: var(--surface-2); }
+      .foot-links a:hover { color: var(--ink); background: var(--paper-2); }
       .foot-bottom {
         display: flex; flex-direction: column; gap: 8px;
-        padding-top: 22px; border-top: 1px solid var(--border);
-        color: var(--muted-2); font-size: 0.86rem;
+        padding-top: 22px; border-top: 1px solid var(--rule);
+        color: var(--muted); font-size: 0.86rem;
       }
-      .foot-bottom .tag { color: var(--muted); }
-      .foot-bottom a { color: var(--muted); }
+      .foot-bottom a { color: var(--ink-2); }
 
       /* ---------- Reveal animation ---------- */
-      .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
+      .js .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
       .js .reveal.in { opacity: 1; transform: none; }
-      /* A stagger wrapper is observed via .reveal (so JS adds .in), but must stay visible itself — only its children stagger in. */
       .js .reveal.stagger { opacity: 1; transform: none; }
-      .js .stagger > * { opacity: 0; transform: translateY(16px); transition: opacity 0.55s var(--ease), transform 0.55s var(--ease); }
+      .js .stagger > * { opacity: 0; transform: translateY(14px); transition: opacity 0.55s var(--ease), transform 0.55s var(--ease); }
       .js .stagger.in > * { opacity: 1; transform: none; }
-      .js .stagger.in > *:nth-child(1) { transition-delay: 0.04s; }
-      .js .stagger.in > *:nth-child(2) { transition-delay: 0.09s; }
-      .js .stagger.in > *:nth-child(3) { transition-delay: 0.14s; }
-      .js .stagger.in > *:nth-child(4) { transition-delay: 0.19s; }
-      .js .stagger.in > *:nth-child(5) { transition-delay: 0.24s; }
-      .js .stagger.in > *:nth-child(6) { transition-delay: 0.29s; }
+      .js .stagger.in > *:nth-child(1) { transition-delay: 0.03s; }
+      .js .stagger.in > *:nth-child(2) { transition-delay: 0.07s; }
+      .js .stagger.in > *:nth-child(3) { transition-delay: 0.11s; }
+      .js .stagger.in > *:nth-child(4) { transition-delay: 0.15s; }
+      .js .stagger.in > *:nth-child(5) { transition-delay: 0.19s; }
+      .js .stagger.in > *:nth-child(6) { transition-delay: 0.23s; }
 
-      /* Hero load animation */
-      .js .hero .anim { opacity: 0; transform: translateY(20px); animation: rise 0.75s var(--ease) forwards; }
-      .js .hero .anim.d1 { animation-delay: 0.05s; }
-      .js .hero .anim.d2 { animation-delay: 0.14s; }
-      .js .hero .anim.d3 { animation-delay: 0.23s; }
-      .js .hero .anim.d4 { animation-delay: 0.32s; }
-      .js .hero .anim.d5 { animation-delay: 0.44s; }
+      .js .hero .anim { opacity: 0; transform: translateY(18px); animation: rise 0.7s var(--ease) forwards; }
+      .js .hero .anim.d1 { animation-delay: 0.04s; }
+      .js .hero .anim.d2 { animation-delay: 0.12s; }
+      .js .hero .anim.d3 { animation-delay: 0.2s; }
+      .js .hero .anim.d4 { animation-delay: 0.28s; }
+      .js .hero .anim.d5 { animation-delay: 0.4s; }
       @keyframes rise { to { opacity: 1; transform: none; } }
       @media (prefers-reduced-motion: reduce) {
         .js .reveal, .js .stagger > *, .js .hero .anim { opacity: 1 !important; transform: none !important; animation: none !important; transition: none !important; }
@@ -634,25 +474,26 @@
       /* ---------- Responsive ---------- */
       @media (min-width: 600px) {
         .stats { grid-template-columns: repeat(4, 1fr); }
-        .grid-pillars { grid-template-columns: repeat(2, 1fr); }
         .grid-people { grid-template-columns: repeat(2, 1fr); }
         .foot-top { flex-direction: row; align-items: center; justify-content: space-between; }
       }
       @media (min-width: 700px) {
-        .hide-mobile { display: inline-flex; }
         nav.links a.navlink.hide-mobile { display: inline-flex; }
       }
+      @media (min-width: 760px) {
+        .row { grid-template-columns: 3rem 1.05fr 1.55fr 2rem; grid-template-areas: "num ttl dsc ar"; }
+      }
       @media (min-width: 900px) {
-        .grid-pillars { grid-template-columns: repeat(3, 1fr); }
+        .wrap { padding: 0 40px; }
+        section.block { padding: 76px 0; }
+        .hero { padding: 76px 0 12px; }
+        .hero-grid { grid-template-columns: 1.04fr 0.96fr; gap: 56px; }
         .grid-people { grid-template-columns: repeat(3, 1fr); }
-        section.block { padding: 80px 0; }
-        .hero { padding: 104px 0 64px; }
       }
     </style>
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
-    <div class="bg" aria-hidden="true"></div>
 
     <header class="nav" id="nav">
       <div class="wrap nav-inner">
@@ -674,121 +515,118 @@
       <!-- HERO -->
       <section class="hero">
         <div class="wrap">
-          <span class="badge anim d1">
-            <span class="dot" aria-hidden="true"></span>
-            Updated weekly
-            <span class="sep" aria-hidden="true"></span>
-            Free &amp; open source
-          </span>
-          <h1 class="anim d2">Master <span class="grad">macOS</span> management in Microsoft <span class="grad">Intune</span>.</h1>
-          <p class="lede anim d3">
-            The community playbook for deploying, configuring, and securing Macs with
-            Intune — battle-tested guides, baseline settings, scripts, and tools,
-            maintained by Microsoft MVPs.
-          </p>
-          <div class="hero-cta anim d4">
-            <a class="btn btn-primary" href="https://docs.intunemacadmins.com/">
-              Read the Documentation
-              <span class="arrow" aria-hidden="true">→</span>
-            </a>
-            <a class="btn btn-ghost" href="#explore">
-              Explore the guides
-            </a>
+          <div class="hero-grid">
+            <div>
+              <p class="eyebrow anim d1">The macOS &times; Intune field manual <span class="dim">/ est. 2024</span></p>
+              <h1 class="anim d2">Managing <em>macOS</em> with Microsoft Intune<span class="cursor" aria-hidden="true"></span></h1>
+              <p class="lede anim d3">
+                The community playbook for deploying, configuring, and securing Macs with
+                Intune — battle-tested guides, baseline settings, scripts, and tools,
+                maintained by Microsoft MVPs.
+              </p>
+              <div class="hero-cta anim d4">
+                <a class="btn btn-primary" href="https://docs.intunemacadmins.com/">
+                  Read the Documentation
+                  <span class="arrow" aria-hidden="true">→</span>
+                </a>
+                <a class="btn btn-ghost" href="#contents">Explore the guides</a>
+              </div>
+            </div>
+
+            <figure class="artifact anim d5">
+              <div class="stack" aria-hidden="true">
+                <article class="sheet">
+                  <p class="s-kick">&sect; Deployment</p>
+                  <p class="s-title">Apple Business Manager</p>
+                </article>
+                <article class="sheet">
+                  <p class="s-kick">&sect; Identity</p>
+                  <p class="s-title">Configure Platform SSO</p>
+                </article>
+                <article class="sheet">
+                  <p class="s-kick">&sect; Management</p>
+                  <p class="s-title">Declarative Device Management</p>
+                </article>
+                <article class="sheet front">
+                  <p class="s-kick">&sect; Security</p>
+                  <p class="s-title">Enable FileVault at Setup Assistant</p>
+                  <span class="s-rule"></span>
+                  <ul class="s-lines">
+                    <li>Enforce full-disk encryption</li>
+                    <li>Escrow recovery keys to Intune</li>
+                    <li>Report status as a custom attribute</li>
+                  </ul>
+                </article>
+              </div>
+              <figcaption><b>80+ chapters</b> — a living manual, updated weekly</figcaption>
+            </figure>
           </div>
 
           <div class="stats anim d5" role="list">
-            <div class="stat" role="listitem"><div class="num">80+</div><div class="lbl">In-depth guides</div></div>
+            <div class="stat" role="listitem"><div class="num">80+</div><div class="lbl">Field-tested guides</div></div>
             <div class="stat" role="listitem"><div class="num">6</div><div class="lbl">Microsoft MVPs</div></div>
             <div class="stat" role="listitem"><div class="num">17</div><div class="lbl">Baseline settings</div></div>
-            <div class="stat" role="listitem"><div class="num">100%</div><div class="lbl">Free &amp; open</div></div>
+            <div class="stat" role="listitem"><div class="num">100%</div><div class="lbl">Free &amp; open source</div></div>
           </div>
         </div>
       </section>
 
-      <!-- PILLARS -->
-      <section class="block" id="explore">
+      <!-- CHAPTER INDEX -->
+      <section class="block" id="contents">
         <div class="wrap">
           <div class="sec-head reveal">
-            <p class="kicker">What&rsquo;s inside</p>
-            <h2>From zero-touch enrollment to a hardened security baseline.</h2>
-            <p>Every topic a Mac admin actually runs into — documented end to end, with screenshots and real-world insights.</p>
+            <h2 class="eyebrow">&sect; Contents — what&rsquo;s inside</h2>
+            <a class="all" href="https://docs.intunemacadmins.com/">All chapters <span class="arrow" aria-hidden="true">→</span></a>
           </div>
-          <div class="grid-pillars stagger reveal">
-            <a class="pillar" href="https://docs.intunemacadmins.com/complete-guide-macos-deployment/complete-guide-macos-deployment">
-              <div class="p-top">
-                <span class="p-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg></span>
-                <span class="p-idx">01</span>
-              </div>
-              <h3>Complete macOS Deployment</h3>
-              <p>Zero-touch enrollment with Apple Business Manager, Company Portal, and Defender — start to finish.</p>
-              <span class="p-go">Explore <span class="arrow" aria-hidden="true">→</span></span>
+          <div class="index stagger reveal">
+            <a class="row" href="https://docs.intunemacadmins.com/complete-guide-macos-deployment/complete-guide-macos-deployment">
+              <span class="num">01</span>
+              <span class="ttl">Complete macOS Deployment</span>
+              <span class="dsc">Zero-touch enrollment with Apple Business Manager, Company Portal, and Defender — start to finish.</span>
+              <span class="ar" aria-hidden="true">→</span>
             </a>
-
-            <a class="pillar" href="https://docs.intunemacadmins.com/platform-single-sign-on-psso/platform-single-sign-on">
-              <div class="p-top">
-                <span class="p-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4Z"/><circle cx="16.5" cy="7.5" r=".5" fill="currentColor"/></svg></span>
-                <span class="p-idx">02</span>
-              </div>
-              <h3>Platform Single Sign-On</h3>
-              <p>Passwordless, Entra-backed sign-in on every Mac — including browser SSO and rollout insights.</p>
-              <span class="p-go">Explore <span class="arrow" aria-hidden="true">→</span></span>
+            <a class="row" href="https://docs.intunemacadmins.com/platform-single-sign-on-psso/platform-single-sign-on">
+              <span class="num">02</span>
+              <span class="ttl">Platform Single Sign-On</span>
+              <span class="dsc">Passwordless, Entra-backed sign-in on every Mac — including browser SSO and rollout insights.</span>
+              <span class="ar" aria-hidden="true">→</span>
             </a>
-
-            <a class="pillar" href="https://docs.intunemacadmins.com/filevault/filevault">
-              <div class="p-top">
-                <span class="p-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
-                <span class="p-idx">03</span>
-              </div>
-              <h3>FileVault Encryption</h3>
-              <p>Enforce full-disk encryption during Setup Assistant and escrow recovery keys to Intune.</p>
-              <span class="p-go">Explore <span class="arrow" aria-hidden="true">→</span></span>
+            <a class="row" href="https://docs.intunemacadmins.com/filevault/filevault">
+              <span class="num">03</span>
+              <span class="ttl">FileVault Encryption</span>
+              <span class="dsc">Enforce full-disk encryption during Setup Assistant and escrow recovery keys to Intune.</span>
+              <span class="ar" aria-hidden="true">→</span>
             </a>
-
-            <a class="pillar" href="https://docs.intunemacadmins.com/declarative-device-management-ddm/declarative-device-management">
-              <div class="p-top">
-                <span class="p-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg></span>
-                <span class="p-idx">04</span>
-              </div>
-              <h3>Declarative Device Management</h3>
-              <p>The modern, proactive MDM protocol for Apple — what it is, how to configure it, and why it matters.</p>
-              <span class="p-go">Explore <span class="arrow" aria-hidden="true">→</span></span>
+            <a class="row" href="https://docs.intunemacadmins.com/declarative-device-management-ddm/declarative-device-management">
+              <span class="num">04</span>
+              <span class="ttl">Declarative Device Management</span>
+              <span class="dsc">The modern, proactive MDM protocol for Apple — what it is, how to configure it, and why it matters.</span>
+              <span class="ar" aria-hidden="true">→</span>
             </a>
-
-            <a class="pillar" href="https://docs.intunemacadmins.com/custom-attributes/custom-attributes">
-              <div class="p-top">
-                <span class="p-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 17 6-6-6-6"/><path d="M12 19h8"/></svg></span>
-                <span class="p-idx">05</span>
-              </div>
-              <h3>Custom Attributes</h3>
-              <p>Surface anything from a Mac with shell-script custom attributes for richer reporting and compliance.</p>
-              <span class="p-go">Explore <span class="arrow" aria-hidden="true">→</span></span>
+            <a class="row" href="https://docs.intunemacadmins.com/custom-attributes/custom-attributes">
+              <span class="num">05</span>
+              <span class="ttl">Custom Attributes</span>
+              <span class="dsc">Surface anything from a Mac with shell-script custom attributes for richer reporting and compliance.</span>
+              <span class="ar" aria-hidden="true">→</span>
             </a>
-
-            <a class="pillar" href="https://docs.intunemacadmins.com/troubleshooting-guides/troubleshooting">
-              <div class="p-top">
-                <span class="p-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/><circle cx="12" cy="12" r="4"/></svg></span>
-                <span class="p-idx">06</span>
-              </div>
-              <h3>Troubleshooting</h3>
-              <p>Decode cryptic enrollment errors and the most common macOS management failures — and fix them fast.</p>
-              <span class="p-go">Explore <span class="arrow" aria-hidden="true">→</span></span>
+            <a class="row" href="https://docs.intunemacadmins.com/troubleshooting-guides/troubleshooting">
+              <span class="num">06</span>
+              <span class="ttl">Troubleshooting</span>
+              <span class="dsc">Decode cryptic enrollment errors and the most common macOS management failures — and fix them fast.</span>
+              <span class="ar" aria-hidden="true">→</span>
             </a>
           </div>
         </div>
       </section>
 
-      <!-- HIGHLIGHTS -->
+      <!-- BASELINE CALLOUT -->
       <section class="block">
         <div class="wrap">
-          <div class="grid-highlight reveal">
-            <div class="feature baseline solo">
-              <div class="glow" aria-hidden="true"></div>
-              <div class="f-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></div>
-              <p class="kicker">Jumpstart</p>
-              <h3>Import the Baseline Settings</h3>
-              <p>Deploy a community-vetted security baseline, built on the Open Intune Baseline (OIB), to your tenant in minutes.</p>
-              <a class="f-link" href="https://docs.intunemacadmins.com/baseline-settings-for-intune/import">Import the baseline <span class="arrow" aria-hidden="true">→</span></a>
-            </div>
+          <div class="callout reveal">
+            <p class="eyebrow">Jumpstart</p>
+            <h2>Import the baseline settings</h2>
+            <p>Deploy a community-vetted security baseline, built on the Open Intune Baseline (OIB), to your tenant in minutes.</p>
+            <a class="f-link" href="https://docs.intunemacadmins.com/baseline-settings-for-intune/import">Import the baseline <span class="arrow" aria-hidden="true">→</span></a>
           </div>
         </div>
       </section>
@@ -796,34 +634,34 @@
       <!-- CONTRIBUTORS -->
       <section class="block">
         <div class="wrap">
-          <div class="sec-head center reveal">
-            <p class="kicker">Maintainers</p>
+          <div class="sec-head stack reveal">
+            <p class="eyebrow">Maintainers</p>
             <h2>Maintained by Microsoft MVPs and the community.</h2>
             <p>Real engineers who manage Mac fleets every day — keeping every guide accurate and current.</p>
           </div>
           <div class="grid-people stagger reveal">
             <a class="person" href="https://ugurkoc.de" target="_blank" rel="noopener noreferrer">
-              <img src="/contributors/ugur_koc.webp" alt="Ugur Koc" width="52" height="52" loading="lazy" />
+              <img src="/contributors/ugur_koc.webp" alt="Ugur Koc" width="50" height="50" loading="lazy" />
               <div><div class="nm">Ugur Koc</div><div class="rl">Microsoft MVP · Cloud Engineer @ glueckkanja</div></div>
             </a>
             <a class="person" href="https://www.intuneirl.com/" target="_blank" rel="noopener noreferrer">
-              <img src="/contributors/somesh_pathak.webp" alt="Somesh Pathak" width="52" height="52" loading="lazy" />
+              <img src="/contributors/somesh_pathak.webp" alt="Somesh Pathak" width="50" height="50" loading="lazy" />
               <div><div class="nm">Somesh Pathak</div><div class="rl">Microsoft MVP · Infrastructure Engineer @ NN Group</div></div>
             </a>
             <a class="person" href="https://www.manage-everything.cloud/" target="_blank" rel="noopener noreferrer">
-              <img src="/contributors/steffen_schwerdtfeger.webp" alt="Steffen Schwerdtfeger" width="52" height="52" loading="lazy" />
+              <img src="/contributors/steffen_schwerdtfeger.webp" alt="Steffen Schwerdtfeger" width="50" height="50" loading="lazy" />
               <div><div class="nm">Steffen Schwerdtfeger</div><div class="rl">Cloud Architect @ glueckkanja</div></div>
             </a>
             <a class="person" href="https://www.oceanleaf.ch/" target="_blank" rel="noopener noreferrer">
-              <img src="/contributors/niklas_tinner.webp" alt="Niklas Tinner" width="52" height="52" loading="lazy" />
+              <img src="/contributors/niklas_tinner.webp" alt="Niklas Tinner" width="50" height="50" loading="lazy" />
               <div><div class="nm">Niklas Tinner</div><div class="rl">Microsoft MVP · Founder @ Oceanleaf</div></div>
             </a>
             <a class="person" href="https://intunestuff.com/" target="_blank" rel="noopener noreferrer">
-              <img src="/contributors/joery_vandenbosch.webp" alt="Joery Van den Bosch" width="52" height="52" loading="lazy" />
+              <img src="/contributors/joery_vandenbosch.webp" alt="Joery Van den Bosch" width="50" height="50" loading="lazy" />
               <div><div class="nm">Joery Van den Bosch</div><div class="rl">Microsoft MVP · Modern Work Architect @ Arxus</div></div>
             </a>
             <a class="person" href="https://skiptotheendpoint.co.uk/" target="_blank" rel="noopener noreferrer">
-              <img src="/contributors/james_robinson.webp" alt="James Robinson" width="52" height="52" loading="lazy" />
+              <img src="/contributors/james_robinson.webp" alt="James Robinson" width="50" height="50" loading="lazy" />
               <div><div class="nm">James Robinson</div><div class="rl">Microsoft MVP · EUC Workstream Lead @ PowerON</div></div>
             </a>
           </div>
@@ -837,9 +675,9 @@
       <!-- SPONSOR -->
       <section class="block">
         <div class="wrap sponsor-wrap reveal">
-          <p class="kicker" style="justify-content:center">Supported by</p>
+          <p class="eyebrow center">Supported by</p>
           <a class="sponsor-card" href="https://www.devote.com" target="_blank" rel="noopener noreferrer" aria-label="Devote">
-            <img src="/devote_logo.jpg" alt="" width="55" height="64" />
+            <img src="/devote_logo.jpg" alt="" width="55" height="64" loading="lazy" />
           </a>
           <p class="sponsor-note">
             Sponsorship keeps these resources free for everyone.
@@ -852,16 +690,15 @@
       <section class="block">
         <div class="wrap">
           <div class="cta-band reveal">
-            <h2>Start managing macOS the right way.</h2>
+            <p class="eyebrow">End of preview</p>
+            <h2>Start managing <em>macOS</em> the right way.</h2>
             <p>Everything you need to deploy, secure, and support Macs with Microsoft Intune — in one place, always free.</p>
             <div class="hero-cta">
               <a class="btn btn-primary" href="https://docs.intunemacadmins.com/">
                 Read the Documentation
                 <span class="arrow" aria-hidden="true">→</span>
               </a>
-              <a class="btn btn-ghost" href="https://github.com/ugurkocde/IntuneMacAdmins">
-                Star on GitHub
-              </a>
+              <a class="btn btn-ghost" href="https://github.com/ugurkocde/IntuneMacAdmins">Star on GitHub</a>
             </div>
           </div>
         </div>
@@ -893,22 +730,14 @@
         var root = document.documentElement;
         root.classList.add("js");
 
-        // Nav border on scroll
+        // Nav border emphasis on scroll
         var nav = document.getElementById("nav");
         var onScroll = function () {
-          if (window.scrollY > 8) nav.classList.add("scrolled");
-          else nav.classList.remove("scrolled");
+          if (window.scrollY > 8) nav.style.boxShadow = "0 1px 0 rgba(28,26,21,0.08)";
+          else nav.style.boxShadow = "none";
         };
         onScroll();
         window.addEventListener("scroll", onScroll, { passive: true });
-
-        // Pointer-tracked card glow
-        document.querySelectorAll(".pillar").forEach(function (el) {
-          el.addEventListener("pointermove", function (e) {
-            var r = el.getBoundingClientRect();
-            el.style.setProperty("--mx", e.clientX - r.left + "px");
-          });
-        });
 
         // Scroll reveal
         var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

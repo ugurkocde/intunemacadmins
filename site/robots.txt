@@ -1,0 +1,8 @@
+# intunemacadmins.com — apex landing page.
+# The documentation lives at https://docs.intunemacadmins.com (its own robots.txt
+# there welcomes search + AI crawlers).
+User-agent: *
+Allow: /
+
+Sitemap: https://intunemacadmins.com/sitemap.xml
+Sitemap: https://docs.intunemacadmins.com/sitemap.xml

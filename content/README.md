@@ -38,6 +38,14 @@ Quickly manage your macOS devices with curated settings from the Open Intune Bas
 - [Mac Admins Slack](https://join.slack.com/t/macadmins/shared_invite/zt-2li6s6akl-ZaR7ZVwg6Tj~8XPSUgFQ~Q)
 - [Mac Admins Software](https://macadmins.software/)
 
+## Our Sponsors ❤️
+
+A big thank you to our sponsor for supporting the community and helping keep these resources free.
+
+<a href="https://www.devote.com" target="_blank" rel="noopener noreferrer"><img src=".gitbook/assets/devote_logo.jpg" alt="Devote" width="180"></a>
+
+[Visit Devote →](https://www.devote.com)
+
 ---
 
 - [**Community Contributors ❤️**](home/contributors.md) — thank you to everyone helping improve IntuneMacAdmins.

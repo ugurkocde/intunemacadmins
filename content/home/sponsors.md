@@ -6,7 +6,7 @@ description: "A thank you to the sponsors who help keep IntuneMacAdmins free for
 
 A big thank you to our sponsor for supporting the Intune Mac Admins community and helping keep these guides, tools, and resources free for everyone.
 
-<a href="https://www.devote.com" target="_blank" rel="noopener noreferrer"><img src="../.gitbook/assets/devote_logo.jpg" alt="Devote" width="180"></a>
+[![Devote](../.gitbook/assets/devote_logo.jpg)](https://www.devote.com)
 
 [Visit Devote →](https://www.devote.com)
 

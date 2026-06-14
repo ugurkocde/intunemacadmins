@@ -4,5 +4,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://intunemacadmins.com/sitemap.xml
+Sitemap: https://www.intunemacadmins.com/sitemap.xml
 Sitemap: https://docs.intunemacadmins.com/sitemap.xml

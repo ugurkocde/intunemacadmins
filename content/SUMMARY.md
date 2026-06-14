@@ -7,6 +7,7 @@
 * [Getting Started](home/getting-started.md)
 * [How to Contribute](home/how-to-contribute.md)
 * [Contributors ❤️](home/contributors.md)
+* [Our Sponsors ❤️](home/sponsors.md)
 * [Feedback](home/feedback.md)
 * [Changelog](home/changelog.md)
 * [What's New in Intune](home/whats-new.md)

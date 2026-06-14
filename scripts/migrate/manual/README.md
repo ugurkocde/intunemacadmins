@@ -12,10 +12,6 @@ New here? Start with the [Getting Started guide](home/getting-started.md), or ju
 
 ## Get started
 
-### Chat with the Copilot
-
-Ask the Copilot anything related to macOS management in Intune. [Start chatting →](https://copilot.intunemacadmins.com)
-
 ### Jumpstart with our Baseline Settings
 
 Quickly manage your macOS devices with curated settings from the Open Intune Baseline (OIB) project. [Import the Baseline Settings →](baselinesettings/import.md)

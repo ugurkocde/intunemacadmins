@@ -3,10 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#06080d" />
     <title>IntuneMacAdmins — Community guides for managing macOS with Microsoft Intune</title>
     <meta
       name="description"
-      content="Community guides, tools, and best practices for managing macOS devices with Microsoft Intune. Read the documentation."
+      content="The community playbook for managing macOS with Microsoft Intune. Battle-tested guides, baseline settings, scripts, and tools — maintained by Microsoft MVPs. Free and open source."
     />
     <link rel="canonical" href="https://www.intunemacadmins.com/" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -16,7 +17,7 @@
     <meta property="og:title" content="IntuneMacAdmins" />
     <meta
       property="og:description"
-      content="Community guides, tools, and best practices for managing macOS with Microsoft Intune."
+      content="The community playbook for managing macOS with Microsoft Intune. Guides, baseline settings, scripts, and tools — maintained by Microsoft MVPs."
     />
     <meta property="og:url" content="https://www.intunemacadmins.com/" />
     <meta property="og:image" content="https://www.intunemacadmins.com/og.jpg" />
@@ -24,9 +25,17 @@
     <meta name="twitter:title" content="IntuneMacAdmins" />
     <meta
       name="twitter:description"
-      content="Community guides, tools, and best practices for managing macOS with Microsoft Intune."
+      content="The community playbook for managing macOS with Microsoft Intune. Guides, baseline settings, scripts, and tools — maintained by Microsoft MVPs."
     />
     <meta name="twitter:image" content="https://www.intunemacadmins.com/og.jpg" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap"
+    />
 
     <script
       defer
@@ -43,7 +52,7 @@
             "@id": "https://www.intunemacadmins.com/#organization",
             "name": "IntuneMacAdmins",
             "url": "https://www.intunemacadmins.com/",
-            "logo": "https://www.intunemacadmins.com/logo.png",
+            "logo": "https://www.intunemacadmins.com/favicon.svg",
             "description": "Community guides, tools, and best practices for managing macOS devices with Microsoft Intune.",
             "foundingDate": "2024",
             "knowsAbout": [
@@ -83,168 +92,844 @@
 
     <style>
       :root {
-        --bg: #0b0e14;
-        --bg-2: #11151f;
-        --fg: #e8ecf3;
-        --muted: #9aa6b8;
-        --accent: #4f8cff;
+        --bg-deep: #06080d;
+        --bg: #0a0d14;
+        --surface: rgba(255, 255, 255, 0.026);
+        --surface-2: rgba(255, 255, 255, 0.045);
+        --fg: #eef2f8;
+        --fg-2: #c5cedb;
+        --muted: #8b95a8;
+        --muted-2: #767f92;
+        --accent: #5b9bff;
         --accent-2: #6f6bff;
-        --border: rgba(255, 255, 255, 0.09);
+        --accent-teal: #3fd0c9;
+        --border: rgba(255, 255, 255, 0.08);
+        --border-2: rgba(255, 255, 255, 0.14);
+        --radius: 16px;
+        --radius-lg: 22px;
+        --ease: cubic-bezier(0.16, 1, 0.3, 1);
+        --maxw: 1120px;
+        --font-sans: "Hanken Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Helvetica, Arial, sans-serif;
+        --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
       }
+
       * { box-sizing: border-box; }
-      html, body { height: 100%; }
+      html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; color-scheme: dark; }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
       body {
         margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto,
-          Helvetica, Arial, sans-serif;
+        font-family: var(--font-sans);
         color: var(--fg);
-        background:
-          radial-gradient(1200px 600px at 50% -10%, rgba(79, 140, 255, 0.18), transparent 60%),
-          radial-gradient(900px 500px at 85% 110%, rgba(111, 107, 255, 0.14), transparent 55%),
-          var(--bg);
-        display: grid;
-        place-items: center;
-        min-height: 100svh;
-        padding: 24px;
-        line-height: 1.55;
+        background: var(--bg-deep);
+        line-height: 1.6;
         -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+        overflow-x: hidden;
       }
-      main {
-        width: 100%;
-        max-width: 600px;
-        text-align: center;
-        animation: rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+      /* Atmosphere */
+      .bg {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        background:
+          radial-gradient(1100px 620px at 50% -8%, rgba(91, 155, 255, 0.16), transparent 62%),
+          radial-gradient(900px 600px at 88% 8%, rgba(111, 107, 255, 0.12), transparent 58%),
+          radial-gradient(1000px 700px at 8% 92%, rgba(63, 208, 201, 0.07), transparent 60%),
+          var(--bg-deep);
       }
-      @keyframes rise {
-        from { opacity: 0; transform: translateY(12px); }
-        to { opacity: 1; transform: none; }
+      .bg::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+        background-size: 56px 56px;
+        -webkit-mask-image: radial-gradient(900px 700px at 50% 0%, #000 0%, transparent 78%);
+        mask-image: radial-gradient(900px 700px at 50% 0%, #000 0%, transparent 78%);
       }
-      .logo {
-        width: 88px;
-        height: 88px;
-        border-radius: 22px;
-        margin: 0 auto 28px;
-        display: block;
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45), 0 0 0 1px var(--border);
+
+      a { color: inherit; }
+      h1, h2 { text-wrap: balance; }
+      img { display: block; max-width: 100%; }
+      ::selection { background: rgba(91, 155, 255, 0.32); color: #fff; }
+
+      .skip {
+        position: fixed;
+        left: 16px;
+        top: -64px;
+        z-index: 100;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 600;
+        font-size: 0.9rem;
+        padding: 10px 16px;
+        border-radius: 10px;
+        text-decoration: none;
+        transition: top 0.2s var(--ease);
       }
-      h1 {
-        font-size: clamp(2rem, 6vw, 2.9rem);
-        line-height: 1.1;
-        letter-spacing: -0.02em;
-        margin: 0 0 14px;
+      .skip:focus { top: 12px; outline: 2px solid #fff; outline-offset: 2px; }
+      @media (prefers-reduced-motion: reduce) { .skip { transition: none; } }
+
+      .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+      /* Mono labels */
+      .kicker {
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--accent);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6em;
+        margin: 0;
       }
-      p.tagline {
-        font-size: clamp(1rem, 2.6vw, 1.18rem);
-        color: var(--muted);
-        margin: 0 auto 36px;
-        max-width: 30em;
+      .kicker::before {
+        content: "";
+        width: 14px;
+        height: 1px;
+        background: linear-gradient(90deg, var(--accent), transparent);
       }
-      .cta {
+
+      /* ---------- Nav ---------- */
+      header.nav {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        background: rgba(8, 10, 16, 0.55);
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
+      }
+      header.nav.scrolled {
+        border-bottom-color: var(--border);
+        background: rgba(8, 10, 16, 0.82);
+      }
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 64px;
+      }
+      .wordmark {
+        font-family: var(--font-mono);
+        font-weight: 600;
+        font-size: 0.96rem;
+        letter-spacing: -0.01em;
+        text-decoration: none;
+        color: var(--fg);
+        display: inline-flex;
+        align-items: baseline;
+        gap: 0.05em;
+        white-space: nowrap;
+      }
+      .wordmark .prompt { color: var(--accent); margin-right: 0.15em; }
+      .wordmark .dim { color: var(--muted); }
+      .wordmark .cursor {
+        display: inline-block;
+        width: 0.55em;
+        height: 1.05em;
+        margin-left: 0.12em;
+        transform: translateY(0.13em);
+        background: var(--accent);
+        border-radius: 1px;
+        animation: blink 1.2s steps(1) infinite;
+      }
+      @keyframes blink { 0%, 50% { opacity: 1; } 50.01%, 100% { opacity: 0; } }
+      @media (prefers-reduced-motion: reduce) { .wordmark .cursor { animation: none; } }
+
+      nav.links { display: flex; align-items: center; gap: 4px; }
+      nav.links a.navlink {
+        font-size: 0.92rem;
+        font-weight: 500;
+        color: var(--fg-2);
+        text-decoration: none;
+        padding: 8px 12px;
+        border-radius: 9px;
+        transition: color 0.16s var(--ease), background 0.16s var(--ease);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45em;
+      }
+      nav.links a.navlink:hover { color: var(--fg); background: var(--surface-2); }
+      nav.links a.navlink svg { width: 16px; height: 16px; }
+      .nav-cta {
+        margin-left: 8px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-decoration: none;
+        color: #fff;
+        padding: 9px 16px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        box-shadow: 0 6px 18px rgba(91, 116, 255, 0.28);
+        transition: transform 0.16s var(--ease), box-shadow 0.16s var(--ease);
+        white-space: nowrap;
+      }
+      .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 10px 26px rgba(91, 116, 255, 0.4); }
+      .hide-mobile { display: none; }
+      nav.links a.navlink.hide-mobile { display: none; }
+
+      /* ---------- Buttons ---------- */
+      .btn {
         display: inline-flex;
         align-items: center;
         gap: 0.55em;
-        padding: 15px 30px;
-        font-size: 1.06rem;
+        font-size: 1rem;
         font-weight: 600;
+        font-family: var(--font-sans);
+        text-decoration: none;
+        padding: 14px 26px;
+        border-radius: 13px;
+        border: 1px solid transparent;
+        cursor: pointer;
+        transition: transform 0.16s var(--ease), box-shadow 0.16s var(--ease),
+          background 0.16s var(--ease), border-color 0.16s var(--ease);
+      }
+      .btn .arrow { transition: transform 0.18s var(--ease); }
+      .btn:hover .arrow { transform: translateX(4px); }
+      .btn-primary {
         color: #fff;
-        text-decoration: none;
-        border-radius: 14px;
         background: linear-gradient(135deg, var(--accent), var(--accent-2));
-        box-shadow: 0 10px 30px rgba(79, 140, 255, 0.35);
-        transition: transform 0.15s ease, box-shadow 0.15s ease;
+        box-shadow: 0 12px 34px rgba(91, 116, 255, 0.36), inset 0 1px 0 rgba(255, 255, 255, 0.22);
       }
-      .cta:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 16px 40px rgba(79, 140, 255, 0.45);
+      .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 44px rgba(91, 116, 255, 0.46), inset 0 1px 0 rgba(255, 255, 255, 0.22); }
+      .btn-ghost {
+        color: var(--fg);
+        background: var(--surface-2);
+        border-color: var(--border-2);
       }
-      .cta .arrow { transition: transform 0.15s ease; }
-      .cta:hover .arrow { transform: translateX(3px); }
-      .links {
-        margin-top: 30px;
-        display: flex;
-        gap: 26px;
-        justify-content: center;
-        flex-wrap: wrap;
+      .btn-ghost:hover { background: rgba(255, 255, 255, 0.07); border-color: rgba(255, 255, 255, 0.22); transform: translateY(-2px); }
+      .btn:focus-visible, .nav-cta:focus-visible, .f-link:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
       }
-      .links a {
-        color: var(--muted);
-        text-decoration: none;
-        font-size: 0.95rem;
-        border-bottom: 1px solid transparent;
-        transition: color 0.15s ease, border-color 0.15s ease;
-      }
-      .links a:hover { color: var(--fg); border-color: var(--border); }
-      footer {
-        margin-top: 52px;
-        color: var(--muted);
-        font-size: 0.82rem;
-        opacity: 0.7;
-      }
-      .sponsors {
-        margin-top: 48px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 14px;
-      }
-      .sponsors .label {
-        margin: 0;
-        font-size: 0.78rem;
-        letter-spacing: 0.09em;
-        text-transform: uppercase;
-        color: var(--muted);
-      }
-      .sponsor-card {
+
+      /* ---------- Hero ---------- */
+      .hero { text-align: center; padding: 84px 0 56px; position: relative; }
+      .badge {
         display: inline-flex;
         align-items: center;
-        justify-content: center;
-        background: #fff;
+        gap: 0.6em;
+        font-family: var(--font-mono);
+        font-size: 0.74rem;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        color: var(--fg-2);
+        padding: 7px 14px 7px 11px;
+        border-radius: 999px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        margin-bottom: 30px;
+      }
+      .badge .dot {
+        width: 7px; height: 7px; border-radius: 50%;
+        background: var(--accent-teal);
+        box-shadow: 0 0 0 0 rgba(63, 208, 201, 0.5);
+        animation: pulse 2.4s var(--ease) infinite;
+      }
+      @keyframes pulse {
+        0% { box-shadow: 0 0 0 0 rgba(63, 208, 201, 0.5); }
+        70% { box-shadow: 0 0 0 7px rgba(63, 208, 201, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(63, 208, 201, 0); }
+      }
+      @media (prefers-reduced-motion: reduce) { .badge .dot { animation: none; } }
+      .badge .sep { width: 1px; height: 12px; background: var(--border-2); }
+
+      h1 {
+        font-size: clamp(2.4rem, 6.4vw, 4.3rem);
+        line-height: 1.04;
+        letter-spacing: -0.035em;
+        font-weight: 800;
+        margin: 0 auto 22px;
+        max-width: 16ch;
+      }
+      h1 .grad {
+        background: linear-gradient(120deg, #7fb2ff 0%, #6f6bff 55%, #9b78ff 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+      }
+      .lede {
+        font-size: clamp(1.05rem, 2.1vw, 1.24rem);
+        color: var(--fg-2);
+        max-width: 47ch;
+        margin: 0 auto 38px;
+        line-height: 1.6;
+      }
+      .hero-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1px;
+        max-width: 720px;
+        margin: 64px auto 0;
+        background: var(--border);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+      }
+      .stat { background: rgba(10, 13, 20, 0.6); padding: 22px 16px; text-align: center; }
+      .stat .num {
+        font-family: var(--font-mono);
+        font-size: clamp(1.5rem, 3.2vw, 2rem);
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        color: var(--fg);
+        line-height: 1;
+      }
+      .stat .lbl {
+        font-size: 0.82rem;
+        color: var(--muted);
+        margin-top: 8px;
+        letter-spacing: 0.01em;
+      }
+
+      /* ---------- Section frame ---------- */
+      section.block { padding: 64px 0; }
+      #explore { scroll-margin-top: 80px; }
+      .sec-head { max-width: 640px; margin-bottom: 40px; }
+      .sec-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+      .sec-head h2 {
+        font-size: clamp(1.7rem, 3.6vw, 2.5rem);
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+        font-weight: 700;
+        margin: 16px 0 0;
+      }
+      .sec-head p { color: var(--muted); margin: 14px 0 0; font-size: 1.04rem; }
+      .sec-head.center .kicker::before { display: none; }
+      .sec-head.center .kicker { gap: 0; }
+
+      /* ---------- Pillars ---------- */
+      .grid-pillars {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .pillar {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        padding: 26px 24px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        text-decoration: none;
+        color: inherit;
+        overflow: hidden;
+        transition: transform 0.22s var(--ease), border-color 0.22s var(--ease),
+          background 0.22s var(--ease);
+      }
+      .pillar::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        padding: 1px;
+        background: radial-gradient(420px 180px at var(--mx, 50%) 0%, rgba(91, 155, 255, 0.5), transparent 70%);
+        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        opacity: 0;
+        transition: opacity 0.25s var(--ease);
+        pointer-events: none;
+      }
+      .pillar:hover { transform: translateY(-4px); background: var(--surface-2); border-color: var(--border-2); }
+      .pillar:hover::after { opacity: 1; }
+      .pillar:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+      .p-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+      .p-icon {
+        width: 44px; height: 44px;
+        display: grid; place-items: center;
+        border-radius: 12px;
+        background: linear-gradient(150deg, rgba(91, 155, 255, 0.18), rgba(111, 107, 255, 0.1));
+        border: 1px solid var(--border-2);
+        color: #bcd4ff;
+      }
+      .p-icon svg { width: 22px; height: 22px; }
+      .p-idx { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted-2); font-weight: 600; }
+      .pillar h3 { font-size: 1.18rem; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 8px; }
+      .pillar p { color: var(--muted); font-size: 0.96rem; margin: 0 0 18px; line-height: 1.55; }
+      .p-go {
+        margin-top: auto;
+        font-family: var(--font-mono);
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--accent);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5em;
+      }
+      .p-go .arrow { transition: transform 0.18s var(--ease); }
+      .pillar:hover .p-go .arrow { transform: translateX(4px); }
+
+      /* ---------- Highlights ---------- */
+      .grid-highlight { display: grid; grid-template-columns: 1fr; gap: 16px; }
+      .feature {
+        position: relative;
+        padding: 34px 30px;
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+        background: var(--surface);
+        overflow: hidden;
+      }
+      .feature .glow {
+        position: absolute;
+        width: 360px; height: 360px;
+        border-radius: 50%;
+        filter: blur(70px);
+        opacity: 0.5;
+        top: -160px; right: -120px;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .feature.baseline .glow { background: radial-gradient(circle, rgba(111, 107, 255, 0.42), transparent 65%); }
+      .feature > * { position: relative; z-index: 1; }
+      .feature .f-icon {
+        width: 50px; height: 50px;
+        display: grid; place-items: center;
         border-radius: 14px;
-        padding: 14px 24px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), 0 0 0 1px var(--border);
-        transition: transform 0.15s ease, box-shadow 0.15s ease;
+        margin-bottom: 20px;
+        border: 1px solid var(--border-2);
+        background: var(--surface-2);
       }
-      .sponsor-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45), 0 0 0 1px var(--border);
+      .feature .f-icon svg { width: 26px; height: 26px; }
+      .feature.baseline .f-icon { color: #b3b0ff; }
+      .feature.solo { max-width: 720px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; text-align: center; }
+      .feature.solo .glow { left: 50%; right: auto; transform: translateX(-50%); top: -190px; }
+      .feature.solo p { margin-left: auto; margin-right: auto; }
+      .feature h3 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 12px; }
+      .feature p { color: var(--fg-2); font-size: 1.02rem; margin: 0 0 26px; max-width: 42ch; }
+      .f-link {
+        display: inline-flex; align-items: center; gap: 0.5em;
+        font-weight: 600; font-size: 0.98rem; text-decoration: none;
+        padding: 11px 20px; border-radius: 11px;
+        background: var(--surface-2); border: 1px solid var(--border-2);
+        color: var(--fg);
+        transition: background 0.16s var(--ease), border-color 0.16s var(--ease), transform 0.16s var(--ease);
       }
-      .sponsor-card img {
-        display: block;
-        height: 84px;
-        width: auto;
+      .f-link:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.24); transform: translateY(-2px); }
+      .f-link .arrow { transition: transform 0.18s var(--ease); }
+      .f-link:hover .arrow { transform: translateX(4px); }
+
+      /* ---------- Contributors ---------- */
+      .grid-people { display: grid; grid-template-columns: 1fr; gap: 14px; }
+      .person {
+        display: flex; align-items: center; gap: 14px;
+        padding: 16px;
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        background: var(--surface);
+        text-decoration: none; color: inherit;
+        transition: transform 0.18s var(--ease), border-color 0.18s var(--ease), background 0.18s var(--ease);
+      }
+      .person:hover { transform: translateY(-3px); border-color: var(--border-2); background: var(--surface-2); }
+      .person:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+      .person img {
+        width: 52px; height: 52px; border-radius: 50%;
+        object-fit: cover; flex-shrink: 0;
+        border: 1px solid var(--border-2);
+        background: var(--surface-2);
+      }
+      .person > div { min-width: 0; }
+      .person .nm { font-weight: 600; font-size: 0.98rem; letter-spacing: -0.01em; }
+      .person .rl { color: var(--muted); font-size: 0.82rem; margin-top: 2px; line-height: 1.4; }
+      .people-foot { margin-top: 26px; font-size: 0.98rem; color: var(--muted); }
+      .people-foot a { color: var(--accent); text-decoration: none; font-weight: 600; }
+      .people-foot a:hover { text-decoration: underline; }
+
+      /* ---------- Sponsor ---------- */
+      .sponsor-wrap { text-align: center; }
+      .sponsor-card {
+        display: inline-flex; align-items: center; justify-content: center;
+        background: #fff;
+        border-radius: 16px;
+        padding: 22px 34px;
+        margin-top: 22px;
+        box-shadow: 0 18px 44px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--border);
+        transition: transform 0.18s var(--ease), box-shadow 0.18s var(--ease);
+      }
+      .sponsor-card:hover { transform: translateY(-3px); box-shadow: 0 24px 56px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--border); }
+      .sponsor-card img { height: 64px; width: auto; }
+      .sponsor-note { color: var(--muted); font-size: 0.92rem; margin: 22px 0 0; }
+      .sponsor-note a { color: var(--fg-2); }
+
+      /* ---------- Final CTA ---------- */
+      .cta-band {
+        position: relative;
+        text-align: center;
+        padding: 64px 32px;
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+        background:
+          radial-gradient(700px 300px at 50% 0%, rgba(91, 155, 255, 0.16), transparent 70%),
+          var(--surface);
+        overflow: hidden;
+      }
+      .cta-band h2 { font-size: clamp(1.8rem, 4vw, 2.7rem); letter-spacing: -0.03em; font-weight: 800; margin: 0 0 14px; }
+      .cta-band p { color: var(--fg-2); margin: 0 auto 30px; max-width: 44ch; font-size: 1.05rem; }
+      .cta-band .hero-cta { margin-top: 4px; }
+
+      /* ---------- Footer ---------- */
+      footer.site {
+        border-top: 1px solid var(--border);
+        margin-top: 40px;
+        padding: 44px 0 56px;
+      }
+      .foot-inner { display: flex; flex-direction: column; gap: 22px; }
+      .foot-top { display: flex; flex-direction: column; gap: 18px; }
+      .foot-links { display: flex; flex-wrap: wrap; gap: 8px 4px; }
+      .foot-links a {
+        color: var(--muted); text-decoration: none; font-size: 0.92rem;
+        padding: 6px 12px; border-radius: 8px;
+        transition: color 0.16s var(--ease), background 0.16s var(--ease);
+      }
+      .foot-links a:hover { color: var(--fg); background: var(--surface-2); }
+      .foot-bottom {
+        display: flex; flex-direction: column; gap: 8px;
+        padding-top: 22px; border-top: 1px solid var(--border);
+        color: var(--muted-2); font-size: 0.86rem;
+      }
+      .foot-bottom .tag { color: var(--muted); }
+      .foot-bottom a { color: var(--muted); }
+
+      /* ---------- Reveal animation ---------- */
+      .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
+      .js .reveal.in { opacity: 1; transform: none; }
+      /* A stagger wrapper is observed via .reveal (so JS adds .in), but must stay visible itself — only its children stagger in. */
+      .js .reveal.stagger { opacity: 1; transform: none; }
+      .js .stagger > * { opacity: 0; transform: translateY(16px); transition: opacity 0.55s var(--ease), transform 0.55s var(--ease); }
+      .js .stagger.in > * { opacity: 1; transform: none; }
+      .js .stagger.in > *:nth-child(1) { transition-delay: 0.04s; }
+      .js .stagger.in > *:nth-child(2) { transition-delay: 0.09s; }
+      .js .stagger.in > *:nth-child(3) { transition-delay: 0.14s; }
+      .js .stagger.in > *:nth-child(4) { transition-delay: 0.19s; }
+      .js .stagger.in > *:nth-child(5) { transition-delay: 0.24s; }
+      .js .stagger.in > *:nth-child(6) { transition-delay: 0.29s; }
+
+      /* Hero load animation */
+      .js .hero .anim { opacity: 0; transform: translateY(20px); animation: rise 0.75s var(--ease) forwards; }
+      .js .hero .anim.d1 { animation-delay: 0.05s; }
+      .js .hero .anim.d2 { animation-delay: 0.14s; }
+      .js .hero .anim.d3 { animation-delay: 0.23s; }
+      .js .hero .anim.d4 { animation-delay: 0.32s; }
+      .js .hero .anim.d5 { animation-delay: 0.44s; }
+      @keyframes rise { to { opacity: 1; transform: none; } }
+      @media (prefers-reduced-motion: reduce) {
+        .js .reveal, .js .stagger > *, .js .hero .anim { opacity: 1 !important; transform: none !important; animation: none !important; transition: none !important; }
+      }
+
+      /* ---------- Responsive ---------- */
+      @media (min-width: 600px) {
+        .stats { grid-template-columns: repeat(4, 1fr); }
+        .grid-pillars { grid-template-columns: repeat(2, 1fr); }
+        .grid-people { grid-template-columns: repeat(2, 1fr); }
+        .foot-top { flex-direction: row; align-items: center; justify-content: space-between; }
+      }
+      @media (min-width: 700px) {
+        .hide-mobile { display: inline-flex; }
+        nav.links a.navlink.hide-mobile { display: inline-flex; }
+      }
+      @media (min-width: 900px) {
+        .grid-pillars { grid-template-columns: repeat(3, 1fr); }
+        .grid-people { grid-template-columns: repeat(3, 1fr); }
+        section.block { padding: 80px 0; }
+        .hero { padding: 104px 0 64px; }
       }
     </style>
   </head>
   <body>
-    <main>
-      <img class="logo" src="/logo.png" alt="IntuneMacAdmins logo" width="88" height="88" />
-      <h1>IntuneMacAdmins</h1>
-      <p class="tagline">
-        Community guides, tools, and best practices for managing macOS devices with
-        Microsoft Intune.
-      </p>
-      <a class="cta" href="https://docs.intunemacadmins.com/">
-        Read the Documentation
-        <span class="arrow" aria-hidden="true">→</span>
-      </a>
-      <nav class="links">
-        <a href="https://docs.intunemacadmins.com/">Documentation</a>
-        <a href="https://copilot.intunemacadmins.com/">Copilot</a>
-        <a href="https://github.com/ugurkocde/IntuneMacAdmins">GitHub</a>
-      </nav>
-      <section class="sponsors">
-        <p class="label">Our Sponsors <span aria-hidden="true">❤️</span></p>
-        <a
-          class="sponsor-card"
-          href="https://www.devote.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Devote"
-        >
-          <img src="/devote_logo.jpg" alt="" width="71" height="84" />
+    <a class="skip" href="#main">Skip to content</a>
+    <div class="bg" aria-hidden="true"></div>
+
+    <header class="nav" id="nav">
+      <div class="wrap nav-inner">
+        <a class="wordmark" href="/" aria-label="IntuneMacAdmins home" translate="no">
+          <span class="prompt" aria-hidden="true">&rsaquo;</span>intunemacadmins<span class="cursor" aria-hidden="true"></span>
         </a>
+        <nav class="links" aria-label="Primary">
+          <a class="navlink hide-mobile" href="https://docs.intunemacadmins.com/">Docs</a>
+          <a class="navlink hide-mobile" href="https://github.com/ugurkocde/IntuneMacAdmins" aria-label="GitHub repository">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-1.8c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+            GitHub
+          </a>
+          <a class="nav-cta" href="https://docs.intunemacadmins.com/">Read the docs</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="wrap">
+          <span class="badge anim d1">
+            <span class="dot" aria-hidden="true"></span>
+            Updated weekly
+            <span class="sep" aria-hidden="true"></span>
+            Free &amp; open source
+          </span>
+          <h1 class="anim d2">Master <span class="grad">macOS</span> management in Microsoft <span class="grad">Intune</span>.</h1>
+          <p class="lede anim d3">
+            The community playbook for deploying, configuring, and securing Macs with
+            Intune — battle-tested guides, baseline settings, scripts, and tools,
+            maintained by Microsoft MVPs.
+          </p>
+          <div class="hero-cta anim d4">
+            <a class="btn btn-primary" href="https://docs.intunemacadmins.com/">
+              Read the Documentation
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="btn btn-ghost" href="#explore">
+              Explore the guides
+            </a>
+          </div>
+
+          <div class="stats anim d5" role="list">
+            <div class="stat" role="listitem"><div class="num">80+</div><div class="lbl">In-depth guides</div></div>
+            <div class="stat" role="listitem"><div class="num">6</div><div class="lbl">Microsoft MVPs</div></div>
+            <div class="stat" role="listitem"><div class="num">17</div><div class="lbl">Baseline settings</div></div>
+            <div class="stat" role="listitem"><div class="num">100%</div><div class="lbl">Free &amp; open</div></div>
+          </div>
+        </div>
       </section>
-      <footer>A community project by Ugur Koc and contributors.</footer>
+
+      <!-- PILLARS -->
+      <section class="block" id="explore">
+        <div class="wrap">
+          <div class="sec-head reveal">
+            <p class="kicker">What&rsquo;s inside</p>
+            <h2>From zero-touch enrollment to a hardened security baseline.</h2>
+            <p>Every topic a Mac admin actually runs into — documented end to end, with screenshots and real-world insights.</p>
+          </div>
+          <div class="grid-pillars stagger reveal">
+            <a class="pillar" href="https://docs.intunemacadmins.com/complete-guide-macos-deployment/complete-guide-macos-deployment">
+              <div class="p-top">
+                <span class="p-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg></span>
+                <span class="p-idx">01</span>
+              </div>
+              <h3>Complete macOS Deployment</h3>
+              <p>Zero-touch enrollment with Apple Business Manager, Company Portal, and Defender — start to finish.</p>
+              <span class="p-go">Explore <span class="arrow" aria-hidden="true">→</span></span>
+            </a>
+
+            <a class="pillar" href="https://docs.intunemacadmins.com/platform-single-sign-on-psso/platform-single-sign-on">
+              <div class="p-top">
+                <span class="p-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4Z"/><circle cx="16.5" cy="7.5" r=".5" fill="currentColor"/></svg></span>
+                <span class="p-idx">02</span>
+              </div>
+              <h3>Platform Single Sign-On</h3>
+              <p>Passwordless, Entra-backed sign-in on every Mac — including browser SSO and rollout insights.</p>
+              <span class="p-go">Explore <span class="arrow" aria-hidden="true">→</span></span>
+            </a>
+
+            <a class="pillar" href="https://docs.intunemacadmins.com/filevault/filevault">
+              <div class="p-top">
+                <span class="p-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+                <span class="p-idx">03</span>
+              </div>
+              <h3>FileVault Encryption</h3>
+              <p>Enforce full-disk encryption during Setup Assistant and escrow recovery keys to Intune.</p>
+              <span class="p-go">Explore <span class="arrow" aria-hidden="true">→</span></span>
+            </a>
+
+            <a class="pillar" href="https://docs.intunemacadmins.com/declarative-device-management-ddm/declarative-device-management">
+              <div class="p-top">
+                <span class="p-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg></span>
+                <span class="p-idx">04</span>
+              </div>
+              <h3>Declarative Device Management</h3>
+              <p>The modern, proactive MDM protocol for Apple — what it is, how to configure it, and why it matters.</p>
+              <span class="p-go">Explore <span class="arrow" aria-hidden="true">→</span></span>
+            </a>
+
+            <a class="pillar" href="https://docs.intunemacadmins.com/custom-attributes/custom-attributes">
+              <div class="p-top">
+                <span class="p-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 17 6-6-6-6"/><path d="M12 19h8"/></svg></span>
+                <span class="p-idx">05</span>
+              </div>
+              <h3>Custom Attributes</h3>
+              <p>Surface anything from a Mac with shell-script custom attributes for richer reporting and compliance.</p>
+              <span class="p-go">Explore <span class="arrow" aria-hidden="true">→</span></span>
+            </a>
+
+            <a class="pillar" href="https://docs.intunemacadmins.com/troubleshooting-guides/troubleshooting">
+              <div class="p-top">
+                <span class="p-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/><circle cx="12" cy="12" r="4"/></svg></span>
+                <span class="p-idx">06</span>
+              </div>
+              <h3>Troubleshooting</h3>
+              <p>Decode cryptic enrollment errors and the most common macOS management failures — and fix them fast.</p>
+              <span class="p-go">Explore <span class="arrow" aria-hidden="true">→</span></span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- HIGHLIGHTS -->
+      <section class="block">
+        <div class="wrap">
+          <div class="grid-highlight reveal">
+            <div class="feature baseline solo">
+              <div class="glow" aria-hidden="true"></div>
+              <div class="f-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></div>
+              <p class="kicker">Jumpstart</p>
+              <h3>Import the Baseline Settings</h3>
+              <p>Deploy a community-vetted security baseline, built on the Open Intune Baseline (OIB), to your tenant in minutes.</p>
+              <a class="f-link" href="https://docs.intunemacadmins.com/baseline-settings-for-intune/import">Import the baseline <span class="arrow" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTRIBUTORS -->
+      <section class="block">
+        <div class="wrap">
+          <div class="sec-head center reveal">
+            <p class="kicker">Maintainers</p>
+            <h2>Maintained by Microsoft MVPs and the community.</h2>
+            <p>Real engineers who manage Mac fleets every day — keeping every guide accurate and current.</p>
+          </div>
+          <div class="grid-people stagger reveal">
+            <a class="person" href="https://ugurkoc.de" target="_blank" rel="noopener noreferrer">
+              <img src="/contributors/ugur_koc.webp" alt="Ugur Koc" width="52" height="52" loading="lazy" />
+              <div><div class="nm">Ugur Koc</div><div class="rl">Microsoft MVP · Cloud Engineer @ glueckkanja</div></div>
+            </a>
+            <a class="person" href="https://www.intuneirl.com/" target="_blank" rel="noopener noreferrer">
+              <img src="/contributors/somesh_pathak.webp" alt="Somesh Pathak" width="52" height="52" loading="lazy" />
+              <div><div class="nm">Somesh Pathak</div><div class="rl">Microsoft MVP · Infrastructure Engineer @ NN Group</div></div>
+            </a>
+            <a class="person" href="https://www.manage-everything.cloud/" target="_blank" rel="noopener noreferrer">
+              <img src="/contributors/steffen_schwerdtfeger.webp" alt="Steffen Schwerdtfeger" width="52" height="52" loading="lazy" />
+              <div><div class="nm">Steffen Schwerdtfeger</div><div class="rl">Cloud Architect @ glueckkanja</div></div>
+            </a>
+            <a class="person" href="https://www.oceanleaf.ch/" target="_blank" rel="noopener noreferrer">
+              <img src="/contributors/niklas_tinner.webp" alt="Niklas Tinner" width="52" height="52" loading="lazy" />
+              <div><div class="nm">Niklas Tinner</div><div class="rl">Microsoft MVP · Founder @ Oceanleaf</div></div>
+            </a>
+            <a class="person" href="https://intunestuff.com/" target="_blank" rel="noopener noreferrer">
+              <img src="/contributors/joery_vandenbosch.webp" alt="Joery Van den Bosch" width="52" height="52" loading="lazy" />
+              <div><div class="nm">Joery Van den Bosch</div><div class="rl">Microsoft MVP · Modern Work Architect @ Arxus</div></div>
+            </a>
+            <a class="person" href="https://skiptotheendpoint.co.uk/" target="_blank" rel="noopener noreferrer">
+              <img src="/contributors/james_robinson.webp" alt="James Robinson" width="52" height="52" loading="lazy" />
+              <div><div class="nm">James Robinson</div><div class="rl">Microsoft MVP · EUC Workstream Lead @ PowerON</div></div>
+            </a>
+          </div>
+          <p class="people-foot reveal">
+            …plus dozens of community contributors.
+            <a href="https://github.com/ugurkocde/IntuneMacAdmins">Add your name on GitHub →</a>
+          </p>
+        </div>
+      </section>
+
+      <!-- SPONSOR -->
+      <section class="block">
+        <div class="wrap sponsor-wrap reveal">
+          <p class="kicker" style="justify-content:center">Supported by</p>
+          <a class="sponsor-card" href="https://www.devote.com" target="_blank" rel="noopener noreferrer" aria-label="Devote">
+            <img src="/devote_logo.jpg" alt="" width="55" height="64" />
+          </a>
+          <p class="sponsor-note">
+            Sponsorship keeps these resources free for everyone.
+            <a href="https://github.com/sponsors/ugurkocde">Become a sponsor →</a>
+          </p>
+        </div>
+      </section>
+
+      <!-- FINAL CTA -->
+      <section class="block">
+        <div class="wrap">
+          <div class="cta-band reveal">
+            <h2>Start managing macOS the right way.</h2>
+            <p>Everything you need to deploy, secure, and support Macs with Microsoft Intune — in one place, always free.</p>
+            <div class="hero-cta">
+              <a class="btn btn-primary" href="https://docs.intunemacadmins.com/">
+                Read the Documentation
+                <span class="arrow" aria-hidden="true">→</span>
+              </a>
+              <a class="btn btn-ghost" href="https://github.com/ugurkocde/IntuneMacAdmins">
+                Star on GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
+
+    <footer class="site">
+      <div class="wrap foot-inner">
+        <div class="foot-top">
+          <a class="wordmark" href="/" aria-label="IntuneMacAdmins home" translate="no">
+            <span class="prompt" aria-hidden="true">&rsaquo;</span>intunemacadmins<span class="cursor" aria-hidden="true"></span>
+          </a>
+          <nav class="foot-links" aria-label="Footer">
+            <a href="https://docs.intunemacadmins.com/">Documentation</a>
+            <a href="https://docs.intunemacadmins.com/home/getting-started">Getting Started</a>
+            <a href="https://github.com/ugurkocde/IntuneMacAdmins">GitHub</a>
+            <a href="https://docs.intunemacadmins.com/home/how-to-contribute">Contribute</a>
+          </nav>
+        </div>
+        <div class="foot-bottom">
+          <span class="tag">A community project by <a href="https://ugurkoc.de" target="_blank" rel="noopener noreferrer">Ugur Koc</a> and contributors.</span>
+          <span>Not affiliated with Microsoft or Apple. macOS is a trademark of Apple Inc.; Microsoft Intune is a trademark of Microsoft Corporation.</span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var root = document.documentElement;
+        root.classList.add("js");
+
+        // Nav border on scroll
+        var nav = document.getElementById("nav");
+        var onScroll = function () {
+          if (window.scrollY > 8) nav.classList.add("scrolled");
+          else nav.classList.remove("scrolled");
+        };
+        onScroll();
+        window.addEventListener("scroll", onScroll, { passive: true });
+
+        // Pointer-tracked card glow
+        document.querySelectorAll(".pillar").forEach(function (el) {
+          el.addEventListener("pointermove", function (e) {
+            var r = el.getBoundingClientRect();
+            el.style.setProperty("--mx", e.clientX - r.left + "px");
+          });
+        });
+
+        // Scroll reveal
+        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var reveals = document.querySelectorAll(".reveal");
+        if (reduce || !("IntersectionObserver" in window)) {
+          reveals.forEach(function (el) { el.classList.add("in"); });
+        } else {
+          var io = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("in");
+                  io.unobserve(entry.target);
+                }
+              });
+            },
+            { rootMargin: "0px 0px -10% 0px", threshold: 0.08 }
+          );
+          reveals.forEach(function (el) { io.observe(el); });
+        }
+      })();
+    </script>
   </body>
 </html>

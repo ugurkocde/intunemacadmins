@@ -78,9 +78,17 @@ const BASELINE_SETTINGS_OVERVIEW_CHILDREN = [
 const items: Item[] = JSON.parse(readFileSync(MANIFEST, "utf8"));
 const byPath = new Map(items.map((i) => [i.newPath, i]));
 
+// Section landing (README) pages: GitBook uses the SUMMARY link text as the page
+// title AND <title>, so a label of "Overview" produces a generic, non-SEO title.
+// Use the section's real title instead; override the few imperfect source titles.
+const INDEX_TITLE: Record<string, string> = {
+  "complete-guide-macos-deployment/README.md": "Complete Guide to macOS Deployment",
+  "deploy-files/README.md": "Deploy Files on a Mac",
+};
+
 function label(i: Item): string {
+  if (i.isIndex) return INDEX_TITLE[i.newPath] ?? i.title ?? i.newPath;
   if (i.label) return i.label;
-  if (i.isIndex) return "Overview";
   if (i.title) return i.title;
   return i.newPath;
 }

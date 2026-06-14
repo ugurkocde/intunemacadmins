@@ -260,7 +260,7 @@ function findLatestWeek(pulseDir: string, currentWeek: IsoWeek | null): IsoWeek 
 // disk (newest first), preserving the rest of the file.
 function updateSummaryPulse(summaryFile: string, pulseDir: string): void {
   if (!existsSync(summaryFile)) return;
-  const bullets = ["* [Overview](community-pulse/README.md)"];
+  const bullets = ["* [Community Pulse](community-pulse/README.md)"];
   for (const w of listPulseWeeks(pulseDir)) {
     const rel = `community-pulse/${quarterOf(w).toLowerCase()}/${isoWeekString(w).toLowerCase()}.md`;
     bullets.push(`* [${pulseWeekLabel(w)}](${rel})`);

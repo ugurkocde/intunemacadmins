@@ -6,7 +6,7 @@ lastReviewed: 2026-06-13
 ---
 
 # Overview
-After meeting the [Prerequisites](https://www.intunemacadmins.com/intune-getting-started-guide/prerequisites/) we turn over to the setup of the tenant and equipment of policies & apps.
+After meeting the [Prerequisites](./prerequisites.md) we turn over to the setup of the tenant and equipment of policies & apps.
 
 1. Create groups & filters
 2. Create compliance policy

@@ -26,6 +26,7 @@ function extractHrefs(html: string, baseUrl: string): string[] {
     try {
       const u = new URL(href, baseUrl);
       if (u.protocol !== "https:" && u.protocol !== "http:") continue;
+      if (u.pathname.endsWith("/rss.xml")) continue; // GitBook per-page autodiscovery (head, 404 by design)
       out.add(u.origin + u.pathname);
     } catch {
       /* ignore */
@@ -68,27 +69,37 @@ async function main(): Promise<void> {
   const unique = [...linkSources.keys()];
   console.log(`checking ${unique.length} unique internal link targets...`);
 
-  const broken: { url: string; status: number; on: string[] }[] = [];
+  // redirect:"manual" so we flag BOTH dead links (4xx/5xx) AND internal links
+  // that bounce through a redirect (e.g. an old apex/www URL) — those should
+  // point straight at the docs page.
+  const issues: { url: string; status: number; on: string[] }[] = [];
   await mapLimit(unique, 8, async (url) => {
     let status = 0;
     try {
-      const res = await fetch(url, { method: "GET", redirect: "follow" });
-      status = res.status;
+      status = (await fetch(url, { method: "GET", redirect: "manual" })).status;
     } catch {
       status = 0;
     }
-    if (status !== 200) {
-      broken.push({ url, status, on: [...linkSources.get(url)!] });
-    }
+    if (status !== 200) issues.push({ url, status, on: [...linkSources.get(url)!] });
   });
 
+  const redirecting = issues.filter((i) => i.status >= 300 && i.status < 400);
+  const dead = issues.filter((i) => i.status < 300 || i.status >= 400);
+
   console.log(`\n=== RESULT ===`);
-  console.log(`unique internal links: ${unique.length} | broken (non-200): ${broken.length}`);
-  for (const b of broken.sort((a, b) => a.url.localeCompare(b.url))) {
-    console.log(`\n  [${b.status}] ${b.url}`);
-    console.log(`     linked from: ${b.on.slice(0, 4).map((u) => u.replace(DOCS, "")).join(", ")}${b.on.length > 4 ? ` (+${b.on.length - 4})` : ""}`);
+  console.log(`unique internal links: ${unique.length} | dead: ${dead.length} | redirecting: ${redirecting.length}`);
+  for (const label of [
+    { name: "DEAD (4xx/5xx — fix the link)", list: dead },
+    { name: "REDIRECTING (point straight at the docs page)", list: redirecting },
+  ]) {
+    if (!label.list.length) continue;
+    console.log(`\n-- ${label.name} --`);
+    for (const b of label.list.sort((a, b) => a.url.localeCompare(b.url))) {
+      console.log(`  [${b.status}] ${b.url}`);
+      console.log(`     from: ${b.on.slice(0, 4).map((u) => u.replace(DOCS, "")).join(", ")}${b.on.length > 4 ? ` (+${b.on.length - 4})` : ""}`);
+    }
   }
-  if (!broken.length) console.log("\nAll internal links resolve (200). No broken quick-links.");
+  if (!issues.length) console.log("\nAll internal links resolve directly (200). No broken or bouncing links.");
 }
 
 main();

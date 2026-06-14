@@ -12,7 +12,7 @@ lastReviewed: 2026-06-13
 Before we start with the FileVault configuration profile in Intune, we have to complete following requirements:
 
 1. Enable Await Final Configuration
-   1. Follow the guide here to enable it: [Configure Await Final Configuration](https://www.intunemacadmins.com/await-final-configuration/configure_await_final_configuration/)
+   1. Follow the guide here to enable it: [Configure Await Final Configuration](../await-final-configuration/configure-await-final-configuration.md)
 2. Create a Filter using the EnrollmentProfileName
    1. Follow the guide below to create the filter.
 

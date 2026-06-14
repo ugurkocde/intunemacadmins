@@ -16,7 +16,7 @@ content in a single place.
 
 As you can see on the left, there are multiple topics around macOS. The goal is to add a short overview, a guide to configure the setting or script, as well as delivering insights based on real-world experiences that are not documented anywhere else, e.g., Microsoft Docs.
 
-This list is growing, and we want you to help us improve and add more content. Check out [How to Contribute](https://www.intunemacadmins.com/home/how_to_contribute/).
+This list is growing, and we want you to help us improve and add more content. Check out [How to Contribute](./how-to-contribute.md).
 
 ## Navigating the Site
 

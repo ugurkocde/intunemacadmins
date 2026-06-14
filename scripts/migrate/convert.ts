@@ -299,7 +299,7 @@ function rewriteInternalLinks(
 
   function resolve(href: string): string | null {
     let h = href.trim();
-    h = h.replace(/^https?:\/\/intunemacadmins\.com/i, "");
+    h = h.replace(/^https?:\/\/(?:www\.)?intunemacadmins\.com/i, "");
     if (!h.startsWith("/")) return null; // external or relative
     if (h.startsWith("/src/assets/")) return null; // image, handled elsewhere
     const hashIdx = h.indexOf("#");

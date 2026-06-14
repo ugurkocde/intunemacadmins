@@ -16,4 +16,4 @@ OneDrive Known Folder Move (KFM) allows the redirection of common folders to One
     ~/Desktop
     ~/Documents
 
-To activate KFM on macOS, multiple Intune profiles are required. The specific profiles and configuration steps are detailed on the next page: [Configure KFM](https://www.intunemacadmins.com/onedrive-known-folder-move-kfm/configure_kfm/)
+To activate KFM on macOS, multiple Intune profiles are required. The specific profiles and configuration steps are detailed on the next page: [Configure KFM](./configure-kfm.md)

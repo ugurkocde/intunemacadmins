@@ -53,7 +53,7 @@ Note:
 
 Most vendors offer a .dmg or .pkg file to install the application. Both extensions are supported in Intune and can be uploaded and assigned to Devices and Users.
 
-There could be cases where you have to package your own application e.g. licence files and in those cases you can use some of the steps we provide here: [How to deploy Files](https://www.intunemacadmins.com/deploy-files/how_to_deploy_files/)
+There could be cases where you have to package your own application e.g. licence files and in those cases you can use some of the steps we provide here: [How to deploy Files](../deploy-files/how-to-deploy-files.md)
 
 ## 6. Can I enroll a MacOS Device in Intune without ABM?
 

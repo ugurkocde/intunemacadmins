@@ -58,9 +58,11 @@ jobs:
             cat .cache/freshness-report.md >> "$GITHUB_STEP_SUMMARY"
           fi
 
-      # Drafted corrections to existing pages (only created when edits were
-      # applied) -> a PR you review and merge. Never auto-merged.
+      # Drafted corrections -> a PR. Only edits that passed independent AI
+      # verification reach here; uncertain findings go to the issue below, never
+      # to this PR. The PR is auto-merged in the next step.
       - name: Open docs-correction PR
+        id: cpr
         if: ${{ hashFiles('.cache/edits-pr-body.md') != '' }}
         uses: peter-evans/create-pull-request@v8
         with:
@@ -73,7 +75,22 @@ jobs:
           body-path: .cache/edits-pr-body.md
           labels: docs-freshness
           assignees: ugurkocde
-          reviewers: ugurkocde
+
+      # Auto-merge the verified corrections so they publish with no manual step.
+      # Requires an admin-scoped token (DOCS_AUTOMERGE_TOKEN) to satisfy the
+      # `main` ruleset's required review. If the secret is absent, the PR is left
+      # open for manual merge rather than failing the run.
+      - name: Auto-merge corrections
+        if: ${{ steps.cpr.outputs.pull-request-number }}
+        env:
+          GH_TOKEN: ${{ secrets.DOCS_AUTOMERGE_TOKEN }}
+          PR_NUMBER: ${{ steps.cpr.outputs.pull-request-number }}
+        run: |
+          if [ -z "${GH_TOKEN}" ]; then
+            echo "DOCS_AUTOMERGE_TOKEN not set; leaving PR #${PR_NUMBER} open for manual merge."
+            exit 0
+          fi
+          gh pr merge "${PR_NUMBER}" --squash --delete-branch --admin
 
       # Everything that isn't a clean auto-edit (overdue review, expired dates,
       # outdated macOS recommendations, broken links, and drift that couldn't be

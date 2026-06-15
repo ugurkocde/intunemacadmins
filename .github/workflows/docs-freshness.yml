@@ -26,7 +26,7 @@ jobs:
     # it ample headroom beyond the monthly default.
     timeout-minutes: 45
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0 # full history so review-age can read git last-modified dates
 

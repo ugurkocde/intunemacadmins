@@ -1,8 +1,13 @@
 name: Content pipeline
 
 on:
-  schedule:
-    - cron: "0 6 * * 1" # Mondays 06:00 UTC
+  # No cron schedule: this pipeline runs on a self-hosted runner on a personal
+  # MacBook that is frequently powered off. A clock-based schedule is skipped
+  # entirely when the Mac is off at that time (launchd does not replay a missed
+  # calendar event after a power-off). Instead, a LaunchAgent on that Mac
+  # (com.ugurkoc.content-pipeline-dispatch) dispatches this workflow on boot
+  # whenever the current ISO week has no run yet -- so the weekly run starts as
+  # soon as the Mac is online. Manual runs still work via the inputs below.
   workflow_dispatch:
     inputs:
       dry_run:

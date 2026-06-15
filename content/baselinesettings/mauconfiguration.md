@@ -31,6 +31,6 @@ Click on the link to download the JSON file from <a href="https://github.com/Ski
 | Enable check for updates                  | True                                                                |
 | Guard against app modification            | Enabled                                                             |
 | Register app on launch                    | True                                                                |
-| Update cache server                       | https://officecdn.microsoft.com/pr/C1297A47-86C4-4C1F-97FA-950631F94777/OfficeMac/ |
+| Update cache server                       | https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/ |
 | Update channel                            | Current Channel (Monthly)                                           |
 | Updater optimization technique            | Lower processor overhead                                            |

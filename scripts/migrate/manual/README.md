@@ -32,7 +32,6 @@ Quickly manage your macOS devices with curated settings from the Open Intune Bas
 - [Official Microsoft Docs for macOS Management](https://learn.microsoft.com/en-us/mem/intune/fundamentals/deployment-guide-enrollment-macos)
 - [Microsoft Mac Admins Group on LinkedIn](https://www.linkedin.com/groups/13007354/)
 - [Mac Admins Slack](https://join.slack.com/t/macadmins/shared_invite/zt-2li6s6akl-ZaR7ZVwg6Tj~8XPSUgFQ~Q)
-- [Mac Admins Software](https://macadmins.software/)
 
 ---
 

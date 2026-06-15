@@ -5,7 +5,9 @@ description: "How to configure Gatekeeper for your Intune tenant."
 # Gatekeeper
 
 {% hint style="info" %}
-Click on the link to download the JSON file from <a href="https://github.com/SkipToTheEndpoint/OpenIntuneBaseline/blob/main/MACOS/NativeImport/MacOS%20-%20OIB%20-%20Firewall%20-%20D%20-%20Gatekeeper%20-%20v1.0.json" target="_blank">GitHub</a>
+Click on the link to download the JSON file from <a href="https://github.com/SkipToTheEndpoint/OpenIntuneBaseline/blob/main/MACOS/NativeImport/MacOS%20-%20OIB%20-%20Firewall%20-%20D%20-%20Gatekeeper%20-%20v1.0.json" target="_blank">GitHub</a>.
+
+Note: the above JSON file does not currently include the **System Policy Managed** > **Disable Override** payload.
 {% endhint %}
 
 ## FireWall
@@ -24,3 +26,9 @@ Click on the link to download the JSON file from <a href="https://github.com/Ski
 | Enable XProtect Malware Upload | Disabled |
 | Allow Identified Developers    | True     |
 | Enable Assessment              | True     |
+
+## System Policy Managed
+
+| Setting          | Value |
+|------------------|-------|
+| Disable Override | True  |

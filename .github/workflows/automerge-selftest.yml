@@ -1,0 +1,49 @@
+name: Automerge selftest
+
+# TEMPORARY: validates that DOCS_AUTOMERGE_TOKEN can merge a PR past the `main`
+# ruleset's required review. Opens a throwaway PR and merges it with the token.
+# Removed immediately after the one-time check.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  selftest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Open a throwaway PR and merge it with DOCS_AUTOMERGE_TOKEN
+        env:
+          GH_TOKEN: ${{ github.token }}
+          MERGE_TOKEN: ${{ secrets.DOCS_AUTOMERGE_TOKEN }}
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          if [ -z "${MERGE_TOKEN}" ]; then
+            echo "::error::DOCS_AUTOMERGE_TOKEN is not set"; exit 1
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          branch="automerge-selftest-${RUN_ID}"
+          git switch -c "$branch"
+          echo "temporary automerge selftest marker (run ${RUN_ID})" > .github/automerge-selftest.txt
+          git add .github/automerge-selftest.txt
+          git commit -m "test: automerge selftest marker (temporary)"
+          git push origin "$branch"
+          gh pr create --base main --head "$branch" \
+            --title "Automerge selftest (temporary)" \
+            --body "Validates DOCS_AUTOMERGE_TOKEN can merge past the main ruleset. Safe to delete."
+          prnum="$(gh pr view "$branch" --json number --jq .number)"
+          echo "Opened PR #$prnum; attempting merge with DOCS_AUTOMERGE_TOKEN..."
+          if GH_TOKEN="$MERGE_TOKEN" gh pr merge "$prnum" --squash --delete-branch --admin; then
+            echo "::notice::SELFTEST PASS - DOCS_AUTOMERGE_TOKEN merged PR #$prnum past the ruleset"
+          else
+            echo "::error::SELFTEST FAIL - token could not merge PR #$prnum (ruleset not bypassed)"
+            gh pr close "$prnum" --delete-branch || true
+            exit 1
+          fi

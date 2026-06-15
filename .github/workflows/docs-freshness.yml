@@ -62,7 +62,7 @@ jobs:
       # applied) -> a PR you review and merge. Never auto-merged.
       - name: Open docs-correction PR
         if: ${{ hashFiles('.cache/edits-pr-body.md') != '' }}
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           add-paths: |
             content/**

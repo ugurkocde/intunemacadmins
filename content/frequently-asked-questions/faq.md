@@ -40,10 +40,10 @@ Source: [User groups vs. device groups](https://learn.microsoft.com/en-us/mem/in
 
 To make use of the newest features that Apple releases for better User experience and increased Device Security (e.g. PSSO with Secure Enclave) it is recommended to be atleast at MacOS Sonoma (Version 14.0) or even better stay current.
 
-There are multiple options to setup updates, Update Policies and Declerative Device Management, for MacOS in Intune and currently its best to combine them.
+There are multiple options to setup updates, Update Policies and Declarative Device Management, for MacOS in Intune and currently its best to combine them.
 
 1. You can setup a default configuration with a "macOS updates policy" where you can define the update behavior (e.g. Download and Install Critical Updates) and setup a schedule.
-2. There will be cases where you want to roll out a new update that patches some vulnerabilities in the OS. In those situations better add a new Update Profile with Declerative Device Management to the above setting. You have to create a new configuration profile with the settings catalog where you can configure DDM - Software Updates. In this profile we are able to select a target date time for the update as well as the OS Version we want to install. The user experiences a couple of notifications to save their work before finally the device force reboots at that configured target date and time.
+2. There will be cases where you want to roll out a new update that patches some vulnerabilities in the OS. In those situations better add a new Update Profile with Declarative Device Management to the above setting. You have to create a new configuration profile with the settings catalog where you can configure DDM - Software Updates. In this profile we are able to select a target date time for the update as well as the OS Version we want to install. The user experiences a couple of notifications to save their work before finally the device force reboots at that configured target date and time.
 
 Note:
 - Setting up both Profiles will not cause errors in the assignments as both are different payloads.

@@ -421,6 +421,28 @@
       "url": "https://learn.microsoft.com/en-us/intune/whats-new/#new-updates-to-the-apple-settings-catalog",
       "week": "2026-W24"
     },
+    "aae912761216bf97": {
+      "author": "u/bjc1960",
+      "category": "troubleshooting",
+      "firstSeen": "2026-06-15T17:18:17.434Z",
+      "meta": {
+        "via": "rss"
+      },
+      "publishedAt": "2026-06-14T18:54:09.000Z",
+      "source": "reddit",
+      "sourceName": "r/Intune",
+      "status": "published",
+      "summary": "An administrator reports that on macOS 26 (Tahoe) with Setup Assistant Platform SSO, an Apple Silicon MacBook enrolls successfully and shows registrationCompleted true with a single enabled Entra device object, yet Setup Assistant still falls back to an interactive Entra registration step and Company Portal 5.2604.1 throws error 1 when attempting to set up access and download a profile. Diagnostics show DEP and MDM enrollment, supervised status, a valid SSO token, shared device keys, and no hard Conditional Access failures, but the Company Portal log shows a 404 on a device-lookup call. The poster asks why the device re-prompts for registration, whether the ABM token being under a…",
+      "tags": [
+        "psso",
+        "company-portal",
+        "macos-26",
+        "enrollment"
+      ],
+      "title": "SA-PSSO on macOS 26: device enrolls successfully but Company Portal wants to re-enroll the device.",
+      "url": "https://www.reddit.com/r/Intune/comments/1u5tefl/sapsso_on_macos_26_device_enrolls_successfully/",
+      "week": "2026-W25"
+    },
     "be32d18e845c42a8": {
       "category": "announcement",
       "firstSeen": "2026-06-13T16:21:28.167Z",
@@ -562,6 +584,32 @@
       "title": "Access management for Apple services",
       "url": "https://learn.microsoft.com/en-us/intune/whats-new/#access-management-for-apple-services",
       "week": "2026-W24"
+    },
+    "e73e5f02b45d2723": {
+      "firstSeen": "2026-06-15T17:18:17.434Z",
+      "status": "rejected"
+    },
+    "ee1cb6b4bbd84aaa": {
+      "author": "u/NoDowt_Jay",
+      "category": "configuration",
+      "firstSeen": "2026-06-15T17:18:17.434Z",
+      "meta": {
+        "via": "rss"
+      },
+      "publishedAt": "2026-06-15T07:30:29.000Z",
+      "source": "reddit",
+      "sourceName": "r/Intune",
+      "status": "published",
+      "summary": "A discussion notes that the PPPC accessibility policy is deprecated in macOS 26.2 and will be removed in macOS 27, with Apple directing administrators to manage it via Privacy settings in Declarative Device Management. The poster states Intune does not currently expose this option and asks how to handle the transition until Microsoft adds it to the settings catalog.",
+      "tags": [
+        "pppc",
+        "ddm",
+        "macos",
+        "privacy"
+      ],
+      "title": "PPPC accessibility deprecated",
+      "url": "https://www.reddit.com/r/Intune/comments/1u69o28/pppc_accessibility_deprecated/",
+      "week": "2026-W25"
     },
     "f0c4ecc1d26729c3": {
       "author": "u/baalkor",

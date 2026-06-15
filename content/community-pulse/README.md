@@ -13,7 +13,7 @@ Each week we round up what's happening across macOS management with Microsoft In
 
 Every item links back to its original source, so you can always go straight to the full story.
 
-Start with the latest roundup: [June 8 - 14, 2026](./2026-q2/2026-w24.md).
+Start with the latest roundup: [June 15 - 21, 2026](./2026-q2/2026-w25.md).
 
 ## Suggest a blog
 

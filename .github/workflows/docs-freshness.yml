@@ -2,7 +2,7 @@ name: Docs freshness
 
 on:
   schedule:
-    - cron: "0 7 1 * *" # first of each month, 07:00 UTC
+    - cron: "0 7 * * 1" # Mondays 07:00 UTC
   workflow_dispatch:
     inputs:
       drift_page:
@@ -23,7 +23,7 @@ jobs:
   scan:
     runs-on: ubuntu-latest
     # A full run drafts + verifies ~35 sourced pages (~70 model calls), so give
-    # it ample headroom beyond the monthly default.
+    # it ample headroom with a generous timeout.
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v6

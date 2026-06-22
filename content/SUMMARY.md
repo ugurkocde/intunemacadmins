@@ -21,6 +21,7 @@
 ## Community Pulse
 
 * [Community Pulse](community-pulse/README.md)
+* [Jun 22 - 28](community-pulse/2026-q2/2026-w26.md)
 * [Jun 15 - 21](community-pulse/2026-q2/2026-w25.md)
 * [Jun 8 - 14](community-pulse/2026-q2/2026-w24.md)
 

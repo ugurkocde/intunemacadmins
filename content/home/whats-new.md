@@ -7,6 +7,19 @@ generated: true
 
 We track Microsoft's [What's new in Microsoft Intune](https://learn.microsoft.com/en-us/intune/whats-new/) release notes and pull out the changes that matter for macOS management. Each entry links to the full details on Microsoft Learn.
 
+## Week of June 15, 2026
+
+### Device enrollment
+
+- **Enrollment time grouping for new Apple ADE enrollment policies generally available** — Enrollment time grouping is now generally available for Apple automated device enrollment (ADE) on iOS, iPadOS, and macOS. It allows a device's Microsoft Entra security group to be identified during enrollment so policies, apps, and settings can be applied earlier in the setup process. The feature is supported in new Apple ADE enrollment policies. [Details](https://learn.microsoft.com/en-us/intune/whats-new/#enrollment-time-grouping-for-new-apple-ade-enrollment-policies-generally-available)
+
+## Week of June 8, 2026 (Service release 2605)
+
+### Custom top bar elements on Managed Home Screen &lt;!-- 25008744 --&gt;
+
+- **Disable MAC address randomization on macOS Wi-Fi profiles** — Microsoft Intune now offers a Disable MAC address randomization setting for macOS Wi-Fi profiles, allowing administrators to turn off MAC address randomization on managed macOS devices. Randomized MAC addresses support privacy but can break functionality that relies on a static MAC address, including network access control. The setting applies to macOS 15 and later. [Details](https://learn.microsoft.com/en-us/intune/whats-new/#disable-mac-address-randomization-on-macos-wi-fi-profiles)
+- **Use DDM to manage Apple Intelligence settings on devices running 26.4 and later** — With Apple's 26.4 release, several intelligence-related settings in the MDM restrictions payload were deprecated, and Microsoft directs admins to use DDM configurations released in March 2026 instead. The deprecated items include numerous Restrictions in the settings catalog such as Allow Assistant, Allow Dictation, Allow Writing Tools, and Allow Genmoji, along with device restrictions template settings for Siri, keyboard, and dictionary. The changes apply to iOS, iPadOS, and macOS. [Details](https://learn.microsoft.com/en-us/intune/whats-new/#use-ddm-to-manage-apple-intelligence-settings-on-devices-running-26-4-and-later)
+
 ## Week of May 11, 2026
 
 ### Device enrollment
@@ -31,24 +44,6 @@ We track Microsoft's [What's new in Microsoft Intune](https://learn.microsoft.co
 ### Device management
 
 - **Improved Remote Help update reporting on macOS** — Microsoft has updated the update and reporting experience for Remote Help on macOS. After deploying Remote Help client version 1.0.26012221 through Microsoft Intune, admins can view the full client version in device inventory and during app upgrades. Intune-deployed Remote Help installations are registered with Microsoft AutoUpdate, allowing managed macOS devices to automatically receive future updates. [Details](https://learn.microsoft.com/en-us/intune/whats-new/#improved-remote-help-update-reporting-on-macos)
-
-## Week of March 2, 2026 (Service release 2602)
-
-### Device configuration
-
-- **Apple declarative device management (DDM) supports assignment filters** — Microsoft Intune now supports assignment filters in policy assignments for declarative device management (DDM) based configurations, such as software updates. The feature applies to iOS/iPadOS and macOS, and is rolling out slowly with availability for all customers expected by late March 2026. [Details](https://learn.microsoft.com/en-us/intune/whats-new/#apple-declarative-device-management-ddm-supports-assignment-filters)
-- **New updates to the Apple settings catalog** — New settings have been added to the Intune Settings Catalog for Apple platforms. For iOS/iPadOS and macOS, an AirPlay Device Name setting is now available, and the macOS Microsoft Defender category has been updated with new settings. These can be configured by creating a Settings Catalog profile in the Microsoft Intune admin center. [Details](https://learn.microsoft.com/en-us/intune/whats-new/#new-updates-to-the-apple-settings-catalog)
-
-### Device security
-
-- **Intune ending support for legacy Apple MDM software update policies** — With the release of iOS 26, iPadOS 26, and macOS 26, Apple has deprecated legacy MDM software update commands and payloads, and Microsoft Intune will soon end support for creating legacy iOS/iPadOS and macOS software update policies. To continue managing Apple software updates, administrators should configure update policies using Apple's declarative device management (DDM) model, which Microsoft states provides improved device autonomy and reporting. The change applies to iOS/iPadOS and macOS. [Details](https://learn.microsoft.com/en-us/intune/whats-new/#intune-ending-support-for-legacy-apple-mdm-software-update-policies)
-
-## Week of December 8, 2025
-
-### Device enrollment
-
-- **New Setup Assistant screens now generally available for iOS/iPadOS and macOS automated device enrollment profiles** — Microsoft Intune now generally supports hiding or showing 12 new Setup Assistant screens during automated device enrollment for iOS, iPadOS, and macOS, with the default being to show these screens. For iOS/iPadOS, skippable screens include App Store, Camera button, Web content filtering, Safety and handling, Multitasking, and OS Showcase across various OS versions. For macOS, skippable screens include App Store, Get Started, Software update, Additional privacy settings, OS Showcase, and Update completed. [Details](https://learn.microsoft.com/en-us/intune/whats-new/#new-setup-assistant-screens-now-generally-available-for-ios-ipados-and-macos-automated-device-enrollment-profiles)
-- **ACME protocol support for iOS/iPadOS and macOS enrollment** — Microsoft Intune is beginning a phased rollout that adds support for the Automated Certificate Management Environment (ACME) protocol as part of preparing for managed device attestation. New Apple device enrollments will receive an ACME certificate instead of a SCEP certificate, while existing eligible devices keep their current certificate unless they re-enroll. ACME is supported for Apple Device Enrollment (BYOD), Apple Configurator enrollment, and automated device enrollment on iOS 16.0 or later, iPadOS 16.1 or later, and macOS 13.1 or later, with no change to the end-user experience, admin center, or device configuration policies. [Details](https://learn.microsoft.com/en-us/intune/whats-new/#acme-protocol-support-for-ios-ipados-and-macos-enrollment)
 
 ---
 

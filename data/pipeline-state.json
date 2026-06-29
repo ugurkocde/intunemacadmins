@@ -72,6 +72,50 @@
       "url": "https://www.reddit.com/r/Intune/comments/1u2scvk/macos_adeintune_enrollment_failing_at_entra_id/",
       "week": "2026-W24"
     },
+    "0928e16db7302fcf": {
+      "author": "u/Cable_Mess",
+      "category": "app-management",
+      "firstSeen": "2026-06-29T11:21:43.015Z",
+      "meta": {
+        "via": "rss"
+      },
+      "publishedAt": "2026-06-17T13:28:57.000Z",
+      "source": "reddit",
+      "sourceName": "r/macsysadmin",
+      "status": "published",
+      "summary": "A user asks how to deploy the Claude application to macOS using Intune. They also want to know whether it is possible to install the app in a way that allows non-admin users to update it themselves.",
+      "tags": [
+        "intune",
+        "macos",
+        "app-deployment",
+        "non-admin"
+      ],
+      "title": "Claude Deployment",
+      "url": "https://www.reddit.com/r/macsysadmin/comments/1u8a7ub/claude_deployment/",
+      "week": "2026-W27"
+    },
+    "144acf614fafb243": {
+      "author": "u/TimmyIT",
+      "category": "configuration",
+      "firstSeen": "2026-06-29T11:21:43.015Z",
+      "meta": {
+        "via": "rss"
+      },
+      "publishedAt": "2026-06-25T06:51:15.000Z",
+      "source": "reddit",
+      "sourceName": "r/Intune",
+      "status": "published",
+      "summary": "A Microsoft Intune team article provides a how-to guide for configuring macOS Privacy Preferences Policy Control (PPPC) settings through the Intune settings catalog. These settings pre-approve app permissions such as Full Disk Access, Camera, and Screen Recording so users do not encounter repeated macOS prompts, which is relevant for tools like Defender and remote support agents.",
+      "tags": [
+        "pppc",
+        "settings-catalog",
+        "privacy",
+        "permissions"
+      ],
+      "title": "How to Configure macOS Privacy Preferences Policy Control (PPPC) Using the Intune Settings Catalog - Microsoft Blog",
+      "url": "https://www.reddit.com/r/Intune/comments/1uf2kba/how_to_configure_macos_privacy_preferences_policy/",
+      "week": "2026-W27"
+    },
     "144b77b76486b258": {
       "firstSeen": "2026-06-13T16:21:28.167Z",
       "status": "rejected"
@@ -124,6 +168,28 @@
     "1d166edacca1bac0": {
       "firstSeen": "2026-06-13T16:21:28.167Z",
       "status": "rejected"
+    },
+    "1ee456566dda7011": {
+      "author": "u/Longjumping-Two-2851",
+      "category": "enrollment",
+      "firstSeen": "2026-06-29T11:21:43.015Z",
+      "meta": {
+        "via": "rss"
+      },
+      "publishedAt": "2026-06-27T11:30:58.000Z",
+      "source": "reddit",
+      "sourceName": "r/Intune",
+      "status": "published",
+      "summary": "An administrator testing Platform SSO (PSSO) rollout reports that enabling it on already-enrolled Macs works as expected via Secure Enclave, including the prompt to enable Company Portal under General, Autofill and Passwords, Autofill from. However, during Automated Device Enrollment (ADE), the PSSO setup completed but the Autofill from Company Portal option was not ticked and no prompt appeared; PSSO behaved as expected once it was manually ticked. The poster asks whether others have encountered this and whether more time is needed.",
+      "tags": [
+        "psso",
+        "ade",
+        "macos",
+        "company-portal"
+      ],
+      "title": "MacOS ADE PSSO",
+      "url": "https://www.reddit.com/r/Intune/comments/1uh0dum/macos_ade_psso/",
+      "week": "2026-W27"
     },
     "20994961142b194b": {
       "firstSeen": "2026-06-22T11:34:55.424Z",
@@ -196,6 +262,10 @@
       "url": "https://www.reddit.com/r/Intune/comments/1ucdp2q/macos_direct_enrollment/",
       "week": "2026-W26"
     },
+    "443155af7a3bc40b": {
+      "firstSeen": "2026-06-29T11:21:43.015Z",
+      "status": "rejected"
+    },
     "46769a21badca84d": {
       "category": "enrollment",
       "firstSeen": "2026-06-13T16:21:28.167Z",
@@ -218,6 +288,28 @@
       "title": "ACME protocol support for iOS/iPadOS and macOS enrollment",
       "url": "https://learn.microsoft.com/en-us/intune/whats-new/#acme-protocol-support-for-ios-ipados-and-macos-enrollment",
       "week": "2026-W24"
+    },
+    "4c01bfaa1bfb3c9b": {
+      "author": "u/aPieceOfMindShit",
+      "category": "discussion",
+      "firstSeen": "2026-06-29T11:21:43.015Z",
+      "meta": {
+        "via": "rss"
+      },
+      "publishedAt": "2026-06-22T13:20:45.000Z",
+      "source": "reddit",
+      "sourceName": "r/macsysadmin",
+      "status": "published",
+      "summary": "An admin asks how to provide macOS users access to an Azure File Share configured with Entra Kerberos (cloud-only), in an environment using Jamf Pro, Entra ID, and Intune as a compliance partner without Platform SSO or Jamf Connect. They note the PSSO plus Entra Kerberos route is still in preview and ask whether mounting via a storage account key through a Jamf Pro script is the only generally available option. They propose storing the key as a Jamf Pro script parameter and preventing Keychain caching, and seek recommendations on the safest approach.",
+      "tags": [
+        "azure files",
+        "entra kerberos",
+        "jamf pro",
+        "authentication"
+      ],
+      "title": "Azure Files on macOS with Entra Kerberos — storage account key the only option?",
+      "url": "https://www.reddit.com/r/macsysadmin/comments/1uckf57/azure_files_on_macos_with_entra_kerberos_storage/",
+      "week": "2026-W27"
     },
     "4ec1a066d71a6dfa": {
       "category": "configuration",
@@ -264,6 +356,10 @@
       "title": "Intune to end support for legacy Apple MDM software updates",
       "url": "https://learn.microsoft.com/en-us/intune/whats-new/#intune-to-end-support-for-legacy-apple-mdm-software-updates",
       "week": "2026-W24"
+    },
+    "5601f907f52dcae9": {
+      "firstSeen": "2026-06-29T11:21:43.015Z",
+      "status": "rejected"
     },
     "56e26ace809ac87e": {
       "author": "u/Upbeat_Pilot2461",
@@ -317,6 +413,72 @@
       "firstSeen": "2026-06-13T16:21:28.167Z",
       "status": "rejected"
     },
+    "738cf5ba7dba2b64": {
+      "author": "Intune_Support_Team",
+      "category": "configuration",
+      "firstSeen": "2026-06-29T11:21:43.015Z",
+      "meta": {
+        "categories": []
+      },
+      "publishedAt": "2026-06-24T18:14:31.000Z",
+      "source": "tech-community",
+      "sourceName": "Intune Customer Success",
+      "status": "published",
+      "summary": "This guide explains how to configure macOS Privacy Preferences Policy Control (PPPC) settings using the Intune settings catalog to pre-approve app privacy permissions such as Full Disk Access, Screen Recording, Camera, and Accessibility. It details how macOS evaluates PPPC entries using the app identifier, code requirement from the app's signature, and the specific permission, and instructs admins to obtain the code requirement using the codesign command and to use Authorization rather than Allowed, but never both. It also covers common reasons PPPC settings fail silently, including an incorrect code requirement, mixing Authorization and Allowed, and using the wrong identifier type.",
+      "tags": [
+        "pppc",
+        "settings-catalog",
+        "privacy",
+        "macos"
+      ],
+      "title": "How to Configure macOS Privacy Preferences Policy Control (PPPC) Using the Intune Settings Catalog",
+      "url": "https://techcommunity.microsoft.com/t5/intune-customer-success/how-to-configure-macos-privacy-preferences-policy-control-pppc/ba-p/4530406",
+      "week": "2026-W27"
+    },
+    "77a56d8184d4eceb": {
+      "author": "u/FawxAuro",
+      "category": "enrollment",
+      "firstSeen": "2026-06-29T11:21:43.015Z",
+      "meta": {
+        "via": "rss"
+      },
+      "publishedAt": "2026-06-29T10:53:38.000Z",
+      "source": "reddit",
+      "sourceName": "r/Intune",
+      "status": "published",
+      "summary": "An administrator describes an issue enrolling company MacBooks via Intune where SSO works during setup but the device reaches a macOS login screen, and the user's Entra account does not allow logging into the Mac. They observe that only the configured admin account appears under Users and Groups, suspect no user is created from the SSO credentials, mention using Secure Enclave in the SSO policy, and ask whether the enrollment policy must create a local user account, which they want to avoid.",
+      "tags": [
+        "macos",
+        "sso",
+        "entra",
+        "platform-sso"
+      ],
+      "title": "macOS single sign-on enrollment",
+      "url": "https://www.reddit.com/r/Intune/comments/1uip5ma/macos_single_signon_enrollment/",
+      "week": "2026-W27"
+    },
+    "780f7bd0ea18b57e": {
+      "author": "Intune_Support_Team",
+      "category": "announcement",
+      "firstSeen": "2026-06-29T11:21:43.015Z",
+      "meta": {
+        "categories": []
+      },
+      "publishedAt": "2026-06-25T18:33:03.000Z",
+      "source": "tech-community",
+      "sourceName": "Intune Customer Success",
+      "status": "published",
+      "summary": "Microsoft Intune product managers outlined where Intune is prioritizing investments following WWDC 2026, ahead of the standard day-zero support blog. New settings catalog items expected this summer for OS 27 beta testing include declarative binary management (allow/deny macOS binaries), app privacy, content caching moving to DDM, DNS proxy, extensible SSO, Safari privacy, web content filtering, Apple Intelligence calendar controls, device restrictions, and skip keys. Additional changes include Platform SSO upgrades such as Touch ID as a second factor and web-based authentication, network configurations entering DDM (without Wi-Fi support yet), richer DDM status and device health reporting,…",
+      "tags": [
+        "wwdc 2026",
+        "ddm",
+        "settings catalog",
+        "macos"
+      ],
+      "title": "Microsoft Intune and Apple platform updates: What to expect after WWDC 2026",
+      "url": "https://techcommunity.microsoft.com/t5/intune-customer-success/microsoft-intune-and-apple-platform-updates-what-to-expect-after/ba-p/4531058",
+      "week": "2026-W27"
+    },
     "7cd9fe92c0bf5765": {
       "firstSeen": "2026-06-13T16:21:28.167Z",
       "status": "rejected"
@@ -347,8 +509,64 @@
       "url": "https://www.reddit.com/r/Intune/comments/1u9nxie/updating_codex_on_macos_managed_intune_devices/",
       "week": "2026-W26"
     },
+    "81939d2a314221af": {
+      "author": "u/DogDeadByRaven",
+      "category": "configuration",
+      "firstSeen": "2026-06-29T11:21:43.015Z",
+      "meta": {
+        "via": "rss"
+      },
+      "publishedAt": "2026-06-18T18:48:24.000Z",
+      "source": "reddit",
+      "sourceName": "r/macsysadmin",
+      "status": "published",
+      "summary": "An admin describes difficulties configuring PlatformSSO with Entra for a mixed Mac fleet where IT Security and C-suite users use phish-resistant MFA while developers do not. They report that Mosyle Auth2 password sync broke after enabling phish-resistant MFA, the PlatformSSO password method blocks MFA users, and the secure enclave method does not support password sync, causing always-on VPN and conditional access issues; they also experienced devices dropping registration in Entra and showing no MDM or compliance status. The poster asks whether anyone has achieved a functional setup combining phish-resistant MFA, Enterprise SSO, Kerberos SSO, and local account password sync, and lists their…",
+      "tags": [
+        "platformsso",
+        "phish-resistant-mfa",
+        "entra",
+        "password-sync"
+      ],
+      "title": "PlatformSSO and Phish resistant MFA",
+      "url": "https://www.reddit.com/r/macsysadmin/comments/1u9et6k/platformsso_and_phish_resistant_mfa/",
+      "week": "2026-W27"
+    },
+    "8312db244e414ecd": {
+      "author": "u/5agsr",
+      "category": "configuration",
+      "firstSeen": "2026-06-29T11:21:43.015Z",
+      "meta": {
+        "via": "rss"
+      },
+      "publishedAt": "2026-06-20T07:16:20.000Z",
+      "source": "reddit",
+      "sourceName": "r/macsysadmin",
+      "status": "published",
+      "summary": "An administrator is attempting to configure Google Chrome auto-update on macOS devices through Intune using two separate plists, one for auto-update and one for the Chrome SSO extension and relaunch notification settings. The default plist from the Chrome Enterprise documentation works but checks for updates at inconsistent times, so they want to add a scheduled check interval of 4.5 hours. All tests to add the scheduled check have failed so far, and they are asking the community to identify the error.",
+      "tags": [
+        "chrome",
+        "auto-update",
+        "plist",
+        "macos"
+      ],
+      "title": "Google Chrome Auto- Update isn't working on macOS devices",
+      "url": "https://www.reddit.com/r/macsysadmin/comments/1uaq2wd/google_chrome_auto_update_isnt_working_on_macos/",
+      "week": "2026-W27"
+    },
+    "88d8389d20752867": {
+      "firstSeen": "2026-06-29T11:21:43.015Z",
+      "status": "rejected"
+    },
+    "898dfb60c5abc1ed": {
+      "firstSeen": "2026-06-29T11:21:43.015Z",
+      "status": "rejected"
+    },
     "89a06f5494497ee4": {
       "firstSeen": "2026-06-13T16:21:28.167Z",
+      "status": "rejected"
+    },
+    "8ab96e8bc3e48546": {
+      "firstSeen": "2026-06-29T11:21:43.015Z",
       "status": "rejected"
     },
     "8b1d3f23d4aefe1a": {
@@ -539,6 +757,28 @@
       "url": "https://www.reddit.com/r/Intune/comments/1tuomej/macos_scep_certificate_san_cnaad_device_id/",
       "week": "2026-W24"
     },
+    "a838a43cd17ac93e": {
+      "author": "u/gurban2013",
+      "category": "troubleshooting",
+      "firstSeen": "2026-06-29T11:21:43.015Z",
+      "meta": {
+        "via": "rss"
+      },
+      "publishedAt": "2026-06-25T17:31:10.000Z",
+      "source": "reddit",
+      "sourceName": "r/Intune",
+      "status": "published",
+      "summary": "An administrator reports inconsistent results using Declarative Device Management (DDM) target date and version to push macOS 15.7.7 to devices running macOS 14 Sonoma. Across 30 devices tested three times with 7, 5, and 2 day future target dates, some devices updated on the target day, others one to three days later, and a percentage failed to update even after sitting several days past the target; devices that did not update within three days were moved to additional groups with similarly mixed results. The poster verified each device showed the update as prepared, had over 50GB free space, battery above 50%, and was ADE-enrolled, supervised, and checking in daily, and asks whether others…",
+      "tags": [
+        "ddm",
+        "macos updates",
+        "sonoma",
+        "ade"
+      ],
+      "title": "mac DDM -target date and version",
+      "url": "https://www.reddit.com/r/Intune/comments/1ufgp0z/mac_ddm_target_date_and_version/",
+      "week": "2026-W27"
+    },
     "a88d66c5e854532a": {
       "category": "configuration",
       "firstSeen": "2026-06-13T16:21:28.167Z",
@@ -584,6 +824,76 @@
       "url": "https://www.reddit.com/r/Intune/comments/1u5tefl/sapsso_on_macos_26_device_enrolls_successfully/",
       "week": "2026-W25"
     },
+    "ae71d75d437df0bd": {
+      "author": "ab",
+      "category": "announcement",
+      "firstSeen": "2026-06-29T11:21:43.015Z",
+      "meta": {
+        "categories": [
+          "Weekly News",
+          "Mac",
+          "MacAdmins"
+        ]
+      },
+      "publishedAt": "2026-06-26T14:07:30.000Z",
+      "source": "community-blog",
+      "sourceName": "Scripting OS X",
+      "status": "published",
+      "summary": "This MacAdmins.news issue, described as the first 2026 Summer Camp edition, covers topics including high temperatures, prices, and updates to the macOS Security Compliance Project.",
+      "tags": [
+        "macadmins",
+        "newsletter",
+        "security compliance",
+        "macos"
+      ],
+      "title": "MacAdmins.news 412",
+      "url": "https://scriptingosx.com/2026/06/macadmins-news-412/",
+      "week": "2026-W27"
+    },
+    "bb5f02780aa4a1ce": {
+      "author": "u/Sad_Mastodon_1815",
+      "category": "troubleshooting",
+      "firstSeen": "2026-06-29T11:21:43.015Z",
+      "meta": {
+        "via": "rss"
+      },
+      "publishedAt": "2026-06-27T09:42:09.000Z",
+      "source": "reddit",
+      "sourceName": "r/Intune",
+      "status": "published",
+      "summary": "A user deployed a shell script to 12 macOS devices and reports that two days later, 5 of the 12 devices have not received it despite multiple check-ins and syncs occurring since deployment.",
+      "tags": [
+        "scripts",
+        "macos",
+        "deployment",
+        "sync"
+      ],
+      "title": "Scripts take forever on macOS",
+      "url": "https://www.reddit.com/r/Intune/comments/1ugyfe9/scripts_take_forever_on_macos/",
+      "week": "2026-W27"
+    },
+    "bdb41fdf1ba6a8e6": {
+      "author": "u/bandrei94",
+      "category": "troubleshooting",
+      "firstSeen": "2026-06-29T11:21:43.015Z",
+      "meta": {
+        "via": "rss"
+      },
+      "publishedAt": "2026-06-25T06:17:17.000Z",
+      "source": "reddit",
+      "sourceName": "r/macsysadmin",
+      "status": "published",
+      "summary": "A user reports an error when trying to connect Apple Configurator on macOS to an Apple Business Manager account. The account already has the Content Manager and Device Enrollment Manager roles, and the user states that clearing the cache, reinstalling the app, and trying a fresh macOS install without Intune enrollment did not resolve the issue, while logging in with the same account on an iOS device works.",
+      "tags": [
+        "apple configurator",
+        "abm",
+        "enrollment",
+        "macos"
+      ],
+      "title": "Issue with Apple Configurator",
+      "url": "https://www.reddit.com/r/macsysadmin/comments/1uf1yx2/issue_with_apple_configurator/",
+      "week": "2026-W27"
+    },
     "be32d18e845c42a8": {
       "category": "announcement",
       "firstSeen": "2026-06-13T16:21:28.167Z",
@@ -606,6 +916,28 @@
       "title": "Intune ending support for legacy Apple MDM software update policies",
       "url": "https://learn.microsoft.com/en-us/intune/whats-new/#intune-ending-support-for-legacy-apple-mdm-software-update-policies",
       "week": "2026-W24"
+    },
+    "be878840270c3935": {
+      "author": "u/Gullible_Quit_6974",
+      "category": "troubleshooting",
+      "firstSeen": "2026-06-29T11:21:43.015Z",
+      "meta": {
+        "via": "rss"
+      },
+      "publishedAt": "2026-06-25T22:23:57.000Z",
+      "source": "reddit",
+      "sourceName": "r/macsysadmin",
+      "status": "published",
+      "summary": "A post describes a Conditional Access issue on Mac devices where some apps and browsers fail to work while others function normally, despite the device showing as compliant in Intune. The suggested fix, reported to have helped for 3 to 4 users, involves running killall cfprefsd or sudo killall cfprefsd in Terminal, waiting 5 to 10 minutes, and restarting the Mac.",
+      "tags": [
+        "conditional access",
+        "intune",
+        "compliance",
+        "macos"
+      ],
+      "title": "Mac CA issue – few apps not working, few working",
+      "url": "https://www.reddit.com/r/macsysadmin/comments/1ufok85/mac_ca_issue_few_apps_not_working_few_working/",
+      "week": "2026-W27"
     },
     "c8d41934c422f4bc": {
       "firstSeen": "2026-06-13T16:21:28.167Z",
@@ -660,6 +992,28 @@
       "firstSeen": "2026-06-13T16:21:28.167Z",
       "status": "rejected"
     },
+    "d376177c06d49ca3": {
+      "author": "u/grinninga",
+      "category": "discussion",
+      "firstSeen": "2026-06-29T11:21:43.015Z",
+      "meta": {
+        "via": "rss"
+      },
+      "publishedAt": "2026-06-23T13:48:08.000Z",
+      "source": "reddit",
+      "sourceName": "r/macsysadmin",
+      "status": "published",
+      "summary": "An admin managing macOS devices through Intune with Apple Business Manager ADE enrollment and Platform SSO asks for recommendations on two gaps. They seek a Privileged Access Management solution offering temporary admin rights, just-in-time elevation, and audit logging without switching MDM, as well as a third-party patching tool for non-App Store apps with automated patching and compliance reporting. They also ask about options that integrate with M365, Entra, and Defender.",
+      "tags": [
+        "pam",
+        "patching",
+        "platform-sso",
+        "abm"
+      ],
+      "title": "MacOS PAM + Third-Party Patching with Intune (ABM + PSSO setup) – what are you using?",
+      "url": "https://www.reddit.com/r/macsysadmin/comments/1udhng9/macos_pam_thirdparty_patching_with_intune_abm/",
+      "week": "2026-W27"
+    },
     "d3aae54173a887f8": {
       "author": "u/amirjs",
       "category": "tooling",
@@ -703,6 +1057,28 @@
       "title": "How fix PSSO smart card issue",
       "url": "https://www.reddit.com/r/Intune/comments/1u1gnyf/how_fix_psso_smart_card_issue/",
       "week": "2026-W24"
+    },
+    "d50c62a44a62b392": {
+      "author": "u/deadnerd51",
+      "category": "enrollment",
+      "firstSeen": "2026-06-29T11:21:43.015Z",
+      "meta": {
+        "via": "rss"
+      },
+      "publishedAt": "2026-06-27T15:25:34.000Z",
+      "source": "reddit",
+      "sourceName": "r/Intune",
+      "status": "published",
+      "summary": "An admin tasked with managing a small fleet of company-owned MacBook Pros and corporate mobile devices using Apple Business Manager and Intune, without budget for a separate Apple device management solution, seeks advice on best practices. They are deciding between a fully company-owned managed setup or a COPE-style policy to allow more user agency and reduce application requests, and ask about pitfalls to avoid. App protection policies are already in place.",
+      "tags": [
+        "macos",
+        "ios",
+        "abm",
+        "cope"
+      ],
+      "title": "Help! Small macOS and iOS corporate owned fleet.",
+      "url": "https://www.reddit.com/r/Intune/comments/1uh5k4u/help_small_macos_and_ios_corporate_owned_fleet/",
+      "week": "2026-W27"
     },
     "dbcc2351796e7ec8": {
       "author": "u/Sufficient-Pace7542",
@@ -752,6 +1128,28 @@
       "title": "Access management for Apple services",
       "url": "https://learn.microsoft.com/en-us/intune/whats-new/#access-management-for-apple-services",
       "week": "2026-W24"
+    },
+    "e33134fe1b5a09bc": {
+      "author": "u/Then-Chef-623",
+      "category": "configuration",
+      "firstSeen": "2026-06-29T11:21:43.015Z",
+      "meta": {
+        "via": "rss"
+      },
+      "publishedAt": "2026-06-24T21:46:59.000Z",
+      "source": "reddit",
+      "sourceName": "r/Intune",
+      "status": "published",
+      "summary": "An administrator describes attempts to configure macOS device-channel EAP-TLS Wi-Fi using Intune with SCEP, NDES, and ADCS against NPS RADIUS on Unifi access points, in a two-tier PKI with an offline root. Combining SCEP and Wi-Fi configurations broke SCEP, separating them produced duplicate device certificates, and connection attempts returned error 1001 (-67671); the poster also asks which CA certificate the SCEP Root Certificate field should reference and what the Wi-Fi server validation certificates do. An edit states SCEP was abandoned because the Mac received two certificates without an assigned identity and prompted for admin credentials on keychain changes, and the issue was…",
+      "tags": [
+        "macos",
+        "scep",
+        "eap-tls",
+        "wifi"
+      ],
+      "title": "MacOS SCEP + 802.1x EAP-TLS (device) wireless configuration",
+      "url": "https://www.reddit.com/r/Intune/comments/1uer21e/macos_scep_8021x_eaptls_device_wireless/",
+      "week": "2026-W27"
     },
     "e6d85a514370e5da": {
       "author": "u/5agsr",
@@ -936,6 +1334,10 @@
       "title": "Complete Platform SSO registration during macOS Automated Device Enrollment",
       "url": "https://learn.microsoft.com/en-us/intune/whats-new/#complete-platform-sso-registration-during-macos-automated-device-enrollment",
       "week": "2026-W24"
+    },
+    "f620073b0800519a": {
+      "firstSeen": "2026-06-29T11:21:43.015Z",
+      "status": "rejected"
     },
     "fd9d3662d0a344c5": {
       "firstSeen": "2026-06-13T16:21:28.167Z",

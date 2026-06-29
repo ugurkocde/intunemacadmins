@@ -18,8 +18,8 @@
     "migrate:verify": "tsx scripts/migrate/verify.ts"
   },
   "devDependencies": {
-    "@anthropic-ai/sdk": "^0.104.1",
-    "fast-xml-parser": "^5.9.0",
+    "@anthropic-ai/sdk": "^0.106.0",
+    "fast-xml-parser": "^5.9.3",
     "tsx": "^4.22.4",
     "yaml": "^2.9.0",
     "zod": "^4.4.3"

@@ -17,7 +17,7 @@ Click on the link to download the JSON file from <a href="https://github.com/Ski
 |-------------------------------------------|-----------------------------------------------------------------------|
 | Comment | OneDrive Launcher                                |
 | Rule Value | com.microsoft.OneDriveLauncher                                 |
-| Rule Type | Bundle Identifier                              |
+| Rule Type | Bundle Identifier Prefix                              |
 
 ## Privacy Preferences Policy Control
 

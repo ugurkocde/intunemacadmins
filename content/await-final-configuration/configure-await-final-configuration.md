@@ -16,7 +16,7 @@ lastReviewed: 2026-06-13
 5. Select **Enrollment policies** > **Create policy** > **macOS**
   ![Await Final Configuration](../.gitbook/assets/AwaitFinalConfiguration/afc-config1.png)
 6. Enter a name and description for the profile so that you can distinguish it from other enrollment profiles.
-7. On the **Management Settings** page, configure **Enrol with User Affinity & Modern Authentication.**
+7. On the **Configuration settings** page, configure **Enrol with User Affinity & Modern Authentication.**
 
 {% hint style="info" %}
 Await Final Configuration & Managed Local Accounts can only be used with User Affinity & Modern Authentication.

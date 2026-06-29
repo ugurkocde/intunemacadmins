@@ -48,7 +48,7 @@ I will describe the config for **Secure Enclave Key** and will add **Password au
 
 - Supported web browsers:
     Microsoft Edge
-    Google ChromePlatform
+    Google Chrome with the Microsoft Single Sign On extension
     Safari
 
 ## Create the Platform SSO policy

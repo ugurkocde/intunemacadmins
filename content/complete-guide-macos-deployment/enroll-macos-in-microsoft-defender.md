@@ -49,7 +49,7 @@ Now you have enabled the connection between Microsoft Defender and Intune. Now l
 ## Create system configuration profiles
 **The System Extensions Policy**
 
-The next step is to create system configuration profiles that Microsoft Defender for Endpoint needs. In the Microsoft Intune admin center, open Devices – MacOS – Configuration profiles. We will need a lot of policies configured for this so make sure you have some spare time for this 😉
+The next step is to create system configuration profiles that Microsoft Defender for Endpoint needs. In the Microsoft Intune admin center, go to Devices, and under Manage Devices, select Configuration. We will need a lot of policies configured for this so make sure you have some spare time for this 😉
 
 On the Policies tab, select Create > New Policy.
 

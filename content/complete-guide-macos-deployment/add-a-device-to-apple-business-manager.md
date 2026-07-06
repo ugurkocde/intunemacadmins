@@ -24,7 +24,7 @@ After you’ve set up the device or devices, they behave like any other device a
 
 ## Create the Enrollment Profile
 
-First you will have to create an enrollment profile. Go to the Intune portal – Devices – Enrollment – Apple – Enrollment program tokens – click  token name – click Enrollment policies – Create policy – MacOS – name you profile e.g MacOS
+First you will have to create an enrollment profile. Go to the Intune portal – Devices – Device onboarding – Enrollment – macOS – Enrollment program tokens – click  token name – click Enrollment policies – Create policy – macOS – name you profile e.g MacOS
 
 ![AddToABM](../.gitbook/assets/CompleteGuide/image-164.webp)
 

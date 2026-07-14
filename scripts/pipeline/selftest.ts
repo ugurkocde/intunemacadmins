@@ -264,6 +264,34 @@ describe("renderers are idempotent and escape hostile content", () => {
         meta: { week: "Week of June 1, 2026", release: "2606", categoryHeading: "Device management" },
       },
       cccc: { status: "rejected", firstSeen: "2026-06-08T06:00:00.000Z" },
+      notice: {
+        status: "published",
+        firstSeen: "2026-07-14T12:00:00.000Z",
+        week: "2026-W29",
+        source: "ms-intune-notices",
+        sourceName: "Microsoft Intune important notices",
+        url: "https://learn.microsoft.com/en-us/intune/whats-new/#notice",
+        title: "Plan for change: macOS support",
+        publishedAt: "2026-07-14T12:00:00.000Z",
+        summary: "Prepare managed Macs for the new support requirement.",
+        category: "announcement",
+        tags: ["macos"],
+        meta: { notice: true, platform: "macOS" },
+      },
+      defender: {
+        status: "published",
+        firstSeen: "2026-07-14T12:00:00.000Z",
+        week: "2026-W29",
+        source: "ms-defender-macos",
+        sourceName: "Microsoft Defender for Endpoint release notes",
+        url: "https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint-releases#macos",
+        title: "Microsoft Defender for Endpoint 101.1 for macOS",
+        publishedAt: "2026-07-01T00:00:00.000Z",
+        summary: "Added a substantive Device Control capability.",
+        category: "security",
+        tags: ["defender"],
+        meta: { platform: "macOS", build: "101.1" },
+      },
     },
   };
 
@@ -275,7 +303,13 @@ describe("renderers are idempotent and escape hostile content", () => {
 
   // GitBook output format (no Starlight constructs and an H1 page title).
   assert.ok(whatsNew1.startsWith("---\ndescription:"), "whats-new: GitBook frontmatter");
-  assert.ok(whatsNew1.includes("# What's New in Intune"), "whats-new: H1");
+  assert.ok(whatsNew1.includes("# What's New for macOS Management"), "whats-new: H1");
+  assert.ok(whatsNew1.includes("## Important macOS notices"), "whats-new: notices");
+  assert.ok(
+    whatsNew1.includes("## Microsoft Defender for Endpoint for macOS"),
+    "whats-new: defender releases",
+  );
+  assert.ok(whatsNew1.includes("## Released Microsoft Intune updates"), "whats-new: Intune");
   assert.ok(!whatsNew1.includes("sidebar:") && !whatsNew1.includes("\ntitle:"), "whats-new: no Starlight keys");
 });
 

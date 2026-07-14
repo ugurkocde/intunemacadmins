@@ -219,7 +219,7 @@ function stageRender(options: CliOptions, now: Date): void {
       title: item.title,
       summary: item.summary,
       pages: [
-        { label: "What's New in Intune", url: docPath(WHATS_NEW_FILE) },
+        { label: "What's New for macOS Management", url: docPath(WHATS_NEW_FILE) },
         ...integration.updates
           .filter((update) => update.itemId === item.id)
           .map((update) => ({ label: update.title, url: docPath(update.path) })),

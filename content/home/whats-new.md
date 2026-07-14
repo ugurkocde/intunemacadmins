@@ -1,11 +1,19 @@
 ---
-description: "The macOS-relevant updates to Microsoft Intune, with links to the official release notes."
+description: "The released Microsoft changes and important notices that matter for macOS management, with links to the authoritative sources."
 generated: true
 ---
 
-# What's New in Intune
+# What's New for macOS Management
 
-We track Microsoft's [What's new in Microsoft Intune](https://learn.microsoft.com/en-us/intune/whats-new/) release notes and pull out the changes that matter for macOS management. Each entry links to the full details on Microsoft Learn.
+We track [released Microsoft Intune changes](https://learn.microsoft.com/en-us/intune/whats-new/), important macOS notices, and substantive Microsoft Defender for Endpoint releases. Each entry links to the authoritative Microsoft source.
+
+## Important macOS notices
+
+Actionable support, enrollment, and service changes that macOS administrators should prepare for.
+
+- **Plan for change: Intune is moving to support macOS 15 and higher later this year** — Microsoft Intune, the Company Portal app, and the Intune mobile device management agent will move to support macOS 15 and later, with the change occurring shortly after Apple's expected release of macOS 27 later in calendar year 2026. Devices already enrolled on macOS 14.x or below will remain enrolled, but new devices running macOS 14.x or below will be unable to enroll. Administrators can review Intune reporting under Devices and All devices, filter by macOS, and ask users to upgrade to a supported OS version. [Details](https://learn.microsoft.com/en-us/intune/whats-new/#plan-for-change-intune-is-moving-to-support-macos-15-and-higher-later-this-year)
+
+## Released Microsoft Intune updates
 
 ## Week of June 29, 2026 (Service release 2606)
 
@@ -47,4 +55,4 @@ We track Microsoft's [What's new in Microsoft Intune](https://learn.microsoft.co
 
 ---
 
-Older entries: see the full [What's new archive](https://learn.microsoft.com/en-us/intune/whats-new-archive) on Microsoft Learn.
+Full source histories: [Microsoft Intune archive](https://learn.microsoft.com/en-us/intune/whats-new-archive) and [Microsoft Defender for Endpoint releases](https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint-releases).

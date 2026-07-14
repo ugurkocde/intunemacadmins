@@ -21,7 +21,7 @@ export async function fetchMsIntuneNotices(now: Date): Promise<RawItem[]> {
 }
 
 export function parseMsIntuneNotices(markdown: string, now: Date): RawItem[] {
-  const publishedAt = parseFrontmatterDate(markdown) ?? now;
+  const sourceUpdatedAt = parseFrontmatterDate(markdown)?.toISOString();
   return extractNotices(markdown)
     .filter((notice) => /\bmacOS\b/i.test(`${notice.title}\n${notice.body}`))
     .map((notice) => {
@@ -32,10 +32,10 @@ export function parseMsIntuneNotices(markdown: string, now: Date): RawItem[] {
         sourceName: "Microsoft Intune important notices",
         url: `${MS_WHATS_NEW_PAGE_URL}#${slugify(notice.title)}`,
         title: notice.title,
-        publishedAt: publishedAt.toISOString(),
+        publishedAt: now.toISOString(),
         excerpt: truncate(body, EXCERPT_MAX_CHARS),
         content: truncate(body, CONTENT_MAX_CHARS),
-        meta: { notice: true, platform: "macOS" },
+        meta: { notice: true, platform: "macOS", sourceUpdatedAt },
       };
     });
 }

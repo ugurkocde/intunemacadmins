@@ -24,17 +24,6 @@ A big thank you to our sponsor for supporting the community and helping keep the
 
 Quickly manage your macOS devices with curated settings from the Open Intune Baseline (OIB) project. [Import the Baseline Settings →](baselinesettings/import.md)
 
-## Core Contributors 🏆
-
-| Contributor | Role | Links |
-| --- | --- | --- |
-| **Ugur Koc** | Microsoft MVP & Cloud Engineer @ glueckkanja | [X](https://x.com/UgurKocDe) · [LinkedIn](https://www.linkedin.com/in/ugurkocde/) · [Blog](https://ugurkoc.de) |
-| **Somesh Pathak** | Microsoft MVP & Infrastructure Engineer @ NN Group | [X](https://x.com/pathak_somesh) · [LinkedIn](https://www.linkedin.com/in/someshpathak/) · [Blog](https://www.intuneirl.com/) |
-| **Steffen Schwerdtfeger** | Cloud Architect @ glueckkanja | [X](https://x.com/SteffenAtCloud) · [LinkedIn](https://www.linkedin.com/in/steffen-schwerdtfeger/) · [Blog](https://www.manage-everything.cloud/) |
-| **Niklas Tinner** | Microsoft MVP & Founder @ Oceanleaf | [X](https://x.com/NiklasTinner) · [LinkedIn](https://www.linkedin.com/in/niklas-tinner/) · [Blog](https://www.oceanleaf.ch/) |
-| **Joery Van den Bosch** | Microsoft MVP & Modern Work Architect @ Arxus | [X](https://x.com/joerieke) · [LinkedIn](https://www.linkedin.com/in/joery/) · [Blog](https://intunestuff.com/) |
-| **James Robinson** | Microsoft MVP & EUC Workstream Lead @ PowerON | [X](https://x.com/SkipToEndpoint) · [LinkedIn](https://www.linkedin.com/in/skiptotheendpoint/) · [Blog](https://skiptotheendpoint.co.uk/) |
-
 ## Other resources
 
 - [Official Microsoft Docs for macOS Management](https://learn.microsoft.com/en-us/mem/intune/fundamentals/deployment-guide-enrollment-macos)

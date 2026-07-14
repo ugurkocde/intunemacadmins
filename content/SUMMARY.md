@@ -18,13 +18,6 @@
 * [Community Tools and Scripts](community/community-tools.md)
 * [ESP for macOS - Swift Dialog](community/esp-for-macos-swift-dialog.md)
 
-## Community Pulse
-
-* [Community Pulse](community-pulse/README.md)
-* [Jun 22 - 28](community-pulse/2026-q2/2026-w26.md)
-* [Jun 15 - 21](community-pulse/2026-q2/2026-w25.md)
-* [Jun 8 - 14](community-pulse/2026-q2/2026-w24.md)
-
 ## Frequently Asked Questions
 
 * [FAQ](frequently-asked-questions/faq.md)

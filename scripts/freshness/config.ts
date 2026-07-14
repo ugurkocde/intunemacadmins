@@ -10,7 +10,6 @@ export const DOCS_DIR = "content";
 // "staleness" does not apply the same way.
 export const EXCLUDED_PATHS = [
   "content/home/whats-new.md",
-  "content/community-pulse",
   "content/SUMMARY.md",
 ];
 

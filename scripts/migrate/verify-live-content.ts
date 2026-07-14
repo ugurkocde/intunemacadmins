@@ -21,7 +21,6 @@ const WWW = "https://www.intunemacadmins.com";
 const SECTION_GROUP: Record<string, string> = {
   home: "Home",
   community: "Community",
-  "community-pulse": "Community Pulse",
   "frequently-asked-questions": "Frequently Asked Questions",
   baselinesettings: "Baseline Settings for Intune",
   troubleshooting: "Troubleshooting Guides",

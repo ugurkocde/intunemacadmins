@@ -17,7 +17,8 @@ const SEVERITY_LABEL: Record<Severity, string> = {
 // One umbrella issue body. Specific, actionable findings (expired dates, broken
 // links, outdated recommendations) lead and get full detail; the review backlog
 // (every page past its review window) is summarized in a collapsed list so it
-// doesn't bury the signal. Reads as a maintainer checklist, not a dump.
+// doesn't bury the signal. This is an automation audit log, not a required
+// maintainer checklist.
 export function renderIssueBody(report: FreshnessReport): string {
   const specific = report.findings.filter((f) => f.check !== "review-age");
   const backlog = report.findings.filter((f) => f.check === "review-age");
@@ -27,9 +28,9 @@ export function renderIssueBody(report: FreshnessReport): string {
   lines.push(
     `Freshness scan of ${report.pagesScanned} documentation pages (${date}).`,
     "",
-    `**${specific.length} specific item(s) to check** and **${backlog.length} page(s) overdue for review**.`,
+    `**${specific.length} specific signal(s)** and **${backlog.length} page(s) past the review window**.`,
     "",
-    "These are flags for review, not confirmed errors. Check each against the current Microsoft/Apple docs, fix what is stale, and set `lastReviewed` on the page when verified (that clears it from this list).",
+    "This is an audit trail, not a manual task list. Independently verified corrections are published automatically; uncertain signals remain unchanged and are recorded here for transparency.",
     "",
   );
 
@@ -47,7 +48,7 @@ export function renderIssueBody(report: FreshnessReport): string {
           ? ` (line ${f.location.split(":")[1]})`
           : "";
         lines.push(
-          `- [ ] **${SEVERITY_LABEL[f.severity]} · ${CHECK_LABELS[f.check] ?? f.check}**${loc}: ${f.message}`,
+          `- **${SEVERITY_LABEL[f.severity]} · ${CHECK_LABELS[f.check] ?? f.check}**${loc}: ${f.message}`,
         );
         if (f.evidence) lines.push(`  > ${f.evidence}`);
       }
@@ -60,12 +61,12 @@ export function renderIssueBody(report: FreshnessReport): string {
     lines.push(
       `## Pages overdue for review (${backlog.length})`,
       "",
-      "Each page should be re-verified against current Microsoft/Apple docs at least every few months. Work through oldest first; set `lastReviewed` as you go.",
+      "These pages remain in the automated comparison set and are listed by age for visibility.",
       "",
       "<details><summary>Show all pages</summary>",
       "",
     );
-    for (const f of sorted) lines.push(`- [ ] \`${f.location}\` — ${f.message}`);
+    for (const f of sorted) lines.push(`- \`${f.location}\` — ${f.message}`);
     lines.push("", "</details>", "");
   }
 

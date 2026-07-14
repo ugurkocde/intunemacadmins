@@ -15,11 +15,11 @@
     "pipeline:selftest": "tsx scripts/pipeline/selftest.ts",
     "freshness": "tsx scripts/freshness/run.ts",
     "freshness:selftest": "tsx scripts/freshness/selftest.ts",
-    "migrate:verify": "tsx scripts/migrate/verify.ts"
+    "migrate:verify": "tsx scripts/migrate/verify.ts",
+    "validate": "npm run pipeline:selftest && npm run freshness:selftest && npm run migrate:verify && bash -n scripts/ci/auto-merge-pr.sh"
   },
   "devDependencies": {
     "@anthropic-ai/sdk": "^0.104.1",
-    "fast-xml-parser": "^5.9.0",
     "tsx": "^4.22.4",
     "yaml": "^2.9.0",
     "zod": "^4.4.3"

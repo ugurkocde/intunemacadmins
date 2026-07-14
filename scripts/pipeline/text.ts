@@ -25,8 +25,7 @@ export function decodeEntities(text: string): string {
     .replace(/&([a-zA-Z]+);/g, (m, name) => NAMED_ENTITIES[name] ?? m);
 }
 
-// Good-enough HTML-to-text for feed bodies: drops script/style blocks, turns
-// block boundaries into newlines, strips remaining tags, decodes entities.
+// Good-enough HTML-to-text conversion shared by the freshness source fetcher.
 export function stripHtml(html: string): string {
   const withoutBlocks = html
     .replace(/<script[\s\S]*?<\/script>/gi, " ")
@@ -55,18 +54,8 @@ export function truncate(text: string, max: number): string {
   return (lastSpace > max * 0.6 ? cut.slice(0, lastSpace) : cut) + "…";
 }
 
-export function matchesKeywords(text: string, keywords: string[]): boolean {
-  const haystack = text.toLowerCase();
-  return keywords.some((k) => haystack.includes(k));
-}
-
 // "Mac" as a word (case-sensitive) without matching "MAC address" style
-// all-caps usage; combined with the lowercase keyword list by callers.
+// all-caps usage.
 export function mentionsMacWord(text: string): boolean {
   return /\bMacs?\b/.test(text);
-}
-
-export function toIsoDate(value: string | number | Date): string | null {
-  const d = new Date(value);
-  return Number.isNaN(d.getTime()) ? null : d.toISOString();
 }

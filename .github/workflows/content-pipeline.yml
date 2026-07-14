@@ -1,36 +1,14 @@
 name: Content pipeline
 
 on:
-  # No cron schedule: this pipeline runs on a self-hosted runner on a personal
-  # MacBook that is frequently powered off. A clock-based schedule is skipped
-  # entirely when the Mac is off at that time (launchd does not replay a missed
-  # calendar event after a power-off). Instead, a LaunchAgent on that Mac
-  # (com.ugurkoc.content-pipeline-dispatch) dispatches this workflow on boot
-  # whenever the current ISO week has no run yet -- so the weekly run starts as
-  # soon as the Mac is online. Manual runs still work via the inputs below.
+  schedule:
+    - cron: "0 6 * * 1" # Mondays 06:00 UTC, before freshness and link checks
   workflow_dispatch:
     inputs:
       dry_run:
         description: "Dry run: build everything but upload an artifact instead of opening a PR"
         type: boolean
         default: false
-      source:
-        description: "Limit to a single source"
-        type: choice
-        default: all
-        options:
-          - all
-          - ms-whats-new
-          - tech-community
-          - community-blog
-          - reddit
-      runner:
-        description: "Where to run (self-hosted = your residential IP; ubuntu-latest = GitHub cloud, Reddit/Rockenroll get IP-blocked)"
-        type: choice
-        default: self-hosted
-        options:
-          - self-hosted
-          - ubuntu-latest
 
 permissions:
   contents: write
@@ -43,19 +21,9 @@ concurrency:
 
 jobs:
   update-content:
-    # Scheduled runs use the self-hosted runner (residential IP, no source IP
-    # blocks). A manual run can pick the cloud via the `runner` input.
-    runs-on: ${{ github.event.inputs.runner || 'self-hosted' }}
+    runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      # Self-hosted runners (esp. as a launchd/systemd service) often have a
-      # stripped PATH that omits Homebrew, so gh/jq aren't found. Add the common
-      # locations. No-op on GitHub's cloud runners (dirs absent or already set).
-      - name: Ensure local tools on PATH
-        run: |
-          echo "/opt/homebrew/bin" >> "$GITHUB_PATH"
-          echo "/usr/local/bin" >> "$GITHUB_PATH"
-
       - uses: actions/checkout@v6
 
       - uses: actions/setup-node@v6
@@ -71,12 +39,9 @@ jobs:
       - name: Run pipeline
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
-          REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
-          SOURCE: ${{ github.event.inputs.source || 'all' }}
           DRY_RUN: ${{ inputs.dry_run == true && 'true' || 'false' }}
         run: |
-          args=(--source="$SOURCE")
+          args=()
           [ "$DRY_RUN" = "true" ] && args+=(--dry-run)
           npm run pipeline -- "${args[@]}"
 
@@ -101,17 +66,25 @@ jobs:
 
       - name: Open content PR
         if: ${{ inputs.dry_run != true }}
+        id: cpr
         uses: peter-evans/create-pull-request@v8
         with:
+          token: ${{ secrets.DOCS_AUTOMERGE_TOKEN }}
           add-paths: |
             content/**
             data/pipeline-state.json
           branch: content-pipeline/weekly
           delete-branch: true
-          commit-message: Weekly content update
-          title: Weekly content update
+          commit-message: Update Intune release notes
+          title: Update Intune release notes
           body-path: .cache/pr-body.md
           labels: automated-content
+
+      - name: Validate and auto-merge content
+        if: ${{ steps.cpr.outputs.pull-request-number }}
+        env:
+          GH_TOKEN: ${{ secrets.DOCS_AUTOMERGE_TOKEN }}
+        run: bash scripts/ci/auto-merge-pr.sh "${{ steps.cpr.outputs.pull-request-number }}"
 
       - name: Report source failures as issues
         if: ${{ always() && !cancelled() }}

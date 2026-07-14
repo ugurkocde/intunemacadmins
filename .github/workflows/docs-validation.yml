@@ -1,0 +1,43 @@
+name: Docs validation
+
+on:
+  pull_request:
+    paths:
+      - "content/**"
+      - "data/**"
+      - "scripts/**"
+      - "package.json"
+      - "package-lock.json"
+      - "vercel.json"
+      - ".gitbook.yaml"
+      - ".github/workflows/**"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docs-validation-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate docs automation
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Validate docs and automation
+        run: npm run validate
+
+      - name: Check patch formatting
+        run: git diff --check origin/${{ github.base_ref }}...HEAD

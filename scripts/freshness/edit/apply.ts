@@ -79,7 +79,7 @@ function rejectedFinding(c: EditCandidate, why: string): Finding {
     check: "content-drift",
     severity: c.severity,
     location: c.path,
-    message: `${c.discrepancy} (vs ${c.source}) — drafted fix could not be auto-applied (${why}); review manually.`,
+    message: `${c.discrepancy} (vs ${c.source}) — drafted fix was not auto-applied (${why}).`,
     evidence: c.oldText.slice(0, 200),
   };
 }

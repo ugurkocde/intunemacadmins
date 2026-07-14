@@ -127,16 +127,6 @@
       "permanent": true
     },
     {
-      "source": "/community-pulse/",
-      "destination": "https://docs.intunemacadmins.com/community-pulse/community-pulse",
-      "permanent": true
-    },
-    {
-      "source": "/community-pulse/2026-q2/2026-w24/",
-      "destination": "https://docs.intunemacadmins.com/community-pulse/2026-w24",
-      "permanent": true
-    },
-    {
       "source": "/community/community_resources/",
       "destination": "https://docs.intunemacadmins.com/community/community-resources",
       "permanent": true

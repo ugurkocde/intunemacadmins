@@ -15,7 +15,7 @@ export function renderEditsPrBody(applied: AppliedEdit[]): string {
     "",
     `**${applied.length} edit(s) across ${new Set(applied.map((e) => e.path)).size} page(s).**`,
     "",
-    "Each edit is a minimal, verbatim text replacement grounded in the cited source. Review each against its source link, then merge. **Set `lastReviewed` on a page once you've verified it** (that also clears it from the freshness backlog).",
+    "Each edit is a minimal, verbatim text replacement grounded in the cited source and independently verified before publication.",
     "",
   ];
 
@@ -46,7 +46,7 @@ export function renderEditsPrBody(applied: AppliedEdit[]): string {
   lines.push(
     "---",
     "",
-    "These edits were drafted from the live upstream docs and are unmerged for your review. Reject any you disagree with by editing the file in this PR.",
+    "These edits were drafted from live upstream documentation, independently verified, and will merge automatically after repository validation passes.",
   );
   return lines.join("\n");
 }

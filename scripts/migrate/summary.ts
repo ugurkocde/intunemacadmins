@@ -29,7 +29,6 @@ type Item = {
 const GROUPS: { label: string; section: string }[] = [
   { label: "Home", section: "Home" },
   { label: "Community", section: "Community" },
-  { label: "Community Pulse", section: "Community Pulse" },
   { label: "Frequently Asked Questions", section: "Frequently Asked Questions" },
   { label: "Baseline Settings for Intune", section: "baselinesettings" },
   { label: "Troubleshooting Guides", section: "Troubleshooting" },

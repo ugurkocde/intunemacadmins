@@ -8,8 +8,8 @@
 #   1. convert.ts        src docs -> content/**.md + .gitbook/assets + manifest
 #   2. summary.ts        content/SUMMARY.md (nav, mirrors the Starlight sidebar)
 #   3. gitbook-config.ts .gitbook.yaml (Git Sync config + legacy-URL redirects)
-#   4. pipeline render   normalize the 3 pipeline-managed pages to canonical
-#                        pipeline output (whats-new, community-pulse index+week)
+#   4. pipeline render   normalize the pipeline-managed What's New page to
+#                        canonical pipeline output
 set -euo pipefail
 cd "$(dirname "$0")/../.."
 

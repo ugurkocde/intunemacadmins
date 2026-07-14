@@ -3,18 +3,14 @@
 
 import assert from "node:assert/strict";
 import { parseMsWhatsNew, slugify } from "./fetch/ms-whats-new";
-import { parseFeed } from "./fetch/rss";
+import { addSummaryEntry, insertUnderHeading } from "./integrate/content";
 import { sanitizeSummary } from "./llm/summarize";
 import { escapeMdx, mdLink, safeUrl, yamlString } from "./render/escape";
-import { renderPulseIndex, renderPulseWeek } from "./render/pulse";
 import { renderWhatsNew } from "./render/whats-new";
 import {
-  canonicalUrl,
   hashId,
   isoWeekOf,
-  isoWeekRange,
   isoWeekString,
-  quarterOf,
   stableStringify,
 } from "./state";
 import { stripHtml, truncate } from "./text";
@@ -61,13 +57,7 @@ describe("safeUrl / mdLink", () => {
   );
 });
 
-describe("canonicalUrl / hashId", () => {
-  assert.equal(
-    canonicalUrl("https://Example.com/Post?utm_source=x&utm_medium=y&id=5"),
-    "https://example.com/Post?id=5",
-  );
-  assert.equal(canonicalUrl("https://example.com/post/"), "https://example.com/post");
-  assert.equal(canonicalUrl("https://example.com/post#frag"), "https://example.com/post");
+describe("hashId", () => {
   assert.equal(hashId("a"), hashId("a"));
   assert.equal(hashId("a").length, 16);
   assert.notEqual(hashId("a"), hashId("b"));
@@ -78,11 +68,6 @@ describe("ISO week math", () => {
   assert.equal(isoWeekString(isoWeekOf(new Date("2027-01-01T12:00:00Z"))), "2026-W53");
   assert.equal(isoWeekString(isoWeekOf(new Date("2025-12-29T12:00:00Z"))), "2026-W01");
   assert.equal(isoWeekString(isoWeekOf(new Date("2026-06-08T12:00:00Z"))), "2026-W24");
-  assert.equal(quarterOf({ year: 2026, week: 24 }), "2026-Q2");
-  assert.equal(quarterOf({ year: 2026, week: 53 }), "2026-Q4");
-  const range = isoWeekRange({ year: 2026, week: 24 });
-  assert.equal(range.start.toISOString().slice(0, 10), "2026-06-08");
-  assert.equal(range.end.toISOString().slice(0, 10), "2026-06-14");
 });
 
 describe("stableStringify", () => {
@@ -106,6 +91,19 @@ describe("sanitizeSummary", () => {
     sanitizeSummary("See [docs](https://x.com) at https://evil.com/path now."),
     "See docs at now.",
   );
+});
+
+describe("GitBook content integration", () => {
+  const page = "---\ndescription: test\n---\n\n# Page\n\nIntro.\n\n## Configure\n\nExisting.\n\n## Verify\n\nDone.\n";
+  const updated = insertUnderHeading(page, "## Configure", "New supported behavior.");
+  assert.ok(updated.indexOf("New supported behavior.") < updated.indexOf("## Verify"));
+  assert.equal(insertUnderHeading(updated, "## Configure", "New supported behavior."), updated);
+
+  const summary = "# Table of contents\n\n## Existing\n\n* [One](existing/one.md)\n\n## Next\n";
+  const existing = addSummaryEntry(summary, "Existing", "Two", "existing/two.md");
+  assert.ok(existing.includes("* [Two](existing/two.md)\n\n## Next"));
+  const created = addSummaryEntry(existing, "New Category", "Three", "new-category/three.md");
+  assert.ok(created.includes("## New Category\n\n* [Three](new-category/three.md)"));
 });
 
 describe("ms-whats-new parser", () => {
@@ -163,49 +161,6 @@ describe("ms-whats-new parser", () => {
   assert.equal(slugify("Platform SSO: what's new (preview)?"), "platform-sso-whats-new-preview");
 });
 
-describe("rss parser (RSS 2.0)", () => {
-  const xml = `<?xml version="1.0"?>
-<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
-<channel><title>Blog</title>
-<item>
-  <title>Intune &amp; macOS</title>
-  <link>https://example.com/post-1</link>
-  <pubDate>Mon, 08 Jun 2026 10:00:00 GMT</pubDate>
-  <dc:creator>Jane</dc:creator>
-  <category>macOS</category>
-  <description><![CDATA[<p>Hello <b>world</b> & more</p>]]></description>
-</item>
-</channel></rss>`;
-  const items = parseFeed(xml);
-  assert.equal(items.length, 1);
-  assert.equal(items[0].title, "Intune & macOS");
-  assert.equal(items[0].url, "https://example.com/post-1");
-  assert.equal(items[0].author, "Jane");
-  assert.deepEqual(items[0].categories, ["macOS"]);
-  assert.equal(items[0].text, "Hello world & more");
-  assert.equal(items[0].publishedAt, "2026-06-08T10:00:00.000Z");
-});
-
-describe("rss parser (Atom)", () => {
-  const xml = `<?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-<entry>
-  <title>PSSO deep dive</title>
-  <link rel="alternate" href="https://example.com/atom-post"/>
-  <published>2026-06-09T12:00:00Z</published>
-  <author><name>Bob</name></author>
-  <category term="intune"/>
-  <content type="html">&lt;p&gt;Platform SSO content&lt;/p&gt;</content>
-</entry>
-</feed>`;
-  const items = parseFeed(xml);
-  assert.equal(items.length, 1);
-  assert.equal(items[0].title, "PSSO deep dive");
-  assert.equal(items[0].url, "https://example.com/atom-post");
-  assert.equal(items[0].author, "Bob");
-  assert.equal(items[0].text, "Platform SSO content");
-});
-
 describe("renderers are idempotent and escape hostile content", () => {
   const state: StateFile = {
     version: 1,
@@ -224,21 +179,6 @@ describe("renderers are idempotent and escape hostile content", () => {
         tags: ["macos"],
         meta: { week: "Week of June 1, 2026", release: "2606", categoryHeading: "Device management" },
       },
-      bbbb: {
-        status: "published",
-        firstSeen: "2026-06-08T06:00:00.000Z",
-        week: "2026-W24",
-        source: "community-blog",
-        sourceName: "Test Blog",
-        url: "https://example.com/post",
-        title: "Hostile </small><script>alert(1)</script> title",
-        author: "Jane",
-        publishedAt: "2026-06-07T00:00:00.000Z",
-        summary: "Summary text.",
-        category: "tooling",
-        tags: ["munki", "autopkg"],
-        meta: {},
-      },
       cccc: { status: "rejected", firstSeen: "2026-06-08T06:00:00.000Z" },
     },
   };
@@ -249,28 +189,10 @@ describe("renderers are idempotent and escape hostile content", () => {
   assert.ok(whatsNew1.includes("Week of June 1, 2026 (Service release 2606)"));
   assert.ok(!whatsNew1.includes("<thing>"));
 
-  const pulse1 = renderPulseWeek(state, { year: 2026, week: 24 });
-  const pulse2 = renderPulseWeek(state, { year: 2026, week: 24 });
-  assert.ok(pulse1 && pulse2);
-  assert.equal(pulse1.content, pulse2.content);
-  assert.equal(pulse1.relPath, "2026-q2/2026-w24.md");
-  assert.ok(!pulse1.content.includes("<script>"));
-  assert.ok(pulse1.content.includes("What's New in Intune"));
-
-  assert.equal(renderPulseWeek(state, { year: 2026, week: 23 }), null);
-
-  // GitBook output format (no Starlight constructs; hints + H1 + relative links).
+  // GitBook output format (no Starlight constructs and an H1 page title).
   assert.ok(whatsNew1.startsWith("---\ndescription:"), "whats-new: GitBook frontmatter");
   assert.ok(whatsNew1.includes("# What's New in Intune"), "whats-new: H1");
   assert.ok(!whatsNew1.includes("sidebar:") && !whatsNew1.includes("\ntitle:"), "whats-new: no Starlight keys");
-  assert.ok(!pulse1.content.includes(":::"), "pulse: no Starlight aside directive");
-  assert.ok(pulse1.content.includes('{% hint style="info" %}') && pulse1.content.includes("{% endhint %}"), "pulse: GitBook hint");
-  assert.ok(pulse1.content.includes("../../home/whats-new.md"), "pulse: relative whats-new link");
-  assert.ok(pulse1.content.includes("# June 8 - 14, 2026"), "pulse: H1");
-  assert.ok(!pulse1.content.includes("sidebar:"), "pulse: no sidebar key");
-  const idx = renderPulseIndex({ year: 2026, week: 24 });
-  assert.ok(idx.includes("# Community Pulse") && !idx.includes("sidebar:"), "index: H1, no sidebar");
-  assert.ok(idx.includes("./2026-q2/2026-w24.md"), "index: relative week link");
 });
 
 console.log("\nAll pipeline self-tests passed.");

@@ -10,8 +10,8 @@
 //
 // With --apply-edits, drift the model expressed as a verbatim text replacement
 // is applied to the page files and summarized in .cache/edits-pr-body.md (the
-// PR). Drift that isn't a clean replacement stays a flag in the report. Detection
-// and editing never auto-merge - the workflow opens a PR/issue for review.
+// PR). Drift that isn't a clean replacement stays a flag in the report. The
+// workflow validates and auto-merges independently verified edits.
 
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname } from "node:path";

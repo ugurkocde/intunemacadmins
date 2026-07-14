@@ -81,7 +81,7 @@ function toFlag(c: EditCandidate, reason: string): Finding {
     check: "content-drift",
     severity: c.severity,
     location: c.path,
-    message: `${c.discrepancy} (vs ${c.source}) — a correction was drafted but not auto-applied (verification: ${reason}); review manually.`,
+    message: `${c.discrepancy} (vs ${c.source}) — a correction was drafted but not auto-applied (verification: ${reason}).`,
     evidence: c.oldText.slice(0, 200),
   };
 }

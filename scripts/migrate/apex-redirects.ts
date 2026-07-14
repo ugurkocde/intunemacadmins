@@ -20,7 +20,6 @@ const DOCS = "https://docs.intunemacadmins.com";
 const SECTION_GROUP: Record<string, string> = {
   Home: "Home",
   Community: "Community",
-  "Community Pulse": "Community Pulse",
   "Frequently Asked Questions": "Frequently Asked Questions",
   baselinesettings: "Baseline Settings for Intune",
   Troubleshooting: "Troubleshooting Guides",

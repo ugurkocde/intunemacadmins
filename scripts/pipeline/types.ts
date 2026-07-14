@@ -1,11 +1,6 @@
 import { z } from "zod";
 
-export const SourceType = z.enum([
-  "ms-whats-new",
-  "tech-community",
-  "community-blog",
-  "reddit",
-]);
+export const SourceType = z.literal("ms-whats-new");
 export type SourceType = z.infer<typeof SourceType>;
 
 // Normalized item produced by the fetch layer. The only place URLs ever come
@@ -112,4 +107,10 @@ export interface RunReport {
   sourceErrors: SourceError[];
   skippedSources: string[];
   llmFailures: number;
+  contentUpdates: Array<{
+    action: "update-existing" | "create-page";
+    path: string;
+    title: string;
+  }>;
+  integrationSkipped: string[];
 }

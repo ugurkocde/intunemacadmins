@@ -66,6 +66,7 @@ jobs:
         if: ${{ hashFiles('.cache/edits-pr-body.md') != '' }}
         uses: peter-evans/create-pull-request@v8
         with:
+          token: ${{ secrets.DOCS_AUTOMERGE_TOKEN }}
           add-paths: |
             content/**
           branch: docs-freshness/updates
@@ -74,23 +75,14 @@ jobs:
           title: Docs corrections from upstream drift
           body-path: .cache/edits-pr-body.md
           labels: docs-freshness
-          assignees: ugurkocde
 
-      # Auto-merge the verified corrections so they publish with no manual step.
-      # Requires an admin-scoped token (DOCS_AUTOMERGE_TOKEN) to satisfy the
-      # `main` ruleset's required review. If the secret is absent, the PR is left
-      # open for manual merge rather than failing the run.
-      - name: Auto-merge corrections
+      # Wait for the PR validation workflow on the exact current head, then use
+      # the automation token's admin bypass for the ruleset review requirement.
+      - name: Validate and auto-merge corrections
         if: ${{ steps.cpr.outputs.pull-request-number }}
         env:
           GH_TOKEN: ${{ secrets.DOCS_AUTOMERGE_TOKEN }}
-          PR_NUMBER: ${{ steps.cpr.outputs.pull-request-number }}
-        run: |
-          if [ -z "${GH_TOKEN}" ]; then
-            echo "DOCS_AUTOMERGE_TOKEN not set; leaving PR #${PR_NUMBER} open for manual merge."
-            exit 0
-          fi
-          gh pr merge "${PR_NUMBER}" --squash --delete-branch --admin
+        run: bash scripts/ci/auto-merge-pr.sh "${{ steps.cpr.outputs.pull-request-number }}"
 
       # Everything that isn't a clean auto-edit (overdue review, expired dates,
       # outdated macOS recommendations, broken links, and drift that couldn't be
@@ -110,10 +102,9 @@ jobs:
           if [ "$count" -gt 0 ]; then
             if [ -n "$existing" ]; then
               gh issue edit "$existing" --body-file .cache/freshness-report.md
-              gh issue edit "$existing" --add-assignee ugurkocde || true
             else
               gh issue create --title "$TITLE" --label docs-freshness \
-                --assignee ugurkocde --body-file .cache/freshness-report.md
+                --body-file .cache/freshness-report.md
             fi
           elif [ -n "$existing" ]; then
             gh issue comment "$existing" --body-file .cache/freshness-report.md

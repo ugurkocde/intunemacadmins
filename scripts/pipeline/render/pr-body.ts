@@ -2,15 +2,12 @@ import type { RunReport } from "../types";
 
 const SOURCE_LABELS: Record<string, string> = {
   "ms-whats-new": "Intune release notes (Microsoft Learn)",
-  "tech-community": "Microsoft Tech Community",
-  "community-blog": "Community blogs",
-  reddit: "Reddit",
 };
 
 // PR body for the weekly content PR. Plain markdown, no AI attribution.
 export function renderPrBody(report: RunReport): string {
   const lines: string[] = [
-    "Automated weekly content update from the content pipeline.",
+    "Automated update from the Microsoft Intune release notes.",
     "",
     `- Items fetched: ${report.fetched} (${report.newItems} new)`,
     `- Passed relevance filter: ${report.classifiedRelevant}`,
@@ -34,6 +31,21 @@ export function renderPrBody(report: RunReport): string {
     }
   } else {
     lines.push("No new items passed the filters this week.", "");
+  }
+
+  if (report.contentUpdates.length > 0) {
+    lines.push("## Documentation integrated", "");
+    for (const update of report.contentUpdates) {
+      const verb = update.action === "update-existing" ? "Updated" : "Created";
+      lines.push(`- ${verb} \`${update.path}\`: ${update.title}`);
+    }
+    lines.push("");
+  }
+
+  if (report.integrationSkipped.length > 0) {
+    lines.push("## Items kept on What's New only", "");
+    for (const skipped of report.integrationSkipped) lines.push(`- ${skipped}`);
+    lines.push("");
   }
 
   if (report.skippedSources.length > 0) {

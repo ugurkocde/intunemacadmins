@@ -72,6 +72,7 @@ jobs:
           token: ${{ secrets.DOCS_AUTOMERGE_TOKEN }}
           add-paths: |
             content/**
+            site/changelog/**
             data/pipeline-state.json
           branch: content-pipeline/weekly
           delete-branch: true

@@ -278,7 +278,7 @@
     },
     {
       "source": "/home/changelog/",
-      "destination": "https://docs.intunemacadmins.com/changelog",
+      "destination": "https://www.intunemacadmins.com/changelog/",
       "permanent": true
     },
     {

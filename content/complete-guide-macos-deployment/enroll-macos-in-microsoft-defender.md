@@ -2,6 +2,7 @@
 description: "Learn how to enroll MacOS devices in Microsoft Defender for Endpoint. This guide provides step-by-step instructions on setting up the necessary configurations and policies in Intune to integrate MacOS devices with Microsoft Defender."
 sources:
   - https://learn.microsoft.com/defender-endpoint/mac-install-with-intune
+  - https://learn.microsoft.com/defender-endpoint/microsoft-defender-endpoint-releases
 lastReviewed: 2026-06-13
 ---
 

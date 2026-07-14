@@ -1,5 +1,8 @@
 ---
 description: "How to configure Microsoft Office Configuration for your Intune tenant."
+sources:
+  - https://learn.microsoft.com/officeupdates/update-history-office-for-mac
+lastReviewed: 2026-07-14
 ---
 
 # Microsoft Office Configuration

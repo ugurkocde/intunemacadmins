@@ -1,5 +1,9 @@
 ---
 description: "How to configure Restrictions for your Intune tenant."
+sources:
+  - https://support.apple.com/guide/deployment/restrictions-for-mac-depba790e53/web
+  - https://raw.githubusercontent.com/apple/device-management/release/mdm/profiles/com.apple.applicationaccess.yaml
+lastReviewed: 2026-07-14
 ---
 
 # Restrictions

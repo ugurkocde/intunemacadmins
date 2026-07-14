@@ -23,6 +23,13 @@ export const MS_WHATS_NEW_RAW_URL =
 export const MS_WHATS_NEW_PAGE_URL =
   "https://learn.microsoft.com/en-us/intune/whats-new/";
 export const MS_WHATS_NEW_WINDOW_MONTHS = 12;
+export const MS_INTUNE_NOTICES_RAW_URL =
+  "https://raw.githubusercontent.com/MicrosoftDocs/memdocs/main/intune/whats-new/includes/intune-notices.md";
+export const MS_DEFENDER_RELEASES_RAW_URL =
+  "https://raw.githubusercontent.com/MicrosoftDocs/defender-docs/public/defender-endpoint/microsoft-defender-endpoint-releases.md";
+export const MS_DEFENDER_RELEASES_PAGE_URL =
+  "https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint-releases";
+export const MS_DEFENDER_WINDOW_MONTHS = 3;
 export const WHATS_NEW_RELEASE_GROUPS = 6;
 
 // State entries older than this are pruned; release notes never resurface items that old.

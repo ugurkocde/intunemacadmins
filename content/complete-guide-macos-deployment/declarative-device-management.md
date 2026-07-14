@@ -2,6 +2,8 @@
 description: "Declarative Device Management (DDM) is an update to the existing protocol for device management that can be used in combination with the existing MDM protocol capabilities. It allows the device to asynchronously apply settings and report status back to the MDM solution without constant polling. This is ideal for performance and scalability."
 sources:
   - https://learn.microsoft.com/intune/device-updates/apple/
+  - https://support.apple.com/guide/deployment/declarative-device-management-manage-apple-depc30268577/web
+  - https://github.com/apple/device-management/tree/release
 lastReviewed: 2026-06-13
 ---
 

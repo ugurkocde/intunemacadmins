@@ -1,5 +1,9 @@
 ---
 description: "Rapid Security Response (RSR) is a new type of software release for Mac. It delivers important security improvements between software updates – for example, improvements to the Safari web browser, the WebKit framework stack or other critical system libraries."
+sources:
+  - https://support.apple.com/guide/security/rapid-security-responses-sec87fc038c2/web
+  - https://support.apple.com/guide/deployment/install-and-enforce-software-updates-depd30715cbb/web
+lastReviewed: 2026-07-14
 ---
 
 # Rapid Security Response

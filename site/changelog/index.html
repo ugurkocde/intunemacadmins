@@ -1,66 +1,4 @@
-import { createHash } from "node:crypto";
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { dirname, join } from "node:path";
-
-export const CHANGELOG_FILE = "content/changelog.md";
-export const SITE_CHANGELOG_FILE = "site/changelog/index.html";
-export const CHANGELOG_MARKER = "<!-- changelog:entries -->";
-
-export interface ChangelogLink {
-  label: string;
-  url: string;
-}
-
-export interface ChangelogEntry {
-  id: string;
-  kind: "Content update" | "Documentation correction" | "Site update";
-  title: string;
-  summary: string;
-  pages: ChangelogLink[];
-  sources: ChangelogLink[];
-}
-
-export function prependChangelogEntries(
-  entries: ChangelogEntry[],
-  now: Date,
-  outputRoot = ".",
-): number {
-  const source = readFileSync(CHANGELOG_FILE, "utf8");
-  const { content, inserted } = insertChangelogEntries(source, entries, now);
-  if (inserted === 0) return 0;
-
-  const output = outputRoot === "." ? CHANGELOG_FILE : join(outputRoot, CHANGELOG_FILE);
-  mkdirSync(dirname(output), { recursive: true });
-  writeFileSync(output, content, "utf8");
-  writeSiteChangelog(content, outputRoot);
-  return inserted;
-}
-
-export function renderSiteChangelogFile(outputRoot = "."): void {
-  const markdown = readFileSync(CHANGELOG_FILE, "utf8");
-  writeSiteChangelog(markdown, outputRoot);
-}
-
-export function renderSiteChangelog(markdown: string): string {
-  const sections = parseSections(markdown);
-  const latest = sections[0]?.heading ?? "Published changes";
-  const entries = sections
-    .map((section) => {
-      const cards = section.entries.map(renderSiteEntry).join("\n");
-      const archive = section.heading === "Earlier releases";
-      return `
-        <section class="release-group" aria-labelledby="${siteId(section.heading)}">
-          <div class="release-label">
-            <p class="eyebrow">${archive ? "Archive" : "Published"}</p>
-            <h2 id="${siteId(section.heading)}">${escapeHtml(section.heading)}</h2>
-          </div>
-          <div class="release-list">${cards}
-          </div>
-        </section>`;
-    })
-    .join("\n");
-
-  return `<!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -216,13 +154,114 @@ export function renderSiteChangelog(markdown: string): string {
             <p class="lede">A transparent record of meaningful additions and corrections, with the page affected and the authoritative source behind every update.</p>
           </div>
           <div class="proof" aria-label="Changelog principles">
-            <div><strong>Current through</strong><span>${escapeHtml(latest)}</span></div>
+            <div><strong>Current through</strong><span>July 14, 2026</span></div>
             <div><strong>Source linked</strong><span>Evidence travels with each change</span></div>
             <div><strong>Automatically kept</strong><span>Published with the documentation</span></div>
           </div>
         </div>
       </section>
-      <div class="wrap timeline">${entries}
+      <div class="wrap timeline">
+        <section class="release-group" aria-labelledby="july-14-2026">
+          <div class="release-label">
+            <p class="eyebrow">Published</p>
+            <h2 id="july-14-2026">July 14, 2026</h2>
+          </div>
+          <div class="release-list">
+            <article class="entry">
+              <h3>The changelog moved to the main website</h3>
+              <p class="meta">Site update · Maintainer published</p>
+              <p class="summary">Published the source-linked changelog at <code>www.intunemacadmins.com/changelog</code>, added a Changelog button to the main landing page that opens in a new tab, and connected the static page to the same automated changelog source used by the documentation workflows.</p><ul class="references"><li><strong>Published to</strong><span><a href="https://www.intunemacadmins.com/changelog/" target="_blank" rel="noopener noreferrer">Main website changelog</a>, <a href="https://www.intunemacadmins.com/" target="_blank" rel="noopener noreferrer">IntuneMacAdmins landing page</a></span></li><li><strong>Source</strong><span><a href="https://github.com/ugurkocde/intunemacadmins" target="_blank" rel="noopener noreferrer">Documentation repository</a></span></li></ul>
+            </article>
+
+            <article class="entry">
+              <h3>A transparent changelog moved to center stage</h3>
+              <p class="meta">Site update · Maintainer published</p>
+              <p class="summary">Redesigned the old release list as a source-first timeline at <code>/changelog</code>, added a landing-page call to action, preserved the historical archive, and connected both documentation workflows so future content and corrections log themselves automatically.</p><ul class="references"><li><strong>Published to</strong><span><a href="https://docs.intunemacadmins.com/changelog" target="_blank" rel="noopener noreferrer">Changelog</a>, <a href="https://docs.intunemacadmins.com/" target="_blank" rel="noopener noreferrer">IntuneMacAdmins home</a></span></li><li><strong>Source</strong><span><a href="https://github.com/ugurkocde/intunemacadmins" target="_blank" rel="noopener noreferrer">Documentation repository</a></span></li></ul>
+            </article>
+
+            <article class="entry">
+              <h3>macOS PKG apps can update automatically</h3>
+              <p class="meta">Content update · Automatically published</p>
+              <p class="summary">Added Microsoft’s new behavior for available macOS PKG apps. When an admin uploads a newer version with the same bundle ID, previously installed available apps can update without another Company Portal action. The behavior requires Intune management agent version 2606.013 or later.</p><ul class="references"><li><strong>Published to</strong><span><a href="https://docs.intunemacadmins.com/home/whats-new" target="_blank" rel="noopener noreferrer">What’s New in Intune</a></span></li><li><strong>Source</strong><span><a href="https://learn.microsoft.com/en-us/intune/whats-new/#available-macos-pkg-apps-update-automatically-when-you-upload-a-new-version" target="_blank" rel="noopener noreferrer">Microsoft Intune release notes</a></span></li></ul>
+            </article>
+
+            <article class="entry">
+              <h3>Documentation updates became set-and-forget</h3>
+              <p class="meta">Site update · Maintainer published</p>
+              <p class="summary">Rebuilt the content and freshness workflows so verified changes update existing pages first, create a well-placed page only when necessary, validate the exact pull request revision, merge automatically, and confirm GitBook and Vercel publication.</p><ul class="references"><li><strong>Published to</strong><span><a href="https://github.com/ugurkocde/intunemacadmins" target="_blank" rel="noopener noreferrer">Documentation repository</a></span></li><li><strong>Source</strong><span><a href="https://github.com/ugurkocde/intunemacadmins/commit/607ef62289a5b4827b8b1b4d302a0838b7874da6" target="_blank" rel="noopener noreferrer">Automation implementation</a></span></li></ul>
+            </article>
+
+            <article class="entry">
+              <h3>Community Pulse and Core Contributors were retired</h3>
+              <p class="meta">Site update · Maintainer published</p>
+              <p class="summary">Removed the Community Pulse category, its generated pages and source collectors, plus the Core Contributors table. Community resources, tools, and the complete contributor list remain available in their established sections.</p><ul class="references"><li><strong>Published to</strong><span><a href="https://docs.intunemacadmins.com/" target="_blank" rel="noopener noreferrer">IntuneMacAdmins home</a>, <a href="https://docs.intunemacadmins.com/community/community-resources" target="_blank" rel="noopener noreferrer">Community resources</a>, <a href="https://docs.intunemacadmins.com/home/contributors" target="_blank" rel="noopener noreferrer">Contributors</a></span></li><li><strong>Source</strong><span><a href="https://github.com/ugurkocde/intunemacadmins/commit/607ef62289a5b4827b8b1b4d302a0838b7874da6" target="_blank" rel="noopener noreferrer">Site cleanup</a></span></li></ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="release-group" aria-labelledby="earlier-releases">
+          <div class="release-label">
+            <p class="eyebrow">Archive</p>
+            <h2 id="earlier-releases">Earlier releases</h2>
+          </div>
+          <div class="release-list">
+            <article class="entry">
+              <h3>Version 2.0 · September 2, 2024</h3>
+              <p class="meta">Content update · Maintainer published</p>
+              <p class="summary">Introduced the Baseline Settings for Intune catalog, covering account security, antivirus, Defender, Edge, FileVault, Gatekeeper, Microsoft AutoUpdate, Office, OneDrive, Platform SSO, restrictions, and software updates.</p>
+            </article>
+
+            <article class="entry">
+              <h3>Version 1.7 · August 27, 2024</h3>
+              <p class="summary">Added Microsoft Defender enrollment, Declarative Device Management, and Rapid Security Response guidance to the Complete Guide to macOS Deployment.</p>
+            </article>
+
+            <article class="entry">
+              <h3>Version 1.6 · August 23, 2024</h3>
+              <p class="summary">Added Troubleshooting Guides, the Enrollment Error page, and Intune Uploader resources.</p>
+            </article>
+
+            <article class="entry">
+              <h3>Version 1.5 · August 19, 2024</h3>
+              <p class="summary">Added page-level feedback, Company Portal LOB deployment guidance, and the managed-device user experience guide.</p>
+            </article>
+
+            <article class="entry">
+              <h3>Version 1.4 · August 8, 2024</h3>
+              <p class="summary">Launched the Complete Guide to macOS Deployment with Apple Business Manager, Intune integration, device enrollment, Platform SSO, and FileVault setup guidance.</p>
+            </article>
+
+            <article class="entry">
+              <h3>Version 1.3 · August 2, 2024</h3>
+              <p class="summary">Added the Snippets catalog with Packaging and Shortcuts.</p>
+            </article>
+
+            <article class="entry">
+              <h3>Version 1.2 · July 30, 2024</h3>
+              <p class="summary">Expanded the FAQ with practical answers covering APNs, device lifecycle, migration, enrollment, Defender, certificates, custom settings, policy timing, local inspection, monitoring, and release tracking.</p>
+            </article>
+
+            <article class="entry">
+              <h3>Version 1.1 · July 29, 2024</h3>
+              <p class="summary">Added the Intune Getting Started Guide, prerequisites, and basic tenant setup.</p>
+            </article>
+
+            <article class="entry">
+              <h3>Version 1.0.2 · July 25, 2024</h3>
+              <p class="summary">Added the What’s New in Intune page and guidance for enrolling a Mac without Apple Business Manager.</p>
+            </article>
+
+            <article class="entry">
+              <h3>Version 1.0.1 · July 17, 2024</h3>
+              <p class="summary">Corrected navigation and page titles and added the Root3 Support App.</p>
+            </article>
+
+            <article class="entry">
+              <h3>Version 1.0 · July 15, 2024</h3>
+              <p class="summary">Published the first guides for Await Final Configuration, Custom Attributes, Declarative Device Management, FileVault, OneDrive Known Folder Move, Platform SSO, file deployment, and Microsoft app updates.</p>
+            </article>
+          </div>
+        </section>
         <aside class="source-note">
           <p class="eyebrow">How this stays current</p>
           <h2>One ledger, two public views.</h2>
@@ -242,215 +281,3 @@ export function renderSiteChangelog(markdown: string): string {
     </footer>
   </body>
 </html>
-`;
-}
-
-export function insertChangelogEntries(
-  source: string,
-  entries: ChangelogEntry[],
-  now: Date,
-): { content: string; inserted: number } {
-  if (!source.includes(CHANGELOG_MARKER)) {
-    throw new Error(`${CHANGELOG_FILE} is missing ${CHANGELOG_MARKER}`);
-  }
-
-  const seen = new Set<string>();
-  const fresh = entries.filter((entry) => {
-    const comment = entryComment(entry.id);
-    if (seen.has(comment) || source.includes(comment)) return false;
-    seen.add(comment);
-    return true;
-  });
-  if (fresh.length === 0) return { content: source, inserted: 0 };
-
-  const dateHeading = `## ${formatDate(now)}`;
-  const rendered = fresh.map(renderEntry).join("\n\n---\n\n");
-  const markerAt = source.indexOf(CHANGELOG_MARKER);
-  const markerEnd = markerAt + CHANGELOG_MARKER.length;
-  const remainder = source.slice(markerEnd);
-  const sameDatePrefix = `\n\n${dateHeading}\n`;
-
-  let updated: string;
-  if (remainder.startsWith(sameDatePrefix)) {
-    const headingEnd = markerEnd + sameDatePrefix.length;
-    updated = `${source.slice(0, headingEnd)}\n${rendered}\n\n---${source.slice(headingEnd)}`;
-  } else {
-    updated = `${source.slice(0, markerEnd)}\n\n${dateHeading}\n\n${rendered}\n\n${remainder.replace(/^\s*/, "")}`;
-  }
-
-  return { content: `${updated.trimEnd()}\n`, inserted: fresh.length };
-}
-
-export function changelogEntryId(value: string): string {
-  return createHash("sha256").update(value).digest("hex").slice(0, 16);
-}
-
-export function docPath(path: string): string {
-  return path.replace(/^\.\//, "").replace(/^content\//, "");
-}
-
-function renderEntry(entry: ChangelogEntry): string {
-  const pages = uniqueLinks(entry.pages).map(renderLink).join(", ");
-  const sourceLinks = uniqueLinks(entry.sources);
-  const sources = sourceLinks.map(renderLink).join(", ");
-  return [
-    entryComment(entry.id),
-    `### ${inlineText(entry.title)}`,
-    "",
-    `**${entry.kind}** · ${entry.kind === "Site update" ? "Maintainer published" : "Automatically published"}`,
-    "",
-    inlineText(entry.summary),
-    "",
-    `- **Published to:** ${pages}`,
-    `- **Source${sourceLinks.length === 1 ? "" : "s"}:** ${sources}`,
-  ].join("\n");
-}
-
-function renderLink(link: ChangelogLink): string {
-  return `[${inlineText(link.label)}](${link.url})`;
-}
-
-function uniqueLinks(links: ChangelogLink[]): ChangelogLink[] {
-  const seen = new Set<string>();
-  return links.filter((link) => {
-    if (seen.has(link.url)) return false;
-    seen.add(link.url);
-    return true;
-  });
-}
-
-function entryComment(id: string): string {
-  return `<!-- changelog-entry:${changelogEntryId(id)} -->`;
-}
-
-function inlineText(value: string): string {
-  return value
-    .replace(/\s+/g, " ")
-    .trim()
-    .replace(/\\/g, "\\\\")
-    .replace(/([`*_[\]<>])/g, "\\$1");
-}
-
-function formatDate(date: Date): string {
-  return new Intl.DateTimeFormat("en-US", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    timeZone: "UTC",
-  }).format(date);
-}
-
-interface SiteEntry {
-  title: string;
-  meta: string;
-  summary: string;
-  references: Array<{ label: string; value: string }>;
-}
-
-interface SiteSection {
-  heading: string;
-  entries: SiteEntry[];
-}
-
-function writeSiteChangelog(markdown: string, outputRoot: string): void {
-  const output = outputRoot === "." ? SITE_CHANGELOG_FILE : join(outputRoot, SITE_CHANGELOG_FILE);
-  mkdirSync(dirname(output), { recursive: true });
-  writeFileSync(output, renderSiteChangelog(markdown), "utf8");
-}
-
-function parseSections(markdown: string): SiteSection[] {
-  const scope = markdown.slice(markdown.indexOf(CHANGELOG_MARKER) + CHANGELOG_MARKER.length);
-  const sections: SiteSection[] = [];
-  let section: SiteSection | null = null;
-  let entry: SiteEntry | null = null;
-
-  const flushEntry = () => {
-    if (section && entry) section.entries.push(entry);
-    entry = null;
-  };
-  for (const raw of scope.split("\n")) {
-    const line = raw.trim();
-    const heading2 = line.match(/^##\s+(.+)$/);
-    if (heading2) {
-      flushEntry();
-      section = { heading: heading2[1].trim(), entries: [] };
-      sections.push(section);
-      continue;
-    }
-    const heading3 = line.match(/^###\s+(.+)$/);
-    if (heading3) {
-      flushEntry();
-      entry = { title: heading3[1].trim(), meta: "", summary: "", references: [] };
-      continue;
-    }
-    if (!entry || !line || line === "---" || line.startsWith("<!--")) continue;
-    if (!entry.meta && /^\*\*.+\*\*/.test(line)) {
-      entry.meta = plainMarkdown(line);
-    } else if (line.startsWith("- **")) {
-      const match = line.match(/^-\s+\*\*(.+?):\*\*\s*(.*)$/);
-      if (match) entry.references.push({ label: match[1], value: match[2] });
-    } else {
-      entry.summary = entry.summary ? `${entry.summary} ${line}` : line;
-    }
-  }
-  flushEntry();
-  return sections.filter((value) => value.entries.length > 0);
-}
-
-function renderSiteEntry(entry: SiteEntry): string {
-  const references = entry.references.length
-    ? `<ul class="references">${entry.references
-        .map((reference) => `<li><strong>${escapeHtml(reference.label)}</strong><span>${inlineHtml(reference.value)}</span></li>`)
-        .join("")}</ul>`
-    : "";
-  return `
-            <article class="entry">
-              <h3>${inlineHtml(entry.title)}</h3>${entry.meta ? `\n              <p class="meta">${escapeHtml(entry.meta)}</p>` : ""}
-              <p class="summary">${inlineHtml(entry.summary)}</p>${references}
-            </article>`;
-}
-
-function inlineHtml(value: string): string {
-  const links: string[] = [];
-  const tokenized = value.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, label, url) => {
-    const safe = /^(https?:\/\/|[a-z0-9./_-]+\.md(?:#[a-z0-9_-]+)?$)/i.test(url);
-    const href = url.endsWith(".md") || url.includes(".md#")
-      ? docsHref(url)
-      : url;
-    const html = safe
-      ? `<a href="${escapeHtml(href)}"${href.startsWith("http") ? ' target="_blank" rel="noopener noreferrer"' : ""}>${escapeHtml(label)}</a>`
-      : escapeHtml(label);
-    links.push(html);
-    return `@@LINK${links.length - 1}@@`;
-  });
-  return escapeHtml(tokenized)
-    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
-    .replace(/`([^`]+)`/g, "<code>$1</code>")
-    .replace(/@@LINK(\d+)@@/g, (_, index) => links[Number(index)] ?? "");
-}
-
-function plainMarkdown(value: string): string {
-  return value.replace(/\*\*/g, "").replace(/\s+/g, " ").trim();
-}
-
-function escapeHtml(value: string): string {
-  return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
-
-function siteId(value: string): string {
-  return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
-}
-
-function docsHref(value: string): string {
-  const [path, fragment] = value.replace(/^\.\//, "").split("#", 2);
-  const clean = path
-    .replace(/\.md$/, "")
-    .replace(/(^|\/)README$/, "")
-    .replace(/\/$/, "");
-  return `https://docs.intunemacadmins.com/${clean}${fragment ? `#${fragment}` : ""}`;
-}

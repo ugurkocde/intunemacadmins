@@ -2,6 +2,8 @@
 description: "Step-by-step guide to configuring Declarative Device Management (DDM) on macOS."
 sources:
   - https://learn.microsoft.com/intune/device-updates/apple/
+  - https://support.apple.com/guide/deployment/declarative-device-management-manage-apple-depc30268577/web
+  - https://github.com/apple/device-management/tree/release
 lastReviewed: 2026-06-13
 ---
 

@@ -2,6 +2,7 @@
 description: "How to configure Defender for Endpoint (MDE) Configuration for your Intune tenant."
 sources:
   - https://learn.microsoft.com/defender-endpoint/mac-preferences
+  - https://learn.microsoft.com/defender-endpoint/microsoft-defender-endpoint-releases
 lastReviewed: 2026-06-13
 ---
 

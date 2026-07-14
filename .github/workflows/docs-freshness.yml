@@ -69,6 +69,7 @@ jobs:
           token: ${{ secrets.DOCS_AUTOMERGE_TOKEN }}
           add-paths: |
             content/**
+            site/changelog/**
           branch: docs-freshness/updates
           delete-branch: true
           commit-message: Update docs to match current Microsoft/Apple documentation

@@ -2,6 +2,7 @@
 description: "How to configure Microsoft AutoUpdate (MAU) for your Intune tenant."
 sources:
   - https://learn.microsoft.com/microsoft-365-apps/mac/mau-preferences
+  - https://learn.microsoft.com/officeupdates/release-history-microsoft-autoupdate
 lastReviewed: 2026-06-13
 ---
 

@@ -79,7 +79,7 @@ async function main(): Promise<void> {
 }
 
 async function stageFetch(options: CliOptions, now: Date): Promise<void> {
-  console.log("[fetch] source=ms-whats-new");
+  console.log("[fetch] sources=ms-whats-new,ms-intune-notices,ms-defender-macos");
   const state = loadState();
   const result = await fetchAllSources(state, now);
   const fetchedTotal = result.items.length;

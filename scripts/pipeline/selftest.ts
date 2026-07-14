@@ -3,6 +3,8 @@
 
 import assert from "node:assert/strict";
 import { docPath, insertChangelogEntries } from "../changelog";
+import { parseMsDefenderMacReleases } from "./fetch/ms-defender-macos";
+import { parseMsIntuneNotices } from "./fetch/ms-intune-notices";
 import { parseMsWhatsNew, slugify } from "./fetch/ms-whats-new";
 import { addSummaryEntry, insertUnderHeading } from "./integrate/content";
 import { sanitizeSummary } from "./llm/summarize";
@@ -192,6 +194,55 @@ describe("ms-whats-new parser", () => {
   const again = parseMsWhatsNew(fixture, new Date("2026-06-11T00:00:00Z"));
   assert.deepEqual(items.map((i) => i.id), again.map((i) => i.id));
   assert.equal(slugify("Platform SSO: what's new (preview)?"), "platform-sso-whats-new-preview");
+});
+
+describe("macOS-only additional source parsers", () => {
+  const notices = parseMsIntuneNotices(
+    [
+      "---",
+      "ms.date: 07/14/2026",
+      "---",
+      "### Plan for change: macOS support",
+      "Prepare managed macOS devices for a new minimum version.",
+      "#### How can you prepare?",
+      "Review the macOS inventory.",
+      "### Plan for change: Android support",
+      "Prepare Android devices.",
+    ].join("\n"),
+    new Date("2026-07-14T12:00:00Z"),
+  );
+  assert.equal(notices.length, 1);
+  assert.equal(notices[0].source, "ms-intune-notices");
+  assert.match(notices[0].title, /macOS/);
+
+  const defender = parseMsDefenderMacReleases(
+    [
+      "## macOS releases",
+      "### macOS | July-2026 | 101.26070.0001",
+      "#### Versions",
+      "| Release | Engine |",
+      "|---|---|",
+      "| 1 | 2 |",
+      "#### Enhancements and features",
+      "| Feature area | Update summary |",
+      "|---|---|",
+      "| Device Control | Added a new removable media policy. |",
+      "### macOS | June-2026 | 101.26060.0001",
+      "#### Enhancements and features",
+      "| Feature area | Update summary |",
+      "|---|---|",
+      "| General | Bug and performance fixes |",
+      "### Linux | July-2026 | 101.26070.0002",
+      "#### Enhancements and features",
+      "Linux only.",
+      "## macOS known issues",
+    ].join("\n"),
+    new Date("2026-07-14T12:00:00Z"),
+  );
+  assert.equal(defender.length, 1);
+  assert.equal(defender[0].source, "ms-defender-macos");
+  assert.match(defender[0].content, /removable media policy/);
+  assert.ok(!defender[0].content.includes("Linux"));
 });
 
 describe("renderers are idempotent and escape hostile content", () => {

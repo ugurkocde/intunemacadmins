@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - "content/**"
+      - "site/**"
       - "data/**"
       - "scripts/**"
       - "package.json"

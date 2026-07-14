@@ -1,4 +1,6 @@
 import type { RawItem, SourceError, StateFile } from "../types";
+import { fetchMsDefenderMacReleases } from "./ms-defender-macos";
+import { fetchMsIntuneNotices } from "./ms-intune-notices";
 import { fetchMsWhatsNew } from "./ms-whats-new";
 
 export interface FetchResult {
@@ -7,7 +9,8 @@ export interface FetchResult {
   skipped: string[];
 }
 
-// Fetches the official Intune release notes. A source failure is reported, never fatal.
+// Fetches official, public sources with deterministic macOS filtering. A source
+// failure is reported, never fatal.
 // Items already in state (published or rejected) are dropped here so the
 // LLM stage only ever sees genuinely new items.
 export async function fetchAllSources(
@@ -17,10 +20,19 @@ export async function fetchAllSources(
   const items: RawItem[] = [];
   const errors: SourceError[] = [];
   const skipped: string[] = [];
-  try {
-    items.push(...(await fetchMsWhatsNew(now)));
-  } catch (error) {
-    errors.push({ source: "ms-whats-new", error: message(error) });
+  const sources = [
+    { name: "ms-whats-new", fetch: () => fetchMsWhatsNew(now) },
+    { name: "ms-intune-notices", fetch: () => fetchMsIntuneNotices(now) },
+    { name: "ms-defender-macos", fetch: () => fetchMsDefenderMacReleases(now) },
+  ] as const;
+  const results = await Promise.allSettled(sources.map((source) => source.fetch()));
+  for (const [index, result] of results.entries()) {
+    const source = sources[index];
+    if (result.status === "fulfilled") {
+      items.push(...result.value);
+    } else {
+      errors.push({ source: source.name, error: message(result.reason) });
+    }
   }
 
   // Dedup within the run (same URL can appear via two feeds) and against state.

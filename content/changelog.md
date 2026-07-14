@@ -16,6 +16,18 @@ Every meaningful documentation change, in one place. Each entry shows what was a
 
 ## July 14, 2026
 
+<!-- changelog-entry:db5086e2aee1c5e6 -->
+### The changelog moved to the main website
+
+**Site update** · Maintainer published
+
+Published the source-linked changelog at `www.intunemacadmins.com/changelog`, added a Changelog button to the main landing page that opens in a new tab, and connected the static page to the same automated changelog source used by the documentation workflows.
+
+- **Published to:** [Main website changelog](https://www.intunemacadmins.com/changelog/), [IntuneMacAdmins landing page](https://www.intunemacadmins.com/)
+- **Source:** [Documentation repository](https://github.com/ugurkocde/intunemacadmins)
+
+---
+
 <!-- changelog-entry:transparent-changelog-launch -->
 ### A transparent changelog moved to center stage
 

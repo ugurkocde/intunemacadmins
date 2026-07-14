@@ -2,6 +2,7 @@
 description: "How to configure Software Updates for your Intune tenant."
 sources:
   - https://learn.microsoft.com/intune/device-updates/apple/
+  - https://support.apple.com/guide/deployment/install-and-enforce-software-updates-depd30715cbb/web
 lastReviewed: 2026-06-13
 ---
 

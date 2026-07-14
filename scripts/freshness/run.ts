@@ -16,6 +16,11 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname } from "node:path";
 import {
+  docPath,
+  prependChangelogEntries,
+  type ChangelogEntry,
+} from "../changelog";
+import {
   EDITS_JSON,
   EDITS_PR_BODY,
   HTTP_TIMEOUT_MS,
@@ -44,7 +49,7 @@ async function main(): Promise<void> {
     report.skipped.push(`macOS version feed unreachable; used fallback ${latestMacOS}`);
   }
 
-  await runDrift(pages, report);
+  await runDrift(pages, report, now);
   report.findings = sortFindings(report.findings);
 
   writeFile(REPORT_JSON, JSON.stringify(report, null, 2) + "\n");
@@ -68,6 +73,7 @@ async function main(): Promise<void> {
 async function runDrift(
   pages: Awaited<ReturnType<typeof loadDocs>>,
   report: Awaited<ReturnType<typeof scan>>,
+  now: Date,
 ): Promise<void> {
   const sourced = pages.filter(
     (p) => Array.isArray(p.frontmatter.sources) && p.frontmatter.sources.length > 0,
@@ -121,10 +127,53 @@ async function runDrift(
   if (applied.length > 0) {
     writeFile(EDITS_PR_BODY, renderEditsPrBody(applied) + "\n");
     writeFile(EDITS_JSON, JSON.stringify(applied, null, 2) + "\n");
+    const byPath = new Map<string, typeof applied>();
+    for (const edit of applied) {
+      const list = byPath.get(edit.path) ?? [];
+      list.push(edit);
+      byPath.set(edit.path, list);
+    }
+    const pageByPath = new Map(pages.map((page) => [page.path, page]));
+    const entries: ChangelogEntry[] = [...byPath].map(([path, edits]) => {
+      const page = pageByPath.get(path);
+      const title = page ? docTitle(page.path, page.title, page.body) : fallbackTitle(path);
+      return {
+        id: `freshness:${path}:${edits.map((edit) => `${edit.source}:${edit.oldText}:${edit.newText}`).join("|")}`,
+        kind: "Documentation correction",
+        title: `Corrected ${title}`,
+        summary: [...new Set(edits.map((edit) => edit.discrepancy))].join(" "),
+        pages: [{ label: title, url: docPath(path) }],
+        sources: [...new Set(edits.map((edit) => edit.source))].map((source) => ({
+          label: sourceLabel(source),
+          url: source,
+        })),
+      };
+    });
+    prependChangelogEntries(entries, now);
   }
   console.log(
     `[freshness] drift: ${result.findings.length} flag(s); edits applied ${applied.length}, rejected ${rejected.length} across ${files.size} file(s)`,
   );
+}
+
+function docTitle(path: string, frontmatterTitle: string, body: string): string {
+  if (frontmatterTitle !== path) return frontmatterTitle;
+  return body.match(/^#\s+(.+)$/m)?.[1].trim() ?? fallbackTitle(path);
+}
+
+function fallbackTitle(path: string): string {
+  return path.split("/").at(-1)?.replace(/\.mdx?$/, "").replace(/-/g, " ") ?? path;
+}
+
+function sourceLabel(source: string): string {
+  try {
+    const host = new URL(source).hostname;
+    if (host === "learn.microsoft.com") return "Microsoft Learn";
+    if (host === "apple.com" || host.endsWith(".apple.com")) return "Apple documentation";
+    return host;
+  } catch {
+    return "Authoritative source";
+  }
 }
 
 async function resolveLatestMacOS(): Promise<{

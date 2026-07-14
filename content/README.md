@@ -10,6 +10,12 @@ A community hub for sharing and learning from real-world macOS experiences — g
 New here? Start with the [Getting Started guide](home/getting-started.md), or jump straight to the [Baseline Settings](baselinesettings/import.md) to configure your tenant fast.
 {% endhint %}
 
+## See What Changed
+
+Every addition and correction is recorded with its publication date, destination page, and original source. No mystery updates and no disconnected release-note pages.
+
+<a href="changelog.md" class="button primary">View the Changelog</a> <a href="home/whats-new.md" class="button secondary">Latest Intune Updates</a>
+
 ## Our Sponsors ❤️
 
 A big thank you to our sponsor for supporting the community and helping keep these resources free.

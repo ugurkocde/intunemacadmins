@@ -2,6 +2,7 @@
 // Run via: npm run pipeline:selftest
 
 import assert from "node:assert/strict";
+import { docPath, insertChangelogEntries } from "../changelog";
 import { parseMsWhatsNew, slugify } from "./fetch/ms-whats-new";
 import { addSummaryEntry, insertUnderHeading } from "./integrate/content";
 import { sanitizeSummary } from "./llm/summarize";
@@ -104,6 +105,38 @@ describe("GitBook content integration", () => {
   assert.ok(existing.includes("* [Two](existing/two.md)\n\n## Next"));
   const created = addSummaryEntry(existing, "New Category", "Three", "new-category/three.md");
   assert.ok(created.includes("## New Category\n\n* [Three](new-category/three.md)"));
+});
+
+describe("transparent changelog", () => {
+  const source = "# Changelog\n\n<!-- changelog:entries -->\n\n## Earlier releases\n";
+  const entry = {
+    id: "source:https://learn.microsoft.com/example",
+    kind: "Content update" as const,
+    title: "A new macOS feature",
+    summary: "Added a supported configuration.",
+    pages: [{ label: "What's New", url: "home/whats-new.md" }],
+    sources: [{ label: "Microsoft Learn", url: "https://learn.microsoft.com/example" }],
+  };
+  const first = insertChangelogEntries(source, [entry], new Date("2026-07-14T12:00:00Z"));
+  assert.equal(first.inserted, 1);
+  assert.ok(first.content.includes("## July 14, 2026"));
+  assert.ok(first.content.includes("[Microsoft Learn](https://learn.microsoft.com/example)"));
+  const second = insertChangelogEntries(first.content, [entry], new Date("2026-07-14T18:00:00Z"));
+  assert.equal(second.inserted, 0);
+  assert.equal(second.content, first.content);
+  const another = insertChangelogEntries(
+    first.content,
+    [
+      { ...entry, id: "another", title: "Another change" },
+      { ...entry, id: "another", title: "Duplicate batch entry" },
+    ],
+    new Date("2026-07-14T20:00:00Z"),
+  );
+  assert.equal(another.inserted, 1);
+  assert.equal(another.content.match(/## July 14, 2026/g)?.length, 1);
+  assert.ok(another.content.indexOf("Another change") < another.content.indexOf("A new macOS feature"));
+  assert.ok(!another.content.includes("Duplicate batch entry"));
+  assert.equal(docPath("content/home/whats-new.md"), "home/whats-new.md");
 });
 
 describe("ms-whats-new parser", () => {

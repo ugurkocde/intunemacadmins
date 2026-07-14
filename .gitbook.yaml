@@ -29,6 +29,7 @@ redirects:
   filevault/what_is_filevault: filevault/what-is-filevault.md
   home/getting_started: home/getting-started.md
   home/how_to_contribute: home/how-to-contribute.md
+  home/changelog: changelog.md
   home/whats_new: home/whats-new.md
   intune-getting-started-guide/basic_tenant_setup: intune-getting-started-guide/basic-tenant-setup.md
   onedrive-known-folder-move-kfm/configure_kfm: onedrive-known-folder-move-kfm/configure-kfm.md

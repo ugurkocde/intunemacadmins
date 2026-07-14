@@ -9,7 +9,7 @@
 * [Contributors ❤️](home/contributors.md)
 * [Our Sponsors ❤️](home/sponsors.md)
 * [Feedback](home/feedback.md)
-* [Changelog](home/changelog.md)
+* [Changelog](changelog.md)
 * [What's New in Intune](home/whats-new.md)
 
 ## Community

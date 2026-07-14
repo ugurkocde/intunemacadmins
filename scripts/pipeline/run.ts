@@ -11,6 +11,7 @@
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
+import { docPath, prependChangelogEntries } from "../changelog";
 import {
   CACHE_DIR,
   LLM_FAILURE_ABORT_RATIO,
@@ -211,6 +212,23 @@ function stageRender(options: CliOptions, now: Date): void {
     root,
     now,
   );
+  const changelogCount = prependChangelogEntries(
+    llmArtifact.published.map((item) => ({
+      id: `content:${item.url}`,
+      kind: "Content update" as const,
+      title: item.title,
+      summary: item.summary,
+      pages: [
+        { label: "What's New in Intune", url: docPath(WHATS_NEW_FILE) },
+        ...integration.updates
+          .filter((update) => update.itemId === item.id)
+          .map((update) => ({ label: update.title, url: docPath(update.path) })),
+      ],
+      sources: [{ label: item.sourceName, url: item.url }],
+    })),
+    now,
+    root,
+  );
 
   const report: RunReport = {
     startedAt: now.toISOString(),
@@ -241,6 +259,11 @@ function stageRender(options: CliOptions, now: Date): void {
     `[render] done (${options.dryRun ? "dry run -> " + PREVIEW_DIR : "wrote content tree"}): ` +
       `${llmArtifact.published.length} published, ${llmArtifact.rejectedIds.length} rejected, week ${weekStr}`,
   );
+  if (changelogCount > 0) {
+    console.log(
+      `[render] changelog: ${changelogCount} entr${changelogCount === 1 ? "y" : "ies"}`,
+    );
+  }
 }
 
 function parseArgs(argv: string[]): CliOptions {

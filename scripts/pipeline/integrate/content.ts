@@ -29,6 +29,7 @@ export interface ContentPlan {
 }
 
 export interface ContentUpdate {
+  itemId: string;
   action: ContentPlan["action"];
   path: string;
   title: string;
@@ -78,6 +79,7 @@ export function loadCatalog(summaryPath = "content/SUMMARY.md"): CatalogEntry[] 
     const link = line.match(/^\s*\*\s+\[([^\]]+)\]\(([^)]+\.md)\)/);
     if (!link || !category) continue;
     const path = `content/${link[2]}`;
+    if (path === "content/changelog.md" || path === "content/home/whats-new.md") continue;
     try {
       const raw = readFileSync(path, "utf8");
       const headings = raw.match(/^#{1,3}\s+.+$/gm) ?? [];
@@ -204,7 +206,14 @@ export function applyContentPlans(
           date,
         );
         working.set(plan.targetPath, updated);
-        updates.push({ action: plan.action, path: plan.targetPath, title: plan.title });
+        const targetTitle =
+          catalog.find((entry) => entry.path === plan.targetPath)?.title ?? plan.title;
+        updates.push({
+          itemId: plan.itemId,
+          action: plan.action,
+          path: plan.targetPath,
+          title: targetTitle,
+        });
         continue;
       }
 
@@ -235,7 +244,7 @@ export function applyContentPlans(
       working.set(path, page);
       summary = addSummaryEntry(summary, plan.category, plan.title, path.replace(/^content\//, ""));
       catalog.push({ category: plan.category, path, title: plan.title, headings: [`# ${plan.title}`] });
-      updates.push({ action: plan.action, path, title: plan.title });
+      updates.push({ itemId: plan.itemId, action: plan.action, path, title: plan.title });
     } catch (error) {
       skipped.push(`${plan.title}: ${error instanceof Error ? error.message : String(error)}`);
     }

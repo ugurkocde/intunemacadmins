@@ -7,6 +7,12 @@ generated: true
 
 We track Microsoft's [What's new in Microsoft Intune](https://learn.microsoft.com/en-us/intune/whats-new/) release notes and pull out the changes that matter for macOS management. Each entry links to the full details on Microsoft Learn.
 
+## Week of June 29, 2026 (Service release 2606)
+
+### App management
+
+- **Available macOS PKG apps update automatically when you upload a new version** — Available macOS PKG apps now update automatically on devices when an existing available app policy is edited with a newer app version that uses the same bundle ID, without users needing to select Install or Reinstall in Company Portal. Automatic updates apply when an updated app version is uploaded to Intune and the user has already installed the app. This behavior requires the Microsoft Intune management agent for macOS version 2606.013 or later. [Details](https://learn.microsoft.com/en-us/intune/whats-new/#available-macos-pkg-apps-update-automatically-when-you-upload-a-new-version)
+
 ## Week of June 15, 2026
 
 ### Device enrollment
@@ -38,12 +44,6 @@ We track Microsoft's [What's new in Microsoft Intune](https://learn.microsoft.co
 
 - **New updates to the Apple settings catalog** — New settings have been added to the Intune Settings Catalog for iOS/iPadOS and macOS. The additions include Declarative Device Management options for External Intelligence Settings, Intelligence Settings, Keyboard Settings, and Siri Settings, along with macOS-specific System Configuration File Provider settings and a Rosetta Usage Awareness restriction. The settings are accessible by creating a Settings Catalog profile in the Microsoft Intune admin center under Devices, Configuration. [Details](https://learn.microsoft.com/en-us/intune/whats-new/#new-updates-to-the-apple-settings-catalog)
 - **Recovery lock features available for macOS devices** — Microsoft Intune now supports configuring a recovery OS password on macOS devices to prevent users from booting company-owned devices into recovery mode, reinstalling macOS, or bypassing remote management. The feature can be enabled and set with a password rotation schedule through a settings catalog policy, or rotated manually using the Recovery Lock device action. The Recovery Lock password is viewable in the per-setting status report under Passwords and keys, requiring the View macOS recovery lock password permission. [Details](https://learn.microsoft.com/en-us/intune/whats-new/#recovery-lock-features-available-for-macos-devices)
-
-## Week of March 16, 2026
-
-### Device management
-
-- **Improved Remote Help update reporting on macOS** — Microsoft has updated the update and reporting experience for Remote Help on macOS. After deploying Remote Help client version 1.0.26012221 through Microsoft Intune, admins can view the full client version in device inventory and during app upgrades. Intune-deployed Remote Help installations are registered with Microsoft AutoUpdate, allowing managed macOS devices to automatically receive future updates. [Details](https://learn.microsoft.com/en-us/intune/whats-new/#improved-remote-help-update-reporting-on-macos)
 
 ---
 

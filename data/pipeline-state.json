@@ -50,6 +50,10 @@
       "url": "https://learn.microsoft.com/en-us/intune/whats-new/#new-updates-to-the-apple-settings-catalog",
       "week": "2026-W24"
     },
+    "138f93d5e0e30409": {
+      "firstSeen": "2026-07-14T17:59:13.126Z",
+      "status": "rejected"
+    },
     "144b77b76486b258": {
       "firstSeen": "2026-06-13T16:21:28.167Z",
       "status": "rejected"
@@ -188,6 +192,29 @@
     "7cd9fe92c0bf5765": {
       "firstSeen": "2026-06-13T16:21:28.167Z",
       "status": "rejected"
+    },
+    "7d87093aaa85ed4c": {
+      "category": "app-management",
+      "firstSeen": "2026-07-14T17:59:13.126Z",
+      "meta": {
+        "categoryHeading": "App management",
+        "release": "2606",
+        "week": "Week of June 29, 2026"
+      },
+      "publishedAt": "2026-06-29T00:00:00.000Z",
+      "source": "ms-whats-new",
+      "sourceName": "Microsoft Learn",
+      "status": "published",
+      "summary": "Available macOS PKG apps now update automatically on devices when an existing available app policy is edited with a newer app version that uses the same bundle ID, without users needing to select Install or Reinstall in Company Portal. Automatic updates apply when an updated app version is uploaded to Intune and the user has already installed the app. This behavior requires the Microsoft Intune management agent for macOS version 2606.013 or later.",
+      "tags": [
+        "macos",
+        "pkg",
+        "app-updates",
+        "company-portal"
+      ],
+      "title": "Available macOS PKG apps update automatically when you upload a new version",
+      "url": "https://learn.microsoft.com/en-us/intune/whats-new/#available-macos-pkg-apps-update-automatically-when-you-upload-a-new-version",
+      "week": "2026-W29"
     },
     "7e64c637712e9230": {
       "firstSeen": "2026-06-13T16:21:28.167Z",

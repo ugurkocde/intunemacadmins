@@ -16,6 +16,17 @@ Every meaningful documentation change, in one place. Each entry shows what was a
 
 ## July 14, 2026
 
+<!-- changelog-entry:0d6bbbef8b21d6f7 -->
+### Plan for change: Intune is moving to support macOS 15 and higher later this year
+
+**Content update** · Automatically published
+
+Microsoft Intune, the Company Portal app, and the Intune mobile device management agent will move to support macOS 15 and later, with the change occurring shortly after Apple's expected release of macOS 27 later in calendar year 2026. Devices already enrolled on macOS 14.x or below will remain enrolled, but new devices running macOS 14.x or below will be unable to enroll. Administrators can review Intune reporting under Devices and All devices, filter by macOS, and ask users to upgrade to a supported OS version.
+
+- **Published to:** [What's New in Intune](home/whats-new.md)
+- **Source:** [Microsoft Intune important notices](https://learn.microsoft.com/en-us/intune/whats-new/#plan-for-change-intune-is-moving-to-support-macos-15-and-higher-later-this-year)
+
+---
 <!-- changelog-entry:db5086e2aee1c5e6 -->
 ### The changelog moved to the main website
 

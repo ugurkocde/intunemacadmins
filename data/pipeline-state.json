@@ -251,6 +251,28 @@
       "url": "https://learn.microsoft.com/en-us/intune/whats-new/#disable-mac-address-randomization-on-macos-wi-fi-profiles",
       "week": "2026-W26"
     },
+    "9fd22e2fec54e926": {
+      "category": "announcement",
+      "firstSeen": "2026-07-14T19:20:12.692Z",
+      "meta": {
+        "notice": true,
+        "platform": "macOS"
+      },
+      "publishedAt": "2025-10-14T00:00:00.000Z",
+      "source": "ms-intune-notices",
+      "sourceName": "Microsoft Intune important notices",
+      "status": "published",
+      "summary": "Microsoft Intune, the Company Portal app, and the Intune mobile device management agent will move to support macOS 15 and later, with the change occurring shortly after Apple's expected release of macOS 27 later in calendar year 2026. Devices already enrolled on macOS 14.x or below will remain enrolled, but new devices running macOS 14.x or below will be unable to enroll. Administrators can review Intune reporting under Devices and All devices, filter by macOS, and ask users to upgrade to a supported OS version.",
+      "tags": [
+        "macos",
+        "supported os",
+        "enrollment",
+        "company portal"
+      ],
+      "title": "Plan for change: Intune is moving to support macOS 15 and higher later this year",
+      "url": "https://learn.microsoft.com/en-us/intune/whats-new/#plan-for-change-intune-is-moving-to-support-macos-15-and-higher-later-this-year",
+      "week": "2026-W29"
+    },
     "a35f3f259966c5ec": {
       "category": "configuration",
       "firstSeen": "2026-06-13T16:21:28.167Z",

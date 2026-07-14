@@ -1,6 +1,7 @@
 # Table of contents
 
 * [Welcome](README.md)
+* [Changelog](changelog.md)
 
 ## Home
 
@@ -9,7 +10,6 @@
 * [Contributors ❤️](home/contributors.md)
 * [Our Sponsors ❤️](home/sponsors.md)
 * [Feedback](home/feedback.md)
-* [Changelog](changelog.md)
 * [What's New in Intune](home/whats-new.md)
 
 ## Community

@@ -51,7 +51,6 @@ const HOME_ORDER = [
   "home/how-to-contribute.md",
   "home/contributors.md",
   "home/feedback.md",
-  "changelog.md",
   "home/whats-new.md",
 ];
 const BASELINE_SETTINGS_OVERVIEW_CHILDREN = [
@@ -106,7 +105,13 @@ function sortAuto(list: Item[]): Item[] {
   });
 }
 
-const lines: string[] = ["# Table of contents", "", "* [Welcome](README.md)", ""];
+const lines: string[] = [
+  "# Table of contents",
+  "",
+  "* [Welcome](README.md)",
+  "* [Changelog](changelog.md)",
+  "",
+];
 
 for (const g of GROUPS) {
   const inSection = items.filter((i) => i.section === g.section && !i.isHomepage);
@@ -115,10 +120,6 @@ for (const g of GROUPS) {
 
   if (g.section === "Home") {
     for (const p of HOME_ORDER) {
-      if (p === "changelog.md") {
-        lines.push("* [Changelog](changelog.md)");
-        continue;
-      }
       const it = byPath.get(p);
       if (it) lines.push(bullet(it));
     }

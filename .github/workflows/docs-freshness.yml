@@ -30,7 +30,7 @@ jobs:
         with:
           fetch-depth: 0 # full history so review-age can read git last-modified dates
 
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm

@@ -15,7 +15,7 @@ Rapid Security Responses deliver important security improvements between softwar
 
 Rapid Security Responses are a new type of software release for iPhone, iPad and Mac. They deliver important security improvements between software updates – for example, improvements to the Safari web browser, the WebKit framework stack or other critical system libraries. They may also be used to mitigate some security issues more quickly, such as issues that may have been exploited or reported to exist.
 
-New Rapid Security Responses will only be delivered for the latest versions of iOS, iPadOS and macOS, starting with iOS 16.4.1, iPadOS 16.4.1 and macOS 13.3.1.
+New Rapid Security Responses will only be delivered for the latest versions of iOS, iPadOS and macOS, starting with iOS 26.1, iPadOS 26.1 and macOS 26.1.
 
 By default, your device will apply Rapid Security Responses automatically. If necessary, you’ll be prompted to restart your device. To check your device settings:
 

@@ -35,7 +35,7 @@ This script does the following:
 
 To use this script as a custom attribute in Intune:
 
-1. Go to the Intune portal and navigate to Devices > macOS > Custom Attributes.
+1. Go to the Intune portal and navigate to Devices > By platform > macOS > Manage devices > Scripts.
 ![Custom Attribute](../.gitbook/assets/CustomAttributes/custom_attribute_1.png)
 2. Click on "+ Add" to create a new custom attribute.
 3. Provide a name (e.g., "Last Reboot Time") and description for the attribute.

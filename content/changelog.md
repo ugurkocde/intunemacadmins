@@ -14,6 +14,42 @@ Every meaningful documentation change, in one place. Each entry shows what was a
 
 <!-- changelog:entries -->
 
+## July 20, 2026
+
+<!-- changelog-entry:3178dfd77cfdf294 -->
+### Corrected Configure MacOS Platform SSO
+
+**Documentation correction** · Automatically published
+
+The page lists only Microsoft Edge, Google Chrome, and Safari as supported browsers, but the source also lists Firefox.
+
+- **Published to:** [Configure MacOS Platform SSO](complete-guide-macos-deployment/configure-macos-platform-sso.md)
+- **Source:** [Microsoft Learn](https://learn.microsoft.com/intune/device-configuration/settings-catalog/configure-platform-sso-macos)
+
+---
+
+<!-- changelog-entry:a12d65a10e953c2d -->
+### Corrected Rapid Security Response
+
+**Documentation correction** · Automatically published
+
+The page says the feature starts with iOS 16.4.1, iPadOS 16.4.1 and macOS 13.3.1; the current source says it is supported and enabled starting with iOS 26.1, iPadOS 26.1, and macOS 26.1.
+
+- **Published to:** [Rapid Security Response](complete-guide-macos-deployment/rapid-security-response.md)
+- **Source:** [Apple documentation](https://support.apple.com/guide/security/rapid-security-responses-sec87fc038c2/web)
+
+---
+
+<!-- changelog-entry:06393e6fc2cc7cc0 -->
+### Corrected Script to get the last reboot time formatted
+
+**Documentation correction** · Automatically published
+
+The page says the custom attribute script is created under a "Custom Attributes" node, but the current source describthese Scripts are created under Devices \> By platform \> macOS \> Manage devices \> Scripts.
+
+- **Published to:** [Script to get the last reboot time formatted](custom-attributes/create-custom-attributes.md)
+- **Source:** [Microsoft Learn](https://learn.microsoft.com/intune/device-management/tools/run-shell-scripts-macos)
+
 ## July 14, 2026
 
 <!-- changelog-entry:0d6bbbef8b21d6f7 -->

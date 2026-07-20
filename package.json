@@ -21,8 +21,8 @@
     "validate": "npm run pipeline:selftest && npm run freshness:selftest && npm run changelog:verify && npm run migrate:verify && bash -n scripts/ci/auto-merge-pr.sh"
   },
   "devDependencies": {
-    "@anthropic-ai/sdk": "^0.104.1",
-    "tsx": "^4.22.4",
+    "@anthropic-ai/sdk": "^0.112.3",
+    "tsx": "^4.23.1",
     "yaml": "^2.9.0",
     "zod": "^4.4.3"
   }

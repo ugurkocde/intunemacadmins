@@ -19,7 +19,7 @@ Click on the link to download the JSON file from <a href="https://github.com/Ski
 | Enforcement level | real_time |
 | Exclusions merge | admin_only |
 | Run a scan after definitions are updated | Enabled |
-| Scanning inside archive files | True |
+| Scanning inside archive files (on-demand scans only) | True |
 | Threat type (1) | potentially_unwanted_application |
 | Action to take (1) | block |
 | Threat type (2) | archive_bomb |

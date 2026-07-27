@@ -14,6 +14,54 @@ Every meaningful documentation change, in one place. Each entry shows what was a
 
 <!-- changelog:entries -->
 
+## July 27, 2026
+
+<!-- changelog-entry:5c5025f62b5f3582 -->
+### Corrected Configure Await Final Configuration
+
+**Documentation correction** · Automatically published
+
+The page refers to distinguishing it from other enrollment "profiles", but the source describes creating an enrollment "policy" and distinguishing it from other enrollment "policies".
+
+- **Published to:** [Configure Await Final Configuration](await-final-configuration/configure-await-final-configuration.md)
+- **Source:** [Microsoft Learn](https://learn.microsoft.com/intune/device-enrollment/apple/setup-automated-macos)
+
+---
+
+<!-- changelog-entry:af67af44915f813c -->
+### Corrected Antivirus Configuration
+
+**Documentation correction** · Automatically published
+
+The page lists 'Scanning inside archive files' without qualification, but the source states this setting applies to on-demand antivirus scans only.
+
+- **Published to:** [Antivirus Configuration](baselinesettings/antivirusconfiguration.md)
+- **Source:** [Microsoft Learn](https://learn.microsoft.com/defender-endpoint/mac-preferences)
+
+---
+
+<!-- changelog-entry:3178dfd77cfdf294 -->
+### Corrected Configure MacOS Platform SSO
+
+**Documentation correction** · Automatically published
+
+The page lists only Microsoft Edge, Google Chrome, and Safari as supported browsers, but the source also lists Firefox as a supported browser.
+
+- **Published to:** [Configure MacOS Platform SSO](complete-guide-macos-deployment/configure-macos-platform-sso.md)
+- **Source:** [Microsoft Learn](https://learn.microsoft.com/intune/device-configuration/settings-catalog/configure-platform-sso-macos)
+
+---
+
+<!-- changelog-entry:06393e6fc2cc7cc0 -->
+### Corrected Script to get the last reboot time formatted
+
+**Documentation correction** · Automatically published
+
+The page says the navigate is Devices \> macOS \> Custom Attributes; the current source describnavnavpath shthe settings are Devices \> By platform \> macOS \> Manage devices \> Scripts.
+
+- **Published to:** [Script to get the last reboot time formatted](custom-attributes/create-custom-attributes.md)
+- **Source:** [Microsoft Learn](https://learn.microsoft.com/intune/device-management/tools/run-shell-scripts-macos)
+
 ## July 14, 2026
 
 <!-- changelog-entry:0d6bbbef8b21d6f7 -->

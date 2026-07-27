@@ -50,6 +50,7 @@ I will describe the config for **Secure Enclave Key** and will add **Password au
     Microsoft Edge
     Google Chrome with the Microsoft Single Sign On extension
     Safari
+    Firefox
 
 ## Create the Platform SSO policy
 

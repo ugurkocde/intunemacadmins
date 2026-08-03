@@ -15,6 +15,12 @@ Actionable support, enrollment, and service changes that macOS administrators sh
 
 ## Released Microsoft Intune updates
 
+## Week of July 27, 2026 (Service release 2607)
+
+### Device security
+
+- **Custom compliance settings for macOS** — Microsoft Intune now supports custom compliance settings for macOS, allowing admins to define compliance checks using scripts and JSON rules, similar to existing support for Windows and Linux. This capability can evaluate device configuration, security posture, and other custom attributes not covered by built-in settings. Results appear alongside standard compliance reporting in the Intune admin center. [Details](https://learn.microsoft.com/en-us/intune/whats-new/#custom-compliance-settings-for-macos)
+
 ## Week of June 29, 2026 (Service release 2606)
 
 ### App management
@@ -45,13 +51,6 @@ Actionable support, enrollment, and service changes that macOS administrators sh
 ### Device enrollment
 
 - **Access management for Apple services** — Apple access management settings in Apple Business Manager and Apple School Manager can now be used to configure service access for Apple accounts on organization-owned devices. These controls determine which devices users can sign in to and which apps and services are available to them. The feature applies to iOS, iPadOS, and macOS. [Details](https://learn.microsoft.com/en-us/intune/whats-new/#access-management-for-apple-services)
-
-## Week of March 30, 2026 (Service release 2603)
-
-### Device configuration
-
-- **New updates to the Apple settings catalog** — New settings have been added to the Intune Settings Catalog for iOS/iPadOS and macOS. The additions include Declarative Device Management options for External Intelligence Settings, Intelligence Settings, Keyboard Settings, and Siri Settings, along with macOS-specific System Configuration File Provider settings and a Rosetta Usage Awareness restriction. The settings are accessible by creating a Settings Catalog profile in the Microsoft Intune admin center under Devices, Configuration. [Details](https://learn.microsoft.com/en-us/intune/whats-new/#new-updates-to-the-apple-settings-catalog)
-- **Recovery lock features available for macOS devices** — Microsoft Intune now supports configuring a recovery OS password on macOS devices to prevent users from booting company-owned devices into recovery mode, reinstalling macOS, or bypassing remote management. The feature can be enabled and set with a password rotation schedule through a settings catalog policy, or rotated manually using the Recovery Lock device action. The Recovery Lock password is viewable in the per-setting status report under Passwords and keys, requiring the View macOS recovery lock password permission. [Details](https://learn.microsoft.com/en-us/intune/whats-new/#recovery-lock-features-available-for-macos-devices)
 
 ---
 

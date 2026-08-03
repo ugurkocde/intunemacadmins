@@ -75,6 +75,7 @@
 * [Enroll MacOS in Microsoft Defender](complete-guide-macos-deployment/enroll-macos-in-microsoft-defender.md)
 * [Declarative Device Management (DDM)](complete-guide-macos-deployment/declarative-device-management.md)
 * [Rapid Security Response](complete-guide-macos-deployment/rapid-security-response.md)
+* [Custom Compliance Settings for macOS](complete-guide-macos-deployment/custom-compliance-settings.md)
 
 ## Await Final Configuration
 

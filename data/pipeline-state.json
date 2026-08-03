@@ -112,6 +112,29 @@
       "url": "https://learn.microsoft.com/en-us/intune/whats-new/#new-client-version-for-remote-help-for-macos",
       "week": "2026-W24"
     },
+    "3d8aa7b543ea716a": {
+      "category": "security",
+      "firstSeen": "2026-08-03T07:12:17.598Z",
+      "meta": {
+        "categoryHeading": "Device security",
+        "release": "2607",
+        "week": "Week of July 27, 2026"
+      },
+      "publishedAt": "2026-07-27T00:00:00.000Z",
+      "source": "ms-whats-new",
+      "sourceName": "Microsoft Learn",
+      "status": "published",
+      "summary": "Microsoft Intune now supports custom compliance settings for macOS, allowing admins to define compliance checks using scripts and JSON rules, similar to existing support for Windows and Linux. This capability can evaluate device configuration, security posture, and other custom attributes not covered by built-in settings. Results appear alongside standard compliance reporting in the Intune admin center.",
+      "tags": [
+        "compliance",
+        "macos",
+        "custom-settings",
+        "scripts"
+      ],
+      "title": "Custom compliance settings for macOS",
+      "url": "https://learn.microsoft.com/en-us/intune/whats-new/#custom-compliance-settings-for-macos",
+      "week": "2026-W32"
+    },
     "46769a21badca84d": {
       "category": "enrollment",
       "firstSeen": "2026-06-13T16:21:28.167Z",

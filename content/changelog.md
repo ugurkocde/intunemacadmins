@@ -14,6 +14,18 @@ Every meaningful documentation change, in one place. Each entry shows what was a
 
 <!-- changelog:entries -->
 
+## August 3, 2026
+
+<!-- changelog-entry:98ab4156d7b9e7af -->
+### Custom compliance settings for macOS
+
+**Content update** · Automatically published
+
+Microsoft Intune now supports custom compliance settings for macOS, allowing admins to define compliance checks using scripts and JSON rules, similar to existing support for Windows and Linux. This capability can evaluate device configuration, security posture, and other custom attributes not covered by built-in settings. Results appear alongside standard compliance reporting in the Intune admin center.
+
+- **Published to:** [What's New for macOS Management](home/whats-new.md), [Custom Compliance Settings for macOS](complete-guide-macos-deployment/custom-compliance-settings.md)
+- **Source:** [Microsoft Learn](https://learn.microsoft.com/en-us/intune/whats-new/#custom-compliance-settings-for-macos)
+
 ## July 27, 2026
 
 <!-- changelog-entry:5c5025f62b5f3582 -->

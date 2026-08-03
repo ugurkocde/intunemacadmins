@@ -16,6 +16,17 @@ Every meaningful documentation change, in one place. Each entry shows what was a
 
 ## August 3, 2026
 
+<!-- changelog-entry:2586eccb43563e30 -->
+### Corrected Install the Company Portal app for MacOS as a MacOS LOB app
+
+**Documentation correction** · Automatically published
+
+The page says to select the app type without mentioning selecting the macOS platform first; the source states you select the macOS platform and then Line-of-business app.
+
+- **Published to:** [Install the Company Portal app for MacOS as a MacOS LOB app](complete-guide-macos-deployment/install-the-company-portal-app-for-macos-as-a-macos-lob-app.md)
+- **Source:** [Microsoft Learn](https://learn.microsoft.com/intune/app-management/deployment/add-lob-macos)
+
+---
 <!-- changelog-entry:98ab4156d7b9e7af -->
 ### Custom compliance settings for macOS
 

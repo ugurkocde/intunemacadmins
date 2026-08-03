@@ -13,7 +13,7 @@ Company Portal for macOS can be downloaded and installed using the macOS LOB app
 
 Download Company Portal for macOS from [here](https://go.microsoft.com/fwlink/?linkid=853070)
 
-Add the app by going to the Intune portal – Apps – All Apps – Create – App Type Line-of-business app – select
+Add the app by going to the Intune portal – Apps – All Apps – Create – App Type – select the macOS platform, then Line-of-business app – select
 
 Browse to your downloaded CompanyPortal-installer.pkg file and fill in the empty required fields
 

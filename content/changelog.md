@@ -14,6 +14,30 @@ Every meaningful documentation change, in one place. Each entry shows what was a
 
 <!-- changelog:entries -->
 
+## August 10, 2026
+
+<!-- changelog-entry:da5358fcaf7a480a -->
+### Corrected Rapid Security Response
+
+**Documentation correction** · Automatically published
+
+The page says the feature starts with iOS 16.4.1/iPadOS 16.4.1/macOS 13.3.1, but the current source states Background Security Improvements are supported starting with iOS 26.1, iPadOS 26.1, and macOS 26.1.
+
+- **Published to:** [Rapid Security Response](complete-guide-macos-deployment/rapid-security-response.md)
+- **Source:** [Apple documentation](https://support.apple.com/guide/security/rapid-security-responses-sec87fc038c2/web)
+
+---
+
+<!-- changelog-entry:ec14cf4b349b0b63 -->
+### Corrected Enable FileVault in Setup Assistant
+
+**Documentation correction** · Automatically published
+
+The page says to search for FileVault when adding settings, while the source says to navigate to the Full Disk Encryption category.
+
+- **Published to:** [Enable FileVault in Setup Assistant](filevault/enable-filevault-in-setup-assistant.md)
+- **Source:** [Microsoft Learn](https://learn.microsoft.com/intune/device-configuration/endpoint-security/encrypt-filevault-macos)
+
 ## August 3, 2026
 
 <!-- changelog-entry:2586eccb43563e30 -->

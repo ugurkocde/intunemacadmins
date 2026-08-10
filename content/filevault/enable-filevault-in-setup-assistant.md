@@ -44,7 +44,7 @@ or create your own profile following this guide:
 2. Go to Devices -> By platform -> macOS -> Manage devices -> Configuration and Create a new policy. 
    1. Profile type: Settings catalog
 3. Give it a descriptive name and click on Next. Example: *Enable FileVault during Setup Assistant*
-4. Click on Add settings and search for FileVault.
+4. Click on Add settings and navigate to Full Disk Encryption.
 ![FileVault](../.gitbook/assets/FileVault/FileVault_2.png)
 5. Select *Force Enable in Setup Assistant* (this will automatically select *Enable*)
 6. Let´s also configure *Prevent FileVault From Being Disabled*. You can find it in the *FileVault Options* category.

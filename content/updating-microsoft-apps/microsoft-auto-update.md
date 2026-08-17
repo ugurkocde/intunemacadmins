@@ -15,7 +15,7 @@ Microsoft Auto Update (MAU) is a tool designed to keep Microsoft applications on
 
 2. **Manual Update Option**: Users can manually check for updates through the "Help" menu in any Microsoft application.
 
-3. **Update Channels**: MAU offers different update channels, including production and insider channels for early access to new features.
+3. **Update Channels**: MAU offers different update channels, including Current and Beta (Insider) channels for early access to new features.
 
 4. **Deadline Setting**: MAU allows administrators to set deadlines for when updates must be installed.
 

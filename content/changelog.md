@@ -14,6 +14,30 @@ Every meaningful documentation change, in one place. Each entry shows what was a
 
 <!-- changelog:entries -->
 
+## August 17, 2026
+
+<!-- changelog-entry:0af17248448f4c80 -->
+### Corrected Rapid Security Response
+
+**Documentation correction** · Automatically published
+
+The page calls the feature "Rapid Security Responses", but the current source names it "Background Security Improvements".
+
+- **Published to:** [Rapid Security Response](complete-guide-macos-deployment/rapid-security-response.md)
+- **Source:** [Apple documentation](https://support.apple.com/guide/security/rapid-security-responses-sec87fc038c2/web)
+
+---
+
+<!-- changelog-entry:a7e91f5ac83c6de9 -->
+### Corrected What is Microsoft Auto Update (MAU)?
+
+**Documentation correction** · Automatically published
+
+The page refers to "production" and "insider" channels; the source states Production and InsiderFast are deprecated, replaced by Current and Beta respectively.
+
+- **Published to:** [What is Microsoft Auto Update (MAU)?](updating-microsoft-apps/microsoft-auto-update.md)
+- **Source:** [Microsoft Learn](https://learn.microsoft.com/microsoft-365-apps/mac/mau-preferences)
+
 ## August 10, 2026
 
 <!-- changelog-entry:da5358fcaf7a480a -->

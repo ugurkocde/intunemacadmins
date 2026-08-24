@@ -11,7 +11,7 @@ lastReviewed: 2026-07-14
 ## Rapid Security Response
 **What is Rapid Security Response?**
 
-Rapid Security Responses deliver important security improvements between software updates.
+Background Security Improvements deliver important security improvements between software updates.
 
 Background Security Improvements are a new type of software release for iPhone, iPad and Mac. They deliver important security improvements between software updates – for example, improvements to the Safari web browser, the WebKit framework stack or other critical system libraries. They may also be used to mitigate some security issues more quickly, such as issues that may have been exploited or reported to exist.
 

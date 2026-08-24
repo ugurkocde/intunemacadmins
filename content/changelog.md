@@ -14,6 +14,18 @@ Every meaningful documentation change, in one place. Each entry shows what was a
 
 <!-- changelog:entries -->
 
+## August 24, 2026
+
+<!-- changelog-entry:f773ba56da46a327 -->
+### Corrected Rapid Security Response
+
+**Documentation correction** · Automatically published
+
+The page uses the term "Rapid Security Responses" while the current source names the feature "Background Security Improvements".
+
+- **Published to:** [Rapid Security Response](complete-guide-macos-deployment/rapid-security-response.md)
+- **Source:** [Apple documentation](https://support.apple.com/guide/deployment/install-and-enforce-software-updates-depd30715cbb/web)
+
 ## August 17, 2026
 
 <!-- changelog-entry:0af17248448f4c80 -->

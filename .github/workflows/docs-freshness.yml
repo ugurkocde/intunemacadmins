@@ -26,7 +26,7 @@ jobs:
     # it ample headroom with a generous timeout.
     timeout-minutes: 45
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0 # full history so review-age can read git last-modified dates
 

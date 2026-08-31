@@ -89,6 +89,29 @@
       "firstSeen": "2026-06-22T11:34:55.424Z",
       "status": "rejected"
     },
+    "2a7be122de5db5a6": {
+      "category": "configuration",
+      "firstSeen": "2026-08-31T06:31:42.221Z",
+      "meta": {
+        "categoryHeading": "Device configuration",
+        "release": "2608",
+        "week": "Week of August 25, 2026"
+      },
+      "publishedAt": "2026-08-25T00:00:00.000Z",
+      "source": "ms-whats-new",
+      "sourceName": "Microsoft Learn",
+      "status": "published",
+      "summary": "Microsoft Intune now supports new Settings Catalog options for testing on the OS 27 betas, covering Declarative Device Management areas including App Settings, Web Content Filter, and Siri Settings for iOS/iPadOS and macOS. The settings can be configured under Devices, Manage devices, Configuration, Create, New policy, then iOS/iPadOS or macOS, and Settings catalog. This allows testing of upcoming Apple management controls ahead of general availability.",
+      "tags": [
+        "settings catalog",
+        "macos",
+        "ios",
+        "declarative device management"
+      ],
+      "title": "New updates to the Apple settings catalog",
+      "url": "https://learn.microsoft.com/en-us/intune/whats-new/#new-updates-to-the-apple-settings-catalog",
+      "week": "2026-W36"
+    },
     "2febb1a965c823b0": {
       "category": "announcement",
       "firstSeen": "2026-06-13T16:21:28.167Z",
@@ -243,6 +266,10 @@
       "firstSeen": "2026-06-13T16:21:28.167Z",
       "status": "rejected"
     },
+    "861ec465f314dddf": {
+      "firstSeen": "2026-08-31T06:31:42.221Z",
+      "status": "rejected"
+    },
     "89a06f5494497ee4": {
       "firstSeen": "2026-06-13T16:21:28.167Z",
       "status": "rejected"
@@ -250,6 +277,29 @@
     "8effbc33de6dda5a": {
       "firstSeen": "2026-06-13T16:21:28.167Z",
       "status": "rejected"
+    },
+    "907eae40be4ff0dd": {
+      "category": "troubleshooting",
+      "firstSeen": "2026-08-31T06:31:42.221Z",
+      "meta": {
+        "categoryHeading": "Device management",
+        "release": "2608",
+        "week": "Week of August 25, 2026"
+      },
+      "publishedAt": "2026-08-25T00:00:00.000Z",
+      "source": "ms-whats-new",
+      "sourceName": "Microsoft Learn",
+      "status": "published",
+      "summary": "Microsoft Intune now supports Apple's Enhanced Logging device action on supported supervised devices running a compatible OS release. Administrators can start an AppleCare diagnostic-log collection session using an AppleCare-provided token and monitor device-reported status through Declarative Device Management. This applies to iOS/iPadOS and macOS and reduces the need to coordinate manual log collection with the device user.",
+      "tags": [
+        "diagnostics",
+        "supervised devices",
+        "applecare",
+        "ddm"
+      ],
+      "title": "Collect enhanced diagnostic logs from supervised Apple devices",
+      "url": "https://learn.microsoft.com/en-us/intune/whats-new/#collect-enhanced-diagnostic-logs-from-supervised-apple-devices",
+      "week": "2026-W36"
     },
     "9e40dabd53f7596a": {
       "category": "configuration",
@@ -423,9 +473,55 @@
       "url": "https://learn.microsoft.com/en-us/intune/whats-new/#access-management-for-apple-services",
       "week": "2026-W24"
     },
+    "e4500bde33dd40bc": {
+      "category": "enrollment",
+      "firstSeen": "2026-08-31T06:31:42.221Z",
+      "meta": {
+        "categoryHeading": "Device enrollment",
+        "release": "2608",
+        "week": "Week of August 25, 2026"
+      },
+      "publishedAt": "2026-08-25T00:00:00.000Z",
+      "source": "ms-whats-new",
+      "sourceName": "Microsoft Learn",
+      "status": "published",
+      "summary": "Microsoft Intune now includes Apple OS 27 Setup Assistant skip keys for Liquid Glass and Accessibility Appearance in Automated Device Enrollment profiles. Administrators can hide these panes during enrollment on supported iPhone, iPad, and Mac devices. This applies to iOS/iPadOS and macOS.",
+      "tags": [
+        "automated device enrollment",
+        "setup assistant",
+        "macos",
+        "ios"
+      ],
+      "title": "Skip new Apple Setup Assistant panes during enrollment",
+      "url": "https://learn.microsoft.com/en-us/intune/whats-new/#skip-new-apple-setup-assistant-panes-during-enrollment",
+      "week": "2026-W36"
+    },
     "e73e5f02b45d2723": {
       "firstSeen": "2026-06-15T17:18:17.434Z",
       "status": "rejected"
+    },
+    "ecbd79920918eda9": {
+      "category": "app-management",
+      "firstSeen": "2026-08-31T06:31:42.221Z",
+      "meta": {
+        "categoryHeading": "App management",
+        "release": "2608",
+        "week": "Week of August 25, 2026"
+      },
+      "publishedAt": "2026-08-25T00:00:00.000Z",
+      "source": "ms-whats-new",
+      "sourceName": "Microsoft Learn",
+      "status": "published",
+      "summary": "Microsoft Intune now supports Apple Declarative Device Management (DDM) for required volume purchase program (VPP) apps on devices running iOS/iPadOS 17.2 and later and macOS 26 and later. Changing the management type to DDM when uploading a new VPP token allows apps to be deployed and configured using Apple's policy-based model, which provides real-time app status and per-app settings such as automatic app updates.",
+      "tags": [
+        "vpp",
+        "ddm",
+        "ios",
+        "macos"
+      ],
+      "title": "Declarative Device Management for Apple volume purchase program apps",
+      "url": "https://learn.microsoft.com/en-us/intune/whats-new/#declarative-device-management-for-apple-volume-purchase-program-apps",
+      "week": "2026-W36"
     },
     "f064c0f18e236264": {
       "category": "configuration",

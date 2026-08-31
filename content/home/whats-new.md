@@ -15,6 +15,24 @@ Actionable support, enrollment, and service changes that macOS administrators sh
 
 ## Released Microsoft Intune updates
 
+## Week of August 25, 2026 (Service release 2608)
+
+### App management
+
+- **Declarative Device Management for Apple volume purchase program apps** — Microsoft Intune now supports Apple Declarative Device Management (DDM) for required volume purchase program (VPP) apps on devices running iOS/iPadOS 17.2 and later and macOS 26 and later. Changing the management type to DDM when uploading a new VPP token allows apps to be deployed and configured using Apple's policy-based model, which provides real-time app status and per-app settings such as automatic app updates. [Details](https://learn.microsoft.com/en-us/intune/whats-new/#declarative-device-management-for-apple-volume-purchase-program-apps)
+
+### Device configuration
+
+- **New updates to the Apple settings catalog** — Microsoft Intune now supports new Settings Catalog options for testing on the OS 27 betas, covering Declarative Device Management areas including App Settings, Web Content Filter, and Siri Settings for iOS/iPadOS and macOS. The settings can be configured under Devices, Manage devices, Configuration, Create, New policy, then iOS/iPadOS or macOS, and Settings catalog. This allows testing of upcoming Apple management controls ahead of general availability. [Details](https://learn.microsoft.com/en-us/intune/whats-new/#new-updates-to-the-apple-settings-catalog)
+
+### Device enrollment
+
+- **Skip new Apple Setup Assistant panes during enrollment** — Microsoft Intune now includes Apple OS 27 Setup Assistant skip keys for Liquid Glass and Accessibility Appearance in Automated Device Enrollment profiles. Administrators can hide these panes during enrollment on supported iPhone, iPad, and Mac devices. This applies to iOS/iPadOS and macOS. [Details](https://learn.microsoft.com/en-us/intune/whats-new/#skip-new-apple-setup-assistant-panes-during-enrollment)
+
+### Device management
+
+- **Collect enhanced diagnostic logs from supervised Apple devices** — Microsoft Intune now supports Apple's Enhanced Logging device action on supported supervised devices running a compatible OS release. Administrators can start an AppleCare diagnostic-log collection session using an AppleCare-provided token and monitor device-reported status through Declarative Device Management. This applies to iOS/iPadOS and macOS and reduces the need to coordinate manual log collection with the device user. [Details](https://learn.microsoft.com/en-us/intune/whats-new/#collect-enhanced-diagnostic-logs-from-supervised-apple-devices)
+
 ## Week of July 27, 2026 (Service release 2607)
 
 ### Device security
@@ -45,12 +63,6 @@ Actionable support, enrollment, and service changes that macOS administrators sh
 ### Device enrollment
 
 - **Complete Platform SSO registration during macOS Automated Device Enrollment** — Microsoft documented support for running Platform Single Sign-On during macOS Automated Device Enrollment. Configuration requires creating an Intune settings catalog policy with the Enable Registration During Setup setting, deploying Company Portal 5.2604.0 or newer as a line-of-business app, and setting the ADE policy to use Setup Assistant with modern authentication and await final configuration. When enabled, users gain access to Microsoft Entra ID resources upon arriving at the desktop, and the feature applies to macOS 26 and newer. [Details](https://learn.microsoft.com/en-us/intune/whats-new/#complete-platform-sso-registration-during-macos-automated-device-enrollment)
-
-## Week of April 27, 2026 (Service release 2604)
-
-### Device enrollment
-
-- **Access management for Apple services** — Apple access management settings in Apple Business Manager and Apple School Manager can now be used to configure service access for Apple accounts on organization-owned devices. These controls determine which devices users can sign in to and which apps and services are available to them. The feature applies to iOS, iPadOS, and macOS. [Details](https://learn.microsoft.com/en-us/intune/whats-new/#access-management-for-apple-services)
 
 ---
 

@@ -4,7 +4,7 @@ sources:
   - https://learn.microsoft.com/intune/device-updates/apple/
   - https://support.apple.com/guide/deployment/declarative-device-management-manage-apple-depc30268577/web
   - https://github.com/apple/device-management/tree/release
-lastReviewed: 2026-06-13
+lastReviewed: 2026-08-31
 ---
 
 # Declarative Device Management (DDM)
@@ -93,6 +93,12 @@ To create a restrictions policy, navigate to the Settings catalog > Restrictions
 - Enforced Software Update Non OS Deferred Install Delay (macOS)
 
 ![DDM](../.gitbook/assets/CompleteGuide/image-74.webp)
+
+### DDM for Volume Purchase Program (VPP) apps
+
+Intune supports Apple Declarative Device Management (DDM) for required volume purchase program (VPP) apps on macOS 26 and later (and iOS/iPadOS 17.2 and later). When you upload a new VPP token, change the management type to DDM to deploy and configure apps using Apple's policy-based model. This improves delivery efficiency, provides real-time app status, and adds new per-app settings such as automatic app updates.
+
+Learn more: [Microsoft Intune release notes](https://learn.microsoft.com/en-us/intune/whats-new/#declarative-device-management-for-apple-volume-purchase-program-apps)
 
 ## Settings explained:
 

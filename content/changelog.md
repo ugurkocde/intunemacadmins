@@ -14,6 +14,30 @@ Every meaningful documentation change, in one place. Each entry shows what was a
 
 <!-- changelog:entries -->
 
+## September 7, 2026
+
+<!-- changelog-entry:8ce87cae6d53778e -->
+### Microsoft Defender for Endpoint 101.26062.0011 for macOS
+
+**Content update** · Automatically published
+
+Microsoft Defender for Endpoint version 101.26062.0011 for macOS expands local AI agent discovery, currently in preview, to include visibility into Model Context Protocol (MCP) server configurations. The release also includes performance improvements and bug fixes.
+
+- **Published to:** [What's New for macOS Management](home/whats-new.md)
+- **Source:** [Microsoft Defender for Endpoint release notes](https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint-releases#macos-august-2026-101-26062-0011)
+
+---
+
+<!-- changelog-entry:ee6931c458ad0b8b -->
+### Microsoft Defender for Endpoint 101.26062.0009 for macOS
+
+**Content update** · Automatically published
+
+Microsoft Defender for Endpoint version 101.26062.0009 for macOS includes bug and performance fixes. Network diagnostics have been extended with the mdatp health --details network\_configuration command.
+
+- **Published to:** [What's New for macOS Management](home/whats-new.md)
+- **Source:** [Microsoft Defender for Endpoint release notes](https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint-releases#macos-july-2026-101-26062-0009)
+
 ## August 31, 2026
 
 <!-- changelog-entry:2d371d3e768b561e -->

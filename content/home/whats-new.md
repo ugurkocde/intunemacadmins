@@ -13,6 +13,13 @@ Actionable support, enrollment, and service changes that macOS administrators sh
 
 - **Plan for change: Intune is moving to support macOS 15 and higher later this year** — Microsoft Intune, the Company Portal app, and the Intune mobile device management agent will move to support macOS 15 and later, with the change occurring shortly after Apple's expected release of macOS 27 later in calendar year 2026. Devices already enrolled on macOS 14.x or below will remain enrolled, but new devices running macOS 14.x or below will be unable to enroll. Administrators can review Intune reporting under Devices and All devices, filter by macOS, and ask users to upgrade to a supported OS version. [Details](https://learn.microsoft.com/en-us/intune/whats-new/#plan-for-change-intune-is-moving-to-support-macos-15-and-higher-later-this-year)
 
+## Microsoft Defender for Endpoint for macOS
+
+Substantive security, management, and compatibility changes. Routine build-only updates are excluded.
+
+- **Microsoft Defender for Endpoint 101.26062.0011 for macOS** — Microsoft Defender for Endpoint version 101.26062.0011 for macOS expands local AI agent discovery, currently in preview, to include visibility into Model Context Protocol (MCP) server configurations. The release also includes performance improvements and bug fixes. [Details](https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint-releases#macos-august-2026-101-26062-0011)
+- **Microsoft Defender for Endpoint 101.26062.0009 for macOS** — Microsoft Defender for Endpoint version 101.26062.0009 for macOS includes bug and performance fixes. Network diagnostics have been extended with the mdatp health --details network\_configuration command. [Details](https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint-releases#macos-july-2026-101-26062-0009)
+
 ## Released Microsoft Intune updates
 
 ## Week of August 25, 2026 (Service release 2608)

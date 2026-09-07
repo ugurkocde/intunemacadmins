@@ -158,6 +158,28 @@
       "url": "https://learn.microsoft.com/en-us/intune/whats-new/#custom-compliance-settings-for-macos",
       "week": "2026-W32"
     },
+    "42ea4d5adf2781c6": {
+      "category": "security",
+      "firstSeen": "2026-09-07T06:32:11.896Z",
+      "meta": {
+        "build": "101.26062.0011",
+        "platform": "macOS"
+      },
+      "publishedAt": "2026-08-01T00:00:00.000Z",
+      "source": "ms-defender-macos",
+      "sourceName": "Microsoft Defender for Endpoint release notes",
+      "status": "published",
+      "summary": "Microsoft Defender for Endpoint version 101.26062.0011 for macOS expands local AI agent discovery, currently in preview, to include visibility into Model Context Protocol (MCP) server configurations. The release also includes performance improvements and bug fixes.",
+      "tags": [
+        "defender",
+        "macos",
+        "ai",
+        "mcp"
+      ],
+      "title": "Microsoft Defender for Endpoint 101.26062.0011 for macOS",
+      "url": "https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint-releases#macos-august-2026-101-26062-0011",
+      "week": "2026-W37"
+    },
     "46769a21badca84d": {
       "category": "enrollment",
       "firstSeen": "2026-06-13T16:21:28.167Z",
@@ -226,6 +248,28 @@
       "title": "Intune to end support for legacy Apple MDM software updates",
       "url": "https://learn.microsoft.com/en-us/intune/whats-new/#intune-to-end-support-for-legacy-apple-mdm-software-updates",
       "week": "2026-W24"
+    },
+    "5b4ee705bb7fee1b": {
+      "category": "security",
+      "firstSeen": "2026-09-07T06:32:11.896Z",
+      "meta": {
+        "build": "101.26062.0009",
+        "platform": "macOS"
+      },
+      "publishedAt": "2026-07-01T00:00:00.000Z",
+      "source": "ms-defender-macos",
+      "sourceName": "Microsoft Defender for Endpoint release notes",
+      "status": "published",
+      "summary": "Microsoft Defender for Endpoint version 101.26062.0009 for macOS includes bug and performance fixes. Network diagnostics have been extended with the mdatp health --details network_configuration command.",
+      "tags": [
+        "defender",
+        "macos",
+        "networking",
+        "diagnostics"
+      ],
+      "title": "Microsoft Defender for Endpoint 101.26062.0009 for macOS",
+      "url": "https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint-releases#macos-july-2026-101-26062-0009",
+      "week": "2026-W37"
     },
     "5c9c6fadda8ed7cd": {
       "firstSeen": "2026-06-13T16:21:28.167Z",

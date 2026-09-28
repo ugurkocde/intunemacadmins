@@ -14,6 +14,18 @@ Every meaningful documentation change, in one place. Each entry shows what was a
 
 <!-- changelog:entries -->
 
+## September 28, 2026
+
+<!-- changelog-entry:01e1863959d1fe44 -->
+### Corrected Configure Await Final Configuration
+
+**Documentation correction** · Automatically published
+
+The page calls it the Configuration settings "page" while the source refers to the "Configuration settings tab".
+
+- **Published to:** [Configure Await Final Configuration](await-final-configuration/configure-await-final-configuration.md)
+- **Source:** [Microsoft Learn](https://learn.microsoft.com/intune/device-enrollment/apple/setup-automated-macos)
+
 ## September 7, 2026
 
 <!-- changelog-entry:8ce87cae6d53778e -->

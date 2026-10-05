@@ -14,6 +14,18 @@ Every meaningful documentation change, in one place. Each entry shows what was a
 
 <!-- changelog:entries -->
 
+## October 5, 2026
+
+<!-- changelog-entry:eaaec650a48b65c7 -->
+### Corrected Add a device to Apple Business Manager
+
+**Documentation correction** · Automatically published
+
+The page uses the "Enrollment" node and "Enrollment program tokens" path and refers to "profiles". The source describes the path as Devices \> Device onboarding \> Enrollment \> macOS \> Bulk Enrollment Methods \> Enrollment program tokens, and calls the created object an enrollment policy under Enrollment policies.
+
+- **Published to:** [Add a device to Apple Business Manager](complete-guide-macos-deployment/add-a-device-to-apple-business-manager.md)
+- **Source:** [Microsoft Learn](https://learn.microsoft.com/intune/device-enrollment/apple/setup-automated-macos)
+
 ## September 28, 2026
 
 <!-- changelog-entry:01e1863959d1fe44 -->

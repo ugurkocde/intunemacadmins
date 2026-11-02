@@ -47,7 +47,7 @@ To use this script as a custom attribute in Intune:
 After configuration, Intune will run this script on the targeted devices and collect the last reboot time information. You can then view this data in the Intune portal or use it for reporting and compliance purposes.
 
 {% hint style="info" %}
-Custom Attributes run every 8 hours by default. You can not change the frequency of the script and you can not run it on-demand.
+Script frequency can be configured, and by default (Not configured) the script runs only once. You can not run it on-demand.
 {% endhint %}
 
 ## Viewing Results

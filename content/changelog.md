@@ -14,6 +14,30 @@ Every meaningful documentation change, in one place. Each entry shows what was a
 
 <!-- changelog:entries -->
 
+## November 2, 2026
+
+<!-- changelog-entry:66a516c82842143d -->
+### Corrected Configure Await Final Configuration
+
+**Documentation correction** · Automatically published
+
+The page says to configure "Enrol with User Affinity & Modern Authentication" as a single option, but the source describes configuring "User Affinity" then selecting "Enroll with User Affinity" and "Setup Assistant with modern authentication".
+
+- **Published to:** [Configure Await Final Configuration](await-final-configuration/configure-await-final-configuration.md)
+- **Source:** [Microsoft Learn](https://learn.microsoft.com/intune/device-enrollment/apple/setup-automated-macos)
+
+---
+
+<!-- changelog-entry:226cb43d65d0a498 -->
+### Corrected Script to get the last reboot time formatted
+
+**Documentation correction** · Automatically published
+
+The page says the custom attribute script frequency is fixed at 8 hours and cannot be changed; the current source states a Script frequency can be selected and defaults to running only once (Not configured).
+
+- **Published to:** [Script to get the last reboot time formatted](custom-attributes/create-custom-attributes.md)
+- **Source:** [Microsoft Learn](https://learn.microsoft.com/intune/device-management/tools/run-shell-scripts-macos)
+
 ## September 28, 2026
 
 <!-- changelog-entry:01e1863959d1fe44 -->

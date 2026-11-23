@@ -17,7 +17,7 @@ After meeting the [Prerequisites](./prerequisites.md) we turn over to the setup 
 7. Create custom attributes (optional)
 
 ## Introduction
-All management tasks can be done within Intune > Devices > macOS - here you can configure and monitor everything:
+All management tasks can be done within Intune > Devices > By platform > macOS - here you can configure and monitor everything:
 ![IntuneSetup](../.gitbook/assets/IntuneSetup/intuneoverview.png)
 
 # 1. Groups & filters

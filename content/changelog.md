@@ -14,6 +14,18 @@ Every meaningful documentation change, in one place. Each entry shows what was a
 
 <!-- changelog:entries -->
 
+## November 23, 2026
+
+<!-- changelog-entry:3c769a1dc8434e6b -->
+### Corrected Overview
+
+**Documentation correction** · Automatically published
+
+The page says management is under Devices \> macOS, but the current source navigates via Devices \> By platform \> macOS.
+
+- **Published to:** [Overview](intune-getting-started-guide/basic-tenant-setup.md)
+- **Source:** [Microsoft Learn](https://learn.microsoft.com/intune/device-enrollment/apple/methods-macos)
+
 ## September 28, 2026
 
 <!-- changelog-entry:01e1863959d1fe44 -->
